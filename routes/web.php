@@ -14,7 +14,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\CountryStateController;
 use App\Http\Controllers\InvitationController;
 
-//log
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 
 
@@ -28,6 +28,11 @@ use Illuminate\Support\Facades\Log;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/crear-enlace', function () {
+    Artisan::call('storage:link');
+    return "Enlace simbólico creado con éxito.";
+});
 
 Route::get('/', function () {
     return view('auth.login');
