@@ -141,6 +141,7 @@
 
     <div class="auth-container d-flex">
         <div class="container mx-auto align-self-center">
+
             <form method="POST">
                 @csrf
                 <div class="card mt-1 mb-1">

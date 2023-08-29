@@ -11,6 +11,7 @@ use App\Mail\InvitationEmail;
 use Illuminate\Support\Facades\Log;
 
 use TCPDF;
+use Carbon\Carbon;
 
 class InvitationController extends Controller
 {
@@ -68,13 +69,23 @@ class InvitationController extends Controller
 
     private function generateInvitationPDF(Invitation $invitation)
     {
+        
         //GET path logo and firma
         $logo = public_path('assets/img/logo.png');
         $firma = public_path('assets/img/firma-dr-gustavo-camino.png');
 
+        // Establecer la zona horaria
+        date_default_timezone_set('America/Lima');
+
+        // Obtener la fecha actual
+        $fechaactual = Carbon::now()->locale('es_PE')->isoFormat('DD [\de] MMMM [\de] YYYY');
+
+        // Agregar "Lima," al inicio
+        $fechaactual = 'Lima, ' . $fechaactual;
+
         $content = <<<EOD
             <p style="font-size:15px;text-align:center; color:#c40000;"><img src="{$logo}" alt="logo" width="80" height="80" /><br><b>XLI REUNIÓN ANUAL DE DERMATÓLOGOS LATINOAMERICANOS</b><br><b style="color:#000;font-size:13px;text-align:center;">Swissôtel Lima, 8 al 11 de Mayo de 2024</b><br><br></p>
-            <p>Lima,</p>
+            <p>{$fechaactual}</p>
             <p>Señor(a) Doctor(a)</p>
             <p><strong>{$invitation->full_name}</strong></p>
             <p><strong>E-mail:</strong> {$invitation->email}</p>
@@ -117,8 +128,9 @@ class InvitationController extends Controller
 
     private function sendInvitationEmail($email, $pdfFilePath, $fullName, $country)
     {
-        // Send the email with attachment using Laravel's Mail service
-        \Mail::to($email)->send(new InvitationEmail($pdfFilePath, $fullName, $country));
+        // Send the email with attachment using Laravel's Mail service add copied to
+        \Mail::to($email)->cc('inscripciones@radla2024.org')->send(new InvitationEmail($pdfFilePath, $fullName, $country));
+
     }
 
 }

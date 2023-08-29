@@ -44,7 +44,7 @@
                                                 {{$invitation->email}}
                                             </td>
                                             <td>
-                                                {{$invitation->phone}}
+                                                +{{$invitation->phone_code}} {{$invitation->phone}}
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ asset('storage/uploads/invitation_letters').'/'. $invitation->file_name}}" target="_blank" class="btn btn-primary">{{__("Ver")}}</a>
