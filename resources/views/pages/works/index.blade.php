@@ -35,11 +35,10 @@
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">{{__("Nombre")}}</th>
-                                        <th scope="col">{{__("País")}}</th>
-                                        <th scope="col">{{__("Correo")}}</th>
-                                        <th scope="col">{{__("Teléfono")}}</th>
-                                        <th scope="col">{{__("")}}</th>
+                                        <th scope="col">{{__("Area de conocimiento")}}</th>
+                                        <th scope="col">{{__("Categoría del trabajo")}}</th>
+                                        <th scope="col">{{__("Título del trabajo")}}</th>
+                                        <th scope="col">{{__("Estado")}}</th>
                                         <th scope="col">{{__("Fecha")}}</th>
                                     </tr>
                                 </thead>
@@ -55,19 +54,16 @@
                                         @foreach ($works as $work)
                                             <tr>
                                                 <td>
-                                                    {{$work->full_name}}
+                                                    {{$work->knowledge_area}}
                                                 </td>
                                                 <td>
-                                                    {{$work->country}}
+                                                    {{$work->category}}
                                                 </td>
                                                 <td>
-                                                    {{$work->email}}
+                                                    {{$work->title}}
                                                 </td>
                                                 <td>
-                                                    +{{$work->phone_code}} {{$work->phone}}
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="{{ asset('storage/uploads/invitation_letters').'/'. $work->file_name}}" target="_blank" class="btn btn-primary">{{__("Ver")}}</a>
+                                                    {{$work->status}}
                                                 </td>
                                                 <td class="text-center">
                                                     {{$work->created_at}}

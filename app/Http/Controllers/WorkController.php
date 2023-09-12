@@ -63,6 +63,8 @@ class WorkController extends Controller
             'category' => 'required',
         ]);
 
+        $action = $request->input('action'); // Obtén el valor del botón presionado
+
         $work = new Work([
             'knowledge_area' => $request->get('knowledge_area'),
             'category' => $request->get('category'),
@@ -77,12 +79,17 @@ class WorkController extends Controller
             'file_4' => $request->get('file_4'),
             'file_5' => $request->get('file_5'),
             'file_6' => $request->get('file_6'),
+            'status' => $action,
         ]);
 
         $work->save();
 
-        return redirect('/works')->with('success', 'Trabajo agregado exitosamente.');
-
+        // Redirigir según el valor de $action
+        if ($action == 'borrador') {
+            return redirect()->route('works.edit', ['work' => $work->id])->with('success', 'Trabajo agregado exitosamente.');
+        } elseif ($action == 'finalizado') {
+            return redirect()->route('works.index')->with('success', 'Trabajo agregado exitosamente.');
+        }
     }
 
     /**
@@ -104,7 +111,7 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'En proceso de construcción...';
     }
 
     /**

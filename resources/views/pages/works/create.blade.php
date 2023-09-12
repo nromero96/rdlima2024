@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label for="inputAuthor_coauthors" class="form-label fw-bold">{{__("Nombre y apellidos: Colocar primero al autor principal, seguido de los coautores, separado por comas.")}}</label>
+                                <label for="inputAuthor_coauthors" class="form-label fw-bold">{{__("Nombre y apellidos:")}} (<small class="text-info">{{ __('Colocar primero al autor principal, seguido de los coautores, separado por comas.') }}</small>)</label>
                                 <input type="text" name="author_coauthors" class="form-control" id="inputAuthor_coauthors">
                             </div>
 
@@ -87,7 +87,8 @@
 
                             <div class="col-md-12">
                                 <label for="inputDescription" class="form-label fw-bold">{{__("Cuerpo del trabajo")}} (<small class="text-info">Síga las instrucciones de las bases.</small>)</label>
-                                <textarea name="description" class="form-control" id="inputDescription" rows="10"></textarea>
+                                <textarea name="description" class="form-control" id="inputDescription" rows="15"></textarea>
+                                <span id="charCount">0 / 5000</span>
                             </div>
 
                             <div class="col-md-12">
@@ -101,8 +102,8 @@
                             </div>
 
                             <div class="col-12 text-end">
-                                <a href="{{ route('users.myprofile') }}" class="btn btn-dark">{{__("Borrador")}}</a>
-                                <button type="submit" class="btn btn-primary">{{__("Finalizar")}}</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="borrador">{{__("Borrador")}}</button>
+                                <button type="submit" name="action" class="btn btn-primary" value="finalizado">{{__("Finalizar")}}</button>
                             </div>
                         </form>
                     </div>

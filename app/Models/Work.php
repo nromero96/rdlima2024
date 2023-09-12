@@ -23,5 +23,6 @@ class Work extends Model
         'file_4',
         'file_5',
         'file_6',
+        'status',
     ];
 }
