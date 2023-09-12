@@ -106,7 +106,7 @@
 
                                     <div class="col-12">
                                         <div class="text-center">
-                                            <p class="mb-0">{{ __("¿No tienes una cuenta?") }} <a href="javascript:void(0);" class="text-warning">{{ __("Inscribirse") }}</a></p>
+                                            <p class="mb-0">{{ __("¿No tienes una cuenta?") }} <a href="{{ route('register') }}" class="text-warning">{{ __("Registrarme") }}</a></p>
                                         </div>
                                     </div>
 

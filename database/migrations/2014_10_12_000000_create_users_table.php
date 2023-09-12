@@ -37,6 +37,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('status');
             $table->text('photo');
+            $table->string('solapin_name')->nullable();
+            $table->string('confir_information')->nullable();
             $table->timestamps();
         });
     }

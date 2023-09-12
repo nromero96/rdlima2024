@@ -15,8 +15,11 @@ class CreateWorksTable extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
+            $table->string('knowledge_area');
+            $table->string('category');
+            $table->string('author_coauthors');
+            $table->string('institution');
             $table->unsignedBigInteger('user_id');
-            $table->string('author');
             $table->string('title');
             $table->text('description');
             $table->string('file_1')->nullable();

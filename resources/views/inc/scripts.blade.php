@@ -3,6 +3,10 @@
     <script src="{{ asset('plugins/src/global/vendors.min.js')}} "></script>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+    <script>
+        class MayusculasConverter{constructor(t){this.inputs=document.querySelectorAll("."+t),this.convertirAMayusculas=this.convertirAMayusculas.bind(this),this.inputs.length>0&&this.inputs.forEach((t=>{t.addEventListener("input",this.convertirAMayusculas)}))}convertirAMayusculas(t){const e=t.target;e.value=e.value.toUpperCase()}};const converter=new MayusculasConverter("convert_mayus");
+    </script>
+
     @if ($page_name != 'coming_soon' && $page_name != 'contact_us' && $page_name != 'error404' && $page_name != 'error500' && $page_name != 'error503' && $page_name != 'faq' && $page_name != 'helpdesk' && $page_name != 'maintenence' && $page_name != 'privacy' && $page_name != 'auth_boxed' && $page_name != 'auth_default')
         <script src="{{ asset('plugins/src/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
         <script src="{{ asset('plugins/src/mousetrap/mousetrap.min.js') }}"></script>

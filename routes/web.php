@@ -2,9 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\UploadController;
+
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\InscriptionController;
+use App\Http\Controllers\HotelReservationController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\ExhibitorController;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\SpecialCodeController;
+
+
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SupplierController;
@@ -12,7 +22,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\CountryStateController;
-use App\Http\Controllers\InvitationController;
+
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
@@ -29,45 +39,35 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
-Route::get('/crear-enlace', function () {
-    Artisan::call('storage:link');
-    return "Enlace simbólico creado con éxito.";
-});
+// Route::get('/crear-enlace', function () {
+//     Artisan::call('storage:link');
+//     return "Enlace simbólico creado con éxito.";
+// });
+
+//send test mail simple text use smtp config
+// Route::get('/enviar-correo', function () {
+//     $destinatario = 'niltondeveloper96@gmail.com';
+//     Mail::to($destinatario)->send(new  \App\Mail\PruebaCorreo());
+//     return "Correo enviado desde la ruta.";
+// });
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-//send test mail simple text use smtp config
-Route::get('/enviar-correo', function () {
-    $destinatario = 'niltondeveloper96@gmail.com';
-    Mail::to($destinatario)->send(new  \App\Mail\PruebaCorreo());
-    return "Correo enviado desde la ruta.";
+//register
+Route::get('/register', function () {
+    return view('auth.register');
 });
 
 Route::get('/online-form-invitations', [InvitationController::class, 'showOnlineForm_invitations'])->name('onlineforminvitations');
 Route::post('/send-invitation', [InvitationController::class, 'sendInvitation'])->name('invitationsend');
 
-
-//Country and State
-Route::get('getcrossing/{id}', [App\Http\Controllers\CountryStateController::class, 'getcrossing'])->name('getcrossing');
-Route::get('getstates/{id}', [App\Http\Controllers\CountryStateController::class, 'getstates'])->name('getstates');
 Route::get('getcountry', [App\Http\Controllers\CountryStateController::class, 'getcountry'])->name('getcountry');
-Route::get('getWhitelistData/{serviceCategoryId}', [App\Http\Controllers\SupplierController::class, 'getWhitelistData'])->name('getWhitelistData');
-
-Route::post('quotationsonlinestore', [QuotationController::class, 'onlinestore'])->name('quotationsonlinestore');
-
-Route::get('quotations-onlineregister-commercial', [QuotationController::class, 'onlineregister_commercial'])->name('quotations.onlineregister.commercial');
-Route::get('quotations-onlineregister-personal', [QuotationController::class, 'onlineregister_personal'])->name('quotations.onlineregister.personal');
-
 Route::post('upload',[UploadController::class, 'store']);
 
+//routes for user login
 Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
-
-    Route::get('/storage-link', function () {
-        Artisan::call('storage:link');
-        return 'Storage link creado correctamente en cpanel.';
-    });
 
     // $this->middleware
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
@@ -75,13 +75,36 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::get('/my-profile', [App\Http\Controllers\UserController::class, 'myprofile'])->name('users.myprofile');
     Route::post('/update-my-profile', [App\Http\Controllers\UserController::class, 'updatemyprofile'])->name('users.updatemyprofile');
 
+    //Users
     Route::resource('users', UserController::class)->names('users');
+    
+    //Roles
     Route::resource('roles', RoleController::class)->names('roles');
+
+    //Programs
+    Route::resource('programs', ProgramController::class)->names('programs');
+
+    //Inscriptions
+    Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');
+
+    //HotelReservations
+    Route::resource('hotelreservations', HotelReservationController::class)->names('hotelreservations');
+
+    //Works
+    Route::resource('works', WorkController::class)->names('works');
+
+    //ExhibitorsController
+    Route::resource('exhibitors', ExhibitorController::class)->names('exhibitors');
+
+    //SpecialCodes
+    Route::resource('specialcodes', SpecialCodeController::class)->names('specialcodes');
+
+    //Invitations
     Route::resource('invitations', InvitationController::class)->names('invitations');
 
 
-    Route::resource('suppliers', SupplierController::class)->names('suppliers');
 
+    Route::resource('suppliers', SupplierController::class)->names('suppliers');
     Route::resource('quotations', QuotationController::class)->names('quotations');
 
     //ruta para agregar servicios mediande ajax a proveedores

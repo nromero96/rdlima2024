@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use App\Models\Country;
 
 use Image;
 
@@ -163,11 +164,12 @@ class UserController extends Controller
             'scrollspy_offset' => '',
         ];
 
+        $countries = Country::all();
         $user = User::find($id);
         $roles = Role::all();
 
         // $pageName = 'analytics';
-        return view('pages.user.myprofile')->with($data)->with('user',$user)->with('roles',$roles);
+        return view('pages.user.myprofile')->with($data)->with('user',$user)->with('roles',$roles)->with('countries',$countries);
     }
 
     public function updatemyprofile(Request $request){
@@ -195,8 +197,24 @@ class UserController extends Controller
 
         User::whereId($id)->update([
             'name' => $request['name'],
-            'password' => $pass,
+            'lastname' => $request['lastname'],
+            'second_lastname' => $request['second_lastname'],
+            'document_type' => $request['document_type'],
+            'document_number' => $request['document_number'],
+            'country' => $request['country'],
+            'state' => $request['state'],
+            'city' => $request['city'],
+            'address' => $request['address'],
+            'postal_code' => $request['postal_code'],
+            'phone_code' => $request['phone_code'],
+            'phone_code_city' => $request['phone_code_city'],
+            'phone_number' => $request['phone_number'],
+            'whatsapp_code' => $request['whatsapp_code'],
+            'whatsapp_number' => $request['whatsapp_number'],
+            'workplace' => $request['workplace'],
             'photo' => $photouser,
+            'solapin_name' => $request['solapin_name'],
+            'confir_information' => $request['confir_information'],
         ]);
 
 

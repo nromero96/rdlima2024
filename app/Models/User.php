@@ -21,16 +21,27 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'lastname',	
-        'company_name',
-        'company_website',
+        'lastname',
+        'second_lastname',
+        'document_type',
+        'document_number',
+        'country',
+        'state',
+        'city',
+        'address',
+        'postal_code',
+        'phone_code',
+        'phone_code_city',
+        'phone_number',
+        'whatsapp_code',
+        'whatsapp_number',
+        'workplace',
         'email',
-        'phone',
-        'source',
         'password',
         'status',
         'photo',
-        'subscribed_to_newsletter',
+        'solapin_name',
+        'confir_information',
     ];
 
     /**

@@ -15,7 +15,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Nilton Romero',
+            'name' => 'Nilton',
+            'lastname' => 'Romero',
+            'second_lastname' => 'Agurto',
             'email' => 'niltondeveloper96@gmail.com',
             'password' => bcrypt('RegM7xSHhBuVG6'),
             'status' => 'active',
@@ -23,7 +25,9 @@ class UserSeeder extends Seeder
         ])->assignRole('Administrador');
 
         User::create([
-            'name' => 'Rosa Sheen',
+            'name' => 'Rosa',
+            'lastname' => 'Sheen',
+            'second_lastname' => '',
             'email' => 'rosmarasoc@rosmarasociados.com',
             'password' => bcrypt('123456789'),
             'status' => 'active',
@@ -32,6 +36,8 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Milagros',
+            'lastname' => 'Estrada',
+            'second_lastname' => '',
             'email' => 'inscripciones@rosmarasociados.com',
             'password' => bcrypt('123456789'),
             'status' => 'active',
@@ -39,7 +45,8 @@ class UserSeeder extends Seeder
         ])->assignRole('Secretaria');
 
         User::create([
-            'name' => 'Jhon Perez',
+            'name' => 'Jhon',
+            'lastname' => 'Perez',
             'email' => 'hl@example.com',
             'password' => bcrypt('123456789'),
             'status' => 'inactive',

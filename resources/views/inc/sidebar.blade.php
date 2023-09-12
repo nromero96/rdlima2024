@@ -53,10 +53,11 @@
                 </a>
             </li>
 
-
+            @can('users.index', 'roles.index', 'programs.index')
             <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{__("GESTION")}}</span></div>
             </li>
+            @endcan
 
             @can('users.index')
             <li class="menu {{ ($category_name === 'users') ? 'active' : '' }}">
@@ -80,54 +81,64 @@
             </li>
             @endcan
 
-            <li class="menu {{ ($category_name === 'roles') ? 'active-dd' : '' }}">
-                <a href="{{route('roles.index')}}" aria-expanded="false" class="dropdown-toggle">
+            @can('programs.index')
+            <li class="menu {{ ($category_name === 'programs') ? 'active' : '' }}">
+                <a href="{{route('programs.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19 10H9v4h10v-4Z"></path><path d="M16 3H9v4h7V3Z"></path><path d="M22 17H9v4h13v-4Z"></path><path d="M8.5 5h-6"></path><path d="M8.5 12h-6"></path><path d="M8.5 19h-6"></path><path d="M2.5 22V2"></path></svg>
                         <span>{{ __("Programa") }}</span>
                     </div>
                 </a>
             </li>
+            @endcan
 
             <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{__("EVENTO")}}</span></div>
             </li>
 
-            <li class="menu {{ ($category_name === 'roles') ? 'active-dd' : '' }}">
-                <a href="{{route('roles.index')}}" aria-expanded="false" class="dropdown-toggle">
+            @can('inscriptions.index')
+            <li class="menu {{ ($category_name === 'inscriptions') ? 'active' : '' }}">
+                <a href="{{route('inscriptions.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.5 3h-15A1.5 1.5 0 0 0 3 4.5v15A1.5 1.5 0 0 0 4.5 21h15a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 19.5 3Z"></path><path d="M10.5 6.5h-4v4h4v-4Z"></path><path d="M10.5 13.5h-4v4h4v-4Z"></path><path d="M13.5 14h4"></path><path d="M13.5 17.5h4"></path><path d="M13.5 6.5h4"></path><path d="M13.5 10h4"></path></svg>
                         <span>{{ __("Inscripciones") }}</span>
                     </div>
                 </a>
             </li>
+            @endcan
 
-            <li class="menu {{ ($category_name === 'roles') ? 'active-dd' : '' }}">
-                <a href="{{route('roles.index')}}" aria-expanded="false" class="dropdown-toggle">
+            @can('hotelreservations.index')
+            <li class="menu {{ ($category_name === 'hotelreservations') ? 'active' : '' }}">
+                <a href="{{route('hotelreservations.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 2h20"></path><path d="M19 2H5a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Z"></path><path d="M10 16h4v6h-4v-6Z"></path><path d="M7.5 6h1"></path><path d="M7.5 9h1"></path><path d="M11.5 6h1"></path><path d="M11.5 9h1"></path><path d="M15.5 6h1"></path><path d="M15.5 9h1"></path><path d="M2 22h20"></path><path d="M14 16h1c.276 0 .505-.226.452-.497C15.176 14.083 13.735 13 12 13c-1.736 0-3.176 1.083-3.452 2.503-.053.271.176.497.452.497h1"></path></svg>
                         <span>{{ __("Alojamientos") }}</span>
                     </div>
                 </a>
             </li>
+            @endcan
 
-            <li class="menu {{ ($category_name === 'roles') ? 'active-dd' : '' }}">
-                <a href="{{route('roles.index')}}" aria-expanded="false" class="dropdown-toggle">
+            @can('works.index')
+            <li class="menu {{ ($category_name === 'works') ? 'active' : '' }}">
+                <a href="{{route('works.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                         <span>{{ __("Trabajos") }}</span>
                     </div>
                 </a>
             </li>
+            @endcan
 
-            <li class="menu {{ ($category_name === 'roles') ? 'active-dd' : '' }}">
-                <a href="{{route('roles.index')}}" aria-expanded="false" class="dropdown-toggle">
+            @can('exhibitors.index')
+            <li class="menu {{ ($category_name === 'exhibitors') ? 'active' : '' }}">
+                <a href="{{route('exhibitors.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         <span>{{ __("Expositores/Expertos") }}</span>
                     </div>
                 </a>
             </li>
+            @endcan
 
             {{-- <li class="menu {{ ($category_name === 'quotations') ? 'active' : '' }}">
                 <a href="#datatables" data-bs-toggle="collapse" aria-expanded="{{ ($category_name === 'quotations') ? 'true' : 'false' }}" class="dropdown-toggle">
@@ -150,10 +161,13 @@
                 </ul>
             </li> --}}
 
+            @can('invitations.index', 'specialcodes.index')
             <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{__('OTROS')}}</span></div>
             </li>
+            @endcan
 
+            @can('invitations.index')
             <li class="menu {{ ($page_name === 'invitations') ? 'active' : '' }}">
                 <a href="{{route('invitations.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
@@ -162,15 +176,18 @@
                     </div>
                 </a>
             </li>
+            @endcan
 
-            <li class="menu {{ ($category_name === 'roles') ? 'active--dd' : '' }}">
-                <a href="{{route('roles.index')}}" aria-expanded="false" class="dropdown-toggle">
+            @can('specialcodes.index')
+            <li class="menu {{ ($category_name === 'specialcodes') ? 'active' : '' }}">
+                <a href="{{route('specialcodes.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
                         <span>{{ __("Código Especial") }}</span>
                     </div>
                 </a>
             </li>
+            @endcan
 
             {{-- <li class="menu {{ ($page_name === 'calendar') ? 'active' : '' }}">
                 <a href="{{route('calendars.index')}}" aria-expanded="false" class="dropdown-toggle">
