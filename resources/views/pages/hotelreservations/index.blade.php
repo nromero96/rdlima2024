@@ -38,11 +38,12 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">{{__("Nombre")}}</th>
-                                        <th scope="col">{{__("País")}}</th>
-                                        <th scope="col">{{__("Correo")}}</th>
-                                        <th scope="col">{{__("Teléfono")}}</th>
+                                        <th scope="col">{{__("Email")}}</th>
+                                        <th scope="col">{{__("Hotel")}}</th>
+                                        <th scope="col">{{__("T. Habitación")}}</th>
+                                        <th scope="col">{{__("Entrada")}}</th>
+                                        <th scope="col">{{__("Entrada")}}</th>
                                         <th scope="col">{{__("")}}</th>
-                                        <th scope="col">{{__("Fecha")}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,25 +57,28 @@
                                         </tr>
                                     @else
 
-                                        @foreach ($hotelreservations as $$hotelreservation)
+                                        @foreach ($hotelreservations as $hotelreservation)
                                             <tr>
                                                 <td>
-                                                    {{$hotelreservation->full_name}}
-                                                </td>
-                                                <td>
-                                                    {{$hotelreservation->country}}
+                                                    {{$hotelreservation->name}} {{$hotelreservation->lastname}} {{$hotelreservation->second_lastname}}
                                                 </td>
                                                 <td>
                                                     {{$hotelreservation->email}}
                                                 </td>
                                                 <td>
-                                                    +{{$hotelreservation->phone_code}} {{$hotelreservation->phone}}
+                                                    {{$hotelreservation->hotel_name}}
+                                                </td>
+                                                <td>
+                                                    {{$hotelreservation->habitacion_type}}
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="{{ asset('storage/uploads/invitation_letters').'/'. $hotelreservation->file_name}}" target="_blank" class="btn btn-primary">{{__("Ver")}}</a>
+                                                    {{$hotelreservation->check_in}}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{$hotelreservation->created_at}}
+                                                    {{$hotelreservation->check_out}}
+                                                </td>
+                                                <td class="text-center">
+                                                    -
                                                 </td>
                                             </tr>
                                         @endforeach

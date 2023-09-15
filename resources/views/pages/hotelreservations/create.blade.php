@@ -21,58 +21,79 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area pt-0">
-                        <form class="row g-3" action="{{ route('users.updatemyprofile') }}" method="POST" enctype="multipart/form-data">
+                        <form class="row g-3" action="{{ route('hotelreservations.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-4">
-                                <label for="inputName" class="form-label fw-bold">{{__("Nombre")}}</label>
-                                <input type="text" name="name" class="form-control" id="inputName" value="{{$user->name}}" readonly>
+                                <label class="form-label fw-bold">{{__("Nombre")}}</label>
+                                <p class="form-control bg-light">{{$user->name}}</p>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputLastName" class="form-label fw-bold">{{__("Apellido paterno")}}</label>
-                                <input type="text" name="lastname" class="form-control" id="inputLastName" value="{{$user->lastname}}" readonly>
+                                <label class="form-label fw-bold">{{__("Apellido paterno")}}</label>
+                                <p class="form-control bg-light">{{$user->lastname}}</p>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputSecondLastName" class="form-label fw-bold">{{__("Apellido materno")}}</label>
-                                <input type="text" name="second_lastname" class="form-control" id="inputSecondLastName" value="{{$user->second_lastname}}" readonly>
+                                <label class="form-label fw-bold">{{__("Apellido materno")}}</label>
+                                <p class="form-control bg-light">{{$user->second_lastname}}</p>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputDocumentType" class="form-label fw-bold">{{__("Hotel")}} <span class="text-danger">*</span></label>
-                                <select name="document_type" class="form-select" id="inputDocumentType">
+                                <label for="hotel_name" class="form-label fw-bold">{{__("Hotel")}} <span class="text-danger">*</span></label>
+                                <select name="hotel_name" class="form-select" id="hotel_name">
                                     <option value="">Seleccione...</option>
-                                    <option value="Opción Uno">Opción Uno</option>
-                                    <option value="Opción Dos">Opción Dos</option>
-                                    <option value="Opción Tres">Opción Tres</option>
+                                    <option value="Swissôtel Lima *****">Swissôtel Lima *****</option>
+                                        <option value="Novotel Lima ****">Novotel Lima ****</option>
+                                        <option value="Pullman *****">Pullman *****</option>
+                                        <option value="Hyatt Centric *****">Hyatt Centric *****</option>
+                                        <option value="Tallanes *****">Tallanes *****</option>
+                                        <option value="Sonesta El Olivar *****">Sonesta El Olivar *****</option>
+                                        <option value="Suites del Bosque *****">Suites del Bosque *****</option>
+                                        <option value="Delfines *****">Delfines *****</option>
+                                        <option value="Country Club *****">Country Club *****</option>
+                                        <option value="Westin *****">Westin *****</option>
+                                        <option value="Meliá *****">Meliá *****</option>
+                                        <option value="Aku ****">Aku ****</option>
+                                        <option value="DoubleTree by Hilton San Isidro ****">DoubleTree by Hilton San Isidro ****</option>
+                                        <option value="Roosevelt ****">Roosevelt ****</option>
+                                        <option value="M Gallery Manto ****">M Gallery Manto ****</option>
+                                        <option value="Hampton by Hilton ****">Hampton by Hilton ****</option>
+                                        <option value="Dazzler traslado a sede ida y vuelta ****">Dazzler traslado a sede ida y vuelta ****</option>
+                                        <option value="Costa del Sol ****">Costa del Sol ****</option>
+                                        <option value="Ramada Encore ****">Ramada Encore ****</option>
+                                        <option value="Casa Andina Premium ****">Casa Andina Premium ****</option>
+                                        <option value="Holiday Inn Express ***">Holiday Inn Express ***</option>
+                                        <option value="Estelar ***">Estelar ***</option>
+                                        <option value="Nuevo Mundo ****">Nuevo Mundo ****</option>
+                                        <option value="BTH ****">BTH ****</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputDocumentType" class="form-label fw-bold">{{__("Tipo de habitación")}} <span class="text-danger">*</span></label>
-                                <select name="document_type" class="form-select" id="inputDocumentType">
+                                <label for="habitacion_type" class="form-label fw-bold">{{__("Tipo de habitación")}} <span class="text-danger">*</span></label>
+                                <select name="habitacion_type" class="form-select" id="habitacion_type">
                                     <option value="">Seleccione...</option>
-                                    <option value="Opción Uno">Opción Uno</option>
-                                    <option value="Opción Dos">Opción Dos</option>
-                                    <option value="Opción Tres">Opción Tres</option>
+                                    <option value="Simple">Simple</option>
+                                    <option value="Matrimonial">Matrimonial</option>
+                                    <option value="Doble dos camas">Doble dos camas</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputDocumentType" class="form-label fw-bold">{{__("Número de huesped")}} <span class="text-danger">*</span></label>
-                                <select name="document_type" class="form-select" id="inputDocumentType">
+                                <label for="number_guests" class="form-label fw-bold">{{__("Número de huesped")}} <span class="text-danger">*</span></label>
+                                <select name="number_guests" class="form-select" id="number_guests">
                                     <option value="">Seleccione...</option>
-                                    <option value="Opción Uno">Opción Uno</option>
-                                    <option value="Opción Dos">Opción Dos</option>
-                                    <option value="Opción Tres">Opción Tres</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputLastName" class="form-label fw-bold">{{__("Entrada")}} <span class="text-danger">*</span></label>
-                                <input type="date" name="lastname" class="form-control" id="inputLastName">
+                                <label for="check_in" class="form-label fw-bold">{{__("Entrada")}} <span class="text-danger">*</span></label>
+                                <input type="date" name="check_in" class="form-control" id="check_in">
                             </div>
                             <div class="col-md-4">
-                                <label for="inputLastName" class="form-label fw-bold">{{__("Salida")}} <span class="text-danger">*</span></label>
-                                <input type="date" name="lastname" class="form-control" id="inputLastName">
+                                <label for="check_out" class="form-label fw-bold">{{__("Salida")}} <span class="text-danger">*</span></label>
+                                <input type="date" name="check_out" class="form-control" id="check_out">
                             </div>
                             <div class="col-md-12">
-                                <label for="inputDocumentType" class="form-label fw-bold">Comentario</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                                <label for="comment" class="form-label fw-bold">Comentario</label>
+                                <textarea class="form-control" name="comment" id="comment" rows="8"></textarea>
                             </div>
 
                             <div class="col-12 text-end">
@@ -87,6 +108,5 @@
     </div>
 
 </div>
-
 
 @endsection

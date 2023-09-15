@@ -41,35 +41,6 @@ textarea.addEventListener("input", updateCharCount);
 updateCharCount();
 
 
-// Obtener el elemento select y el textarea
-const selectCategory = document.getElementById("inputCategory");
-const textareaDescription = document.getElementById("inputDescription");
-
-// Agregar un evento de cambio al select
-selectCategory.addEventListener("change", function () {
-    // Obtener el valor seleccionado
-    const selectedCategory = selectCategory.value;
-
-    // Cambiar el contenido del textarea según la categoría seleccionada
-    switch (selectedCategory) {
-        case "Dermatólogo Joven":
-        case "Trabajo de Investigación Científica":
-            textareaDescription.value = "FUNDAMENTOS\n\nOBJETIVO\n\nMÉTODOS\n\nRESULTADOS\n\nCONCLUSIÓN";
-            textareaDescription.readOnly = false;
-            break;
-        case "Mini Caso":
-            textareaDescription.value = "FUNDAMENTOS\n\nMOTIVO DE LA COMUNICACIÓN\n\nRELATO DEL CASO\n\nDISCUSIÓN";
-            textareaDescription.readOnly = false;
-            break;
-        default:
-            textareaDescription.value = "Seleccione una categoría del trabajo para escribir aquí...";
-            //readonly disabled
-            textareaDescription.readOnly = true;
-            break;
-    }
-});
-
-
 const locale_es = {
   labelIdle: 'Arrastra y suelta tus archivos o <span class="filepond--label-action">Selecciona</span>',
   labelFileProcessing: 'Subiendo',
@@ -101,4 +72,43 @@ FilePond.setOptions({
     },
   },
 });
+
+
+// Obtener todos los elementos con la clase "action-delete"
+var deleteButtons = document.querySelectorAll('.action-delete');
+
+// Agregar un evento clic a cada botón de eliminación
+deleteButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+        var workId = this.getAttribute('data-work-id');
+        var fileNumber = this.getAttribute('data-file-col');
+        var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', '/delete-file/' + workId + '/' + fileNumber, true);
+        xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    // Eliminación exitosa, oculta el elemento de visualización y muestra el elemento de entrada correspondiente
+                    document.getElementById('dv_fileshow_' + fileNumber).classList.add('d-none');
+                    document.getElementById('dv_fileinput_' + fileNumber).classList.remove('d-none');
+                } else {
+                    alert('Error al eliminar el archivo.');
+                }
+            } else {
+                alert('Error al comunicarse con el servidor.');
+            }
+        };
+
+        xhr.onerror = function () {
+            alert('Error de conexión al servidor.');
+        };
+
+        xhr.send();
+    });
+});
+
 

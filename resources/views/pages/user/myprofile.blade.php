@@ -121,7 +121,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">{{__("Solapín")}}</label>
+                                <label class="form-label fw-bold">{{__("Solapín/Gafete")}}</label>
                                 <p class="form-control">{{ $user->solapin_name }}</p>
                             </div>
                         </div>
@@ -240,7 +240,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="inputSolapin" class="form-label fw-bold">{{__("Solapín")}}</label>
+                                <label for="inputSolapin" class="form-label fw-bold">{{__("Solapín/Gafete")}}</label>
                                 <input type="text" class="form-control convert_mayus" name="solapin_name" id="inputSolapin" value="{{ $user->solapin_name }}" placeholder="Poner un nombre y un apellido">
                                 {!!$errors->first("solapin_name", "<span class='text-danger'>:message</span>")!!}
                             </div>

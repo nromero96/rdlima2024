@@ -25,39 +25,55 @@
                             @csrf
                             <div class="col-md-6">
                                 <label for="inputAreaConocimento" class="form-label fw-bold">{{__("Area de conocimiento")}}</label>
-                                <select name="knowledge_area" class="form-select" id="inputAreaConocimento">
+                                <select name="knowledge_area" class="form-select" id="inputAreaConocimento" required>
                                     <option value="">{{ __('Seleccione...') }}</option>
-                                    <option value="Acné y dermatosis acneiformes">Acné y dermatosis acneiformes</option>
-                                    <option value="Rosácea">Rosácea</option>
-                                    <option value="Alteraciones en el pigmento">Alteraciones en el pigmento</option>
-                                    <option value="Dermatosis neoplásicas">Dermatosis neoplásicas</option>
-                                    <option value="Cirugía dermatológica">Cirugía dermatológica</option>
-                                    <option value="Dermatología cosmética">Dermatología cosmética</option>
-                                    <option value="Dermatología pediátrica">Dermatología pediátrica</option>
-                                    <option value="Dermatología y medicina interna">Dermatología y medicina interna</option>
-                                    <option value="Dermatosis infecciosas">Dermatosis infecciosas</option>
-                                    <option value="Dermatosis por agentes físicos, químicos y mecánicos">Dermatosis por agentes físicos, químicos y mecánicos</option>
+                                    <option value="Dermatosis acneiformes">Dermatosis acneiformes</option>
                                     <option value="Dermatosis autoinmunes">Dermatosis autoinmunes</option>
-                                    <option value="Terapéutica dermatológica">Terapéutica dermatológica</option>
-                                    <option value="Manejo de heridas y úlceras">Manejo de heridas y úlceras</option>
                                     <option value="Dermatosis de anexos cutáneos">Dermatosis de anexos cutáneos</option>
-                                    <option value="Dermatosis vasculares">Dermatosis vasculares</option>
+                                    <option value="Dermatosis eczematosas">Dermatosis eczematosas</option>
                                     <option value="Dermatosis genéticas">Dermatosis genéticas</option>
-                                    <option value="Dermatosis ampollares">Dermatosis ampollares</option>
+                                    <option value="Dermatosis infecciosas">Dermatosis infecciosas</option>
+                                    <option value="Dermatosis metabólicas">Dermatosis metabólicas</option>
+                                    <option value="Dermatosis neoplásicas">Dermatosis neoplásicas</option>
+                                    <option value="Dermatosis pápulo-escamosas">Dermatosis pápulo-escamosas</option>
+                                    <option value="Dermatosis por agentes físicos, químicos y mecánicos">Dermatosis por agentes físicos, químicos y mecánicos</option>
                                     <option value="Dermatosis psicosomáticas, neurogénicas y psicogénicas">Dermatosis psicosomáticas, neurogénicas y psicogénicas</option>
-                                    <option value="Métodos de diagnósticos en dermatología">Métodos de diagnósticos en dermatología</option>
-                                    <option value="Biología molecular en dermatología">Biología molecular en dermatología</option>
+                                    <option value="Dermatosis vasculares">Dermatosis vasculares</option>
+                                    <option value="Dermatosis vesico-ampollosas">Dermatosis vesico-ampollosas</option>
+                                    <option value="Semiología y métodos diagnósticos en dermatología">Semiología y métodos diagnósticos en dermatología</option>
+                                    <option value="Biología molecular">Biología molecular</option>
+                                    <option value="Terapéutica dermatológica">Terapéutica dermatológica</option>
+                                    <option value="Otras áreas">Otras áreas</option>
                                 </select>
+                                {!!$errors->first("knowledge_area", "<span class='text-danger'>:message</span>")!!}
                             </div>
 
                             <div class="col-md-6">
                                 <label for="inputCategory" class="form-label fw-bold">{{__("Categoría del trabajo")}}</label>
-                                <select name="category" class="form-select" id="inputCategory">
+                                <select name="category" class="form-select" id="inputCategory" required>
                                     <option value="">Seleccione...</option>
+                                    
+                                    @php
+                                        $user = Auth::user();
+                                        $dermatologoJovenWork = App\Models\Work::where('user_id', $user->id)->where('category', 'Dermatólogo Joven')->first();
+                                        $investigacionCientificaWork = App\Models\Work::where('user_id', $user->id)->where('category', 'Trabajo de Investigación Científica')->first();
+                                        $miniCasoCount = App\Models\Work::where('user_id', $user->id)->where('category', 'Mini Caso')->count();
+                                    @endphp
+
+                                    @if (!$dermatologoJovenWork)
                                     <option value="Dermatólogo Joven">Dermatólogo Joven</option>
+                                    @endif
+
+                                    @if (!$investigacionCientificaWork)
                                     <option value="Trabajo de Investigación Científica">Trabajo de Investigación Científica</option>
+                                    @endif
+
+                                    @if ($miniCasoCount < 2)
                                     <option value="Mini Caso">Mini Caso</option>
+                                    @endif
+
                                 </select>
+                                {!!$errors->first("category", "<span class='text-danger'>:message</span>")!!}
                             </div>
 
                             <div class="col-md-12">
@@ -86,23 +102,36 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label for="inputDescription" class="form-label fw-bold">{{__("Cuerpo del trabajo")}} (<small class="text-info">Síga las instrucciones de las bases.</small>)</label>
-                                <textarea name="description" class="form-control" id="inputDescription" rows="15"></textarea>
+                                <label for="inputDescription" class="form-label fw-bold">{{__("Cuerpo del trabajo")}} (<a href="https://radla2024.org/wp-content/uploads/2023/09/Bases-para-presentacion-de-trabajos-RADLA-2024.pdf" target="_blank"><small class="text-info text-decoration-underline">{{ __('Síga las instrucciones de las bases.') }}</small></a>)</label>
+                                <textarea name="description" class="form-control" id="inputDescription" rows="15" readonly>{{ __('Seleccione una categoría del trabajo para escribir aquí...') }}</textarea>
                                 <span id="charCount">0 / 5000</span>
                             </div>
 
                             <div class="col-md-12">
-                                <label for="inputFile_1" class="form-label fw-bold">{{__("Fotografías, Gráficos y Tablas")}} (<small class="text-info">Maximo 6 archivos en total.</small>)</label>
+                                <label for="inputFile_1" class="form-label fw-bold">{{__("Fotografías, Gráficos y Tablas")}} (<small class="text-info">{{ __('Maximo 6 archivos en total.') }}</small>)</label>
+                            </div>
+
+                            <div class="col-md-4">
                                 <input type="file" name="file_1" class="form-control-file" id="inputFile_1">
-                                <input type="file" name="file_2" class="form-control-file mt-2" id="inputFile_2">
-                                <input type="file" name="file_3" class="form-control-file mt-2" id="inputFile_3">
-                                <input type="file" name="file_4" class="form-control-file mt-2" id="inputFile_4">
-                                <input type="file" name="file_5" class="form-control-file mt-2" id="inputFile_5">
-                                <input type="file" name="file_6" class="form-control-file mt-2" id="inputFile_6">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="file" name="file_2" class="form-control-file" id="inputFile_2">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="file" name="file_3" class="form-control-file" id="inputFile_3">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="file" name="file_4" class="form-control-file" id="inputFile_4">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="file" name="file_5" class="form-control-file" id="inputFile_5">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="file" name="file_6" class="form-control-file" id="inputFile_6">
                             </div>
 
                             <div class="col-12 text-end">
-                                <button type="submit" name="action" class="btn btn-primary" value="borrador">{{__("Borrador")}}</button>
+                                <button type="submit" name="action" class="btn btn-outline-secondary" value="borrador">{{__("Borrador")}}</button>
                                 <button type="submit" name="action" class="btn btn-primary" value="finalizado">{{__("Finalizar")}}</button>
                             </div>
                         </form>

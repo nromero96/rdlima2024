@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
     //Works
     Route::resource('works', WorkController::class)->names('works');
+    Route::delete('/delete-file/{workId}/{fileNumber}', [WorkController::class, 'deleteFile'])->name('works.deletefile');
 
     //ExhibitorsController
     Route::resource('exhibitors', ExhibitorController::class)->names('exhibitors');

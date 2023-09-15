@@ -29,6 +29,8 @@ class CreateWorksTable extends Migration
             $table->string('file_5')->nullable();
             $table->string('file_6')->nullable();
             $table->string('status');
+            $table->string('comment')->nullable();
+            $table->unsignedBigInteger('user_id_calificador')->nullable();
             $table->timestamps();
         });
     }

@@ -39,7 +39,7 @@
                                         <th scope="col">{{__("Categoría del trabajo")}}</th>
                                         <th scope="col">{{__("Título del trabajo")}}</th>
                                         <th scope="col">{{__("Estado")}}</th>
-                                        <th scope="col">{{__("Fecha")}}</th>
+                                        <th scope="col">{{__("Acciones")}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,10 +63,29 @@
                                                     {{$work->title}}
                                                 </td>
                                                 <td>
-                                                    {{$work->status}}
+                                                    @if ($work->status == 'finalizado')
+                                                        <span class="badge badge-light-success text-capitalize">{{$work->status}}</span>
+                                                    @else
+                                                        <span class="badge badge-light-warning">En curso...</span>
+                                                    @endif
                                                 </td>
                                                 <td class="text-center">
-                                                    {{$work->created_at}}
+                                                    @if ($work->status == 'finalizado')
+                                                        <a href="{{ route('works.show', $work->id) }}" class="badge badge-light-primary text-start me-2 action-show bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Ver") }}">
+                                                            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><path d="M12 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6z"></path></svg>
+                                                        </a>
+                                                    @elseif($work->status == 'borrador' && $work->user_id == $user->id)
+                                                        <a href="{{ route('works.edit', $work->id) }}" class="badge badge-light-primary text-start me-2 action-edit bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Editar") }}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                                        </a>
+                                                        <form class="d-inline" action="{{ route('works.destroy', $work->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                                <button type="submit" class="badge badge-light-danger text-start action-delete bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Eliminar") }}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                                </button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

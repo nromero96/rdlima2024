@@ -9,7 +9,7 @@ class UploadController extends Controller
 {
     public function store(Request $request){
 
-        $documentFields = ['document_one', 'document_two', 'document_three'];
+        $documentFields = ['file_1', 'file_2', 'file_3', 'file_4', 'file_5', 'file_6'];
         $uploadedFolder = '';
 
         foreach ($documentFields as $field) {
@@ -30,10 +30,6 @@ class UploadController extends Controller
                 break;
             }
         }
-
         return $uploadedFolder;
-
-
-
     }
 }

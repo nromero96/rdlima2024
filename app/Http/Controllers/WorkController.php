@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Work;
 use App\Models\User;
+use App\Models\TemporaryFile;
+use Illuminate\Support\Facades\Storage;
+
+use App\Mail\WorkCreatedMail;
+use Illuminate\Support\Facades\Mail;
 
 class WorkController extends Controller
 {
@@ -15,6 +20,8 @@ class WorkController extends Controller
      */
     public function index()
     {
+        $userid = \Auth::user()->id;
+
         $data = [
             'category_name' => 'works',
             'page_name' => 'works',
@@ -22,8 +29,12 @@ class WorkController extends Controller
             'scrollspy_offset' => '',
         ];
 
-        $works = Work::orderBy('id', 'desc')->get();
-
+        //show all works for role admin and user
+        if (\Auth::user()->hasRole('Administrador')) {
+            $works = Work::orderBy('id', 'desc')->get();
+        } else {
+            $works = Work::where('user_id', $userid)->orderBy('id', 'desc')->get();
+        }
         return view('pages.works.index')->with($data)->with('works', $works);
     }
 
@@ -55,42 +66,66 @@ class WorkController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $id = \Auth::user()->id;
+{
+    $id = \Auth::user()->id;
 
-        $request->validate([
-            'knowledge_area' => 'required',
-            'category' => 'required',
-        ]);
+    $request->validate([
+        'knowledge_area' => 'required',
+        'category' => 'required',
+    ]);
 
-        $action = $request->input('action'); // Obtén el valor del botón presionado
+    $action = $request->input('action'); // Obtén el valor del botón presionado
 
-        $work = new Work([
-            'knowledge_area' => $request->get('knowledge_area'),
-            'category' => $request->get('category'),
-            'author_coauthors' => $request->get('author_coauthors'),
-            'institution' => $request->get('institution'),
-            'user_id' => $id,
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'file_1' => $request->get('file_1'),
-            'file_2' => $request->get('file_2'),
-            'file_3' => $request->get('file_3'),
-            'file_4' => $request->get('file_4'),
-            'file_5' => $request->get('file_5'),
-            'file_6' => $request->get('file_6'),
-            'status' => $action,
-        ]);
+    $workData = [
+        'knowledge_area' => $request->get('knowledge_area'),
+        'category' => $request->get('category'),
+        'author_coauthors' => $request->get('author_coauthors'),
+        'institution' => $request->get('institution'),
+        'user_id' => $id,
+        'title' => $request->get('title'),
+        'description' => $request->get('description'),
+        'status' => $action,
+    ];
 
-        $work->save();
+    $fileFields = ['file_1', 'file_2', 'file_3', 'file_4', 'file_5', 'file_6'];
 
-        // Redirigir según el valor de $action
-        if ($action == 'borrador') {
-            return redirect()->route('works.edit', ['work' => $work->id])->with('success', 'Trabajo agregado exitosamente.');
-        } elseif ($action == 'finalizado') {
-            return redirect()->route('works.index')->with('success', 'Trabajo agregado exitosamente.');
+    foreach ($fileFields as $fieldName) {
+        $temporaryfile = TemporaryFile::where('folder', $request->input($fieldName))->first();
+
+        if ($temporaryfile) {
+            $filename = $temporaryfile->filename;
+            $sourcePath = 'public/uploads/tmp/' . $request->input($fieldName) . '/' . $filename;
+            $destinationPath = 'public/uploads/abstract_file/' . $filename;
+
+            Storage::move($sourcePath, $destinationPath);
+            $workData[$fieldName] = $filename;
+
+            $temporaryfile->delete();
+
+            $folderPath = storage_path('app/public/uploads/tmp/' . $request->input($fieldName));
+
+            if (is_dir($folderPath)) {
+                rmdir($folderPath);
+            }
         }
     }
+
+    $work = new Work($workData);
+    $work->save();
+
+    // Redirigir según el valor de $action
+    if ($action == 'borrador') {
+        return redirect()->route('works.edit', ['work' => $work->id])->with('success', 'Trabajo agregado exitosamente.');
+    } elseif ($action == 'finalizado') {
+        $work = Work::find($work->id);
+        $iduser = \Auth::user()->id;
+        $user = User::find($iduser);
+        Mail::to($user->email)->cc('niltondeveloper96@gmail.com')->send(new WorkCreatedMail($work));
+        return redirect()->route('works.index')->with('success', 'Trabajo agregado exitosamente.');
+    }
+}
+
+
 
     /**
      * Display the specified resource.
@@ -100,7 +135,30 @@ class WorkController extends Controller
      */
     public function show($id)
     {
-        //
+        //validate if work is from user logged
+        $work = Work::find($id);
+        $iduser = \Auth::user()->id;
+
+        if ($work->user_id != $iduser && !\Auth::user()->hasRole('Administrador') && !\Auth::user()->hasRole('Calificador')) {
+            return redirect()->route('works.index')->with('error', 'No tienes permiso para ver este trabajo.');
+        }
+
+        $data = [
+            'category_name' => 'works',
+            'page_name' => 'works_edit',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        $user = User::find($iduser);
+
+        //get works by id join with user
+        $work = Work::join('users', 'works.user_id', '=', 'users.id')
+            ->select('works.*', 'users.name', 'users.lastname', 'users.second_lastname')
+            ->where('works.id', $id)
+            ->first();
+        return view('pages.works.show')->with($data)->with('work', $work);
+
     }
 
     /**
@@ -111,7 +169,32 @@ class WorkController extends Controller
      */
     public function edit($id)
     {
-        return 'En proceso de construcción...';
+
+        //validate if work is from user logged
+        $work = Work::find($id);
+        $iduser = \Auth::user()->id;
+
+        if ($work->user_id != $iduser) {
+            return redirect()->route('works.index')->with('error', 'No tienes permiso para editar este trabajo.');
+        }
+
+        $data = [
+            'category_name' => 'works',
+            'page_name' => 'works_edit',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        $user = User::find($iduser);
+
+        //get works by id join with user
+        $work = Work::join('users', 'works.user_id', '=', 'users.id')
+            ->select('works.*', 'users.name', 'users.lastname', 'users.second_lastname')
+            ->where('works.id', $id)
+            ->first();
+        return view('pages.works.edit')->with($data)->with('work', $work);
+    
+
     }
 
     /**
@@ -123,7 +206,54 @@ class WorkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //update work and files except knowledge_area and category
+        //no validation
+        $work = Work::find($id);
+
+        $action = $request->input('action'); // Obtén el valor del botón presionado
+
+        $work->author_coauthors = $request->get('author_coauthors');
+        $work->institution = $request->get('institution');
+        $work->title = $request->get('title');
+        $work->description = $request->get('description');
+        $work->status = $action;
+
+        $fileFields = ['file_1', 'file_2', 'file_3', 'file_4', 'file_5', 'file_6'];
+
+        foreach ($fileFields as $fieldName) {
+            $temporaryfile = TemporaryFile::where('folder', $request->input($fieldName))->first();
+
+            if ($temporaryfile) {
+                $filename = $temporaryfile->filename;
+                $sourcePath = 'public/uploads/tmp/' . $request->input($fieldName) . '/' . $filename;
+                $destinationPath = 'public/uploads/abstract_file/' . $filename;
+
+                Storage::move($sourcePath, $destinationPath);
+                $work[$fieldName] = $filename;
+
+                $temporaryfile->delete();
+
+                $folderPath = storage_path('app/public/uploads/tmp/' . $request->input($fieldName));
+
+                if (is_dir($folderPath)) {
+                    rmdir($folderPath);
+                }
+            }
+        }
+
+        $work->save();
+
+        // Redirigir según el valor de $action
+        if ($action == 'borrador') {
+            return redirect()->route('works.edit', ['work' => $work->id])->with('success', 'Trabajo actualizado exitosamente.');
+        } elseif ($action == 'finalizado') {
+            $work = Work::find($work->id);
+            $iduser = \Auth::user()->id;
+            $user = User::find($iduser);
+            Mail::to($user->email)->cc('niltondeveloper96@gmail.com')->send(new WorkCreatedMail($work));
+            return redirect()->route('works.index')->with('success', 'Trabajo actualizado exitosamente.');
+        }
+
     }
 
     /**
@@ -134,6 +264,48 @@ class WorkController extends Controller
      */
     public function destroy($id)
     {
-        //
+            //validate if work is from user logged
+            $work = Work::find($id);
+            $iduser = \Auth::user()->id;
+        
+            if ($work->user_id != $iduser) {
+                return redirect()->route('works.index')->with('error', 'No tienes permiso para eliminar este trabajo.');
+            }
+            $work->delete();
+            return redirect()->route('works.index')->with('success', 'Trabajo eliminado exitosamente.');
     }
+
+
+    public function deleteFile(Request $request, $workId, $fileNumber)
+    {
+        // Encuentra el trabajo por su ID
+        $work = Work::find($workId);
+
+        if (!$work) {
+            return response()->json(['success' => false, 'message' => 'Trabajo no encontrado.']);
+        }
+
+        // Verifica si el archivo existe en función del número proporcionado
+        $fileColumn = 'file_' . $fileNumber;
+
+        if (!$work->$fileColumn) {
+            return response()->json(['success' => false, 'message' => 'Archivo no encontrado para este trabajo.']);
+        }
+
+        // Obtiene la ruta del archivo desde la base de datos
+        $filePath = 'public/uploads/' . $work->$fileColumn;
+
+        // Verifica si el archivo existe en el sistema de archivos
+        if (Storage::exists($filePath)) {
+            // Elimina el archivo del sistema de archivos
+            Storage::delete($filePath);
+        }
+
+        // Luego, establece el campo del archivo en nulo en la base de datos
+        $work->$fileColumn = null;
+        $work->save();
+
+        return response()->json(['success' => true, 'message' => 'Archivo eliminado con éxito.']);
+    }
+
 }
