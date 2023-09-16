@@ -42,7 +42,7 @@
                                         <th scope="col">{{__("Hotel")}}</th>
                                         <th scope="col">{{__("T. Habitación")}}</th>
                                         <th scope="col">{{__("Entrada")}}</th>
-                                        <th scope="col">{{__("Entrada")}}</th>
+                                        <th scope="col">{{__("Salida")}}</th>
                                         <th scope="col">{{__("")}}</th>
                                     </tr>
                                 </thead>
