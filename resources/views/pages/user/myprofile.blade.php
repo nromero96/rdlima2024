@@ -215,7 +215,7 @@
                                 <label for="inputPhoneNumber" class="form-label fw-bold">{{__("WhatsApp")}}</label>
                                 <div class="d-flex">
                                     <div class="w-25">
-                                        <input type="number" name="whatsapp_code" class="form-control rounded-0 rounded-start" id="inputPhoneCode" value="{{$user->whatsapp_code}}" placeholder="51" required>
+                                        <input type="text" name="whatsapp_code" class="form-control rounded-0 rounded-start" id="inputPhoneCode" value="{{$user->whatsapp_code}}" placeholder="+00" required>
                                         <small>{{ __('Cod. País') }}</small>
                                     </div>
                                     <div class="w-75">
