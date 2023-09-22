@@ -8,7 +8,7 @@
     $detallePago = "Inscripcion categoria ".$datainscription->category_inscription_name;
 
     $token = App\Helpers\NiubizHelper::generateToken();
-    $sesion = 'session';
+    $sesion = 'sessio1';
     $purchaseNumber = '0000000001';
 
     // $token = generateToken();
