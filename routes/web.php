@@ -39,10 +39,10 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
-// Route::get('/crear-enlace', function () {
-//     Artisan::call('storage:link');
-//     return "Enlace simbólico creado con éxito.";
-// });
+Route::get('/crear-enlace', function () {
+    Artisan::call('storage:link');
+    return "Enlace simbólico creado con éxito.";
+});
 
 //send test mail simple text use smtp config
 // Route::get('/enviar-correo', function () {
@@ -69,6 +69,12 @@ Route::post('upload',[UploadController::class, 'store']);
 //routes for user login
 Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
+    //Ejecutar migración
+    Route::get('/ejecutar-migraciones', function () {
+        Artisan::call('migrate');
+        return 'Migraciones ejecutadas con éxito.';
+    });
+
     // $this->middleware
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 
@@ -86,6 +92,10 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
     //Inscriptions
     Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');
+    
+    Route::get('payment-niubiz/{inscription}', [InscriptionController::class, 'paymentNiubiz'])->name('inscriptions.paymentniubiz');
+    Route::get('confirm-payment-niubiz', [InscriptionController::class, 'confirmPaymentNiubiz'])->name('inscriptions.confirmpaymentniubiz');
+
 
     //HotelReservations
     Route::resource('hotelreservations', HotelReservationController::class)->names('hotelreservations');
@@ -141,9 +151,8 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 //Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
 
 
 //Localization Route

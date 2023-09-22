@@ -21,11 +21,15 @@ class CreateInscriptionsTable extends Migration
             $table->unsignedBigInteger('accompanist_id')->nullable();
             $table->decimal('price_accompanist', 8, 2);
             $table->decimal('total', 8, 2);
+            $table->string('special_code')->nullable();
+            $table->string('document_file')->nullable();
             $table->string('invoice');
             $table->string('invoice_ruc')->nullable();
             $table->string('invoice_social_reason')->nullable();
             $table->string('invoice_address')->nullable();
-            $table->string('status')->default('Borrador');
+            $table->string('payment_method');
+            $table->string('voucher_file')->nullable();
+            $table->string('status')->default('Pendiente');
             $table->timestamps();
         });
     }

@@ -41,6 +41,14 @@
             <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
             <script src="{{ asset('assets/js/apps/works/edit.js') }}"></script>
             @break
+
+        @case('inscriptions_create')
+            {{-- Inscriptions --}}
+            <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>
+            <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
+            <script src="{{ asset('assets/js/apps/inscriptions/create.js') }}"></script>
+            @break
+
         @case('quotationscommercial')
             {{-- All quotes --}}
             <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>

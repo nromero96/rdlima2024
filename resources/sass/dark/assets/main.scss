@@ -36,6 +36,11 @@ body.dark .dark-element {
 body.dark .light-element {
     display: none;
 }
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 .light-element {
     display: block;
 }

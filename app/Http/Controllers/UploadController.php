@@ -9,7 +9,7 @@ class UploadController extends Controller
 {
     public function store(Request $request){
 
-        $documentFields = ['file_1', 'file_2', 'file_3', 'file_4', 'file_5', 'file_6'];
+        $documentFields = ['file_1', 'file_2', 'file_3', 'file_4', 'file_5', 'file_6','document_file','voucher_file'];
         $uploadedFolder = '';
 
         foreach ($documentFields as $field) {
@@ -17,13 +17,19 @@ class UploadController extends Controller
                 $file = $request->file($field);
                 $originalFilename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
-                $filename = $originalFilename . uniqid() . '.' . $extension;
+        
+                // Remover la extensión del nombre de archivo
+                $filenameWithoutExtension = pathinfo($originalFilename, PATHINFO_FILENAME);
+
+                // Generar el nuevo nombre de archivo
+                $newFilename = $filenameWithoutExtension . '-' . uniqid() . '.' . $extension;
+
                 $folder = uniqid() . '-' . now()->timestamp;
-                $file->storeAs('public/uploads/tmp/' . $folder, $filename);
+                $file->storeAs('public/uploads/tmp/' . $folder, $newFilename);
 
                 TemporaryFile::create([
                     'folder' => $folder,
-                    'filename' => $filename,
+                    'filename' => $newFilename,
                 ]);
 
                 $uploadedFolder = $folder;

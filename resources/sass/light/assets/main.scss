@@ -50,6 +50,11 @@ code {
 body.dark .dark-element {
   display: block;
 }
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 .dark-element {
   display: none;
 }
