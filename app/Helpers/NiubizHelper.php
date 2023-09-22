@@ -87,7 +87,7 @@ class NiubizHelper
 
     public static function generatePurchaseNumber()
     {
-        $archivo = "purchaseNumber.txt";
+        $archivo = storage_path('app/purchaseNumber.txt');
         $purchaseNumber = 222;
         $fp = fopen($archivo, "r");
         $purchaseNumber = fgets($fp, 100);

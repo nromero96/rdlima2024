@@ -8,8 +8,8 @@
     $detallePago = "Inscripcion categoria ".$datainscription->category_inscription_name;
 
     $token = App\Helpers\NiubizHelper::generateToken();
-    $sesion = 'sessio1';
-    $purchaseNumber = '0000000001';
+    $sesion = App\Helpers\NiubizHelper::generateSession($amount, $token);
+    $purchaseNumber = App\Helpers\NiubizHelper::generatePurchaseNumber();
 
     // $token = generateToken();
     // $sesion = generateSesion($amount, $token);
@@ -28,7 +28,6 @@
                             <div class="col-xl-12 col-md-12 col-sm-12 mb-2 col-12">
                                 <h4 class="text-center mt-3">
                                     {{__("INFORMACIÓN DE PAGO")}}
-                                    {{ $token }}
                                 </h4>
                             </div>
                         </div>
