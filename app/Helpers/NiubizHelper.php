@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Config; // Importa la clase Config
+
 class NiubizHelper
 {
     public static function generateToken()
