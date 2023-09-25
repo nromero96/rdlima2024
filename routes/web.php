@@ -94,8 +94,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');
     
     Route::get('payment-niubiz/{inscription}', [InscriptionController::class, 'paymentNiubiz'])->name('inscriptions.paymentniubiz');
-    Route::get('confirm-payment-niubiz', [InscriptionController::class, 'confirmPaymentNiubiz'])->name('inscriptions.confirmpaymentniubiz');
-
+    Route::post('confirm-payment-niubiz', [InscriptionController::class, 'confirmPaymentNiubiz'])->name('inscriptions.confirmpaymentniubiz');
 
     //HotelReservations
     Route::resource('hotelreservations', HotelReservationController::class)->names('hotelreservations');

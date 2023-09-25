@@ -17,12 +17,13 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('inscription_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('payment_method');
-            $table->string('voucher_phath')->nullable();
-            $table->string('card_type')->nullable();
+            $table->string('action_description')->nullable();
+            $table->string('purchasenumber')->nullable();
+            $table->string('card_brand')->nullable();
             $table->string('card_number')->nullable();
-            $table->string('status')->default('Verificando');
-            $table->timestamps();
+            $table->string('amount')->nullable();
+            $table->string('currency')->nullable();
+            $table->string('transaction_date')->nullable();
         });
     }
 

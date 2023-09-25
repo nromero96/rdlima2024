@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Payment;
 use App\Models\CategoryInscription;
 use App\Models\Inscription;
 use App\Models\TemporaryFile;
@@ -196,7 +198,6 @@ class InscriptionController extends Controller
 
         //get logged user id
         $iduser = \Auth::user()->id;
-
         $data = [
             'category_name' => 'inscriptions',
             'page_name' => 'inscriptions_paymentniubiz',
@@ -211,7 +212,105 @@ class InscriptionController extends Controller
         ->where('inscriptions.id', $inscription->id)
         ->first();
 
-        return view('pages.inscriptions.paymentniubiz')->with($data)->with('user', $user)->with('datainscription', $datainscription);
+        $amount = $datainscription->total;
+
+        $sessionToken = $this->generateSessionToken($amount);
+
+        return view('pages.inscriptions.paymentniubiz')->with($data)->with('user', $user)->with('datainscription', $datainscription)->with('sessionToken', $sessionToken)->with('amount', $amount);
+    }
+
+    private function generateSessionToken($amount){
+        $auth = base64_encode(config('services.niubiz.user').':'.config('services.niubiz.password'));
+        $accessToken = Http::withHeaders([
+                'Authorization' => 'Basic '.$auth,
+            ])->get(config('services.niubiz.url_api').'/api.security/v1/security')
+            ->body();
+
+        $accessToken = Http::withHeaders([
+            'Authorization' => $accessToken,
+            'Content-Type' => 'application/json',
+        ])->post(config('services.niubiz.url_api').'/api.ecommerce/v2/ecommerce/token/session/'.config('services.niubiz.merchant_id'),[
+            'channel' => 'web',
+            'amount' => $amount,
+            'antifraud' => [
+                'clientIp' => request()->ip(),
+                'merchantDefineData' => [
+                    'MDD4' => auth()->user()->email,
+                    'MDD21' => 0,
+                    'MDD32' => auth()->user()->id,
+                    'MDD75' => 'Registrado',
+                    'MDD77' => now()->diffInDays(auth()->user()->created_at) + 1,
+                ],
+            ],
+        ])->json();
+
+        return $accessToken['sessionKey'];
+
+    }
+
+    public function confirmPaymentNiubiz(Request $request){
+        
+        $auth = base64_encode(config('services.niubiz.user').':'.config('services.niubiz.password'));
+        $accessToken = Http::withHeaders([
+                'Authorization' => 'Basic '.$auth,
+            ])->get(config('services.niubiz.url_api').'/api.security/v1/security')
+            ->body();
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => $accessToken,
+        ])->post(config('services.niubiz.url_api').'/api.authorization/v3/authorization/ecommerce/'.config('services.niubiz.merchant_id'),[
+            'channel' => 'web',
+            'captureType' => 'manual',
+            'countable' => true,
+            'order' => [
+                'tokenId' => $request->transactionToken,
+                'purchaseNumber' => $request->purchasenumber,
+                'amount' => $request->amount,
+                'currency' => config('services.niubiz.currency'),
+            ],
+        ])->json();
+
+        session()->flash('niubiz', [
+            'inscription' => $request->inscription,
+            'response' => $response,
+            'purchaseNumber' => $request->purchasenumber,
+        ]);
+
+
+        if(isset($response['dataMap']) && $response['dataMap']['ACTION_CODE'] === '000'){
+            //update status inscription
+            $inscription = Inscription::find($request->inscription);
+            $inscription->status = 'Pagado';
+            $inscription->updated_at = now();
+            $inscription->save();
+
+            //insert payment
+            $payment = new Payment();
+            $payment->inscription_id = $request->inscription;
+            $payment->user_id = \Auth::user()->id;
+            $payment->action_description = $response['dataMap']['ACTION_DESCRIPTION'];
+            $payment->purchasenumber = $request->purchasenumber;
+            $payment->card_brand = $response['dataMap']['BRAND'];
+            $payment->card_number = $response['dataMap']['CARD'];
+            $payment->amount = $response['order']['amount'];
+            $payment->currency = $response['order']['currency'];
+            $payment->transaction_date = $response['dataMap']['TRANSACTION_DATE'];
+            $payment->save();
+
+        }else{
+            
+        }
+
+        $data = [
+            'category_name' => 'inscriptions',
+            'page_name' => 'inscriptions_paymentconfirmniubiz',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        return view('pages.inscriptions.paymentconfirmniubiz')->with($data);
+
     }
 
 }
