@@ -181,7 +181,7 @@
                                     </div>
 
                                     <div id="dv_card" class="pt-4 pb-4 d-none">
-                                        <p class="text-center">Próximamente...</p>
+                                        <p class="text-center">Podrás pagar con cualquier tarjeta de crédito o débito.</p>
                                     </div>
 
                                 </div>
