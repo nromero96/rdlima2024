@@ -19,6 +19,10 @@
             color: #000000;
         }
 
+        h3 {
+            color: #000000;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -58,12 +62,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>INSCRIPCIÓN # {{ $datainscription->id }}: En Proceso</h1>
+        <h2>INSCRIPCIÓN # {{ $datainscription->id }}: En Proceso</h2>
         <p>Estimado(a) <b>{{ $userinfo->name }} {{ $userinfo->lastname }} {{ $userinfo->second_lastname }}</b>,</p>
         <p>Le informamos que su preinscripción para la <b>XLI Reunión Anual de Dermatólogos Latinoamericanos</b> ha sido recibida. El evento se llevará a cabo del 8 al 11 de mayo de 2024 en el Swissôtel Lima.</p>
 
         <!-- Título "Detalle de tu Inscripción" -->
-        <h2>Detalle de su inscripción</h2>
+        <h3>Detalle de su inscripción</h3>
 
         <!-- Tabla de resumen de inscripción con bordes -->
         <table>
