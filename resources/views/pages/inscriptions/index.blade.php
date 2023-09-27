@@ -76,7 +76,7 @@
 
                                                         @php
                                                             if($inscription->payment_method == 'Tarjeta'){
-                                                                $textmp = 'TJ';
+                                                                $textmp = 'TC';
                                                             }else{
                                                                 $textmp = 'DT';
                                                             }

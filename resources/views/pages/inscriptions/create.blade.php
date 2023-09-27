@@ -163,7 +163,7 @@
 
                                     <div class="row mt-2 d-none" id="dv_invoice_info">
                                         <div class="col-md-4">
-                                            <input type="text" name="invoice_ruc" id="invoice_ruc" class="form-control" placeholder="@if ($user->country == 'Perú') RUC @else Identificador Tributario @endif"></div>
+                                            <input type="text" name="invoice_ruc" id="invoice_ruc" class="form-control" placeholder="@if ($user->country == 'Perú') RUC @else N° de Identificación Tributaria @endif"></div>
                                         <div class="col-md-4">
                                             <input type="text" name="invoice_social_reason" id="invoice_social_reason" class="form-control" placeholder="Razón social">
                                         </div>

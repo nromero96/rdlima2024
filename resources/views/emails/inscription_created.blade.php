@@ -15,8 +15,8 @@
             background-color: #f5f5f5;
         }
 
-        h1 {
-            color: #C40000;
+        h2 {
+            color: #000000;
         }
 
         table {
@@ -31,8 +31,8 @@
         }
 
         th {
-            background-color: #C40000;
-            color: #fff;
+            background-color: #dbdbdb;
+            color: #000000;
         }
 
         td {
@@ -58,12 +58,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>INSCRIPPCIÓN #{{ $datainscription->id }}: En Proceso</h1>
-        <p>Estimado(a) <b>{{ $userinfo->name }} {{ $userinfo->lastname }}</b>,</p>
+        <h1>INSCRIPCIÓN # {{ $datainscription->id }}: En Proceso</h1>
+        <p>Estimado(a) <b>{{ $userinfo->name }} {{ $userinfo->lastname }} {{ $userinfo->second_lastname }}</b>,</p>
         <p>Le informamos que su preinscripción para la <b>XLI Reunión Anual de Dermatólogos Latinoamericanos</b> ha sido recibida. El evento se llevará a cabo del 8 al 11 de mayo de 2024 en el Swissôtel Lima.</p>
 
         <!-- Título "Detalle de tu Inscripción" -->
-        <h2>Detalle de tu Inscripción</h2>
+        <h2>Detalle de su inscripción</h2>
 
         <!-- Tabla de resumen de inscripción con bordes -->
         <table>
@@ -106,7 +106,7 @@
         <p>Antes de aprobar su inscripción, validaremos el pago y la información proporcionada. Estamos aquí para ayudarte en caso de cualquier consulta o aclaración adicional.</p>
 
         <!-- Contacto de soporte -->
-        <p>Si necesita más información o asistencia adicional, no dude en ponerse en contacto con nosotros a través de la dirección de correo electrónico: <b>inscripciones@radla2024.org</b></p><br>
+        <p>Estamos aquí para ayudarle en caso de cualquier consulta o aclaración adicional.  Para mayores detalles, puede contactarse con nosotros a través del e-mail <b>inscripciones@radla2024.org</b></p><br>
 
         <!-- Firma y contacto del Comité Organizador -->
         <p class="signature">Atentamente,<br>Comité Organizador<br><b>RADLA LIMA 2024</b><br>+51 983 481 269<br>inscripciones@radla2024.org</p>
