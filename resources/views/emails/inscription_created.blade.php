@@ -107,10 +107,10 @@
         <p><a href="https://my.radla2024.org/">Ver Proceso de Inscripción</a></p>
 
         <!-- Mensaje de validación de pago e información -->
-        <p>Antes de aprobar su inscripción, validaremos el pago y la información proporcionada. Estamos aquí para ayudarte en caso de cualquier consulta o aclaración adicional.</p>
+        <p>Antes de aprobar su inscripción, validaremos el pago y la información proporcionada.</p>
 
         <!-- Contacto de soporte -->
-        <p>Estamos aquí para ayudarle en caso de cualquier consulta o aclaración adicional.  Para mayores detalles, puede contactarse con nosotros a través del e-mail <b>inscripciones@radla2024.org</b></p><br>
+        <p>Estamos aquí para ayudarle en caso de cualquier consulta o aclaración adicional. Para mayores detalles, puede contactarse con nosotros a través del e-mail <b>inscripciones@radla2024.org</b></p><br>
 
         <!-- Firma y contacto del Comité Organizador -->
         <p class="signature">Atentamente,<br>Comité Organizador<br><b>RADLA LIMA 2024</b><br>+51 983 481 269<br>inscripciones@radla2024.org</p>
