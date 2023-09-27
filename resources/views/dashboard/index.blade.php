@@ -9,6 +9,7 @@
 
         <div class="row layout-top-spacing">
 
+            @if (Auth::user()->hasRole('Administrador'))
             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                 <div class="widget widget-six">
                     <div class="widget-heading">
@@ -233,6 +234,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
 
     </div>
