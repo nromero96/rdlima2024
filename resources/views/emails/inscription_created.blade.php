@@ -85,15 +85,15 @@
             </tr>
             <tr>
                 <td>Precio</td>
-                <td>{{ $datainscription->price_category }}</td>
+                <td>US$ {{ $datainscription->price_category }}</td>
             </tr>
             <tr>
                 <td>Acompañante</td>
-                <td>{{ $datainscription->price_accompanist }}</td>
+                <td>US$ {{ $datainscription->price_accompanist }}</td>
             </tr>
             <tr>
                 <td><b>Monto Total</b></td>
-                <td>{{ $datainscription->total }}</td>
+                <td>US$ {{ $datainscription->total }}</td>
             </tr>
             <tr>
                 <td>Método de Pago</td>
