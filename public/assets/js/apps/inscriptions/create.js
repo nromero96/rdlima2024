@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const categoriasPermitidas = ['1', '2', '3'];
     
         if (categoriasPermitidas.includes(selectedRadioCategoryInscription.value)) {
-            if (!validarArchivoFilePond('document_file', "Debe adjuntar un documento")) {
+            if (!validarArchivoFilePond('document_file', "Debe adjuntar documento probatorio de categoría (Título, Constancia, Carnet profesional).")) {
                 return false;
             }
         }
@@ -76,9 +76,43 @@ function calculateTotalPrice() {
   
   // Suma el valor del checkbox si está marcado
   accompanistCheckboxes.forEach(checkbox => {
+    const dvAccompanist = document.getElementById('dv_accompanist');
+    const inputsaccomp = dvAccompanist.querySelectorAll('input');
+    const selectsaccomp = dvAccompanist.querySelectorAll('select');
+
+    // Limpiar los valores de los campos de entrada
+    inputsaccomp.forEach(input => {
+      input.value = ''; // Establecer el valor del campo de entrada como cadena vacía
+    });
+
+    // Restablecer los campos de selección
+    selectsaccomp.forEach(select => {
+      // Restablecer el campo de selección a su opción predeterminada (puede ser la primera opción en blanco o cualquier otra opción deseada)
+      select.selectedIndex = 0; // Establecer el índice seleccionado al valor deseado
+    });
+
     if (checkbox.checked) {
       const catPrice = parseFloat(checkbox.getAttribute('data-catprice'));
       totalPrice += catPrice;
+      //remove class d-none in dv_accompanist
+      dvAccompanist.classList.remove('d-none');
+      inputsaccomp.forEach(input => {
+        input.setAttribute('required', 'required');
+      });
+      selectsaccomp.forEach(select => {
+        select.setAttribute('required', 'required');
+      });
+
+
+    }else{
+        //add class d-none in dv_accompanist
+        dvAccompanist.classList.add('d-none');
+        inputsaccomp.forEach(input => {
+            input.removeAttribute('required');
+        });
+        selectsaccomp.forEach(select => {
+            select.removeAttribute('required');
+        });
     }
   });
 

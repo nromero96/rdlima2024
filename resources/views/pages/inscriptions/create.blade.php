@@ -24,15 +24,15 @@
                         <form class="row g-3" action="{{ route('inscriptions.store') }}" method="POST" id="formInscription" enctype="multipart/form-data">
                             @csrf
                             <div class="col-md-4">
-                                <label for="inputName" class="form-label fw-bold">{{__("Nombre")}}</label>
+                                <label for="inputName" class="form-label fw-bold">{{__("Nombre")}}:</label>
                                 <p class="form-control">{{$user->name}}</p>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputLastName" class="form-label fw-bold">{{__("Apellido paterno")}}</label>
+                                <label for="inputLastName" class="form-label fw-bold">{{__("Apellido paterno")}}:</label>
                                 <p class="form-control">{{$user->lastname}}</p>  
                             </div>
                             <div class="col-md-4">
-                                <label for="inputSecondLastName" class="form-label fw-bold">{{__("Apellido materno")}}</label>
+                                <label for="inputSecondLastName" class="form-label fw-bold">{{__("Apellido materno")}}:</label>
                                 <p class="form-control">{{$user->second_lastname}}</p>
                             </div>
 
@@ -101,9 +101,37 @@
                                     <small class="text-danger"><b>{{__("Nota:")}}</b> {{__("* Debe adjuntar documento probatorio de categoría (Título, Constancia, Carnet profesional) (.pdf/.jpg)")}}</small>
                                 </div>
 
+                                <div id="dv_accompanist" class="d-none">
+                                    <label class="form-label mt-3">
+                                        <span class="fw-bold">{{ __('Complete los datos del acompañante') }}:</span></label>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label for="accompanist_name" class="text-muted">{{__("Nombre completo")}}:</label>
+                                            <input type="text" class="form-control convert_mayus" name="accompanist_name">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="accompanist_typedocument" class="text-muted">{{__("Tipo documento")}}:</label>
+                                            <select class="form-control" name="accompanist_typedocument" id="accompanist_typedocument">
+                                                <option value="Seleccione...">Seleccione...</option>
+                                                <option value="DNI">DNI</option>
+                                                <option value="Carnet de extranjería">Carnet de extranjería</option>
+                                                <option value="Pasaporte">Pasaporte</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="accompanist_numdocument" class="text-muted">{{__("N° documento")}}:</label>
+                                            <input type="text" class="form-control" name="accompanist_numdocument" name="accompanist_numdocument">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="accompanist_solapin" class="text-muted">{{__("Solapín/Gafete")}}:</label>
+                                            <input type="text" class="form-control convert_mayus" name="accompanist_solapin" id="accompanist_solapin">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div id="dv_document_file" class="d-none">
                                     <label for="document_file" class="form-label mt-3">
-                                        <span class="fw-bold">{{ __('Adjuntar documento probatorio de categoría') }}</span> <span class="text-info">{{ __('(Título, Constancia, Carnet profesional) (.pdf/.jpg)') }}</span></label>
+                                        <span class="fw-bold">{{ __('Adjuntar documento probatorio de categoría') }}:</span> <span class="text-info">{{ __('(Título, Constancia, Carnet profesional) (.pdf/.jpg)') }}</span></label>
                                     <input type="file" name="document_file" id="document_file" class="file-control">
                                 </div>
 
@@ -111,7 +139,13 @@
 
                             <div class="col-md-12">
                                 <div class="card px-3 py-3">
-                                    <label for="" class="form-label fw-bold">{{ __('¿Necesita Factura?') }}</label>
+                                    <label for="" class="form-label fw-bold">
+                                        @if ($user->country == 'Perú')
+                                            {{ __('¿Necesita Factura?') }}
+                                        @else
+                                            {{ __('¿Necesita Boleta de Pago?') }}
+                                        @endif
+                                    </label>
                                     <div class="">
                                         <div class="form-check form-check-primary form-check-inline">
                                             <input class="form-check-input cursor-pointer" type="radio" name="invoice" id="invoice_no" value="no" checked="">
@@ -129,8 +163,7 @@
 
                                     <div class="row mt-2 d-none" id="dv_invoice_info">
                                         <div class="col-md-4">
-                                            <input type="text" name="invoice_ruc" id="invoice_ruc" class="form-control" placeholder="RUC">
-                                        </div>
+                                            <input type="text" name="invoice_ruc" id="invoice_ruc" class="form-control" placeholder="@if ($user->country == 'Perú') RUC @else Identificador Tributario @endif"></div>
                                         <div class="col-md-4">
                                             <input type="text" name="invoice_social_reason" id="invoice_social_reason" class="form-control" placeholder="Razón social">
                                         </div>
@@ -146,6 +179,9 @@
                                 <div class="card px-3 py-3">
                                     <label for="" class="form-label fw-bold text-center">{{ __('FORMA DE PAGO') }}</label>
                                     <div class="text-center">
+
+                                        <p class="text-center">BENEFICIARIO: <b>ASOCIACION DERMATOLOGICA RADLA</b> - <b>RUC 20504537405</b></p>
+
                                         <div class="form-check form-check-primary form-check-inline">
                                             <input class="form-check-input cursor-pointer" type="radio" name="payment_method" value="Transferencia/Depósito" id="payment_method_transfer" checked="">
                                             <label class="form-check-label mb-0 cursor-pointer" for="payment_method_transfer">
@@ -172,7 +208,7 @@
                                             <div class="col-md-2"></div>
                                             <div class="col-md-8">
                                                 <div id="dv_voucher_file" class="mt-2">
-                                                    <label for="voucher_file" class="d-block text-center">Adjuntar comprabante de pago.</label>
+                                                    <label for="voucher_file" class="d-block text-center">Adjuntar comprobante de pago.</label>
                                                     <input type="file" name="voucher_file" id="voucher_file" class="file-control">
                                                 </div>
                                             </div>

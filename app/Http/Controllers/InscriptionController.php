@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+
 use App\Models\User;
 use App\Models\Payment;
 use App\Models\CategoryInscription;
 use App\Models\Inscription;
 use App\Models\TemporaryFile;
+use App\Models\Accompanist;
+
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Log;
 
@@ -33,19 +38,19 @@ class InscriptionController extends Controller
 
         if (\Auth::user()->hasRole('Administrador')) {
             $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
-            ->join('users', 'inscriptions.user_id', '=', 'users.id')
-            ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname')
-            ->where('inscriptions.user_id', $iduser)
-            ->orderBy('inscriptions.id', 'desc')
-            ->get();
+                ->join('users', 'inscriptions.user_id', '=', 'users.id')
+                ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->orderBy('inscriptions.id', 'desc')
+                ->paginate(10); // Cambia 10 por la cantidad de registros por página que desees mostrar
         } else {
             $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
-            ->join('users', 'inscriptions.user_id', '=', 'users.id')
-            ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname')
-            ->where('inscriptions.user_id', $iduser)
-            ->orderBy('inscriptions.id', 'desc')
-            ->get();
+                ->join('users', 'inscriptions.user_id', '=', 'users.id')
+                ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('inscriptions.user_id', $iduser)
+                ->orderBy('inscriptions.id', 'desc')
+                ->paginate(10); // Cambia 10 por la cantidad de registros por página que desees mostrar
         }
+        
 
         return view('pages.inscriptions.index')->with($data)->with('inscriptions', $inscriptions);
     }
@@ -86,6 +91,19 @@ class InscriptionController extends Controller
         //get logged user id
         $iduser = \Auth::user()->id;
 
+        //verificar si existe acompañante en la inscripcion, registrar y devolver id
+        if($request->accompanist != ''){
+            $accompanist = new Accompanist();
+            $accompanist->accompanist_name = $request->accompanist_name;
+            $accompanist->accompanist_typedocument = $request->accompanist_typedocument;
+            $accompanist->accompanist_numdocument = $request->accompanist_numdocument;
+            $accompanist->accompanist_solapin = $request->accompanist_solapin;
+            $accompanist->save();
+            $data_accompanist_id = $accompanist->id;
+        }else{
+            $data_accompanist_id = null;
+        }
+
         //insert data
         $inscription = new Inscription();
         $inscription->user_id = $iduser;
@@ -95,11 +113,11 @@ class InscriptionController extends Controller
         $inscription->price_category = $category_inscription->price;
 
         if($request->accompanist != ''){
-            $inscription->accompanist_id = null;
+            $inscription->accompanist_id = $data_accompanist_id;
             $category_inscription_accompanist = CategoryInscription::where('name', 'Acompañante')->first();
             $inscription->price_accompanist = $category_inscription_accompanist->price;
         }else{
-            $inscription->accompanist_id = null;
+            $inscription->accompanist_id = $data_accompanist_id;
             $inscription->price_accompanist = 0;
         }
 
@@ -132,13 +150,46 @@ class InscriptionController extends Controller
         }
 
         if($request->payment_method == 'Transferencia/Depósito'){
-            $inscription->status = 'Verificando';
+            $inscription->status = 'Procesando';
             $inscription->save();
+
+            //send email
+            $user = User::find($iduser);
+            $datainscription = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+            ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name')
+            ->where('inscriptions.id', $inscription->id)
+            ->first();
+            $data = [
+                'user' => $user,
+                'datainscription' => $datainscription,
+            ];
+
+            Mail::to($user->email)
+                ->cc(config('services.correonotificacion.inscripcion'))
+                ->send(new \App\Mail\InscriptionCreated($data));
+
+
             //redirect
             return redirect()->route('inscriptions.index')->with('success', 'Inscripción realizada con éxito');
         } else if($request->payment_method == 'Tarjeta'){
             $inscription->status = 'Pendiente';
             $inscription->save();
+
+            //send email
+            $user = User::find($iduser);
+            $datainscription = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+            ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name')
+            ->where('inscriptions.id', $inscription->id)
+            ->first();
+            $data = [
+                'user' => $user,
+                'datainscription' => $datainscription,
+            ];
+
+            Mail::to($user->email)
+                ->cc(config('services.correonotificacion.inscripcion'))
+                ->send(new \App\Mail\InscriptionCreated($data));
+
             //redirect to payment page with inscription id
             return redirect()->route('inscriptions.paymentniubiz', ['inscription' => $inscription->id]);
         }
@@ -281,7 +332,7 @@ class InscriptionController extends Controller
         if(isset($response['dataMap']) && $response['dataMap']['ACTION_CODE'] === '000'){
             //update status inscription
             $inscription = Inscription::find($request->inscription);
-            $inscription->status = 'Pagado';
+            $inscription->status = 'Procesando';
             $inscription->updated_at = now();
             $inscription->save();
 

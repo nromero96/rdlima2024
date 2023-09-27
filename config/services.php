@@ -30,6 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'correonotificacion' => [
+        'trabajo' => env('CORREO_NOTIFICACION_TRABAJO'),
+        'pago' => env('CORREO_NOTIFICACION_PAGO'),
+        'hospedaje' => env('CORREO_NOTIFICACION_HOSPEDAJE'),
+        'inscripcion' => env('CORREO_NOTIFICACION_INSCRIPCION'),
+    ],
+
     'niubiz' => [
         'merchant_id' => env('NIUBIZ_MERCHANT_ID'),
         'user' => env('NIUBIZ_USER'),
