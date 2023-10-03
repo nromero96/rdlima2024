@@ -24,14 +24,12 @@ class HotelReservationController extends Controller
             'scrollspy_offset' => '',
         ];
 
-        if (\Auth::user()->hasRole('Administrador')) {
-            
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || \Auth::user()->hasRole('Hotelero') ) {
             //get hotelreservations and join with users table
             $hotelreservations = HotelReservation::join('users', 'hotel_reservations.user_id', '=', 'users.id')
                 ->select('hotel_reservations.*', 'users.name', 'users.lastname', 'users.second_lastname', 'users.email')
                 ->orderBy('hotel_reservations.id', 'desc')
                 ->get();
-
         } else {
             //get hotelreservations and join with users table
             $hotelreservations = HotelReservation::join('users', 'hotel_reservations.user_id', '=', 'users.id')

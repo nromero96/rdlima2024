@@ -30,7 +30,7 @@ class WorkController extends Controller
         ];
 
         //show all works for role admin and user
-        if (\Auth::user()->hasRole('Administrador')) {
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')) {
             $works = Work::orderBy('id', 'desc')->get();
         } else {
             $works = Work::where('user_id', $userid)->orderBy('id', 'desc')->get();
