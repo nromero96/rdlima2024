@@ -41,6 +41,7 @@ class InscriptionController extends Controller
             $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
                 ->join('users', 'inscriptions.user_id', '=', 'users.id')
                 ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('inscriptions.status', '!=', 'Rechazado')
                 ->orderBy('inscriptions.id', 'desc')
                 ->paginate(10); // Cambia 10 por la cantidad de registros por página que desees mostrar
         } else {
@@ -207,7 +208,12 @@ class InscriptionController extends Controller
      */
     public function show($id)
     {
-        
+        //solo mostrar su inscripciones del usuario logueado y para roles de Administrador y Secretaria
+        $iduser = \Auth::user()->id;
+        $inscription = Inscription::where('id', $id)->where('user_id', $iduser)->first();
+
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || $inscription) {
+
             $data = [
                 'category_name' => 'inscriptions',
                 'page_name' => 'inscriptions_show',
@@ -247,8 +253,11 @@ class InscriptionController extends Controller
 
             $paymentcard = Payment::where('inscription_id', $id)->first();
             $accompanist = Accompanist::find($inscription->accompanist_id);
-            return view('pages.inscriptions.show')->with($data)->with('inscription', $inscription)->with('accompanist', $accompanist)->with('paymentcard', $paymentcard);
 
+            return view('pages.inscriptions.show')->with($data)->with('inscription', $inscription)->with('accompanist', $accompanist)->with('paymentcard', $paymentcard);
+        }else{
+            return redirect()->route('inscriptions.index')->with('error', 'No tiene permisos para ver esta inscripción');
+        }
     }
 
     /**
