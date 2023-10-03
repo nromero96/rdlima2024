@@ -299,12 +299,6 @@
                                             <span class="bx-text">{{ $paymentcard->action_description }}</span>
                                         </div>
                                     </div>
-                                    @else
-                                    <div class="row mt-1">
-                                        <div class="col-12">
-                                            <span class="text-warning mb-0">Pago pendiente con Tarjeta</span>
-                                        </div>
-                                    </div>
                                     @endif
 
                                 </div>
