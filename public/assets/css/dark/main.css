@@ -71,6 +71,10 @@ body.dark strong {
 body.dark code {
   color: #e7515a;
 }
+body.dark .bx-text {
+  background: #191e3a;
+  color: #808080;
+}
 body.dark select.form-custom::-ms-expand {
   display: none;
 }

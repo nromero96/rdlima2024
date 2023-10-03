@@ -11,6 +11,7 @@ use App\Models\CategoryInscription;
 use App\Models\Inscription;
 use App\Models\TemporaryFile;
 use App\Models\Accompanist;
+use App\Models\Statusnote;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
@@ -206,7 +207,48 @@ class InscriptionController extends Controller
      */
     public function show($id)
     {
-        //
+        
+            $data = [
+                'category_name' => 'inscriptions',
+                'page_name' => 'inscriptions_show',
+                'has_scrollspy' => 0,
+                'scrollspy_offset' => '',
+            ];
+    
+            $inscription = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+            ->join('users', 'inscriptions.user_id', '=', 'users.id')
+            ->leftJoin('accompanists', 'inscriptions.accompanist_id', '=', 'accompanists.id')
+            ->select('inscriptions.*', 
+                    'category_inscriptions.name as category_inscription_name', 
+                    'users.name as user_name', 
+                    'users.lastname as user_lastname', 
+                    'users.second_lastname as user_second_lastname', 
+                    'users.document_type as user_document_type', 
+                    'users.document_number as user_document_number',
+                    'users.country as user_country',
+                    'users.state as user_state',
+                    'users.city as user_city',
+                    'users.address as user_address',
+                    'users.postal_code as user_postal_code',
+                    'users.phone_code as user_phone_code',
+                    'users.phone_code_city as user_phone_code_city',
+                    'users.phone_number as user_phone_number',
+                    'users.whatsapp_code as user_whatsapp_code',
+                    'users.whatsapp_number as user_whatsapp_number',
+                    'users.email as user_email',
+                    'users.workplace as user_workplace',
+                    'users.solapin_name as user_solapin_name',
+                    'accompanists.accompanist_name as accompanist_name',
+                    'accompanists.accompanist_typedocument as accompanist_typedocument',
+                    'accompanists.accompanist_numdocument as accompanist_numdocument',
+                    'accompanists.accompanist_solapin as accompanist_solapin')
+            ->where('inscriptions.id', $id)
+            ->first();
+
+            $paymentcard = Payment::where('inscription_id', $id)->first();
+            $accompanist = Accompanist::find($inscription->accompanist_id);
+            return view('pages.inscriptions.show')->with($data)->with('inscription', $inscription)->with('accompanist', $accompanist)->with('paymentcard', $paymentcard);
+
     }
 
     /**
@@ -217,7 +259,7 @@ class InscriptionController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -363,5 +405,40 @@ class InscriptionController extends Controller
         return view('pages.inscriptions.paymentconfirmniubiz')->with($data);
 
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        try {
+            // Obtener la inscripción actual
+            $inscription = Inscription::findOrFail($id);
+
+            // Validación de datos (ajusta estas reglas según tus necesidades)
+            $validatedData = $request->validate([
+                'action' => 'required',
+                'note' => 'nullable|string',
+            ]);
+
+            // Insertar la nota de estado
+            StatusNote::create([
+                'inscription_id' => $id,
+                'action' => "Cambió de '{$inscription->status}' a '{$validatedData['action']}'",
+                'note' => $validatedData['note'] ?? 'Ninguna nota',
+                'user_id' => auth()->id(),
+            ]);
+
+            // Actualizar el estado de la inscripción después de registrar la nota
+            $inscription->update([
+                'status' => $validatedData['action'],
+                'updated_at' => now(),
+            ]);
+
+            return redirect()->route('inscriptions.show', ['inscription' => $id])->with('success', 'Estado actualizado con éxito');
+        } catch (\Exception $e) {
+            // Manejo de errores
+            return redirect()->back()->with('error', 'Ocurrió un error al actualizar el estado.');
+        }
+    }
+
+
 
 }

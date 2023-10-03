@@ -65,6 +65,14 @@ body.dark .dark-element {
   cursor: pointer !important;
 }
 
+.bx-text {
+  background: #e5e9ee;
+  display: block;
+  color: #636363;
+  border-radius: 3px;
+  padding: 4px 5px;
+}
+
 .dark-element {
   display: none;
 }

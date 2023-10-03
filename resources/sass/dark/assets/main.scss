@@ -66,6 +66,11 @@ body.dark {
     color: $danger;
   }
 
+  .bx-text{
+    background: #191e3a;
+      color: #808080;
+  }
+
   select.form-custom::-ms-expand {
     display: none;
   }

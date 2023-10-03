@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
     //Inscriptions
     Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');
+    Route::put('inscriptions/{id}/update-status', [InscriptionController::class, 'updateStatus'])->name('inscriptions.updatestatus');
     
     Route::get('payment-niubiz/{inscription}', [InscriptionController::class, 'paymentNiubiz'])->name('inscriptions.paymentniubiz');
     Route::post('confirm-payment-niubiz', [InscriptionController::class, 'confirmPaymentNiubiz'])->name('inscriptions.confirmpaymentniubiz');
