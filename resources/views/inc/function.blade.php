@@ -29,6 +29,42 @@ if (!function_exists('setTitle')) :
         //Int. Users
         elseif ($page_name === 'myprofile') :
             echo __('My Profile') . $admin_name;
+
+        //Int. Inscriptions
+        elseif ($page_name === 'inscriptions'):
+            echo __('Inscripciones') . $admin_name;
+        elseif ($page_name === 'inscriptions_create'):
+            echo __('Registrar Inscripción') . $admin_name;
+        elseif ($page_name === 'inscriptions_show'):
+            echo __('Ver Inscripción') . $admin_name;
+
+        //Int. Hotelreservations
+        elseif ($page_name === 'hotelreservations'):
+            echo __('Reservacione') . $admin_name;
+        elseif ($page_name === 'hotelreservations_create'):
+            echo __('Reservar Alojamiento') . $admin_name;
+
+        //Int. Invitations
+        elseif ($page_name === 'invitations'):
+            echo __('Invitaciones') . $admin_name;
+
+        //Int. Specialcodes
+        elseif ($page_name === 'specialcodes'):
+            echo __('Códigos Especiales') . $admin_name;
+        elseif ($page_name === 'specialcodes_create'):
+            echo __('Crear Código Especial') . $admin_name;
+        elseif ($page_name === 'specialcodes_edit'):
+            echo __('Editar Código Especial') . $admin_name;
+        
+
+        //Int. Works
+        elseif ($page_name === 'works'):
+            echo __('Trabajos') . $admin_name;
+        elseif ($page_name === 'works_create'):
+            echo __('Regitrar Trabajo') . $admin_name;
+        elseif ($page_name === 'works_edit'):
+            echo __('Editar Trabajo') . $admin_name;
+
         elseif ($page_name === 'quotationscommercial'):
             echo __('Quotations Comercial') . $admin_name;
         elseif ($page_name === 'quotationspersonal'):
@@ -41,6 +77,9 @@ if (!function_exists('setTitle')) :
             echo __('Edit Suppliers') . $admin_name;
         elseif ($page_name === 'suppliershow'):
             echo __('Show Suppliers') . $admin_name;
+
+
+
 
         elseif ($page_name === 'customers') :
             echo __('Customers') . $admin_name;

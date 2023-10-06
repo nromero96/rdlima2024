@@ -26,6 +26,7 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area pt-0">
+                        @if ($datainscription->status == 'Pendiente' && $datainscription->payment_method == 'Tarjeta')
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="text-center" style="font-size:17px;">
@@ -47,6 +48,15 @@
                                 </div>
                             </div>
                         </div>
+                        @else
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                        Su inscripción ya fue pagada o no se encuentra disponible para pago.
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

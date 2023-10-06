@@ -50,6 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return false;
             }
         }
+
+        if(selectedRadioCategoryInscription.value === '7' && document.getElementById('specialcode_verify').value === ''){
+            alert('Debe validar la cuota especial');
+            return false;
+        }
     
         return true; // La validación pasa
     }
@@ -136,9 +141,17 @@ calculateTotalPrice();
 // Obtén los elementos del DOM
 const dvDocumentFile = document.getElementById('dv_document_file');
 const inputDocumentFile = document.getElementById('document_file');
+const dvSpecialCode = document.getElementById('dv_specialcode');
+const inputSpecialCode = document.getElementById('specialcode');
+const txtPriceSpecialCode = document.getElementById('dc_price_7');
+const smsErrorVC = document.getElementById('sms_error_vc');
+const btnValidateSpecialCode = document.getElementById('validate_specialcode');
+const btnClearSpecialCode = document.getElementById('clear_specialcode');
+const specialCodeVerify = document.getElementById('specialcode_verify');
 
 // Función para manejar el clic categoryRadioButtons
 function handleCategoryRadioButtons(){
+    const selectedRadioCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked');
     const selectedValueCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked').value;
     if(selectedValueCategory === '1' || selectedValueCategory === '2' || selectedValueCategory === '3'){
         dvDocumentFile.classList.remove('d-none');
@@ -147,6 +160,31 @@ function handleCategoryRadioButtons(){
         dvDocumentFile.classList.add('d-none');
         inputDocumentFile.removeAttribute('required');
     }
+
+    if(selectedValueCategory === '7'){
+      dvSpecialCode.classList.remove('d-none');
+      inputSpecialCode.setAttribute('required', 'required');
+      inputSpecialCode.removeAttribute('readonly');
+      txtPriceSpecialCode.textContent = '00';
+      smsErrorVC.textContent = '';
+      specialCodeVerify.value = '';
+      btnValidateSpecialCode.classList.remove('d-none');
+      btnClearSpecialCode.classList.add('d-none');
+    }else{
+      dvSpecialCode.classList.add('d-none');
+      inputSpecialCode.value = '';
+      inputSpecialCode.removeAttribute('required');
+      inputSpecialCode.removeAttribute('readonly');
+      txtPriceSpecialCode.textContent = '00';
+      smsErrorVC.textContent = '';
+      specialCodeVerify.value = '';
+      btnValidateSpecialCode.classList.remove('d-none');
+      btnClearSpecialCode.classList.add('d-none');
+    }
+
+    const radioCategory = document.getElementById('category_7');
+    radioCategory.setAttribute('data-catprice', '00');
+
 }
 
 //if  clic in radio invoice if value is yes add class in dv_invoice_info
@@ -174,6 +212,71 @@ function handleInvoice(){
         inputInvoiceAddress.removeAttribute('required');
     }
 }
+
+//validate specialcode when click validate_specialcode button
+btnValidateSpecialCode.addEventListener('click', function(){
+    //valida si el campo esta vacio
+    if(inputSpecialCode.value === ''){
+        alert('Ingrese un código especial');
+        return false;
+    }
+
+  const radioCategory = document.getElementById('category_7');
+    //verifica si el existe via ajax javascript
+  const url = baseurl + '/validate-specialcode';
+  const code = inputSpecialCode.value;
+
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // Configura el tipo de contenido
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+        if (response.success) {
+          txtPriceSpecialCode.textContent = Math.floor(response.price);
+          inputSpecialCode.setAttribute('readonly', 'readonly');
+          smsErrorVC.textContent = '';
+          btnClearSpecialCode.classList.remove('d-none');
+          btnValidateSpecialCode.classList.add('d-none');
+          specialCodeVerify.value = 'valid';
+          radioCategory.setAttribute('data-catprice', Math.floor(response.price));
+
+        } else {
+          smsErrorVC.textContent = response.message;
+          txtPriceSpecialCode.textContent = '00';
+          inputSpecialCode.removeAttribute('readonly');
+          specialCodeVerify.value = '';
+          radioCategory.setAttribute('data-catprice', '0.00');
+        }
+
+        calculateTotalPrice();
+
+      } else {
+        alert('Error en la solicitud.');
+      }
+    }
+  };
+
+  // Configura los datos a enviar en la solicitud POST
+  const token = $('meta[name="csrf-token"]').attr('content');
+  const params = `code=${code}&_token=${token}`;
+  
+  xhr.send(params);
+
+    
+});
+
+btnClearSpecialCode.addEventListener('click', function(){
+    inputSpecialCode.value = '';
+    txtPriceSpecialCode.textContent = '00';
+    inputSpecialCode.removeAttribute('readonly');
+    smsErrorVC.textContent = '';
+    btnClearSpecialCode.classList.add('d-none');
+    btnValidateSpecialCode.classList.remove('d-none');
+    specialCodeVerify.value = '';
+});
 
 const inputPaymentMethod = document.querySelectorAll('input[type="radio"][name="payment_method"]');
 const dvTranfer = document.getElementById('dv_tranfer');

@@ -70,9 +70,22 @@
                                                                 <input type="{{ $category->type }}" id="category_{{ $category->id }}" name="category_inscription_id" value="{{ $category->id }}" class="form-check-input cursor-pointer" data-catprice="{{ $category->price }}">
                                                                 <label class="form-check-label mb-0 ms-1 cursor-pointer" for="category_{{ $category->id }}">{{ $category->name }}{!! $infomark !!}</label>
                                                             </div>
+
+                                                            @if ($category->id == '7')
+                                                                <div id="dv_specialcode" class="d-none">
+                                                                    <div class="input-group mt-1 mb-0">
+                                                                        <input type="text" name="specialcode" id="specialcode" class="form-control" placeholder="Ingresar código">
+                                                                        <button class="btn btn-secondary d-none" type="button" id="clear_specialcode">Limpiar</button>
+                                                                        <button class="btn btn-primary" type="button" id="validate_specialcode">Validar</button>
+                                                                    </div>
+                                                                    <span class="text-danger" id="sms_error_vc"></span>
+                                                                </div>
+                                                                <input type="hidden" name="specialcode_verify" id="specialcode_verify" value="">
+                                                            @endif
+
                                                         </td>   
                                                         <td>
-                                                            <b>US$ {{ $category->price === '0.00' ? '00' : rtrim(rtrim($category->price, '0'), '.') }}</b>
+                                                            <b>US$ <span id="dc_price_{{ $category->id }}">{{ $category->price === '0.00' ? '00' : rtrim(rtrim($category->price, '0'), '.') }}</span></b>
                                                         </td>
                                                     </tr>
                                                 @endif

@@ -129,7 +129,7 @@ class InvitationController extends Controller
     private function sendInvitationEmail($email, $pdfFilePath, $fullName, $country)
     {
         // Send the email with attachment using Laravel's Mail service add copied to
-        \Mail::to($email)->cc('inscripciones@radla2024.org')->send(new InvitationEmail($pdfFilePath, $fullName, $country));
+        \Mail::to($email)->cc(config('services.correonotificacion.inscripcion'))->send(new InvitationEmail($pdfFilePath, $fullName, $country));
 
     }
 

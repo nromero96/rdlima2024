@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class SpecialCode extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'code',
+        'amount',
+        'description',
+        'status',
+        'quantity',
+        'expiration',
+    ];
 }

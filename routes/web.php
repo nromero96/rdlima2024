@@ -109,6 +109,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
     //SpecialCodes
     Route::resource('specialcodes', SpecialCodeController::class)->names('specialcodes');
+    Route::post('validate-specialcode', [SpecialCodeController::class, 'validateSpecialCode'])->name('specialcodes.validatespecialcode');
 
     //Invitations
     Route::resource('invitations', InvitationController::class)->names('invitations');

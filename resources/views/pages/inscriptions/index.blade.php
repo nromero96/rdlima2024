@@ -87,7 +87,10 @@
                                                         @elseif ($inscription->status == 'Procesando')
                                                             <span class="badge badge-light-info">{{ $inscription->status .' ('.$textmp.')' }}</span>
                                                         @elseif ($inscription->status == 'Pendiente')
-                                                            <span class="badge badge-light-warning">{{ $inscription->status .' ('.$textmp.')' }}</span>
+                                                        <span class="badge badge-light-warning">{{ $inscription->status .' ('.$textmp.')' }}</span>
+                                                            @if($inscription->payment_method == 'Tarjeta')
+                                                                <a href="{{ route('inscriptions.paymentniubiz', $inscription->id) }}" class="btn btn-primary me-1 btn-sm px-2 py-1">{{__("Pagar")}}</a>
+                                                            @endif
                                                         @elseif ($inscription->status == 'Rechazado')
                                                             <span class="badge badge-light-danger">{{ $inscription->status .' ('.$textmp.')' }}</span>
                                                         @endif

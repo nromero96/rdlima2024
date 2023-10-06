@@ -12,6 +12,7 @@ use App\Models\Inscription;
 use App\Models\TemporaryFile;
 use App\Models\Accompanist;
 use App\Models\Statusnote;
+use App\Models\SpecialCode;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
@@ -90,6 +91,18 @@ class InscriptionController extends Controller
     public function store(Request $request)
     {
 
+        $amount_especialcode = 0;
+        //si $request->category_inscription_id == 7 validar que exista el código especial
+        if($request->category_inscription_id == 7){
+            //get amount code special
+            $specialcode = SpecialCode::where('code', $request->specialcode)->first();
+            if($specialcode){
+                $amount_especialcode = $specialcode->amount;
+            }else{
+                return redirect()->route('inscriptions.create')->with('error', 'El código especial no existe');
+            }
+        }
+
         //get logged user id
         $iduser = \Auth::user()->id;
 
@@ -112,7 +125,13 @@ class InscriptionController extends Controller
         $inscription->category_inscription_id = $request->category_inscription_id;
         
         $category_inscription = CategoryInscription::find($request->category_inscription_id);
-        $inscription->price_category = $category_inscription->price;
+        
+        //si $amount_especialcode es mayor a 0, poner el precio del código especial
+        if($amount_especialcode > 0){
+            $inscription->price_category = $amount_especialcode;
+        }else{
+            $inscription->price_category = $category_inscription->price;
+        }
 
         if($request->accompanist != ''){
             $inscription->accompanist_id = $data_accompanist_id;
@@ -124,7 +143,7 @@ class InscriptionController extends Controller
         }
 
         $inscription->total = $inscription->price_category + $inscription->price_accompanist;
-        $inscription->special_code = '';
+        $inscription->special_code = $request->specialcode;
         $inscription->invoice = $request->invoice;
         $inscription->invoice_ruc = $request->invoice_ruc;
         $inscription->invoice_social_reason = $request->invoice_social_reason;

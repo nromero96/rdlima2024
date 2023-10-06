@@ -14,7 +14,7 @@
                     <div class="widget-header pt-4">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-end">
-                                <a href="{{ route('onlineforminvitations') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Comprar Nuevo")}}</a>
+                                <a href="{{ route('specialcodes.create') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Nuevo Código")}}</a>
                             </div>
                         </div>
                     </div>
@@ -23,34 +23,42 @@
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">{{__("Nombre")}}</th>
-                                        <th scope="col">{{__("País")}}</th>
-                                        <th scope="col">{{__("Correo")}}</th>
-                                        <th scope="col">{{__("Teléfono")}}</th>
+                                        <th scope="col">{{__("Código")}}</th>
+                                        <th scope="col">{{__("Monto")}}</th>
+                                        <th scope="col">{{__("Cantidad")}}</th>
+                                        <th scope="col">{{__("Descripción")}}</th>
+                                        <th scope="col">{{__("Expira")}}</th>
+                                        <th scope="col">{{__("Estado")}}</th>
                                         <th scope="col">{{__("")}}</th>
-                                        <th scope="col">{{__("Fecha")}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($specialcodes as $specialcode)
                                         <tr>
                                             <td>
-                                                {{$specialcode->full_name}}
+                                                {{$specialcode->code}}
                                             </td>
                                             <td>
-                                                {{$specialcode->country}}
+                                                US$ {{$specialcode->amount}}
                                             </td>
                                             <td>
-                                                {{$specialcode->email}}
+                                                {{$specialcode->quantity}}
                                             </td>
                                             <td>
-                                                +{{$specialcode->phone_code}} {{$specialcode->phone}}
+                                                {{$specialcode->description}}
+                                            </td>
+                                            <td>
+                                                {{$specialcode->expiration}}
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ asset('storage/uploads/invitation_letters').'/'. $specialcode->file_name}}" target="_blank" class="btn btn-primary">{{__("Ver")}}</a>
+                                                {{$specialcode->status}}
                                             </td>
                                             <td class="text-center">
-                                                {{$specialcode->created_at}}
+                                                <div class="btn-group">
+                                                    <a href="{{ route('specialcodes.edit', $specialcode->id) }}" class="badge badge-light-primary text-start me-2 action-edit bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Editar") }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
