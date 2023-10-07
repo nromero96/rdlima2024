@@ -38,13 +38,18 @@
 
                                     <!-- checkbox confirm pay -->
                                     <div>
-                                        <input type="checkbox" id="confirmPay" name="confirmPay" value="1" onclick="confirmPay()">
-                                        <label for="confirmPay" style="font-size: 15px;">{{__("Confirmo que he leído y acepto los")}} <a href="#" target="_blank">{{__("Términos y Condiciones")}}</a> {{__("y la")}} <a href="#" target="_blank">{{__("Política de Privacidad")}}</a></label>
+                                        <input type="checkbox" id="confirmPay" name="confirmPay" value="1" onclick="confirmPay()" style="width: 16px;cursor: pointer;height: 16px;">
+                                        <label for="confirmPay" style="font-size: 15px;">{{__("Confirmo que he leído y acepto los")}} <a href="https://radla2024.org/inscripciones/" target="_blank">{{__("Términos y Condiciones")}}</a> {{__("y la")}} <a href="https://radla2024.org/inscripciones/" target="_blank">{{__("Política de Privacidad")}}</a></label>
                                     </div>
 
-                                    <div class="mb-2 d-none" id="btnpago">
-                                        <button class="btn btn-primary btn-lg" onclick="VisanetCheckout.open()">PAGAR AQUÍ</button>
+                                    <div class="mb-2">
+                                        <button class="btn btn-primary btn-lg" onclick="VisanetCheckout.open()" id="btnpago" disabled>PAGAR AQUÍ</button>
                                     </div>
+
+                                    <div class="mt-5 text-center">
+                                        <img src="{{ asset('assets/img/niubiz-554.jpg') }}" style="width: 180px;">
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -89,10 +94,14 @@
     });
 
     const confirmPay = () => {
+        const btnPago = document.getElementById('btnpago');
+
         if (document.getElementById('confirmPay').checked) {
-            document.getElementById('btnpago').classList.remove('d-none');
+            // Habilitar el botón
+            btnPago.disabled = false;
         } else {
-            document.getElementById('btnpago').classList.add('d-none');
+            // Deshabilitar el botón
+            btnPago.disabled = true;
         }
     }
 
