@@ -33,21 +33,128 @@
                         <form class="row g-3" action="{{ route('users.index').'/'.$user->id }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="inputName" class="form-label fw-bold">{{__("Nombre")}}</label>
-                                <input type="text" name="name" class="form-control" id="inputName" value="{{$user->name}}" required>
+                                <input type="text" name="name" class="form-control convert_mayus" id="inputName" value="{{$user->name}}" required>
                                 {!!$errors->first("name", "<span class='text-danger'>:message</span>")!!}
                             </div>
+                            <div class="col-md-4">
+                                <label for="inputLastName" class="form-label fw-bold">{{__("Apellido paterno")}}</label>
+                                <input type="text" name="lastname" class="form-control convert_mayus" id="inputLastName" value="{{$user->lastname}}" required>
+                                {!!$errors->first("lastname", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputSecondLastName" class="form-label fw-bold">{{__("Apellido materno")}}</label>
+                                <input type="text" name="second_lastname" class="form-control convert_mayus" id="inputSecondLastName" value="{{$user->second_lastname}}" required>
+                                {!!$errors->first("second_lastname", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputDocumentType" class="form-label fw-bold">{{__("Tipo de documento")}}</label>
+                                <select name="document_type" class="form-select" id="inputDocumentType" required>
+                                    <option value="" @if ($user->document_type == '') selected="selected" @endif >Seleccione...</option>
+                                    <option value="DNI" @if ($user->document_type == 'DNI') selected="selected" @endif >DNI</option>
+                                    <option value="Carnet de extranjería" @if ($user->document_type == 'Carnet de extranjería') selected="selected" @endif>Carnet de extranjería</option>
+                                    <option value="Pasaporte" @if ($user->document_type == 'Pasaporte') selected="selected" @endif>Pasaporte</option>
+                                </select>
+                                {!!$errors->first("document_type", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputDocumentNumber" class="form-label fw-bold">{{__("Número de documento")}}</label>
+                                <input type="text" name="document_number" class="form-control" id="inputDocumentNumber" value="{{$user->document_number}}" required>
+                                {!!$errors->first("document_number", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <label for="inputCountry" class="form-label fw-bold">{{__("País")}}</label>
+                                <select name="country" class="form-select" id="inputCountry" required>
+                                    <option value="">Seleccione...</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{$country->name}}" @if ($user->country == $country->name) selected="selected" @endif >{{$country->name}}</option>
+                                    @endforeach
+                                </select>
+                                {!!$errors->first("country", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label fw-bold">{{__("Estado/Provincia")}}</label>
+                                <input type="text" name="state" class="form-control" id="inputState" value="{{$user->state}}" required>
+                                {!!$errors->first("state", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputCity" class="form-label fw-bold">{{__("Ciudad")}}</label>
+                                <input type="text" name="city" class="form-control" id="inputCity" value="{{$user->city}}" required>
+                                {!!$errors->first("city", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-8">
+                                <label for="inputAddress" class="form-label fw-bold">{{__("Dirección")}}</label>
+                                <input type="text" name="address" class="form-control" id="inputAddress" value="{{$user->address}}" required>
+                                {!!$errors->first("address", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputPostalCode" class="form-label fw-bold">{{__("Código Postal")}}</label>
+                                <input type="number" name="postal_code" class="form-control" id="inputPostalCode" value="{{$user->postal_code}}" required>
+                                {!!$errors->first("postal_code", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputPhoneNumber" class="form-label fw-bold">{{__("Teléfono")}}</label>
+                                <div class="d-flex">
+                                    <div class="w-25">
+                                        <input type="text" name="phone_code" class="form-control rounded-0 rounded-start" id="inputPhoneCode" value="{{$user->phone_code}}" placeholder="+00" required>
+                                        <small>{{ __('Cod. País') }}</small>
+                                    </div>
+                                    <div class="w-25">
+                                        <input type="number" name="phone_code_city" class="form-control rounded-0" id="inputPhoneCodeCity" value="{{$user->phone_code_city}}" placeholder="01" required>
+                                        <small>{{ __('Ciudad') }}</small>
+                                    </div>
+                                    <div class="w-50">
+                                        <input type="number" name="phone_number" class="form-control rounded-0 rounded-end" id="inputPhoneNumber" value="{{$user->phone_number}}" placeholder="8765432" required>
+                                        <small>{{ __('Número') }}</small>
+                                    </div>
+                                </div>
+                                {!!$errors->first("phone_code", "<span class='text-danger'>:message</span>")!!}
+                                {!!$errors->first("phone_code_city", "<span class='text-danger'>:message</span>")!!}
+                                {!!$errors->first("phone_number", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="inputPhoneNumber" class="form-label fw-bold">{{__("WhatsApp")}}</label>
+                                <div class="d-flex">
+                                    <div class="w-25">
+                                        <input type="text" name="whatsapp_code" class="form-control rounded-0 rounded-start" id="inputPhoneCode" value="{{$user->whatsapp_code}}" placeholder="+00" required>
+                                        <small>{{ __('Cod. País') }}</small>
+                                    </div>
+                                    <div class="w-75">
+                                        <input type="number" name="whatsapp_number" class="form-control rounded-0 rounded-end" id="inputPhoneNumber" value="{{$user->whatsapp_number}}" placeholder="8765432" required>
+                                        <small>{{ __('Número') }}</small>
+                                    </div>
+                                </div>
+                                {!!$errors->first("whatsapp_code", "<span class='text-danger'>:message</span>")!!}
+                                {!!$errors->first("phone_number", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="inputWorkplace" class="form-label fw-bold">{{__("Centro de trabajo")}}</label>
+                                <input type="text" name="workplace" class="form-control" id="inputWorkplace" value="{{$user->workplace}}" required>
+                                {!!$errors->first("workplace", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
                             <div class="col-md-6">
                                 <label for="inputEmail" class="form-label fw-bold">{{__("Email")}}</label>
-                                <input type="email" name="email" class="form-control" id="inputEmail" value="{{$user->email}}" readonly>
+                                <input type="email" name="email" class="form-control" id="inputEmail" value="{{$user->email}}">
                                 {!!$errors->first("email", "<span class='text-danger'>:message</span>")!!}
                             </div>
+
+                            <div class="col-md-6">
+                                <label for="inputSolapin" class="form-label fw-bold">{{__("Solapín/Gafete")}}</label>
+                                <input type="text" class="form-control convert_mayus" name="solapin_name" id="inputSolapin" value="{{ $user->solapin_name }}" placeholder="Poner un nombre y un apellido">
+                                {!!$errors->first("solapin_name", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
                             <div class="col-md-6">
                                 <label for="inputPassword" class="form-label fw-bold">{{__("Contraseña")}}</label>
                                 <input type="password" name="password" class="form-control" id="inputPassword" placeholder="●●●●●●" autocomplete="new-password">
                                 {!!$errors->first("password", "<span class='text-danger'>:message</span>")!!}
                             </div>
+
                             <div class="col-md-12">
                                 <label for="roleuser" class="form-label fw-bold">{{__("Rol")}}</label>
                                 <br>

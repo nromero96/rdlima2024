@@ -104,8 +104,10 @@ class UserController extends Controller
         $user = User::find($id);
         $roles = Role::all();
 
+        $countries = Country::all();
+
         // $pageName = 'analytics';
-        return view('pages.user.edit')->with($data)->with('user',$user)->with('roles',$roles);
+        return view('pages.user.edit')->with($data)->with('user',$user)->with('roles',$roles)->with('countries',$countries);
     }
 
     public function update(Request $request, $id)
@@ -132,6 +134,23 @@ class UserController extends Controller
 
         User::whereId($id)->update([
             'name' => $request['name'],
+            'lastname' => $request['lastname'],
+            'second_lastname' => $request['second_lastname'],
+            'document_type' => $request['document_type'],
+            'document_number' => $request['document_number'],
+            'country' => $request['country'],
+            'state' => $request['state'],
+            'city' => $request['city'],
+            'address' => $request['address'],
+            'postal_code' => $request['postal_code'],
+            'phone_code' => $request['phone_code'],
+            'phone_code_city' => $request['phone_code_city'],
+            'phone_number' => $request['phone_number'],
+            'whatsapp_code' => $request['whatsapp_code'],
+            'whatsapp_number' => $request['whatsapp_number'],
+            'workplace' => $request['workplace'],
+            'email' => $request['email'],
+            'solapin_name' => $request['solapin_name'],
             'password' => $pass,
             'photo' => $photouser,
             'status' => $request['status'],
