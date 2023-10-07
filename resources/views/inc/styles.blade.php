@@ -34,14 +34,32 @@
             <link href="{{ asset('plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             @break
+
+        @case('inscriptions')
+            {{-- Inscriptions --}}
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/src/table/datatable/datatables.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/dt-global_style.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/custom_dt_custom.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/light/apps/inscriptions-list.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dark/apps/inscriptions-list.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/dark/table/datatable/dt-global_style.css')}}">
+            @break
+        @case('inscriptions_rejects')
+            {{-- Inscriptions --}}
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/src/table/datatable/datatables.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/dt-global_style.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/custom_dt_custom.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/light/apps/inscriptions-list.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dark/apps/inscriptions-list.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/dark/table/datatable/dt-global_style.css')}}">
+            @break
+
         @case('inscriptions_create')
             {{-- Inscriptions --}}
             <link href="{{ asset('plugins/src/filepond/filepond.min.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             @break
-        @break
-
         @case('sales')
             {{-- Dashboard 1 --}}
             <link href="{{ asset('plugins/src/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">

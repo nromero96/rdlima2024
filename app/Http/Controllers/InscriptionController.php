@@ -44,18 +44,49 @@ class InscriptionController extends Controller
                 ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
                 ->where('inscriptions.status', '!=', 'Rechazado')
                 ->orderBy('inscriptions.id', 'desc')
-                ->paginate(10); // Cambia 10 por la cantidad de registros por página que desees mostrar
+                ->get();
         } else {
             $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
                 ->join('users', 'inscriptions.user_id', '=', 'users.id')
                 ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
                 ->where('inscriptions.user_id', $iduser)
                 ->orderBy('inscriptions.id', 'desc')
-                ->paginate(10); // Cambia 10 por la cantidad de registros por página que desees mostrar
+                ->get();
         }
         
 
         return view('pages.inscriptions.index')->with($data)->with('inscriptions', $inscriptions);
+    }
+
+    public function indexRejects(){
+        $iduser = \Auth::user()->id;
+
+        $data = [
+            'category_name' => 'inscriptions',
+            'page_name' => 'inscriptions_rejects',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')) {
+            $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+                ->join('users', 'inscriptions.user_id', '=', 'users.id')
+                ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('inscriptions.status', 'Rechazado')
+                ->orderBy('inscriptions.id', 'desc')
+                ->get();
+        } else {
+            $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+                ->join('users', 'inscriptions.user_id', '=', 'users.id')
+                ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('inscriptions.user_id', $iduser)
+                ->where('inscriptions.status', 'Rechazado')
+                ->orderBy('inscriptions.id', 'desc')
+                ->get();
+        }
+        
+
+        return view('pages.inscriptions.rejects')->with($data)->with('inscriptions', $inscriptions);
     }
 
     /**

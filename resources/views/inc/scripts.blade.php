@@ -42,6 +42,19 @@
             <script src="{{ asset('assets/js/apps/works/edit.js') }}"></script>
             @break
 
+        @case('inscriptions')
+            {{-- Inscriptions --}}
+            <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
+            <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
+            <script src="{{asset('assets/js/apps/inscriptions/list.js')}}"></script>
+            @break
+        @case('inscriptions_rejects')
+            {{-- Inscriptions --}}
+            <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
+            <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
+            <script src="{{asset('assets/js/apps/inscriptions/list.js')}}"></script>
+            @break
+
         @case('inscriptions_create')
             {{-- Inscriptions --}}
             <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>

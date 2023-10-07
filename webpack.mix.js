@@ -61,6 +61,11 @@ mix.sass('resources/sass/light/assets/main.scss', 'public/assets/css/light')
     .sass('resources/sass/light/plugins/fullcalendar/custom-fullcalendar.scss','public/plugins/css/light/fullcalendar')
     .sass('resources/sass/dark/plugins/fullcalendar/custom-fullcalendar.scss','public/plugins/css/dark/fullcalendar')
 
+    //inscriptions-list
+    .sass('resources/sass/light/assets/apps/inscriptions-list.scss','public/assets/css/light/apps')
+    .sass('resources/sass/dark/assets/apps/inscriptions-list.scss','public/assets/css/dark/apps')
+
+
     //suppliers
     .sass('resources/sass/light/assets/apps/suppliers.scss','public/assets/css/light/apps')
     .sass('resources/sass/dark/assets/apps/suppliers.scss','public/assets/css/dark/apps')
