@@ -31,9 +31,21 @@ class WorkController extends Controller
 
         //show all works for role admin and user
         if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')) {
-            $works = Work::orderBy('id', 'desc')->get();
+            
+            //get works join with user
+            $works = Work::join('users', 'works.user_id', '=', 'users.id')
+                ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->orderBy('id', 'desc')
+                ->get();
         } else {
-            $works = Work::where('user_id', $userid)->orderBy('id', 'desc')->get();
+            
+            //get works by user id join with user
+            $works = Work::join('users', 'works.user_id', '=', 'users.id')
+                ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('works.user_id', $userid)
+                ->orderBy('id', 'desc')
+                ->get();
+
         }
         return view('pages.works.index')->with($data)->with('works', $works);
     }
@@ -120,7 +132,7 @@ class WorkController extends Controller
         $work = Work::find($work->id);
         $iduser = \Auth::user()->id;
         $user = User::find($iduser);
-        Mail::to($user->email)->cc('niltondeveloper96@gmail.com')->send(new WorkCreatedMail($work));
+        Mail::to($user->email)->cc(config('services.correonotificacion.trabajo'))->send(new WorkCreatedMail($work));
         return redirect()->route('works.index')->with('success', 'Trabajo agregado exitosamente.');
     }
 }

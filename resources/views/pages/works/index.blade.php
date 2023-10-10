@@ -35,6 +35,9 @@
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col">{{__("#") }}</th>
+                                        <th scope="col">{{__("Autor") }}</th>
+                                        <th scope="col">{{__("País") }}</th>
                                         <th scope="col">{{__("Area de conocimiento")}}</th>
                                         <th scope="col">{{__("Categoría del trabajo")}}</th>
                                         <th scope="col">{{__("Título del trabajo")}}</th>
@@ -54,6 +57,15 @@
                                         @foreach ($works as $work)
                                             <tr>
                                                 <td>
+                                                    {{$work->id}}
+                                                </td>
+                                                <td>
+                                                    {{$work->user_name.' '.$work->user_lastname.' '.$work->user_second_lastname}}
+                                                </td>
+                                                <td>
+                                                    {{$work->user_country}}
+                                                </td>
+                                                <td>
                                                     {{$work->knowledge_area}}
                                                 </td>
                                                 <td>
@@ -70,10 +82,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center">
-
-
-
-                                                    @if($work->status == 'finalizado' || Auth::user()->hasRole('Administrador'))
+                                                    @if($work->status == 'finalizado' || Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Calificador') || Auth::user()->hasRole('Administrador'))
                                                         <a href="{{ route('works.show', $work->id) }}" class="badge badge-light-primary text-start me-2 action-show bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Ver") }}">
                                                             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><path d="M12 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6z"></path></svg>
                                                         </a>
