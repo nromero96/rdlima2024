@@ -304,7 +304,10 @@ class InscriptionController extends Controller
             $paymentcard = Payment::where('inscription_id', $id)->first();
             $accompanist = Accompanist::find($inscription->accompanist_id);
 
-            return view('pages.inscriptions.show')->with($data)->with('inscription', $inscription)->with('accompanist', $accompanist)->with('paymentcard', $paymentcard);
+            //notes status
+            $statusnotes = StatusNote::where('inscription_id', $id)->orderBy('id', 'desc')->get();
+
+            return view('pages.inscriptions.show')->with($data)->with('inscription', $inscription)->with('accompanist', $accompanist)->with('paymentcard', $paymentcard)->with('statusnotes', $statusnotes);
         }else{
             return redirect()->route('inscriptions.index')->with('error', 'No tiene permisos para ver esta inscripción');
         }

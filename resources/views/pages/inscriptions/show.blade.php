@@ -304,8 +304,11 @@
                                 </div>
                             </div>
 
+
                             <div class="col-md-7">
-                                <div class="card px-3 py-3 bg-primary">
+
+                                @if ($inscription->status != 'Pagado')
+                                <div class="card px-3 py-3 bg-primary mb-2">
                                     <label class="form-label mb-1 text-white"><span class="fw-bold">{{ __('Estado de la inscripción') }}</span>: <span>({{ $inscription->status }})</span></label>
                                     <form class="row" action="{{ route('inscriptions.updatestatus', ['id' => $inscription->id]) }}" method="POST">
                                         @csrf
@@ -326,7 +329,23 @@
                                         </div>
                                     </form>
                                 </div>
+
+                                @endif
+
+                                <div class="card p-2">
+                                    <ul class="mb-0">
+                                        @foreach ($statusnotes as $item)
+                                            <li>
+                                                <b class="text-info">{{ $item->note }}</b> ({{ $item->created_at }})<br>
+                                                <small>{{ $item->action }}</small>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
                             </div>
+
+
 
                             <div class="col-md-5 text-end align-self-end">
                                 <button type="button" class="btn btn-primary" id="btn_print">{{__("Imprimir")}}</button>
