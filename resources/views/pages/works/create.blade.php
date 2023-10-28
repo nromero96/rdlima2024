@@ -107,6 +107,11 @@
                                 <span id="charCount">0 / 5000</span>
                             </div>
 
+                            <div class="col-md-12 d-none" id="dv_references">
+                                <label for="references" class="form-label fw-bold">{{__("Referencias bibliográficas")}}</label>
+                                <textarea name="references" class="form-control" id="references" rows="3"></textarea>
+                            </div>
+
                             <div class="col-md-12">
                                 <label for="inputFile_1" class="form-label fw-bold">{{__("Fotografías, Gráficos y Tablas")}} (<small class="text-info">{{ __('Maximo 6 archivos en total.') }}</small>)</label>
                             </div>

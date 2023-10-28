@@ -11,6 +11,8 @@
     "/assets/css/light/apps/suppliers.css": "/assets/css/light/apps/suppliers.css",
     "/assets/css/dark/apps/inscriptions-list.css": "/assets/css/dark/apps/inscriptions-list.css",
     "/assets/css/light/apps/inscriptions-list.css": "/assets/css/light/apps/inscriptions-list.css",
+    "/assets/css/dark/apps/users-list.css": "/assets/css/dark/apps/users-list.css",
+    "/assets/css/light/apps/users-list.css": "/assets/css/light/apps/users-list.css",
     "/plugins/css/dark/fullcalendar/custom-fullcalendar.css": "/plugins/css/dark/fullcalendar/custom-fullcalendar.css",
     "/plugins/css/light/fullcalendar/custom-fullcalendar.css": "/plugins/css/light/fullcalendar/custom-fullcalendar.css",
     "/plugins/css/dark/bootstrap-range-Slider/bootstrap-slider.css": "/plugins/css/dark/bootstrap-range-Slider/bootstrap-slider.css",

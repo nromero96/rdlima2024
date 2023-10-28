@@ -96,6 +96,7 @@ class WorkController extends Controller
         'user_id' => $id,
         'title' => $request->get('title'),
         'description' => $request->get('description'),
+        'references' => $request->get('references'),
         'status' => $action,
     ];
 
@@ -228,6 +229,7 @@ class WorkController extends Controller
         $work->institution = $request->get('institution');
         $work->title = $request->get('title');
         $work->description = $request->get('description');
+        $work->references = $request->get('references');
         $work->status = $action;
 
         $fileFields = ['file_1', 'file_2', 'file_3', 'file_4', 'file_5', 'file_6'];

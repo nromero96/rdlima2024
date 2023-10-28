@@ -62,6 +62,11 @@
                                 <p class="form-control bg-light">{!! nl2br(e($work->description)) !!}</p>
                             </div>
 
+                            <div class="col-md-12 @if($work->category != 'Mini Caso') @else d-none  @endif" id="dv_references">
+                                <label class="form-label fw-bold">{{__("Referencias bibliográficas")}}</label>
+                                <p class="form-control bg-light">{!! nl2br(e($work->references)) !!}</p>
+                            </div>
+
                             <div class="col-md-12">
                                 <label class="form-label fw-bold">{{__("Fotografías, Gráficos y Tablas")}}:</label>
                             </div>

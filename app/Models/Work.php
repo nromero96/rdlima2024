@@ -17,6 +17,7 @@ class Work extends Model
         'user_id',
         'title',
         'description',
+        'references',
         'file_1',
         'file_2',
         'file_3',

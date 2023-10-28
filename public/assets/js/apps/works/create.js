@@ -44,6 +44,8 @@ updateCharCount();
 // Obtener el elemento select y el textarea
 const selectCategory = document.getElementById("inputCategory");
 const textareaDescription = document.getElementById("inputDescription");
+const dv_references = document.getElementById("dv_references");
+const textareaReferences = document.getElementById("references");
 
 // Agregar un evento de cambio al select
 selectCategory.addEventListener("change", function () {
@@ -56,15 +58,20 @@ selectCategory.addEventListener("change", function () {
         case "Trabajo de Investigación Científica":
             textareaDescription.value = "FUNDAMENTOS\n\nOBJETIVO\n\nMÉTODOS\n\nRESULTADOS\n\nCONCLUSIÓN";
             textareaDescription.readOnly = false;
+            dv_references.classList.remove("d-none");
+            textareaReferences.value = "";
             break;
         case "Mini Caso":
             textareaDescription.value = "FUNDAMENTOS\n\nMOTIVO DE LA COMUNICACIÓN\n\nRELATO DEL CASO\n\nDISCUSIÓN";
             textareaDescription.readOnly = false;
+            dv_references.classList.add("d-none");
+            textareaReferences.value = "";
             break;
         default:
             textareaDescription.value = "Seleccione una categoría del trabajo para escribir aquí...";
             //readonly disabled
             textareaDescription.readOnly = true;
+            textareaReferences.value = "";
             break;
     }
 });

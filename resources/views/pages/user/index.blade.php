@@ -10,17 +10,10 @@
 
         <div class="row layout-spacing">
             <div class="col-lg-12 layout-top-spacing">
-                <div class="statbox widget box box-shadow">
-                    <div class="widget-header pt-4">
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-end">
-                                <a href="{{ route('users.create') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Agregar Nuevo")}}</a>
-                            </div>
-                        </div>
-                    </div>
+                
                     <div class="widget-content widget-content-area pt-0">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-striped table-bordered">
+                        
+                            <table class="table table-hover table-striped table-bordered" id="inscrip-list">
                                 <thead>
                                     <tr>
                                         <th scope="col">{{__("Nombre")}}</th>
@@ -71,9 +64,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                        
                     </div>
-                </div>
+                
             </div>
         </div>
 
