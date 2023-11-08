@@ -55,7 +55,6 @@
                                         <option value="Roosevelt ****">Roosevelt ****</option>
                                         <option value="M Gallery Manto ****">M Gallery Manto ****</option>
                                         <option value="Hampton by Hilton ****">Hampton by Hilton ****</option>
-                                        <option value="Dazzler traslado a sede ida y vuelta ****">Dazzler traslado a sede ida y vuelta ****</option>
                                         <option value="Costa del Sol ****">Costa del Sol ****</option>
                                         <option value="Ramada Encore ****">Ramada Encore ****</option>
                                         <option value="Casa Andina Premium ****">Casa Andina Premium ****</option>
