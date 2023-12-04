@@ -63,7 +63,7 @@
                                                     }
                                                 @endphp
 
-                                                @if ($category->type == 'radio')
+                                                @if ($category->type == 'radio' && $category->status == 'active')
                                                     <tr>
                                                         <td>
                                                             <div class="form-check form-check-primary">
@@ -90,7 +90,7 @@
                                                     </tr>
                                                 @endif
 
-                                                @if ($category->type == 'checkbox' && $category->name == 'Acompañante')
+                                                @if ($category->type == 'checkbox' && $category->name == 'Acompañante' && $category->status == 'active')
                                                     <tr>
                                                         <td>
                                                             <div class="form-check form-check-primary">
