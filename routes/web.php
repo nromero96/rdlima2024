@@ -53,6 +53,22 @@ Route::get('/clear-config', function () {
     }
 });
 
+Route::get('/ejecutar-comando-dump-autoload', function () {
+    try {
+        // Ejecutar el comando 'composer dump-autoload'
+        Artisan::call('dump-autoload');
+
+        // Obtener el resultado del comando si es necesario
+        $output = Artisan::output();
+
+        // Puedes hacer algo con la salida del comando aquí
+        return "Comando ejecutado correctamente: $output";
+    } catch (\Exception $e) {
+        // Manejar cualquier excepción que pueda ocurrir al ejecutar el comando
+        return "Error al ejecutar el comando: " . $e->getMessage();
+    }
+});
+
 //send test mail simple text use smtp config
 // Route::get('/enviar-correo', function () {
 //     $destinatario = 'niltondeveloper96@gmail.com';
