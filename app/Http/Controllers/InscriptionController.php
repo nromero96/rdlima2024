@@ -504,7 +504,7 @@ class InscriptionController extends Controller
     }
 
 
-    public function exportExcelInscriptions()
+    public function exportExcelInscriptions_Test()
     {
         return Excel::download(new \App\Exports\ExporInscriptions, 'inscriptions.xlsx');
     }
