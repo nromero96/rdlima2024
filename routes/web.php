@@ -44,14 +44,23 @@ Route::get('/crear-enlace', function () {
     return "Enlace simbólico creado con éxito.";
 });
 
-Route::get('/clear-config', function () {
+
+Route::get('/clear-cache', function () {
     try {
-        Artisan::call('config:clear');
-        return 'Configuración de cache limpiada correctamente.';
+        // Limpiar la caché
+        Artisan::call('cache:clear');
+
+        // Limpiar la caché de configuración
+        Artisan::call('config:cache');
+
+        // Mensaje de éxito
+        return 'Cache cleared successfully.';
     } catch (\Exception $e) {
-        return 'Error al limpiar la configuración de cache: ' . $e->getMessage();
+        // Manejo de errores
+        return 'Error clearing cache: ' . $e->getMessage();
     }
 });
+
 
 //send test mail simple text use smtp config
 // Route::get('/enviar-correo', function () {

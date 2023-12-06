@@ -81,7 +81,7 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
     public function map($inscription): array
     {
         return [
-            
+            $inscription->id,
             $inscription->name,
             $inscription->lastname,
             $inscription->second_lastname,
