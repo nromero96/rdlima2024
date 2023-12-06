@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Mail;
 
+use Maatwebsite\Excel\Facades\Excel;
+
 use Illuminate\Support\Facades\Log;
 
 class InscriptionController extends Controller
@@ -502,5 +504,9 @@ class InscriptionController extends Controller
     }
 
 
+    public function exportExcelInscriptions()
+    {
+        return Excel::download(new \App\Exports\ExporInscriptions, 'inscriptions.xlsx');
+    }
 
 }
