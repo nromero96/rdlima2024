@@ -44,6 +44,15 @@ Route::get('/crear-enlace', function () {
     return "Enlace simbólico creado con éxito.";
 });
 
+Route::get('/clear-config', function () {
+    try {
+        Artisan::call('config:clear');
+        return 'Configuración de cache limpiada correctamente.';
+    } catch (\Exception $e) {
+        return 'Error al limpiar la configuración de cache: ' . $e->getMessage();
+    }
+});
+
 //send test mail simple text use smtp config
 // Route::get('/enviar-correo', function () {
 //     $destinatario = 'niltondeveloper96@gmail.com';
