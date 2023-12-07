@@ -504,9 +504,18 @@ class InscriptionController extends Controller
     }
 
 
-    public function exportExcelInscriptions_Test()
+    public function exportExcelInscriptions()
     {
-        return Excel::download(new \App\Exports\ExporInscriptions, 'inscriptions.xlsx');
+
+        //if user is admin or secretary
+        if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')){
+            return Excel::download(new \App\Exports\ExporInscriptions, 'inscriptions.xlsx');
+        }else{
+            echo 'No tiene permisos para exportar';
+            exit;
+        }
+
+        
     }
 
 }
