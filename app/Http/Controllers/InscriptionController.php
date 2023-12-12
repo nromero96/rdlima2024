@@ -264,7 +264,7 @@ class InscriptionController extends Controller
         $iduser = \Auth::user()->id;
         $inscription = Inscription::where('id', $id)->where('user_id', $iduser)->first();
 
-        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || $inscription) {
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || \Auth::user()->hasRole('Hotelero')  || $inscription) {
 
             $data = [
                 'category_name' => 'inscriptions',
