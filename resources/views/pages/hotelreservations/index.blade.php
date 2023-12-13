@@ -37,12 +37,14 @@
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col">{{__("ID")}}</th>
                                         <th scope="col">{{__("Nombre")}}</th>
                                         <th scope="col">{{__("Email")}}</th>
                                         <th scope="col">{{__("Hotel")}}</th>
                                         <th scope="col">{{__("T. Habitación")}}</th>
                                         <th scope="col">{{__("Entrada")}}</th>
                                         <th scope="col">{{__("Salida")}}</th>
+                                        <th>{{ __("Estado") }}</th>
                                         <th scope="col">{{__("")}}</th>
                                     </tr>
                                 </thead>
@@ -59,6 +61,11 @@
 
                                         @foreach ($hotelreservations as $hotelreservation)
                                             <tr>
+                                                <td>
+                                                    <a href="{{ route('hotelreservations.show', $hotelreservation->id) }}" class="text-info">
+                                                        #{{$hotelreservation->id}}
+                                                    </a>
+                                                </td>
                                                 <td>
                                                     {{$hotelreservation->name}} {{$hotelreservation->lastname}} {{$hotelreservation->second_lastname}}
                                                 </td>
@@ -77,8 +84,21 @@
                                                 <td class="text-center">
                                                     {{$hotelreservation->check_out}}
                                                 </td>
+                                                <td>
+                                                    @if($hotelreservation->status == 'Reservado')
+                                                        <span class="badge badge-light-success">{{ $hotelreservation->status }}</span>
+                                                    @elseif ($hotelreservation->status == 'Atendido')
+                                                        <span class="badge badge-light-info">{{ $hotelreservation->status }}</span>
+                                                    @elseif ($hotelreservation->status == 'Pendiente')
+                                                        <span class="badge badge-light-warning">{{ $hotelreservation->status }}</span>
+                                                    @elseif ($hotelreservation->status == 'Rechazado')
+                                                        <span class="badge badge-light-danger">{{ $hotelreservation->status }}</span>
+                                                    @endif
+                                                </td>
                                                 <td class="text-center">
-                                                    -
+                                                    <a href="{{ route('hotelreservations.show', $hotelreservation->id) }}" class="badge badge-light-primary text-start me-2 action-show bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Ver") }}">
+                                                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><path d="M12 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6z"></path></svg>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach

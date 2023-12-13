@@ -110,7 +110,31 @@ class HotelReservationController extends Controller
      */
     public function show($id)
     {
-        //
+        //show hotelreservation by id and join with users table
+        $hotelreservation = HotelReservation::join('users', 'hotel_reservations.user_id', '=', 'users.id')
+            ->select(
+                'hotel_reservations.*', 
+                'users.name as user_name',
+                'users.lastname as user_lastname',
+                'users.second_lastname as user_second_lastname',
+                'users.phone_code as user_phone_code',
+                'users.phone_code_city as user_phone_code_city',
+                'users.phone_number as user_phone_number',
+                'users.whatsapp_code as user_whatsapp_code',
+                'users.whatsapp_number as user_whatsapp_number',
+                'users.email as user_email',
+            )
+            ->where('hotel_reservations.id', $id)
+            ->first();
+
+        $data = [
+            'category_name' => 'hotelreservations',
+            'page_name' => 'hotelreservations_show',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        return view('pages.hotelreservations.show')->with($data)->with('hotelreservation', $hotelreservation);
     }
 
     /**
@@ -133,7 +157,23 @@ class HotelReservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //solo puede actualizar el hotelero
+        if (!\Auth::user()->hasRole('Hotelero')) {
+            return redirect()->route('hotelreservations.index')->with('error', 'No tienes permiso para actualizar esta reserva de hotel');
+        }
+
+        //actualizar solo la nota y status
+        $hotelreservation = HotelReservation::find($id);
+
+        $hotelreservation->note = $request->input('note');
+        $hotelreservation->status = $request->input('status');
+
+        $hotelreservation->save();
+
+        //flash success message refresh this reservation
+        return redirect()->route('hotelreservations.show', $id)->with('success', 'Reserva de hotel actualizada con éxito');
+
     }
 
     /**
