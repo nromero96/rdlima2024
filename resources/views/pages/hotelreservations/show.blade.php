@@ -10,6 +10,21 @@
 
         <div class="row layout-spacing">
             <div class="col-lg-12 layout-top-spacing mt-4">
+
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{__("¡Bien hecho!")}}</strong> {{__("Has actualizado la reservación correctamente.")}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{__("¡Atención!")}}</strong> {{__("No se pudo actualizar la reservación.")}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <div class="statbox widget box box-shadow">
                     <div class="widget-header">
                         <div class="row">
