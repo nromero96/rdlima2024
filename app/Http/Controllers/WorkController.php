@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Work;
 use App\Models\User;
 use App\Models\TemporaryFile;
+use App\Models\WorksNote;
 use Illuminate\Support\Facades\Storage;
 
 use App\Mail\WorkCreatedMail;
@@ -35,6 +36,7 @@ class WorkController extends Controller
             //get works join with user
             $works = Work::join('users', 'works.user_id', '=', 'users.id')
                 ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('works.status', '!=', 'rechazado')
                 ->orderBy('id', 'desc')
                 ->get();
         } else {
@@ -43,11 +45,47 @@ class WorkController extends Controller
             $works = Work::join('users', 'works.user_id', '=', 'users.id')
                 ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
                 ->where('works.user_id', $userid)
+                ->where('works.status', '!=', 'rechazado')
                 ->orderBy('id', 'desc')
                 ->get();
 
         }
         return view('pages.works.index')->with($data)->with('works', $works);
+    }
+
+    //works-rejects
+    public function indexRejects()
+    {
+        $userid = \Auth::user()->id;
+
+        $data = [
+            'category_name' => 'works',
+            'page_name' => 'works_rejects',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        //show all works for role admin and user
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')) {
+            
+            //get works join with user
+            $works = Work::join('users', 'works.user_id', '=', 'users.id')
+                ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('works.status', 'rechazado')
+                ->orderBy('id', 'desc')
+                ->get();
+        } else {
+            
+            //get works by user id join with user
+            $works = Work::join('users', 'works.user_id', '=', 'users.id')
+                ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where('works.user_id', $userid)
+                ->where('works.status', 'rechazado')
+                ->orderBy('id', 'desc')
+                ->get();
+
+        }
+        return view('pages.works.rejects')->with($data)->with('works', $works);
     }
 
     /**
@@ -152,13 +190,20 @@ class WorkController extends Controller
         $work = Work::find($id);
         $iduser = \Auth::user()->id;
 
+        //get works_notes by work id
+        $works_notes = WorksNote::join('users', 'works_notes.user_id', '=', 'users.id')
+            ->select('works_notes.*', 'users.name', 'users.lastname', 'users.second_lastname')
+            ->where('works_notes.work_id', $id)
+            ->orderBy('id', 'desc')
+            ->get();
+
         if ($work->user_id != $iduser && !\Auth::user()->hasRole('Administrador') && !\Auth::user()->hasRole('Calificador')) {
             return redirect()->route('works.index')->with('error', 'No tienes permiso para ver este trabajo.');
         }
 
         $data = [
             'category_name' => 'works',
-            'page_name' => 'works_edit',
+            'page_name' => 'works_show',
             'has_scrollspy' => 0,
             'scrollspy_offset' => '',
         ];
@@ -170,7 +215,11 @@ class WorkController extends Controller
             ->select('works.*', 'users.name', 'users.lastname', 'users.second_lastname')
             ->where('works.id', $id)
             ->first();
-        return view('pages.works.show')->with($data)->with('work', $work);
+
+        //user has role calificador
+        $calificadores = User::role('Calificador')->get();
+
+        return view('pages.works.show')->with($data)->with('work', $work)->with('calificadores', $calificadores)->with('works_notes', $works_notes);
 
     }
 
@@ -264,9 +313,37 @@ class WorkController extends Controller
             $work = Work::find($work->id);
             $iduser = \Auth::user()->id;
             $user = User::find($iduser);
-            Mail::to($user->email)->cc('niltondeveloper96@gmail.com')->send(new WorkCreatedMail($work));
+            Mail::to($user->email)->cc(config('services.correonotificacion.trabajo'))->send(new WorkCreatedMail($work));
             return redirect()->route('works.index')->with('success', 'Trabajo actualizado exitosamente.');
         }
+
+    }
+
+    //update status
+    public function updateStatus(Request $request, $id)
+    {
+
+        $work = Work::find($id);
+        $worknote = new WorksNote();
+
+        //insert note in table works_notes
+        $worknote->work_id = $id;
+        $worknote->action = 'Pasó de "'.$work->status.'" a "'.$request->input('status').'"';
+        $worknote->note = $request->input('note');
+        $worknote->user_id = \Auth::user()->id;
+        $worknote->save();
+
+
+        $work->status = $request->input('status');
+        
+        if (\Auth::user()->hasRole('Administrador')) {
+            $work->user_id_calificador = $request->input('user_id_calificador');
+        }
+
+        $work->save();
+
+        //redirect to show work
+        return redirect()->route('works.show', ['work' => $work->id])->with('success', 'Estado actualizado exitosamente.');
 
     }
 

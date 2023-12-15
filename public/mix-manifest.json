@@ -9,6 +9,8 @@
     "/plugins/css/light/tagify/custom-tagify.css": "/plugins/css/light/tagify/custom-tagify.css",
     "/assets/css/dark/apps/suppliers.css": "/assets/css/dark/apps/suppliers.css",
     "/assets/css/light/apps/suppliers.css": "/assets/css/light/apps/suppliers.css",
+    "/assets/css/dark/apps/works-list.css": "/assets/css/dark/apps/works-list.css",
+    "/assets/css/light/apps/works-list.css": "/assets/css/light/apps/works-list.css",
     "/assets/css/dark/apps/inscriptions-list.css": "/assets/css/dark/apps/inscriptions-list.css",
     "/assets/css/light/apps/inscriptions-list.css": "/assets/css/light/apps/inscriptions-list.css",
     "/assets/css/dark/apps/users-list.css": "/assets/css/dark/apps/users-list.css",

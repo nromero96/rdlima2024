@@ -33,7 +33,20 @@
             <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
             <script src="{{asset('assets/js/apps/users/list.js')}}"></script>
             @break
+        
+        @case('works')
+            {{-- Works --}}
+            <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
+            <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
+            <script src="{{asset('assets/js/apps/works/list.js')}}"></script>
+            @break
 
+        @case('works_rejects')
+            {{-- Works --}}
+            <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
+            <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
+            <script src="{{asset('assets/js/apps/works/rejects-list.js')}}"></script>
+            @break
 
         @case('works_create')
             {{-- Works --}}
@@ -41,6 +54,7 @@
             <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
             <script src="{{ asset('assets/js/apps/works/create.js') }}"></script>
             @break
+
         @case('works_edit')
             {{-- Works --}}
             <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>

@@ -41,8 +41,7 @@
                                     @if ($works->isEmpty())
                                         <tr>
                                             <td colspan="6" class="text-center">
-                                                <h6 class="mt-2">{{__("No hay trabajos registrados")}}</h6>
-                                                <a href="{{ route('works.create') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Nuevo Trabajo")}}</a>
+                                                <h6 class="mt-2">{{__("No hay trabajos rechazados")}}</h6>
                                             </td>
                                         </tr>
                                     @else
@@ -67,18 +66,7 @@
                                                     {{$work->title}}
                                                 </td>
                                                 <td>
-                                                    @if($work->status == 'borrador')
-                                                        <span class="badge badge-light-warning">En curso...</span>
-                                                    @elseif ($work->status == 'finalizado')
-                                                        <span class="badge badge-light-dark text-capitalize">{{ $work->status }}</span>
-                                                    @elseif ($work->status == 'revisión')
-                                                        <span class="badge badge-light-info text-capitalize">{{ $work->status }}</span>
-                                                    @elseif ($work->status == 'aprobado')
-                                                        <span class="badge badge-light-success text-capitalize">{{ $work->status }}</span>
-                                                    @elseif ($work->status == 'rechazado')
-                                                        <span class="badge badge-light-danger text-capitalize">{{ $work->status }}</span>
-                                                    @endif
-
+                                                    <span class="badge badge-light-danger text-capitalize">{{$work->status}}</span>
                                                 </td>
                                                 <td class="text-center">
                                                     @if($work->status != 'borrador' || Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Calificador') || Auth::user()->hasRole('Secretaria'))

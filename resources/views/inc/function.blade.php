@@ -64,7 +64,8 @@ if (!function_exists('setTitle')) :
             echo __('Regitrar Trabajo') . $admin_name;
         elseif ($page_name === 'works_edit'):
             echo __('Editar Trabajo') . $admin_name;
-
+        elseif ($page_name === 'works_show'):
+            echo __('Ver Trabajo') . $admin_name;
         elseif ($page_name === 'quotationscommercial'):
             echo __('Quotations Comercial') . $admin_name;
         elseif ($page_name === 'quotationspersonal'):

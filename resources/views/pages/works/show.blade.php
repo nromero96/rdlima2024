@@ -13,10 +13,25 @@
                 <div class="statbox widget box box-shadow">
                     <div class="widget-header">
                         <div class="row">
-                            <div class="col-xl-12 col-md-12 col-sm-12 mb-2 col-12">
+                            <div class="col-xl-10 col-md-10 col-sm-10 mb-2 col-10">
                                 <h4>
                                     {{__("Información del trabajo")}}
                                 </h4>
+                            </div>
+                            <div class="col-xl-2 col-md-2 col-sm-2 col-2 text-end pt-2">
+
+                                @if($work->status == 'borrador')
+                                    <span class="badge badge-light-warning text-capitalize">{{ $work->status }}</span>
+                                @elseif ($work->status == 'finalizado')
+                                    <span class="badge badge-light-dark text-capitalize">{{ $work->status }}</span>
+                                @elseif ($work->status == 'revisión')
+                                    <span class="badge badge-light-info text-capitalize">{{ $work->status }}</span>
+                                @elseif ($work->status == 'aprobado')
+                                    <span class="badge badge-light-success text-capitalize">{{ $work->status }}</span>
+                                @elseif ($work->status == 'rechazado')
+                                    <span class="badge badge-light-danger text-capitalize">{{ $work->status }}</span>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -150,6 +165,87 @@
                         </div>
                     </div>
                 </div>
+
+
+                @if(Auth::user()->hasRole('Calificador') || Auth::user()->hasRole('Administrador'))
+                <div class="statbox widget box box-shadow mt-3">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 mb-2 col-12">
+                                <h4 class="pb-0">
+                                    {{__("Actualizar Estado")}}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-area pt-0">
+                        <div class="row">
+                            <form action="{{ route('works.updatestatus',['id' => $work->id]) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="col-md-12">
+                                    <textarea name="note" id="note" cols="30" rows="3" class="form-control mb-2" placeholder="Ingresa un nota" required></textarea>
+                                    <select name="status" id="status" class="form-select text-capitalize mb-2" required >
+                                        <option value="">{{__("Seleccione un estado")}}</option>
+                                        <option value="revisión">{{__("revisión")}}</option>
+                                        <option value="aprobado">{{__("aprobado")}}</option>
+                                        <option value="rechazado">{{__("rechazado")}}</option>
+                                    </select>
+
+
+                                    @if(Auth::user()->hasRole('Administrador'))
+                                    <select name="user_id_calificador" id="user_id_calificador" class="form-select mb-2">
+                                        <option value="">{{__("Seleccione un calificador")}}</option>
+                                        @foreach ($calificadores as $calificador)
+                                            <option value="{{$calificador->id}}">{{$calificador->name}} {{$calificador->lastname}} {{$calificador->second_lastname}}</option>
+                                        @endforeach
+                                    </select>
+                                    @else
+                                        <input type="hidden" name="user_id_calificador" value="">
+                                    @endif
+
+                                    <button class="btn btn-primary mt-2" id="btn_save">{{__("Actualizar Estado")}}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                <div class="statbox widget box box-shadow mt-3">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 mb-2 col-12">
+                                <h4 class="pb-0">
+                                    {{__("Historial de estados")}}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-area pt-0">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if ($works_notes->isEmpty())
+                                    <span>{{__("No hay historial.")}}</span>
+                                @else
+                                    <ul>
+
+                                        @foreach ($works_notes as $worknote)
+
+                                        <li class="mb-2">
+                                            <span class="text-info">{{ $worknote->action }}</span> (<i>{{ $worknote->created_at }}</i>)<br>
+                                            <small>{{ $worknote->note }}</small>
+                                        </li>
+
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

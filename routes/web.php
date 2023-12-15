@@ -125,7 +125,9 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     //Works
     Route::resource('works', WorkController::class)->names('works');
     Route::delete('/delete-file/{workId}/{fileNumber}', [WorkController::class, 'deleteFile'])->name('works.deletefile');
-
+    Route::get('works-rejects', [WorkController::class, 'indexRejects'])->name('works.rejects');
+    Route::put('works/{id}/update-status', [WorkController::class, 'updateStatus'])->name('works.updatestatus');
+    
     //ExhibitorsController
     Route::resource('exhibitors', ExhibitorController::class)->names('exhibitors');
 

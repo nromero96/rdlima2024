@@ -19,32 +19,16 @@ var worklist = $('#work-list').DataTable({
 
 function getDatatableButtons() {
     var buttons = [
-        {
-            text: 'Nuevo',
-            className: 'btn btn-secondary',
-            action: function(e, dt, node, config) {
-                window.open(baseurl + '/works/create', '_self');
-            }
-        },
-        {
-            text: '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M10 11v6"></path><path d="M14 11v6"></path></svg>',
-            className: 'btn btn-danger px-2',
-            action: function(e, dt, node, config) {
-                window.open(baseurl + '/works-rejects', '_self');
-            }
-        }
+        // {
+        //     text: 'Regresar',
+        //     className: 'btn btn-info',
+        //     action: function(e, dt, node, config) {
+        //         window.open(baseurl + '/works', '_self');
+        //     }
+        // }
     ];
 
     // Verifica si el usuario es administrador y agrega el botón 'Excel' si es así
-    // if (isAdmin) {
-    //     buttons.push({
-    //         text: 'Excel',
-    //         className: 'btn btn-success',
-    //         action: function(e, dt, node, config) {
-    //             window.open(baseurl + '/exportar-excel-inscriptions', '_self');
-    //         }
-    //     });
-    // }
 
     return buttons;
 }

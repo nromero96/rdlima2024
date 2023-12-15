@@ -84,6 +84,7 @@ return array(
     'App\\Models\\TemporaryFile' => $baseDir . '/app/Models/TemporaryFile.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Work' => $baseDir . '/app/Models/Work.php',
+    'App\\Models\\WorksNote' => $baseDir . '/app/Models/WorksNote.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

@@ -671,6 +671,7 @@ class ComposerStaticInitfe89c9bc057a6be298f3bb7f44ad24dc
         'App\\Models\\TemporaryFile' => __DIR__ . '/../..' . '/app/Models/TemporaryFile.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Work' => __DIR__ . '/../..' . '/app/Models/Work.php',
+        'App\\Models\\WorksNote' => __DIR__ . '/../..' . '/app/Models/WorksNote.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
