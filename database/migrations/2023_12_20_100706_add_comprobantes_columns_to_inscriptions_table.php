@@ -19,7 +19,7 @@ class AddComprobantesColumnsToInscriptionsTable extends Migration
             $table->string('num_compr')->nullable();
             $table->string('compr_pdf')->nullable();
             $table->string('compr_xml')->nullable();
-            $table->string('compr_cvr')->nullable();
+            $table->string('compr_cdr')->nullable();
         });
     }
 
