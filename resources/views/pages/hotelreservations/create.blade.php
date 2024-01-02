@@ -56,7 +56,7 @@
                                         <option value="M Gallery Manto ****">M Gallery Manto ****</option>
                                         <option value="Hampton by Hilton ****">Hampton by Hilton ****</option>
                                         <option value="Costa del Sol ****">Costa del Sol ****</option>
-                                        <option value="DAZZLER ****">DAZZLER ****</option>
+                                        <option value="Dazzler by Wyndham Lima San Isidro ****">Dazzler by Wyndham Lima San Isidro ****</option>
                                         <option value="Ramada Encore ****">Ramada Encore ****</option>
                                         <option value="Casa Andina Premium ****">Casa Andina Premium ****</option>
                                         <option value="Holiday Inn Express ***">Holiday Inn Express ***</option>

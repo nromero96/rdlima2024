@@ -46,6 +46,7 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
                                     'inscriptions.status', 
                                     'inscriptions.created_at')
                             ->join('category_inscriptions', 'category_inscriptions.id', '=', 'inscriptions.category_inscription_id')
+                            ->where('inscriptions.status', '!=', 'Rechazado')
                             ->get();
     }
 
