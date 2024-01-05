@@ -183,12 +183,12 @@
                 </a>
                 <ul class="collapse submenu list-unstyled @if($category_name == 'beneficiarios_becas' || $category_name == 'coupons') show @else no @endif" id="datatables" data-bs-parent="#menudashboardaccordion">
                     @can('coupons.index')
-                    <li class="{{ ($page_name === 'coupons') ? 'active' : '' }}">
+                    <li class="{{ ($category_name === 'coupons') ? 'active' : '' }}">
                         <a href="{{route('coupons.index')}}"> {{ __("Cupones") }} </a>
                     </li>
                     @endcan
                     @can('beneficiarios_becas.index')
-                    <li class="{{ ($page_name === 'beneficiarios_becas') ? 'active' : '' }}">
+                    <li class="{{ ($category_name === 'beneficiarios_becas') ? 'active' : '' }}">
                         <a href="{{route('beneficiarios_becas.index')}}"> {{ __("Beneficiarios Becas") }} </a>
                     </li>
                     @endcan

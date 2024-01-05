@@ -18,7 +18,7 @@ class CreateCouponsTable extends Migration
             $table->string('code');
             $table->string('description')->nullable();
             $table->string('type');
-            $table->decimal('amount', 8, 2);
+            $table->integer('amount');
             $table->integer('quantity');
             $table->integer('used')->default(0);
             $table->date('start_date');

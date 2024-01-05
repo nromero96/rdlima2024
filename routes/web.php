@@ -22,6 +22,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\CountryStateController;
+use App\Http\Controllers\CouponController;
 
 
 use Illuminate\Support\Facades\Artisan;
@@ -139,8 +140,8 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
 
     //::::Administracio::::://
-    //Cupones
-    Route::get('coupons', [App\Http\Controllers\CouponController::class, 'index'])->name('coupons.index');
+    //coupons
+    Route::resource('coupons', CouponController::class)->names('coupons');
 
     //Beneficiarios de becas
     Route::get('beneficiarios-becas', [App\Http\Controllers\BeneficiarioBecaController::class, 'index'])->name('beneficiarios_becas.index');
