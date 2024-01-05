@@ -115,7 +115,6 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
     Route::get('/exportar-excel-inscriptions', [InscriptionController::class, 'exportExcelInscriptions'])->name('inscriptions.exportexcel');
 
-    
     Route::get('payment-niubiz/{inscription}', [InscriptionController::class, 'paymentNiubiz'])->name('inscriptions.paymentniubiz');
     Route::post('confirm-payment-niubiz', [InscriptionController::class, 'confirmPaymentNiubiz'])->name('inscriptions.confirmpaymentniubiz');
 
@@ -139,6 +138,14 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::resource('invitations', InvitationController::class)->names('invitations');
 
 
+    //::::Administracio::::://
+    //Cupones
+    Route::get('coupons', [App\Http\Controllers\CouponController::class, 'index'])->name('coupons.index');
+
+    //Beneficiarios de becas
+    Route::get('beneficiarios-becas', [App\Http\Controllers\BeneficiarioBecaController::class, 'index'])->name('beneficiarios_becas.index');
+    Route::post('beneficiarios-becas-store', [App\Http\Controllers\BeneficiarioBecaController::class, 'store'])->name('beneficiarios_becas.store');
+    Route::delete('beneficiarios-becas-delete/{id}', [App\Http\Controllers\BeneficiarioBecaController::class, 'destroy'])->name('beneficiarios_becas.destroy');
 
     Route::resource('suppliers', SupplierController::class)->names('suppliers');
     Route::resource('quotations', QuotationController::class)->names('quotations');

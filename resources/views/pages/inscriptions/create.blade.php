@@ -54,6 +54,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                             @foreach ($category_inscriptions as $category)
                                                 @php
                                                     if($category->name == 'Dermatólogos' || $category->name == 'Residentes' || $category->name == 'Médicos de otras especialidades'){
@@ -63,7 +64,7 @@
                                                     }
                                                 @endphp
 
-                                                @if ($category->type == 'radio' && $category->status == 'active')
+                                                @if ($category->type == 'radio' && $category->status == 'active' && $category->id != '4' )
                                                     <tr>
                                                         <td>
                                                             <div class="form-check form-check-primary">
@@ -84,6 +85,21 @@
                                                             @endif
 
                                                         </td>   
+                                                        <td>
+                                                            <b>US$ <span id="dc_price_{{ $category->id }}">{{ $category->price === '0.00' ? '00' : rtrim(rtrim($category->price, '0'), '.') }}</span></b>
+                                                        </td>
+                                                    </tr>
+
+                                                @endif
+
+                                                @if($beneficiariobeca == 'si' && $category->status == 'active' && $category->id == '4')
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check form-check-primary">
+                                                                <input type="{{ $category->type }}" id="category_{{ $category->id }}" name="category_inscription_id" value="{{ $category->id }}" class="form-check-input cursor-pointer" data-catprice="{{ $category->price }}">
+                                                                <label class="form-check-label mb-0 ms-1 cursor-pointer" for="category_{{ $category->id }}">{{ $category->name }}{!! $infomark !!}</label>
+                                                            </div>
+                                                        </td>
                                                         <td>
                                                             <b>US$ <span id="dc_price_{{ $category->id }}">{{ $category->price === '0.00' ? '00' : rtrim(rtrim($category->price, '0'), '.') }}</span></b>
                                                         </td>
@@ -191,6 +207,7 @@
                             <div class="col-md-12">
                                 <div class="card px-3 py-3">
                                     <label for="" class="form-label fw-bold text-center">{{ __('FORMA DE PAGO') }}</label>
+
                                     <div class="text-center">
 
                                         <p class="text-center">BENEFICIARIO: <b>ASOCIACION DERMATOLOGICA RADLA</b> - <b>RUC 20504537405</b></p>
@@ -201,6 +218,7 @@
                                                 Transferencia bancaria o depósito
                                             </label>
                                         </div>
+
                                         <div class="form-check form-check-primary form-check-inline">
                                             <input class="form-check-input cursor-pointer" type="radio" name="payment_method" value="Tarjeta" id="payment_method_card">
                                             <label class="form-check-label mb-0 cursor-pointer" for="payment_method_card">

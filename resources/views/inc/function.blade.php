@@ -66,6 +66,12 @@ if (!function_exists('setTitle')) :
             echo __('Editar Trabajo') . $admin_name;
         elseif ($page_name === 'works_show'):
             echo __('Ver Trabajo') . $admin_name;
+        elseif($page_name === 'beneficiarios_becas'):
+            echo __('Beneficiarios Becas') . $admin_name;
+        elseif($page_name === 'coupons'):
+            echo __('Cupones') . $admin_name;
+
+
         elseif ($page_name === 'quotationscommercial'):
             echo __('Quotations Comercial') . $admin_name;
         elseif ($page_name === 'quotationspersonal'):
@@ -78,9 +84,6 @@ if (!function_exists('setTitle')) :
             echo __('Edit Suppliers') . $admin_name;
         elseif ($page_name === 'suppliershow'):
             echo __('Show Suppliers') . $admin_name;
-
-
-
 
         elseif ($page_name === 'customers') :
             echo __('Customers') . $admin_name;

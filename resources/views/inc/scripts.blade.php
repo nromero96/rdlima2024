@@ -82,60 +82,11 @@
             <script src="{{ asset('assets/js/apps/inscriptions/create.js') }}"></script>
             @break
 
-        @case('quotationscommercial')
-            {{-- All quotes --}}
+        @case('beneficiarios_becas')
+            {{-- Beneficiarios --}}
             <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
             <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/js/apps/quotations/commercial/list.js')}}"></script>
-            @break
-        @case('quotationspersonal')
-            {{-- All quotes --}}
-            <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
-            <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/js/apps/quotations/personal/list.js')}}"></script>
-            @break
-
-        @case('suppliers')
-            <script src="{{ asset('plugins/src/jquery-ui/jquery-ui.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/tagify/tagify.min.js') }}"></script>
-            <script src="{{ asset('assets/js/apps/supplier.js') }}"></script>
-            @break
-
-        @case('suppliercreate')
-            <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageExifOrientation.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImagePreview.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageCrop.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageResize.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageTransform.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
-            <script src="{{ asset('assets/js/apps/supplier-create.js') }}"></script>
-            @break
-        
-        @case('supplieredit')
-            <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageExifOrientation.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImagePreview.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageCrop.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageResize.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/FilePondPluginImageTransform.min.js') }}"></script>
-            <script src="{{ asset('plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
-            <script src="{{ asset('assets/js/apps/supplier-edit.js') }}"></script>
-            @break
-
-        @case('suppliershow')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.min.js"></script>
-            <script src="{{ asset('plugins/src/tagify/tagify.min.js') }}"></script>
-            <script src="{{ asset('assets/js/apps/supplier-show.js') }}"></script>
-            @break
-
-        @case('customers')
-            <script src="{{ asset('plugins/src/jquery-ui/jquery-ui.min.js') }}"></script>
-            <script src="{{ asset('assets/js/apps/contact.js') }}"></script>
+            <script src="{{asset('assets/js/apps/beneficiarios_becas/list.js')}}"></script>
             @break
 
         @case('calendar')

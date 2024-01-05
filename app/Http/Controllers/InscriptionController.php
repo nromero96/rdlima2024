@@ -13,6 +13,7 @@ use App\Models\TemporaryFile;
 use App\Models\Accompanist;
 use App\Models\Statusnote;
 use App\Models\SpecialCode;
+use App\Models\BeneficiarioBeca;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
@@ -109,10 +110,18 @@ class InscriptionController extends Controller
 
         $user = User::find($id);
 
+        //verificar si usuario logeado es BeneficiarioBeca por email tru o false
+        $beneficiariobeca = BeneficiarioBeca::where('email', $user->email)->first();
+        if($beneficiariobeca){
+            $data['beneficiariobeca'] = 'si';
+        }else{
+            $data['beneficiariobeca'] = 'no';
+        }
+
         //get CategoryInscription
         $category_inscriptions = CategoryInscription::orderBy('id', 'asc')->get();
 
-        return view('pages.inscriptions.create')->with($data)->with('user', $user)->with('category_inscriptions', $category_inscriptions);
+        return view('pages.inscriptions.create')->with($data)->with('user', $user)->with('category_inscriptions', $category_inscriptions, $beneficiariobeca);
     }
 
     /**

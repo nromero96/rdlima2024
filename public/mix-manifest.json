@@ -9,6 +9,8 @@
     "/plugins/css/light/tagify/custom-tagify.css": "/plugins/css/light/tagify/custom-tagify.css",
     "/assets/css/dark/apps/suppliers.css": "/assets/css/dark/apps/suppliers.css",
     "/assets/css/light/apps/suppliers.css": "/assets/css/light/apps/suppliers.css",
+    "/assets/css/dark/apps/beneficiarios_becas-list.css": "/assets/css/dark/apps/beneficiarios_becas-list.css",
+    "/assets/css/light/apps/beneficiarios_becas-list.css": "/assets/css/light/apps/beneficiarios_becas-list.css",
     "/assets/css/dark/apps/works-list.css": "/assets/css/dark/apps/works-list.css",
     "/assets/css/light/apps/works-list.css": "/assets/css/light/apps/works-list.css",
     "/assets/css/dark/apps/inscriptions-list.css": "/assets/css/dark/apps/inscriptions-list.css",

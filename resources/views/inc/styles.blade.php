@@ -85,6 +85,20 @@
             <link href="{{ asset('plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             @break
+
+        @case('beneficiarios_becas')
+            {{-- Beneficiarios --}}
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/src/table/datatable/datatables.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/dt-global_style.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/dark/table/datatable/dt-global_style.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/custom_dt_custom.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/light/components/modal.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dark/components/modal.css') }}">
+
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/light/apps/beneficiarios_becas-list.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dark/apps/beneficiarios_becas-list.css')}}">
+            @break
+
         @case('sales')
             {{-- Dashboard 1 --}}
             <link href="{{ asset('plugins/src/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
@@ -176,9 +190,8 @@
             <link href="{{ asset('plugins/css/dark/tagify/custom-tagify.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('plugins/css/light/tagify/custom-tagify.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('assets/css/light/components/modal.css') }}" rel="stylesheet" type="text/css">
-            <link href="{{ asset('assets/css/light/apps/suppliers.css') }}" rel="stylesheet" type="text/css" />
-    
             <link href="{{ asset('assets/css/dark/components/modal.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('assets/css/light/apps/suppliers.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('assets/css/dark/apps/suppliers.css') }}" rel="stylesheet" type="text/css" />
 
             @break
