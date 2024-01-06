@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use App\Models\CategoryInscription;
+use App\Models\CouponEmail;
 
 class CouponController extends Controller
 {
@@ -125,7 +126,10 @@ class CouponController extends Controller
         //get coupon
         $coupon = Coupon::find($id);
 
-        return view('pages.coupons.edit')->with($data)->with('coupon', $coupon)->with('categories', $categories);
+        //get coupon emails
+        $couponemails = CouponEmail::where('coupon_id', $id)->get();
+
+        return view('pages.coupons.edit')->with($data)->with('coupon', $coupon)->with('categories', $categories)->with('couponemails', $couponemails);
 
     }
 

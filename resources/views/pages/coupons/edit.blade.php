@@ -115,11 +115,72 @@
 
                             <div class="col-12 text-end">
                                 <a href="{{ route('coupons.index') }}" class="btn btn-outline-secondary">{{__("Cancelar")}}</a>
-                                <button type="submit" class="btn btn-primary">{{__("Guardar")}}</button>
+                                <button type="submit" class="btn btn-primary">{{__("Actualizar")}}</button>
                             </div>
                         </form>
                     </div>
                 </div>
+
+
+                <div class="statbox widget box box-shadow mt-3">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 mb-2 col-12">
+                                <h4>
+                                    {{__("Correos")}}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content widget-content-area pt-0">
+                        <form class="row g-3" id="registeremail">
+                            <div class="col-md-5">
+                                <input type="email" class="form-control" placeholder="Email">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary w-100">{{__("Agregar")}}</button>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                            <div class="col-md-2">
+                                <a href="javascript:;" class="btn btn-info w-100">{{__("Masivo")}}</a>
+                            </div>
+
+                            {!!$errors->first("email", "<span class='text-danger'>:message</span>")!!}
+                        </form>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>{{__("Email")}}</th>
+                                                <th style="width: 80px;"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($couponemails as $email)
+                                                <tr>
+                                                    <td>{{ $email->email }}</td>
+                                                    <td>
+                                                        <form action="{{ route('couponmails.deletemail',$email->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="badge badge-light-danger text-start btn-delete bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Eliminar") }}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
+                    </div>
+
             </div>
         </div>
 

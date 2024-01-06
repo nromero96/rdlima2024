@@ -142,6 +142,10 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     //::::Administracio::::://
     //coupons
     Route::resource('coupons', CouponController::class)->names('coupons');
+    Route::post('couponmails-storemail', [CouponController::class, 'storemail'])->name('couponmails.storemail');
+    Route::delete('couponmails-deletemail/{id}', [CouponController::class, 'deletemail'])->name('couponmails.deletemail');
+    Route::post('couponmails-masivestoremail', [CouponController::class, 'masivestoremail'])->name('couponmails.masivestoremail');
+
 
     //Beneficiarios de becas
     Route::get('beneficiarios-becas', [App\Http\Controllers\BeneficiarioBecaController::class, 'index'])->name('beneficiarios_becas.index');

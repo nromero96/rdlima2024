@@ -148,6 +148,15 @@ class InscriptionController extends Controller
         //get logged user id
         $iduser = \Auth::user()->id;
 
+        //validar si el usuario ya tiene en la misma categoría
+        $verificarinscription = Inscription::where('user_id', $iduser)
+                                            ->where('category_inscription_id', $request->category_inscription_id)
+                                            ->where('status', '!=', 'Rechazado')
+                                            ->first();
+        if($verificarinscription){
+            return redirect()->route('inscriptions.create')->with('error', 'Ya tiene una inscripción en proceseo en esa categoría.');
+        }
+
         //verificar si existe acompañante en la inscripcion, registrar y devolver id
         if($request->accompanist != ''){
             $accompanist = new Accompanist();
@@ -213,7 +222,14 @@ class InscriptionController extends Controller
         }
 
         if($request->payment_method == 'Transferencia/Depósito'){
-            $inscription->status = 'Procesando';
+            
+            $beneficiariobeca = BeneficiarioBeca::where('email', \Auth::user()->email)->first();
+            if($beneficiariobeca && $inscription->total == 0){
+                $inscription->status = 'Pagado';
+            }else{
+                $inscription->status = 'Procesando';
+            }
+
             $inscription->save();
 
             //send email
@@ -235,7 +251,15 @@ class InscriptionController extends Controller
             //redirect
             return redirect()->route('inscriptions.index')->with('success', 'Inscripción realizada con éxito');
         } else if($request->payment_method == 'Tarjeta'){
-            $inscription->status = 'Pendiente';
+
+            //verica si es beneficiario beca y el monto es 0
+            $beneficiariobeca = BeneficiarioBeca::where('email', \Auth::user()->email)->first();
+            if($beneficiariobeca && $inscription->total == 0){
+                $inscription->status = 'Pagado';
+            }else{
+                $inscription->status = 'Pendiente';
+            }
+
             $inscription->save();
 
             //send email
@@ -361,6 +385,12 @@ class InscriptionController extends Controller
 
     public function paymentNiubiz(Inscription $inscription)
     {
+
+        //verificar si es beneficiario beca y el monto es 0
+        $beneficiariobeca = BeneficiarioBeca::where('email', \Auth::user()->email)->first();
+        if($beneficiariobeca && $inscription->total == 0){
+            return redirect()->route('inscriptions.index')->with('success', 'Inscripción realizada con éxito');
+        }
 
         //get logged user id
         $iduser = \Auth::user()->id;
