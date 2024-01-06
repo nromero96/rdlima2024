@@ -142,7 +142,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <small class="text-danger"><b>{{__("Nota:")}}</b> {{__("* Debe adjuntar documento probatorio de categoría (Título, Constancia, Carnet profesional) (.pdf/.jpg)")}}</small>
                                 </div>
 
                                 <div id="dv_accompanist" class="d-none">
@@ -174,7 +173,9 @@
                                 </div>
 
                                 <div id="dv_document_file" class="d-none">
-                                    <label for="document_file" class="form-label mt-3">
+                                    <small class="text-danger"><b>{{__("Nota:")}}</b> {{__("* Debe adjuntar documento probatorio de categoría (Título, Constancia, Carnet profesional) (.pdf/.jpg)")}}</small>
+
+                                    <label for="document_file" class="form-label mt-2">
                                         <span class="fw-bold">{{ __('Adjuntar documento probatorio de categoría') }}:</span> <span class="text-info">{{ __('(Título, Constancia, Carnet profesional) (.pdf/.jpg)') }}</span></label>
                                     <input type="file" name="document_file" id="document_file" class="file-control">
                                 </div>
