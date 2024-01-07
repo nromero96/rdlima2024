@@ -202,6 +202,7 @@
                     <div class="col-md-12 mb-2">
                         <input type="hidden" name="masive_coupon_id" id="masive_coupon_id" value="{{ $coupon->id }}">
                         <label class="form-label fw-bold mb-0">{{ __('Lista de correos') }}</label>
+                        <small> (Ingrese un corre por linea)</small>
                         <textarea name="emails" id="masive_emails" class="form-control" rows="7"></textarea>
                     </div>
                 </form>

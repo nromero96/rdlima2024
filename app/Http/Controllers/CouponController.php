@@ -198,28 +198,42 @@ class CouponController extends Controller
         }
     }
 
-    public function storemail(Request $request){
-        // validate
-        $this->validate($request, [
-            'email' => 'required|email',
-            'coupon_id' => 'required',
-        ]);
-        // check if the email is already registered for this coupon
-        $existingEmail = CouponEmail::where('email', $request->input('email'))
-                                      ->where('coupon_id', $request->input('coupon_id'))
-                                      ->first();
-        if ($existingEmail) {
-            // email already registered for this coupon
-            return response()->json(['error' => 'El correo ya está registrado para este cupón.'], 422);
-        }
-        // create coupon email
-        $couponemail = new CouponEmail;
-        $couponemail->coupon_id = $request->input('coupon_id');
-        $couponemail->email = $request->input('email');
-        $couponemail->save();
-        // return success message
-        return response()->json(['success' => 'Email agregado exitosamente!']);
+    public function storemail(Request $request)
+{
+    // validate
+    $request->validate([
+        'email' => 'required|email',
+        'coupon_id' => 'required',
+    ]);
+
+    // check if the email is already registered for this coupon
+    $existingEmail = CouponEmail::where('email', $request->input('email'))
+                                  ->where('coupon_id', $request->input('coupon_id'))
+                                  ->first();
+
+    if ($existingEmail) {
+        // email already registered for this coupon
+        return response()->json(['error' => 'El correo ya está registrado para este cupón.'], 422);
     }
+
+    // Validar el formato del correo electrónico
+    $validEmail = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL);
+
+    if (!$validEmail) {
+        // El correo electrónico no tiene un formato válido
+        return response()->json(['error' => 'El formato del correo electrónico no es válido.'], 422);
+    }
+
+    // create coupon email
+    $couponemail = new CouponEmail;
+    $couponemail->coupon_id = $request->input('coupon_id');
+    $couponemail->email = $request->input('email');
+    $couponemail->save();
+
+    // return success message
+    return response()->json(['success' => 'Email agregado exitosamente!']);
+}
+
 
     public function destroymail($id){
         try {

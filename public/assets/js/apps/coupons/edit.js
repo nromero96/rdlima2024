@@ -3,6 +3,17 @@ document.getElementById('email').addEventListener('click', function () {
     document.getElementById('msjresult').innerHTML = '';
 });
 
+document.getElementById('email').addEventListener('input', function () {
+    // Obtén el contenido actual del campo de entrada
+    var content = this.value;
+
+    // Convierte todo a minúsculas
+    content = content.toLowerCase();
+
+    // Actualiza el contenido del campo de entrada
+    this.value = content;
+});
+
 function submitForm() {
     var couponId = document.getElementById('coupon_id').value;
     var email = document.getElementById('email').value;
