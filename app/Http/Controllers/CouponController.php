@@ -127,7 +127,9 @@ class CouponController extends Controller
         $coupon = Coupon::find($id);
 
         //get coupon emails
-        $couponemails = CouponEmail::where('coupon_id', $id)->get();
+        $couponemails = CouponEmail::where('coupon_id', $id)
+                                    ->orderBy('id', 'desc')
+        ->get();
 
         return view('pages.coupons.edit')->with($data)->with('coupon', $coupon)->with('categories', $categories)->with('couponemails', $couponemails);
 
@@ -182,4 +184,105 @@ class CouponController extends Controller
     {
         //
     }
+
+    public function couponmailsllist($id) {
+        try {
+            // Obtener correos electrónicos del cupón
+            $couponemails = CouponEmail::where('coupon_id', $id)
+                                        ->orderBy('id', 'desc')        
+                                        ->get();
+    
+            return response()->json($couponemails);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function storemail(Request $request){
+        // validate
+        $this->validate($request, [
+            'email' => 'required|email',
+            'coupon_id' => 'required',
+        ]);
+        // check if the email is already registered for this coupon
+        $existingEmail = CouponEmail::where('email', $request->input('email'))
+                                      ->where('coupon_id', $request->input('coupon_id'))
+                                      ->first();
+        if ($existingEmail) {
+            // email already registered for this coupon
+            return response()->json(['error' => 'El correo ya está registrado para este cupón.'], 422);
+        }
+        // create coupon email
+        $couponemail = new CouponEmail;
+        $couponemail->coupon_id = $request->input('coupon_id');
+        $couponemail->email = $request->input('email');
+        $couponemail->save();
+        // return success message
+        return response()->json(['success' => 'Email agregado exitosamente!']);
+    }
+
+    public function destroymail($id){
+        try {
+            // Obtener correo electrónico del cupón
+            $couponemail = CouponEmail::find($id);
+            // Eliminar correo electrónico del cupón
+            $couponemail->delete();
+            return response()->json(['success' => 'Email eliminado exitosamente!']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    
+    public function masivestoremail(Request $request)
+{
+    // get emails
+    $emails = explode("\n", $request->input('emails'));
+
+    // array to store errors
+    $errors = [];
+
+    // array to store successfully added emails
+    $successEmails = [];
+
+    // loop through emails
+    foreach ($emails as $email) {
+        // trim whitespace from each email
+        $email = trim($email);
+
+        // check if the email is already registered for this coupon
+        $existingEmail = CouponEmail::where('email', $email)
+            ->where('coupon_id', $request->input('masive_coupon_id'))
+            ->first();
+
+        // validate email format
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Correo: ' . $email . ' no es válido.';
+        } elseif ($existingEmail) {
+            // email already registered for this coupon
+            $errors[] = 'Correo: ' . $email . ' ya existe en este cupón.';
+        } else {
+            // create coupon email
+            $couponemail = new CouponEmail;
+            $couponemail->coupon_id = $request->input('masive_coupon_id');
+            $couponemail->email = $email;
+            $couponemail->save();
+
+            // add the successfully added email to the successEmails array
+            $successEmails[] = $email;
+        }
+    }
+
+    // return success message or errors
+    if (empty($errors)) {
+        return response()->json(['success' => 'Emails agregados exitosamente!', 'successEmails' => $successEmails]);
+    } else {
+        return response()->json(['errors' => $errors], 422);
+    }
 }
+
+
+
+
+}
+

@@ -98,6 +98,12 @@
             <link rel="stylesheet" type="text/css" href="{{asset('assets/css/light/apps/beneficiarios_becas-list.css')}}">
             <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dark/apps/beneficiarios_becas-list.css')}}">
             @break
+        
+        @case('coupons_edit')
+            {{-- Coupons --}}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/light/components/modal.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dark/components/modal.css') }}">
+            @break
 
         @case('sales')
             {{-- Dashboard 1 --}}

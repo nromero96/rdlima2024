@@ -142,9 +142,10 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     //::::Administracio::::://
     //coupons
     Route::resource('coupons', CouponController::class)->names('coupons');
+    Route::get('couponmails-listmails/{id}', [CouponController::class, 'couponmailsllist'])->name('couponmails.listmails');
     Route::post('couponmails-storemail', [CouponController::class, 'storemail'])->name('couponmails.storemail');
-    Route::delete('couponmails-deletemail/{id}', [CouponController::class, 'deletemail'])->name('couponmails.deletemail');
-    Route::post('couponmails-masivestoremail', [CouponController::class, 'masivestoremail'])->name('couponmails.masivestoremail');
+    Route::delete('couponmails-destroymail/{id}', [CouponController::class, 'destroymail'])->name('couponmails.destroymail');
+    Route::post('/couponmails-masivestoremail', [CouponController::class, 'masivestoremail'])->name('couponmails.masivestoremail');
 
 
     //Beneficiarios de becas

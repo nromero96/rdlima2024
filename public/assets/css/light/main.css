@@ -13,6 +13,12 @@ html {
   min-height: 100%;
 }
 
+.btndelete.loading {
+  pointer-events: none; /* Deshabilita los clics */
+  opacity: 0.7; /* Puedes ajustar la opacidad según tus preferencias */
+  /* Agrega una animación o loader aquí */
+}
+
 body {
   color: #888ea8;
   height: 100%;

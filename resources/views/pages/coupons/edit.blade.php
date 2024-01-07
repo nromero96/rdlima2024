@@ -5,9 +5,7 @@
 
 
 <div class="layout-px-spacing">
-
     <div class="middle-content container-xxl p-0">
-
         <div class="row layout-spacing">
             <div class="col-lg-12 layout-top-spacing mt-4">
 
@@ -122,6 +120,7 @@
                 </div>
 
 
+                @if($coupon->is_email_restrict == '1')
                 <div class="statbox widget box box-shadow mt-3">
                     <div class="widget-header">
                         <div class="row">
@@ -135,19 +134,19 @@
                     <div class="widget-content widget-content-area pt-0">
                         <form class="row g-3" id="registeremail">
                             <div class="col-md-5">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="hidden" name="coupon_id" id="coupon_id" value="{{ $coupon->id }}">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                <span id="msjresult"></span>
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" class="btn btn-primary w-100">{{__("Agregar")}}</button>
+                                <button type="button" onclick="submitForm()" class="btn btn-primary w-100">{{__("Agregar")}}</button>
                             </div>
                             <div class="col-md-3">
 
                             </div>
                             <div class="col-md-2">
-                                <a href="javascript:;" class="btn btn-info w-100">{{__("Masivo")}}</a>
+                                <a href="javascript:;" class="btn btn-info w-100" id="btnmasivemails">{{__("Masivo")}}</a>
                             </div>
-
-                            {!!$errors->first("email", "<span class='text-danger'>:message</span>")!!}
                         </form>
 
                         <div class="row mt-3">
@@ -160,33 +159,59 @@
                                                 <th style="width: 80px;"></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="table-mails">
                                             @foreach ($couponemails as $email)
                                                 <tr>
                                                     <td>{{ $email->email }}</td>
                                                     <td>
-                                                        <form action="{{ route('couponmails.deletemail',$email->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="badge badge-light-danger text-start btn-delete bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Eliminar") }}">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                                            </button>
-                                                        </form>
+                                                        <a href="javascript:;" data-emalist="{{ $email->id }}" class="badge badge-light-danger text-start bs-tooltip btndelete" data-toggle="tooltip" data-placement="top" title="{{ __("Eliminar") }}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
                         </div>
                     </div>
-
+                </div>
+                @endif
             </div>
         </div>
-
     </div>
-
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="masiveemailsModal" tabindex="-1" role="dialog" data-bs-backdrop="static" aria-labelledby="masiveemailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="masiveemailsModalLabel">Correos</h5>
+                <button type="button" class="btn-close" id="btncloseemaimasive" data-bs-dismiss="modal" aria-label="Close">
+                    <svg width="46" height="46" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                      </svg>
+                </button>
+            </div>
+            <div class="modal-body" id="msjresultmasive">
+                <form class="row" id="formmasivemails">
+                    <div class="col-md-12 mb-2">
+                        <input type="hidden" name="masive_coupon_id" id="masive_coupon_id" value="{{ $coupon->id }}">
+                        <label class="form-label fw-bold mb-0">{{ __('Lista de correos') }}</label>
+                        <textarea name="emails" id="masive_emails" class="form-control" rows="7"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" id="mebtnsation">
+                <button class="btn btn btn-light-dark btnCancel" id="btnCancel" data-bs-dismiss="modal"><i class="flaticon-cancel-12"></i> Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnSubmitMasive">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

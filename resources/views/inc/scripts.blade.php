@@ -89,6 +89,10 @@
             <script src="{{asset('assets/js/apps/beneficiarios_becas/list.js')}}"></script>
             @break
 
+        @case('coupons_edit')
+            {{-- Coupons --}}
+            <script src="{{ asset('assets/js/apps/coupons/edit.js') }}"></script>
+            @break
         @case('calendar')
             {{-- All Calendar --}}
             <script src="{{asset('plugins/src/fullcalendar/fullcalendar.min.js')}}"></script>
