@@ -86,4 +86,5 @@ mix.sass('resources/sass/light/assets/main.scss', 'public/assets/css/light')
     .sass('resources/sass/dark/plugins/tagify/custom-tagify.scss','public/plugins/css/dark/tagify')
 
 
+
     .sourceMaps();

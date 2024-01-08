@@ -72,26 +72,26 @@
             {{-- Inscriptions --}}
             <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
             <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/js/apps/inscriptions/list.js')}}"></script>
+            <script src="{{asset('assets/js/apps/inscriptions/list.js')}}?v={{ config('app.version') }}"></script>
             @break
 
         @case('inscriptions_create')
             {{-- Inscriptions --}}
             <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>
             <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
-            <script src="{{ asset('assets/js/apps/inscriptions/create.js') }}"></script>
+            <script src="{{ asset('assets/js/apps/inscriptions/create.js') }}?v={{ config('app.version') }}"></script>
             @break
 
         @case('beneficiarios_becas')
             {{-- Beneficiarios --}}
             <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
             <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/js/apps/beneficiarios_becas/list.js')}}"></script>
+            <script src="{{asset('assets/js/apps/beneficiarios_becas/list.js')}}?v={{ config('app.version') }}"></script>
             @break
 
         @case('coupons_edit')
             {{-- Coupons --}}
-            <script src="{{ asset('assets/js/apps/coupons/edit.js') }}"></script>
+            <script src="{{ asset('assets/js/apps/coupons/edit.js') }}?v={{ config('app.version') }}"></script>
             @break
         @case('calendar')
             {{-- All Calendar --}}
