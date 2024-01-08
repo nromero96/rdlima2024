@@ -224,7 +224,7 @@ class InscriptionController extends Controller
         if($request->payment_method == 'Transferencia/Depósito'){
             
             $beneficiariobeca = BeneficiarioBeca::where('email', \Auth::user()->email)->first();
-            if($beneficiariobeca && $inscription->total == 0){
+            if($beneficiariobeca && $request->category_inscription_id == '4' && $inscription->total == 0){
                 $inscription->status = 'Pagado';
             }else{
                 $inscription->status = 'Procesando';
@@ -254,7 +254,7 @@ class InscriptionController extends Controller
 
             //verica si es beneficiario beca y el monto es 0
             $beneficiariobeca = BeneficiarioBeca::where('email', \Auth::user()->email)->first();
-            if($beneficiariobeca && $inscription->total == 0){
+            if($beneficiariobeca && $request->category_inscription_id == '4' && $inscription->total == 0){
                 $inscription->status = 'Pagado';
             }else{
                 $inscription->status = 'Pendiente';

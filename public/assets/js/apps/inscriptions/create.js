@@ -153,24 +153,21 @@ const specialCodeVerify = document.getElementById('specialcode_verify');
 function handleCategoryRadioButtons(){
     const selectedRadioCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked');
     const selectedValueCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked').value;
-    if(selectedValueCategory === '1' || selectedValueCategory === '2' || selectedValueCategory === '3'){
-        dvDocumentFile.classList.remove('d-none');
-        inputDocumentFile.setAttribute('required', 'required');
-    }else{
-        dvDocumentFile.classList.add('d-none');
-        inputDocumentFile.removeAttribute('required');
-    }
 
-    if(selectedValueCategory === '7'){
-      dvSpecialCode.classList.remove('d-none');
-      inputSpecialCode.setAttribute('required', 'required');
-      inputSpecialCode.removeAttribute('readonly');
-      txtPriceSpecialCode.textContent = '00';
-      smsErrorVC.textContent = '';
-      specialCodeVerify.value = '';
-      btnValidateSpecialCode.classList.remove('d-none');
-      btnClearSpecialCode.classList.add('d-none');
-    }else{
+    const radioPaymentMethodTransfer = document.getElementById('payment_method_transfer');
+    const radioPaymentMethodCard = document.getElementById('payment_method_card');
+    const dvtranfer = document.getElementById('dv_tranfer');
+    const dvcard = document.getElementById('dv_card');
+
+    if(selectedValueCategory === '1' || selectedValueCategory === '2' || selectedValueCategory === '3'){
+      //deble radio payment method transfer
+      radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
+
+      //Document file required
+      dvDocumentFile.classList.remove('d-none');
+      inputDocumentFile.setAttribute('required', 'required');
+
+      //Special code required not validation
       dvSpecialCode.classList.add('d-none');
       inputSpecialCode.value = '';
       inputSpecialCode.removeAttribute('required');
@@ -180,6 +177,65 @@ function handleCategoryRadioButtons(){
       specialCodeVerify.value = '';
       btnValidateSpecialCode.classList.remove('d-none');
       btnClearSpecialCode.classList.add('d-none');
+
+    }else if(selectedValueCategory === '4'){
+        //desable radio payment method transfer y checked radio payment method card
+        radioPaymentMethodCard.checked = true;
+        dvtranfer.classList.add('d-none');
+        dvcard.classList.remove('d-none');
+        radioPaymentMethodTransfer.setAttribute('disabled', 'disabled');
+        
+        //Document file not required
+        dvDocumentFile.classList.add('d-none');
+        inputDocumentFile.removeAttribute('required');
+        
+        //Special code required not validation
+        dvSpecialCode.classList.add('d-none');
+        inputSpecialCode.value = '';
+        inputSpecialCode.removeAttribute('required');
+        inputSpecialCode.removeAttribute('readonly');
+        txtPriceSpecialCode.textContent = '00';
+        smsErrorVC.textContent = '';
+        specialCodeVerify.value = '';
+        btnValidateSpecialCode.classList.remove('d-none');
+        btnClearSpecialCode.classList.add('d-none');
+
+      } else if(selectedValueCategory === '7'){
+        //deble radio payment method transfer
+        radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
+
+        //Document file not required
+        dvDocumentFile.classList.add('d-none');
+        inputDocumentFile.removeAttribute('required');
+
+        //Special code required validation
+        dvSpecialCode.classList.remove('d-none');
+        inputSpecialCode.setAttribute('required', 'required');
+        inputSpecialCode.removeAttribute('readonly');
+        txtPriceSpecialCode.textContent = '00';
+        smsErrorVC.textContent = '';
+        specialCodeVerify.value = '';
+        btnValidateSpecialCode.classList.remove('d-none');
+        btnClearSpecialCode.classList.add('d-none');
+      }else{
+        //deble radio payment method transfer
+        radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
+
+        //Document file not required
+        dvDocumentFile.classList.add('d-none');
+        inputDocumentFile.removeAttribute('required');
+
+        //Special code required not validation
+        dvSpecialCode.classList.add('d-none');
+        inputSpecialCode.value = '';
+        inputSpecialCode.removeAttribute('required');
+        inputSpecialCode.removeAttribute('readonly');
+        txtPriceSpecialCode.textContent = '00';
+        smsErrorVC.textContent = '';
+        specialCodeVerify.value = '';
+        btnValidateSpecialCode.classList.remove('d-none');
+        btnClearSpecialCode.classList.add('d-none');
+      
     }
 
     const radioCategory = document.getElementById('category_7');

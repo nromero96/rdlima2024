@@ -229,7 +229,7 @@
                                         <p class="text-center">BENEFICIARIO: <b>ASOCIACION DERMATOLOGICA RADLA</b> - <b>RUC 20504537405</b></p>
 
                                         <div class="form-check form-check-primary form-check-inline">
-                                            <input class="form-check-input cursor-pointer" type="radio" name="payment_method" value="Transferencia/Depósito" id="payment_method_transfer" checked="">
+                                            <input class="form-check-input cursor-pointer" type="radio" name="payment_method" value="Transferencia/Depósito" id="payment_method_transfer" checked>
                                             <label class="form-check-label mb-0 cursor-pointer" for="payment_method_transfer">
                                                 Transferencia bancaria o depósito
                                             </label>
@@ -264,7 +264,11 @@
                                     </div>
 
                                     <div id="dv_card" class="pt-4 pb-4 d-none">
-                                        <p class="text-center">Podrás pagar con cualquier tarjeta de crédito o débito.</p>
+                                        <p class="text-center">
+                                            <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+                                                Realiza tu pago con cualquier tarjeta de crédito o débito.<br>Si te inscribes en Beca RADLA u otras categorías especiales, ¡el pago ya no es necesario!
+                                            </div>
+                                        </p>
                                     </div>
 
                                 </div>
