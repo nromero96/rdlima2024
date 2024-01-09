@@ -55,9 +55,18 @@
                                     
                                     @php
                                         $user = Auth::user();
-                                        $dermatologoJovenWork = App\Models\Work::where('user_id', $user->id)->where('category', 'Dermatólogo Joven')->first();
-                                        $investigacionCientificaWork = App\Models\Work::where('user_id', $user->id)->where('category', 'Trabajo de Investigación Científica')->first();
-                                        $miniCasoCount = App\Models\Work::where('user_id', $user->id)->where('category', 'Mini Caso')->count();
+                                        $dermatologoJovenWork = App\Models\Work::where('user_id', $user->id)
+                                                                                    ->where('category', 'Dermatólogo Joven')
+                                                                                    ->where('status', '!=', 'rechazado')
+                                                                                    ->first();
+                                        $investigacionCientificaWork = App\Models\Work::where('user_id', $user->id)
+                                                                                    ->where('category', 'Trabajo de Investigación Científica')
+                                                                                    ->where('status', '!=', 'rechazado')
+                                                                                    ->first();
+                                        $miniCasoCount = App\Models\Work::where('user_id', $user->id)
+                                                                            ->where('category', 'Mini Caso')
+                                                                            ->where('status', '!=', 'rechazado')
+                                                                            ->count();
                                     @endphp
 
                                     @if (!$dermatologoJovenWork)
