@@ -104,9 +104,15 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-12 mb-3">
+                                        <div class="text-center">
+                                            <p class="mb-0"><a href="/password-recovery" class="text-info">{{ __("¿Olvidó su contraseña?") }}</a></p>
+                                        </div>
+                                    </div>
+
                                     <div class="col-12">
                                         <div class="text-center">
-                                            <p class="mb-0">{{ __("¿No tienes una cuenta?") }} <a href="{{ route('register') }}" class="text-warning">{{ __("Registrarme") }}</a></p>
+                                            <p class="mb-0">{{ __("¿No tienes una cuenta?") }} <a href="{{ route('register') }}" class="text-warning">{{ __("Registrate Aquí") }}.</a></p>
                                         </div>
                                     </div>
 

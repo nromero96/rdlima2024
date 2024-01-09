@@ -79,6 +79,13 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 
+//password recovery
+Route::get('/password-recovery', function () {
+    return view('auth.passwords.email');
+});
+
+
+
 Route::get('/online-form-invitations', [InvitationController::class, 'showOnlineForm_invitations'])->name('onlineforminvitations');
 Route::post('/send-invitation', [InvitationController::class, 'sendInvitation'])->name('invitationsend');
 
