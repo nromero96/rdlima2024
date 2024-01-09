@@ -144,7 +144,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label for="inputSolapin" class="form-label fw-bold">{{__("Solapín/Gafete")}}</label>
+                                <label for="inputSolapin" class="form-label fw-bold">{{__("Solapín/Gafete")}}</label> <small class="fw-normal">({{ __("Solamente un nombre y un apellido") }})</small>
                                 <input type="text" class="form-control convert_mayus" name="solapin_name" id="inputSolapin" value="{{ $user->solapin_name }}" placeholder="Poner un nombre y un apellido">
                                 {!!$errors->first("solapin_name", "<span class='text-danger'>:message</span>")!!}
                             </div>

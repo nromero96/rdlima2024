@@ -61,6 +61,7 @@ return array(
     'App\\Models\\Comercialquotation' => $baseDir . '/app/Models/Comercialquotation.php',
     'App\\Models\\Country' => $baseDir . '/app/Models/Country.php',
     'App\\Models\\Coupon' => $baseDir . '/app/Models/Coupon.php',
+    'App\\Models\\CouponEmail' => $baseDir . '/app/Models/CouponEmail.php',
     'App\\Models\\Crossing' => $baseDir . '/app/Models/Crossing.php',
     'App\\Models\\Customer' => $baseDir . '/app/Models/Customer.php',
     'App\\Models\\Dashboard' => $baseDir . '/app/Models/Dashboard.php',

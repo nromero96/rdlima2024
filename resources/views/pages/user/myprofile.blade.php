@@ -121,7 +121,7 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label fw-bold">{{__("Solapín/Gafete")}}: <small class="fw-normal">({{ __("Un nombre y un apellido") }})</small></label>
+                                <label class="form-label fw-bold">{{__("Solapín/Gafete")}}: <small class="fw-normal">({{ __("Solamente un nombre y un apellido") }})</small></label>
                                 <p class="form-control">{{ $user->solapin_name }}</p>
                             </div>
                         </div>

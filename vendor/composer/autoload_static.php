@@ -648,6 +648,7 @@ class ComposerStaticInitfe89c9bc057a6be298f3bb7f44ad24dc
         'App\\Models\\Comercialquotation' => __DIR__ . '/../..' . '/app/Models/Comercialquotation.php',
         'App\\Models\\Country' => __DIR__ . '/../..' . '/app/Models/Country.php',
         'App\\Models\\Coupon' => __DIR__ . '/../..' . '/app/Models/Coupon.php',
+        'App\\Models\\CouponEmail' => __DIR__ . '/../..' . '/app/Models/CouponEmail.php',
         'App\\Models\\Crossing' => __DIR__ . '/../..' . '/app/Models/Crossing.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',
         'App\\Models\\Dashboard' => __DIR__ . '/../..' . '/app/Models/Dashboard.php',
