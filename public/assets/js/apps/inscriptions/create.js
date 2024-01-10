@@ -178,7 +178,7 @@ function handleCategoryRadioButtons(){
       btnValidateSpecialCode.classList.remove('d-none');
       btnClearSpecialCode.classList.add('d-none');
 
-    }else if(selectedValueCategory === '4'){
+    }else if(selectedValueCategory === '4' || selectedValueCategory === '5' || selectedValueCategory === '6' || selectedValueCategory === '9'){
         //desable radio payment method transfer y checked radio payment method card
         radioPaymentMethodCard.checked = true;
         dvtranfer.classList.add('d-none');

@@ -23,6 +23,22 @@
                                 <a href="{{ route('users.myprofile') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Completar Información")}}</a>
                             </div>
                     @else
+
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>{{__("¡Bien hecho!")}}</strong> 
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{__("¡Atención!")}}</strong> 
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                         
                         <div class="widget-content widget-content-area pt-0">
                             <table class="table dt-table-hover" style="width:100%" id="inscrip-list">
@@ -80,7 +96,7 @@
                                                             <span class="badge badge-light-info">{{ $inscription->status .' ('.$textmp.')' }}</span>
                                                         @elseif ($inscription->status == 'Pendiente')
                                                         <span class="badge badge-light-warning">{{ $inscription->status .' ('.$textmp.')' }}</span>
-                                                            @if($inscription->payment_method == 'Tarjeta')
+                                                            @if($inscription->payment_method == 'Tarjeta' && $inscription->total > 0)
                                                                 <a href="{{ route('inscriptions.paymentniubiz', $inscription->id) }}" class="btn btn-primary me-1 btn-sm px-2 py-1">{{__("Pagar")}}</a>
                                                             @endif
                                                         @elseif ($inscription->status == 'Rechazado')

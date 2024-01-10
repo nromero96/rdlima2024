@@ -119,7 +119,7 @@ class InscriptionController extends Controller
         }
 
         //get CategoryInscription
-        $category_inscriptions = CategoryInscription::orderBy('id', 'asc')->get();
+        $category_inscriptions = CategoryInscription::orderBy('order', 'asc')->get();
 
         return view('pages.inscriptions.create')->with($data)->with('user', $user)->with('category_inscriptions', $category_inscriptions, $beneficiariobeca);
     }
@@ -222,7 +222,7 @@ class InscriptionController extends Controller
         }
 
         if($request->payment_method == 'Transferencia/Depósito'){
-            
+
             $beneficiariobeca = BeneficiarioBeca::where('email', \Auth::user()->email)->first();
             if($beneficiariobeca && $request->category_inscription_id == '4' && $inscription->total == 0){
                 $inscription->status = 'Pagado';
@@ -387,9 +387,8 @@ class InscriptionController extends Controller
     {
 
         //verificar si es beneficiario beca y el monto es 0
-        $beneficiariobeca = BeneficiarioBeca::where('email', \Auth::user()->email)->first();
-        if($beneficiariobeca && $inscription->total == 0){
-            return redirect()->route('inscriptions.index')->with('success', 'Inscripción realizada con éxito');
+        if($inscription->total == 0){
+            return redirect()->route('inscriptions.index')->with('success', 'Inscripción realizada con éxito, no requiere pago.');
         }
 
         //get logged user id

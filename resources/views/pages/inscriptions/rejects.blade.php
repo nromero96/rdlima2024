@@ -23,6 +23,22 @@
                                 <a href="{{ route('users.myprofile') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Completar Información")}}</a>
                             </div>
                     @else
+
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>{{__("¡Bien hecho!")}}</strong> 
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{__("¡Atención!")}}</strong> 
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                         
                         <div class="widget-content widget-content-area pt-0">
                             <table class="table dt-table-hover" style="width:100%" id="inscrip-list">
