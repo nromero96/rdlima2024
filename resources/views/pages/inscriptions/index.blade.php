@@ -92,6 +92,23 @@
 
                                                         @if($inscription->status == 'Pagado')
                                                             <span class="badge badge-light-success">{{ $inscription->status .' ('.$textmp.')' }}</span>
+                                                            
+                                                            @if($inscription->status_compr == 'Informado')
+                                                                
+                                                                    @if($inscription->compr_pdf == 'T')
+                                                                    <a href="{{ asset('storage/uploads/comprobantes_file').'/'.$inscription->num_compr.'.pdf'}}" target="_blank" class="text-info">{{__("PDF")}}</a> 
+                                                                    @endif
+
+                                                                    @if($inscription->compr_xml == 'T')
+                                                                    | <a href="{{ asset('storage/uploads/comprobantes_file').'/'.$inscription->num_compr.'.zip'}}" target="_blank" class="text-info">{{__("XML")}}</a> 
+                                                                    @endif
+
+                                                                    @if($inscription->compr_cdr == 'T')
+                                                                    | <a href="{{ asset('storage/uploads/comprobantes_file').'/R'.$inscription->num_compr.'.zip'}}" target="_blank" class="text-info">{{__("CDR")}}</a>
+                                                                    @endif
+                                                                
+                                                            @endif
+
                                                         @elseif ($inscription->status == 'Procesando')
                                                             <span class="badge badge-light-info">{{ $inscription->status .' ('.$textmp.')' }}</span>
                                                         @elseif ($inscription->status == 'Pendiente')

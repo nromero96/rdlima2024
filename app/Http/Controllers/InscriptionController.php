@@ -187,13 +187,24 @@ class InscriptionController extends Controller
         if($request->accompanist != ''){
             $inscription->accompanist_id = $data_accompanist_id;
             $category_inscription_accompanist = CategoryInscription::where('name', 'Acompañante')->first();
-            $inscription->price_accompanist = $category_inscription_accompanist->price;
+            
+            if($request->category_inscription_id == 9){
+                $inscription->price_accompanist = 0;
+            }else{
+                $inscription->price_accompanist = $category_inscription_accompanist->price;
+            }
         }else{
             $inscription->accompanist_id = $data_accompanist_id;
             $inscription->price_accompanist = 0;
         }
 
-        $inscription->total = $inscription->price_category + $inscription->price_accompanist;
+
+        if($request->category_inscription_id == 9){
+            $inscription->total = 0;
+        }else{
+            $inscription->total = $inscription->price_category + $inscription->price_accompanist;
+        }
+
         $inscription->special_code = $request->specialcode;
         $inscription->invoice = $request->invoice;
         $inscription->invoice_ruc = $request->invoice_ruc;

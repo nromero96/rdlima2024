@@ -98,7 +98,18 @@ function calculateTotalPrice() {
 
     if (checkbox.checked) {
       const catPrice = parseFloat(checkbox.getAttribute('data-catprice'));
-      totalPrice += catPrice;
+      
+      //IF category 9 not add price
+
+      const selectedRadioCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked');
+      const selectedValueCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked').value;
+
+      if(selectedValueCategory === '9'){
+        totalPrice += 0;
+      }else{
+        totalPrice += catPrice;
+      }
+
       //remove class d-none in dv_accompanist
       dvAccompanist.classList.remove('d-none');
       inputsaccomp.forEach(input => {
