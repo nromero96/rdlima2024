@@ -14,7 +14,7 @@ class AddComprobantesColumnsToInscriptionsTable extends Migration
     public function up()
     {
         Schema::table('inscriptions', function (Blueprint $table) {
-            $table->string('status_compr')->default('Pendiente');
+            $table->string('status_compr')->default('Ninguna');
             $table->string('type_compr')->nullable();
             $table->string('num_compr')->nullable();
             $table->string('compr_pdf')->nullable();

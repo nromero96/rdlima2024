@@ -81,6 +81,10 @@
             <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
             <script src="{{ asset('assets/js/apps/inscriptions/create.js') }}?v={{ config('app.version') }}"></script>
             @break
+        @case('inscriptions_show')
+            {{-- Inscriptions --}}
+            <script src="{{asset('assets/js/apps/inscriptions/show.js')}}?v={{ config('app.version') }}"></script>
+            @break
 
         @case('beneficiarios_becas')
             {{-- Beneficiarios --}}

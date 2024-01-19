@@ -552,6 +552,30 @@ class InscriptionController extends Controller
         }
     }
 
+    public function requestComprobante(Request $request, $id)
+    {
+        // Validar si el usuario logueado es Administrador o Secretaria
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')) {
+            // Obtener la inscripción
+            $inscription = Inscription::find($id);
+
+            // Actualizar status_compr = Pendiente si el status es Ninguna
+            if ($inscription->status_compr == 'Ninguna') {
+                $inscription->status_compr = 'Pendiente';
+                $inscription->save();
+            } else {
+                // Devolver un mensaje de error en formato JSON
+                return response()->json(['error' => 'Ya se solicitó el comprobante'], 403);
+            }
+
+            // Devolver "ok" como indicador de éxito
+            return response()->json(['status' => 'ok']);
+        } else {
+            // Devolver un mensaje de error en formato JSON
+            return response()->json(['error' => 'No tiene permisos para solicitar comprobante'], 403);
+        }
+    }
+
 
     public function exportExcelInscriptions()
     {

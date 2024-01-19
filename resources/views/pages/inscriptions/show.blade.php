@@ -348,7 +348,30 @@
 
 
                             <div class="col-md-5 text-end align-self-end">
-                                <button type="button" class="btn btn-primary" id="btn_print">{{__("Imprimir")}}</button>
+                                @if($inscription->status == 'Pagado' && $inscription->status_compr == 'Ninguna' )
+                                    <div id="actionbtncompr">
+                                        <a href="javascript:;" class="btn btn-primary mb-1 btnrequestcompr" data-inscription="{{ $inscription->id }}" >{{__("Emitir comprobante")}}</a>
+                                    </div>
+                                @endif
+
+                                @if($inscription->status_compr == 'Pendiente')
+                                    <span class="badge badge-light-warning">Generando Comprobante...</span>
+                                @endif
+
+                                @if($inscription->status_compr == 'Informado')
+                                    <span class="badge badge-light-success">Comprobante Emitido: {{ $inscription->num_compr }}</span><br>
+                                    @if($inscription->compr_pdf == 'T')
+                                        <a href="{{ asset('storage/uploads/comprobantes_file').'/'.$inscription->num_compr.'.pdf'}}" target="_blank" class="text-info">{{__("PDF")}}</a> 
+                                    @endif
+
+                                    @if($inscription->compr_xml == 'T')
+                                        | <a href="{{ asset('storage/uploads/comprobantes_file').'/'.$inscription->num_compr.'.zip'}}" target="_blank" class="text-info">{{__("XML")}}</a> 
+                                    @endif
+
+                                    @if($inscription->compr_cdr == 'T')
+                                        | <a href="{{ asset('storage/uploads/comprobantes_file').'/R'.$inscription->num_compr.'.zip'}}" target="_blank" class="text-info">{{__("CDR")}}</a>
+                                    @endif
+                                @endif
                             </div>
 
                         </div>
