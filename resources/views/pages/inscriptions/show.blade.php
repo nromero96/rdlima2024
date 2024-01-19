@@ -348,14 +348,19 @@
 
 
                             <div class="col-md-5 text-end align-self-end">
-                                @if($inscription->status == 'Pagado' && $inscription->status_compr == 'Ninguna' )
-                                    <div id="actionbtncompr">
-                                        <a href="javascript:;" class="btn btn-primary mb-1 btnrequestcompr" data-inscription="{{ $inscription->id }}" >{{__("Emitir comprobante")}}</a>
-                                    </div>
-                                @endif
+                                
+                                @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
 
-                                @if($inscription->status_compr == 'Pendiente')
-                                    <span class="badge badge-light-warning">Generando Comprobante...</span>
+                                    @if($inscription->status == 'Pagado' && $inscription->status_compr == 'Ninguna' )
+                                        <div id="actionbtncompr">
+                                            <a href="javascript:;" class="btn btn-primary mb-1 btnrequestcompr" data-inscription="{{ $inscription->id }}" >{{__("Emitir comprobante")}}</a>
+                                        </div>
+                                    @endif
+
+                                    @if($inscription->status_compr == 'Pendiente')
+                                        <span class="badge badge-light-warning">Generando Comprobante...</span>
+                                    @endif
+                                
                                 @endif
 
                                 @if($inscription->status_compr == 'Informado')
