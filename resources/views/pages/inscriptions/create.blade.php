@@ -268,7 +268,7 @@
                                     <div id="dv_card" class="pt-4 pb-4 d-none">
                                         <p class="text-center">
                                             <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
-                                                Realiza tu pago con cualquier tarjeta de crédito o débito.<br>Si te inscribes en Beca RADLA u otras categorías especiales, ¡el pago ya no es necesario!
+                                                Realiza tu pago con cualquier tarjeta de crédito o débito.<br>Si te inscribes en Beca RADLA, categorías especiales o cuota especial, ¡el pago ya no es necesario!
                                             </div>
                                         </p>
                                     </div>

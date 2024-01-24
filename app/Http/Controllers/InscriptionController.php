@@ -397,7 +397,18 @@ class InscriptionController extends Controller
     public function paymentNiubiz(Inscription $inscription)
     {
 
-        //verificar si es beneficiario beca y el monto es 0
+        $specialcode = SpecialCode::where('code', $inscription->special_code)->first();
+
+        if($specialcode){
+            if($specialcode->payment_required == 'No'){
+                if($specialcode->amount == $inscription->total){
+                    return redirect()->route('inscriptions.index')->with('success', 'Inscripción realizada con éxito, no requiere pago.');
+                }else{
+                    
+                }
+            }
+        }
+
         if($inscription->total == 0){
             return redirect()->route('inscriptions.index')->with('success', 'Inscripción realizada con éxito, no requiere pago.');
         }
@@ -418,7 +429,15 @@ class InscriptionController extends Controller
         ->where('inscriptions.id', $inscription->id)
         ->first();
 
-        $amount = $datainscription->total;
+        if($specialcode){
+            if($specialcode->payment_required == 'No'){
+                $amount = $datainscription->total - $specialcode->amount;
+            }else{
+                $amount = $datainscription->total;
+            }
+        }else{
+            $amount = $datainscription->total;
+        }
 
         $sessionToken = $this->generateSessionToken($amount);
 

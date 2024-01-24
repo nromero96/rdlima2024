@@ -132,6 +132,30 @@ function calculateTotalPrice() {
     }
   });
 
+  //si hay un codigo especial marcar el metodo de pago como tarjeta y desabilitar el radio de transferencia
+  const specialCodeVerify = document.getElementById('specialcode_verify');
+  if(specialCodeVerify.value == 'valid' && totalPrice == 0){
+    const radioPaymentMethodCard = document.getElementById('payment_method_card');
+    const radioPaymentMethodTransfer = document.getElementById('payment_method_transfer');
+    radioPaymentMethodCard.checked = true;
+    radioPaymentMethodTransfer.setAttribute('disabled', 'disabled');
+    const dvTranfer = document.getElementById('dv_tranfer');
+    const dvCard = document.getElementById('dv_card');
+    dvTranfer.classList.add('d-none');
+    dvCard.classList.remove('d-none');
+  }else{
+    const radioPaymentMethodTransfer = document.getElementById('payment_method_transfer');
+    const radioPaymentMethodCard = document.getElementById('payment_method_card');
+    radioPaymentMethodTransfer.checked = true;
+    radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
+    radioPaymentMethodCard.cheked = false;
+    const dvTranfer = document.getElementById('dv_tranfer');
+    const dvCard = document.getElementById('dv_card');
+    dvTranfer.classList.remove('d-none');
+    dvCard.classList.add('d-none');
+  }
+
+
   // Actualiza el elemento HTML con el precio total
   paymentotalElement.textContent = totalPrice; // Ajusta el formato según necesites
 }
@@ -310,6 +334,7 @@ btnValidateSpecialCode.addEventListener('click', function(){
           btnValidateSpecialCode.classList.add('d-none');
           specialCodeVerify.value = 'valid';
           radioCategory.setAttribute('data-catprice', Math.floor(response.price));
+          
 
         } else {
           descriptionSpecialCode.innerHTML = '<span class="text-danger">'+response.message+'</span>';
@@ -344,6 +369,7 @@ btnClearSpecialCode.addEventListener('click', function(){
     btnClearSpecialCode.classList.add('d-none');
     btnValidateSpecialCode.classList.remove('d-none');
     specialCodeVerify.value = '';
+    calculateTotalPrice();
 });
 
 const inputPaymentMethod = document.querySelectorAll('input[type="radio"][name="payment_method"]');
