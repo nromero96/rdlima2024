@@ -153,6 +153,9 @@
                                                     </td>
                                                     <td>
                                                         <b>{{ $inscription->category_inscription_name }}</b>
+                                                        @if($inscription->special_code != '')
+                                                            <br><small class="text-info" style="font-size: 11px;">{{ $inscription->special_code }}</small>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 <tr>

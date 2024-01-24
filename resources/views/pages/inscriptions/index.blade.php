@@ -74,8 +74,11 @@
                                                     <td>
                                                         {{$inscription->user_country}}
                                                     </td>
-                                                    <td>
+                                                    <td class="pt-0 pb-0">
                                                         {{ strlen($inscription->category_inscription_name) > 13 ? substr($inscription->category_inscription_name, 0, 14) . '...' : $inscription->category_inscription_name }}
+                                                        @if($inscription->special_code != '')
+                                                            <br><small class="text-info" style="font-size: 10px;">{{ $inscription->special_code }}</small>
+                                                        @endif
                                                     </td>
                                                     <td>
                                                         US$ {{$inscription->total}}

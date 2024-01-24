@@ -14,6 +14,7 @@ class SpecialCode extends Model
         'amount',
         'description',
         'status',
+        'payment_required',
         'quantity',
         'expiration',
     ];

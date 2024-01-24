@@ -82,19 +82,21 @@
                                                 @if ($category->type == 'radio' && $category->status == 'active' && $category->id != '4' )
                                                     <tr>
                                                         <td>
-                                                            <div class="form-check form-check-primary">
+                                                            <div class="form-check form-check-primary me-1">
                                                                 <input type="{{ $category->type }}" id="category_{{ $category->id }}" name="category_inscription_id" value="{{ $category->id }}" class="form-check-input cursor-pointer" data-catprice="{{ $category->price }}">
                                                                 <label class="form-check-label mb-0 ms-1 cursor-pointer" for="category_{{ $category->id }}">{{ $category->name }}{!! $infomark !!}</label>
                                                             </div>
 
                                                             @if ($category->id == '7')
-                                                                <div id="dv_specialcode" class="d-none">
+                                                                <div id="dv_specialcode" class="d-inline-block d-none">
                                                                     <div class="input-group mt-1 mb-0">
                                                                         <input type="text" name="specialcode" id="specialcode" class="form-control" placeholder="Ingresar código">
-                                                                        <button class="btn btn-secondary d-none" type="button" id="clear_specialcode">Limpiar</button>
+                                                                        <button class="btn btn-secondary d-none" type="button" id="clear_specialcode" style="border-radius: 0px 6px 6px 0px;">Limpiar</button>
                                                                         <button class="btn btn-primary" type="button" id="validate_specialcode">Validar</button>
                                                                     </div>
-                                                                    <span class="text-danger" id="sms_error_vc"></span>
+                                                                </div>
+                                                                <div class="d-inline-block" id="sms_valid_vc">
+                                                                    <!-- Mensaje -->
                                                                 </div>
                                                                 <input type="hidden" name="specialcode_verify" id="specialcode_verify" value="">
                                                             @endif

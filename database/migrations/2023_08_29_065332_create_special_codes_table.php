@@ -15,7 +15,7 @@ class CreateSpecialCodesTable extends Migration
     {
         Schema::create('special_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->decimal('amount', 8, 2);
             $table->string('description')->nullable();
             $table->string('status')->default('active');

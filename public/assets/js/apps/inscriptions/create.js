@@ -155,10 +155,10 @@ const inputDocumentFile = document.getElementById('document_file');
 const dvSpecialCode = document.getElementById('dv_specialcode');
 const inputSpecialCode = document.getElementById('specialcode');
 const txtPriceSpecialCode = document.getElementById('dc_price_7');
-const smsErrorVC = document.getElementById('sms_error_vc');
 const btnValidateSpecialCode = document.getElementById('validate_specialcode');
 const btnClearSpecialCode = document.getElementById('clear_specialcode');
 const specialCodeVerify = document.getElementById('specialcode_verify');
+const descriptionSpecialCode = document.getElementById('sms_valid_vc');
 
 // Función para manejar el clic categoryRadioButtons
 function handleCategoryRadioButtons(){
@@ -184,7 +184,7 @@ function handleCategoryRadioButtons(){
       inputSpecialCode.removeAttribute('required');
       inputSpecialCode.removeAttribute('readonly');
       txtPriceSpecialCode.textContent = '00';
-      smsErrorVC.textContent = '';
+      descriptionSpecialCode.textContent = '';
       specialCodeVerify.value = '';
       btnValidateSpecialCode.classList.remove('d-none');
       btnClearSpecialCode.classList.add('d-none');
@@ -206,7 +206,7 @@ function handleCategoryRadioButtons(){
         inputSpecialCode.removeAttribute('required');
         inputSpecialCode.removeAttribute('readonly');
         txtPriceSpecialCode.textContent = '00';
-        smsErrorVC.textContent = '';
+        descriptionSpecialCode.textContent = '';
         specialCodeVerify.value = '';
         btnValidateSpecialCode.classList.remove('d-none');
         btnClearSpecialCode.classList.add('d-none');
@@ -224,7 +224,7 @@ function handleCategoryRadioButtons(){
         inputSpecialCode.setAttribute('required', 'required');
         inputSpecialCode.removeAttribute('readonly');
         txtPriceSpecialCode.textContent = '00';
-        smsErrorVC.textContent = '';
+        descriptionSpecialCode.textContent = '';
         specialCodeVerify.value = '';
         btnValidateSpecialCode.classList.remove('d-none');
         btnClearSpecialCode.classList.add('d-none');
@@ -242,7 +242,7 @@ function handleCategoryRadioButtons(){
         inputSpecialCode.removeAttribute('required');
         inputSpecialCode.removeAttribute('readonly');
         txtPriceSpecialCode.textContent = '00';
-        smsErrorVC.textContent = '';
+        descriptionSpecialCode.textContent = '';
         specialCodeVerify.value = '';
         btnValidateSpecialCode.classList.remove('d-none');
         btnClearSpecialCode.classList.add('d-none');
@@ -282,7 +282,8 @@ function handleInvoice(){
 
 //validate specialcode when click validate_specialcode button
 btnValidateSpecialCode.addEventListener('click', function(){
-    //valida si el campo esta vacio
+
+  //valida si el campo esta vacio
     if(inputSpecialCode.value === ''){
         alert('Ingrese un código especial');
         return false;
@@ -304,14 +305,14 @@ btnValidateSpecialCode.addEventListener('click', function(){
         if (response.success) {
           txtPriceSpecialCode.textContent = Math.floor(response.price);
           inputSpecialCode.setAttribute('readonly', 'readonly');
-          smsErrorVC.textContent = '';
+          descriptionSpecialCode.innerHTML = '<span class="text-success">'+response.message+'</span>'
           btnClearSpecialCode.classList.remove('d-none');
           btnValidateSpecialCode.classList.add('d-none');
           specialCodeVerify.value = 'valid';
           radioCategory.setAttribute('data-catprice', Math.floor(response.price));
 
         } else {
-          smsErrorVC.textContent = response.message;
+          descriptionSpecialCode.innerHTML = '<span class="text-danger">'+response.message+'</span>';
           txtPriceSpecialCode.textContent = '00';
           inputSpecialCode.removeAttribute('readonly');
           specialCodeVerify.value = '';
@@ -339,7 +340,7 @@ btnClearSpecialCode.addEventListener('click', function(){
     inputSpecialCode.value = '';
     txtPriceSpecialCode.textContent = '00';
     inputSpecialCode.removeAttribute('readonly');
-    smsErrorVC.textContent = '';
+    descriptionSpecialCode.textContent = '';
     btnClearSpecialCode.classList.add('d-none');
     btnValidateSpecialCode.classList.remove('d-none');
     specialCodeVerify.value = '';

@@ -68,7 +68,15 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label for="status" class="form-label fw-bold">{{__("Expiracion")}}</label>
+                                <label for="payment_required" class="form-label fw-bold">{{__("¿Requiere Pago?")}}</label>
+                                <select name="payment_required" id="payment_required" class="form-control">
+                                    <option value="Si" {{ old('payment_required') == 'Si' ? 'selected' : '' }} >{{__("Si")}}</option>
+                                    <option value="No" {{ old('payment_required') == 'No' ? 'selected' : '' }}>{{__("No")}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="status" class="form-label fw-bold">{{__("Estado")}}</label>
                                 <select name="status" id="status" class="form-control">
                                     <option value="Activo" {{ old('status') == 'Activo' ? 'selected' : '' }} >{{__("Activo")}}</option>
                                     <option value="Inactivo" {{ old('status') == 'Inactivo' ? 'selected' : '' }}>{{__("Inactivo")}}</option>

@@ -25,7 +25,8 @@
                                     <tr>
                                         <th scope="col">{{__("Código")}}</th>
                                         <th scope="col">{{__("Monto")}}</th>
-                                        <th scope="col">{{__("Cantidad")}}</th>
+                                        <th scope="col">{{__("Cant.")}}</th>
+                                        <th scope="col">{{__("Usado")}}</th>
                                         <th scope="col">{{__("Descripción")}}</th>
                                         <th scope="col">{{__("Expira")}}</th>
                                         <th scope="col">{{__("Estado")}}</th>
@@ -43,6 +44,9 @@
                                             </td>
                                             <td>
                                                 {{$specialcode->quantity}}
+                                            </td>
+                                            <td>
+                                                {{$specialcode->used_count}}
                                             </td>
                                             <td>
                                                 {{$specialcode->description}}

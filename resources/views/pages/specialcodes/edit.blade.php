@@ -67,7 +67,15 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label for="status" class="form-label fw-bold">{{__("Expiracion")}}</label>
+                                <label for="payment_required" class="form-label fw-bold">{{__("¿Requiere Pago?")}}</label>
+                                <select name="payment_required" id="payment_required" class="form-control">
+                                    <option value="Si" @if ($specialcode->payment_required == "Si") selected @endif >{{__("Si")}}</option>
+                                    <option value="No" @if ($specialcode->payment_required == "No") selected @endif >{{__("No")}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="status" class="form-label fw-bold">{{__("Estado")}}</label>
                                 <select name="status" id="status" class="form-control">
                                     <option value="Activo" @if ($specialcode->status == "Activo") selected @endif >{{__("Activo")}}</option>
                                     <option value="Inactivo" @if ($specialcode->status == "Inactivo") selected @endif >{{__("Inactivo")}}</option>

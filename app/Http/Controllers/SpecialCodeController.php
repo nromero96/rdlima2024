@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SpecialCode;
 use App\Models\Inscription;
+use Illuminate\Support\Facades\DB;
 
 //Log
 use Illuminate\Support\Facades\Log;
@@ -25,7 +26,19 @@ class SpecialCodeController extends Controller
             'has_scrollspy' => 0,
             'scrollspy_offset' => '',
         ];
-        $specialcodes = SpecialCode::orderBy('id', 'desc')->get();
+        //$specialcodes = SpecialCode::orderBy('id', 'desc')->get();
+
+        $specialcodes = SpecialCode::select('special_codes.*', DB::raw('COUNT(inscriptions.id) as used_count'))
+            ->leftJoin('inscriptions', function($join) {
+                $join->on('special_codes.code', '=', 'inscriptions.special_code')
+                    ->where('inscriptions.status', '!=', 'Rechazado');
+            })
+            ->groupBy('special_codes.id', 'special_codes.code', 'special_codes.amount', 'special_codes.description', 'special_codes.status', 'special_codes.payment_required', 'special_codes.quantity', 'special_codes.expiration', 'special_codes.created_at', 'special_codes.updated_at')
+            ->orderBy('special_codes.id', 'desc')
+            ->get();
+
+
+
         return view('pages.specialcodes.index')->with($data)->with('specialcodes', $specialcodes);
     }
 
@@ -60,6 +73,7 @@ class SpecialCodeController extends Controller
             'description' => 'nullable',
             'quantity' => 'required|numeric',
             'expiration' => 'required|date',
+            'payment_required' => 'required',
         ]);
 
         //create
@@ -69,6 +83,7 @@ class SpecialCodeController extends Controller
         $specialcode->description = $request->input('description');
         $specialcode->quantity = $request->input('quantity');
         $specialcode->expiration = $request->input('expiration');
+        $specialcode->payment_required = $request->input('payment_required');
         $specialcode->status = $request->input('status');
         $specialcode->save();
         return redirect()->route('specialcodes.index')->with('success', '¡Código especial creado con éxito!');
@@ -118,6 +133,7 @@ class SpecialCodeController extends Controller
             'description' => 'nullable',
             'quantity' => 'required|numeric',
             'expiration' => 'required|date',
+            'payment_required' => 'required',
             'status' => 'required',
         ]);
 
@@ -127,6 +143,7 @@ class SpecialCodeController extends Controller
         $specialcode->description = $request->input('description');
         $specialcode->quantity = $request->input('quantity');
         $specialcode->expiration = $request->input('expiration');
+        $specialcode->payment_required = $request->input('payment_required');
         $specialcode->status = $request->input('status');
         $specialcode->save();
         //return edit page
@@ -154,7 +171,7 @@ class SpecialCodeController extends Controller
         if (!$specialcode) {
             return response()->json([
                 'success' => false,
-                'message' => 'Código especial no válido',
+                'message' => 'Código especial no válido.',
             ]);
         }
 
@@ -164,7 +181,7 @@ class SpecialCodeController extends Controller
         if ($expirationDate->lte($currentDate)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Código especial expirado',
+                'message' => 'Código especial expirado.',
             ]);
         }
 
@@ -172,16 +189,18 @@ class SpecialCodeController extends Controller
         if ($specialcode->status != 'Activo') {
             return response()->json([
                 'success' => false,
-                'message' => 'Código especial no activo',
+                'message' => 'Código especial no está activo.',
             ]);
         }
 
         // Verificar si el código especial está agotado en todas las inscripciones
-        $usedCount = Inscription::where('special_code', $code)->count();
+        $usedCount = Inscription::where('special_code', $code)
+                                    ->where('status', '!=', 'Rechazado')
+                                    ->count();
         if ($usedCount >= $specialcode->quantity) {
             return response()->json([
                 'success' => false,
-                'message' => 'Código especial agotado',
+                'message' => 'Código especial ya está agotado.',
             ]);
         }
 
@@ -189,6 +208,7 @@ class SpecialCodeController extends Controller
         $userId = \Auth::user()->id; // Obtener el ID del usuario logueado
         $userUsedCount = Inscription::where('special_code', $code)
             ->where('user_id', $userId)
+            ->where('status', '!=', 'Rechazado')
             ->count();
 
         if ($userUsedCount > 0) {
@@ -198,10 +218,19 @@ class SpecialCodeController extends Controller
             ]);
         }
 
+        // Verificar si el código especial requiere pago
+        if ($specialcode->payment_required == 'Si') {
+            $amount = $specialcode->amount;
+        } else {
+            $amount = 0;
+        }
+
         return response()->json([
             'success' => true,
-            'message' => 'Código especial válido',
-            'price' => $specialcode->amount, // Puedes cambiar esto según tus necesidades
+            'message' => $specialcode->description,
+            'price' => $amount,
+            'payment_required' => $specialcode->payment_required,
+            'description' => $specialcode->description,
         ]);
 
     }
