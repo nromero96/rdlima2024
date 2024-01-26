@@ -240,8 +240,8 @@ function handleCategoryRadioButtons(){
         radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
 
         //Document file not required
-        dvDocumentFile.classList.add('d-none');
-        inputDocumentFile.removeAttribute('required');
+        dvDocumentFile.classList.remove('d-none');
+      inputDocumentFile.setAttribute('required', 'required');
 
         //Special code required validation
         dvSpecialCode.classList.remove('d-none');

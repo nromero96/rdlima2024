@@ -72,7 +72,7 @@
 
                                             @foreach ($category_inscriptions as $category)
                                                 @php
-                                                    if($category->name == 'Dermatólogos' || $category->name == 'Residentes' || $category->name == 'Médicos de otras especialidades'){
+                                                    if($category->name == 'Dermatólogos' || $category->name == 'Residentes' || $category->name == 'Médicos de otras especialidades' || $category->name == 'Cuota especial'){
                                                         $infomark = ' <span class="text-danger">*</span>';
                                                     }else{
                                                         $infomark = '';
