@@ -39,12 +39,21 @@
                                 </thead>
                                 <tbody>
                                     @if ($works->isEmpty())
-                                        <tr>
-                                            <td colspan="6" class="text-center">
-                                                <h6 class="mt-2">{{__("No hay trabajos registrados")}}</h6>
-                                                <a href="{{ route('works.create') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Nuevo Trabajo")}}</a>
-                                            </td>
-                                        </tr>
+
+                                        @if( $userRole[0] == 'Calificador')
+                                            <tr>
+                                                <td colspan="8" class="text-center">
+                                                    <h6 class="mt-2">{{__("Aún no tiene trabajos asignados para calificar.")}}</h6>
+                                                </td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td colspan="8" class="text-center">
+                                                    <h6 class="mt-2">{{__("No hay trabajos registrados")}}</h6>
+                                                    <a href="{{ route('works.create') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Nuevo Trabajo")}}</a>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @else
                                         @foreach ($works as $work)
                                             <tr>

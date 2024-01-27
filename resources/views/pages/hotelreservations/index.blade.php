@@ -67,7 +67,7 @@
 
                                     @if ($hotelreservations->isEmpty())
                                         <tr>
-                                            <td colspan="6" class="text-center">
+                                            <td colspan="9" class="text-center">
                                                 <h6 class="mt-2">{{__("No hay reservaciones registradas")}}</h6>
                                                 <a href="{{ route('hotelreservations.create') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Reservar Nuevo")}}</a>
                                             </td>
