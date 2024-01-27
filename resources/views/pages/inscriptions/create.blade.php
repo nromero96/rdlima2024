@@ -84,7 +84,11 @@
                                                         <td>
                                                             <div class="form-check form-check-primary me-1">
                                                                 <input type="{{ $category->type }}" id="category_{{ $category->id }}" name="category_inscription_id" value="{{ $category->id }}" class="form-check-input cursor-pointer" data-catprice="{{ $category->price }}">
-                                                                <label class="form-check-label mb-0 ms-1 cursor-pointer" for="category_{{ $category->id }}">{{ $category->name }}{!! $infomark !!}</label>
+                                                                <label class="form-check-label mb-0 ms-1 cursor-pointer" for="category_{{ $category->id }}">{{ $category->name }}{!! $infomark !!}
+                                                                @if($category->name == 'Ponente')
+                                                                    <small class="text-muted">(exclusivo para quienes exponen en el programa oficial)</small>
+                                                                @endif
+                                                                </label>
                                                             </div>
 
                                                             @if ($category->id == '7')

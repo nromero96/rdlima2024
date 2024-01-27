@@ -184,11 +184,11 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="col-md-12">
-                                    <textarea name="note" id="note" cols="30" rows="3" class="form-control mb-2" placeholder="Ingresa un nota" required></textarea>
+                                    <textarea name="note" id="note" cols="30" rows="3" class="form-control mb-2" placeholder="Añade algún comentario..." required></textarea>
                                     <select name="status" id="status" class="form-select text-capitalize mb-2" required >
                                         <option value="">{{__("Seleccione un estado")}}</option>
                                         <option value="revisión">{{__("revisión")}}</option>
-                                        <option value="aprobado">{{__("aprobado")}}</option>
+                                        <option value="calificado">{{__("calificado")}}</option>
                                         <option value="rechazado">{{__("rechazado")}}</option>
                                     </select>
 
