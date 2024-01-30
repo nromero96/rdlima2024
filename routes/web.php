@@ -121,7 +121,6 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::put('inscriptions/{id}/update-status', [InscriptionController::class, 'updateStatus'])->name('inscriptions.updatestatus');
     Route::get('inscriptions-rejects', [InscriptionController::class, 'indexRejects'])->name('inscriptions.rejects');
     Route::post('/inscriptions-request-comprobante/{id}', [InscriptionController::class, 'requestComprobante'])->name('inscriptions.requestcomprobante');
-
     Route::get('/exportar-excel-inscriptions', [InscriptionController::class, 'exportExcelInscriptions'])->name('inscriptions.exportexcel');
 
     Route::get('payment-niubiz/{inscription}', [InscriptionController::class, 'paymentNiubiz'])->name('inscriptions.paymentniubiz');
@@ -135,6 +134,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::delete('/delete-file/{workId}/{fileNumber}', [WorkController::class, 'deleteFile'])->name('works.deletefile');
     Route::get('works-rejects', [WorkController::class, 'indexRejects'])->name('works.rejects');
     Route::put('works/{id}/update-status', [WorkController::class, 'updateStatus'])->name('works.updatestatus');
+    Route::get('/exportar-excel-works', [WorkController::class, 'exportExcelWorks'])->name('works.exportexcel');
     
     //ExhibitorsController
     Route::resource('exhibitors', ExhibitorController::class)->names('exhibitors');

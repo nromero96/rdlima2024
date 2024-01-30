@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Storage;
 use App\Mail\WorkCreatedMail;
 use Illuminate\Support\Facades\Mail;
 
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\WorkExport;
+
 class WorkController extends Controller
 {
     /**
@@ -405,6 +409,20 @@ class WorkController extends Controller
         $work->save();
 
         return response()->json(['success' => true, 'message' => 'Archivo eliminado con éxito.']);
+    }
+
+    public function exportExcelWorks()
+    {
+        //if user is admin or secretary
+        if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')){
+            //get datetime
+            $date = date('Y-m-d_H-i-s');
+            return Excel::download(new \App\Exports\WorkExport, 'works-'.$date.'.xlsx');
+        }else{
+            echo 'No tiene permisos para exportar';
+            exit;
+        }
+
     }
 
 }

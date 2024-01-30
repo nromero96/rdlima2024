@@ -35,16 +35,16 @@ function getDatatableButtons() {
         }
     ];
 
-    // Verifica si el usuario es administrador y agrega el botón 'Excel' si es así
-    // if (isAdmin) {
-    //     buttons.push({
-    //         text: 'Excel',
-    //         className: 'btn btn-success',
-    //         action: function(e, dt, node, config) {
-    //             window.open(baseurl + '/exportar-excel-inscriptions', '_self');
-    //         }
-    //     });
-    // }
+    //Verifica si el usuario es administrador y agrega el botón 'Excel' si es así
+    if (isAdmin) {
+        buttons.push({
+            text: 'Excel',
+            className: 'btn btn-success',
+            action: function(e, dt, node, config) {
+                window.open(baseurl + '/exportar-excel-works', '_self');
+            }
+        });
+    }
 
     return buttons;
 }
