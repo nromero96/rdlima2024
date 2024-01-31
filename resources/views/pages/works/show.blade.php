@@ -26,7 +26,7 @@
                                     <span class="badge badge-light-dark text-capitalize">{{ $work->status }}</span>
                                 @elseif ($work->status == 'revisión')
                                     <span class="badge badge-light-info text-capitalize">{{ $work->status }}</span>
-                                @elseif ($work->status == 'aprobado')
+                                @elseif ($work->status == 'calificado')
                                     <span class="badge badge-light-success text-capitalize">{{ $work->status }}</span>
                                 @elseif ($work->status == 'rechazado')
                                     <span class="badge badge-light-danger text-capitalize">{{ $work->status }}</span>
@@ -167,49 +167,71 @@
                 </div>
 
 
-                @if(Auth::user()->hasRole('Calificador') || Auth::user()->hasRole('Administrador'))
-                <div class="statbox widget box box-shadow mt-3">
-                    <div class="widget-header">
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12 col-sm-12 mb-2 col-12">
-                                <h4 class="pb-0">
-                                    {{__("Actualizar Estado")}}
-                                </h4>
+                @if($work->qualification != '' || $work->qualification != null)
+                    <h3 class="mt-3 mb-2">Trabajo Calificado: <span class="text-info">{{ $work->qualification }}</span></h3>
+                @else
+
+                    @if(Auth::user()->hasRole('Calificador') || Auth::user()->hasRole('Administrador'))
+                    <div class="statbox widget box box-shadow mt-3">
+                        <div class="widget-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 mb-2 col-12">
+                                    <h4 class="pb-0">
+                                        {{__("Actualizar Estado")}}: Estado actual (<span class="text-capitalize text-info">{{ $work->status }}</span>)
+                                    </h4>
+                                    @if($work->user_id_calificador != '' || $work->user_id_calificador != null)
+                                        @if($work->user_id_calificador == Auth::user()->id)
+                                            <span class="ms-3 badge badge-light-info"><small>Te asignaron este trabajo para calificar.</small></span>
+                                        @else
+                                            <span class="ms-3 badge badge-light-info"><small>Este trabajo ya está asignado a un calificador.</small></span>
+                                        @endif
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content widget-content-area pt-0">
+                            <div class="row">
+                                <form action="{{ route('works.updatestatus',['id' => $work->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="col-md-12">
+                                        <textarea name="note" id="note" cols="30" rows="3" class="form-control mb-2" placeholder="Añade algún comentario..." required></textarea>
+                                        
+                                        @if(Auth::user()->hasRole('Administrador'))
+                                            <select name="status" id="status" class="form-select text-capitalize mb-2" required >
+                                                <option value="">{{__("Seleccione un estado")}}</option>
+                                                <option value="revisión">{{__("revisión")}}</option>
+                                                <option value="rechazado">{{__("rechazado")}}</option>
+                                            </select>
+
+                                            <select name="user_id_calificador" id="user_id_calificador" class="form-select mb-2">
+                                                <option value="">{{__("Seleccione un calificador")}}</option>
+                                                @foreach ($calificadores as $calificador)
+                                                    <option value="{{$calificador->id}}">{{$calificador->name}} {{$calificador->lastname}} {{$calificador->second_lastname}}</option>
+                                                @endforeach
+                                            </select>
+
+                                            <input type="hidden" name="qualification" value="">
+
+                                            <button class="btn btn-primary mt-2" id="btn_save">{{__("Actualizar Estado")}}</button>
+
+                                        @elseif($work->user_id_calificador == Auth::user()->id)
+                                            <input type="hidden" name="status" value="calificado">
+                                            <input type="hidden" name="user_id_calificador" value="">
+                                            <label for="form-label">Ingrese una calificación del 11 al 20.</label>
+                                            <input type="number" name="qualification" id="qualification" class="form-control mb-2" placeholder="Ingrese una calificación." min="11" max="20" required>
+
+                                            <button class="btn btn-primary mt-2" id="btn_save">{{__("Calificar")}}</button>
+                                        @else
+
+                                        @endif
+                                    
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="widget-content widget-content-area pt-0">
-                        <div class="row">
-                            <form action="{{ route('works.updatestatus',['id' => $work->id]) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <div class="col-md-12">
-                                    <textarea name="note" id="note" cols="30" rows="3" class="form-control mb-2" placeholder="Añade algún comentario..." required></textarea>
-                                    <select name="status" id="status" class="form-select text-capitalize mb-2" required >
-                                        <option value="">{{__("Seleccione un estado")}}</option>
-                                        <option value="revisión">{{__("revisión")}}</option>
-                                        <option value="calificado">{{__("calificado")}}</option>
-                                        <option value="rechazado">{{__("rechazado")}}</option>
-                                    </select>
-
-
-                                    @if(Auth::user()->hasRole('Administrador'))
-                                    <select name="user_id_calificador" id="user_id_calificador" class="form-select mb-2">
-                                        <option value="">{{__("Seleccione un calificador")}}</option>
-                                        @foreach ($calificadores as $calificador)
-                                            <option value="{{$calificador->id}}">{{$calificador->name}} {{$calificador->lastname}} {{$calificador->second_lastname}}</option>
-                                        @endforeach
-                                    </select>
-                                    @else
-                                        <input type="hidden" name="user_id_calificador" value="">
-                                    @endif
-
-                                    <button class="btn btn-primary mt-2" id="btn_save">{{__("Actualizar Estado")}}</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                    @endif
                 @endif
 
                 <div class="statbox widget box box-shadow mt-3">

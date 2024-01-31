@@ -348,6 +348,11 @@ class WorkController extends Controller
 
         $work->status = $request->input('status');
         
+        //if calificador
+        if (\Auth::user()->hasRole('Calificador')) {
+            $work->qualification = $request->input('qualification');
+        }
+
         if (\Auth::user()->hasRole('Administrador')) {
             $work->user_id_calificador = $request->input('user_id_calificador');
         }

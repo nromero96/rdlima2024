@@ -25,5 +25,7 @@ class Work extends Model
         'file_5',
         'file_6',
         'status',
+        'user_id_calificador',
+        'qualification',
     ];
 }
