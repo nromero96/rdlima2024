@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-xl-10 col-md-10 col-sm-10 mb-2 col-10">
                                 <h4>
-                                    {{__("Información del trabajo")}}
+                                    {{__("Información del trabajo")}} # {{ $work->id }}
                                 </h4>
                             </div>
                             <div class="col-xl-2 col-md-2 col-sm-2 col-2 text-end pt-2">
@@ -167,8 +167,8 @@
                 </div>
 
 
-                @if($work->qualification != '' || $work->qualification != null)
-                    <h3 class="mt-3 mb-2">Trabajo Calificado: <span class="text-info">{{ $work->qualification }}</span></h3>
+                @if($work->status == 'calificado')
+                    <h5 class="mt-3 mb-2 text-success">Trabajo Calificado.</h5>
                 @else
 
                     @if(Auth::user()->hasRole('Calificador') || Auth::user()->hasRole('Administrador'))
