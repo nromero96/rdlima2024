@@ -29,6 +29,25 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area pt-0">
+                        
+                        @php
+                            //lista de correos array
+                            $emailspermitidos = [
+                                'niltondeveloper96@gmail.co',
+                            ];
+
+                            //get email user loged
+                            $authuser = Auth::user();
+                            $authuseremail = $authuser->email;
+                        @endphp
+
+                        @if(!in_array($authuseremail, $emailspermitidos))
+                            <div class="alert alert-danger" role="alert">
+                                <h5 class="alert-heading">¡Atención!</h5>
+                                <p>Lo sentimos, ya cerramos la recepción de trabajos.</p>
+                            </div>
+                        @else
+                        
                         <form class="row g-3" action="{{ route('works.update',$work->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -184,6 +203,7 @@
                                 <button type="submit" name="action" class="btn btn-primary" value="finalizado">{{__("Finalizar")}}</button>
                             </div>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>

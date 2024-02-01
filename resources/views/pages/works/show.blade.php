@@ -218,9 +218,7 @@
                                         @elseif($work->user_id_calificador == Auth::user()->id)
                                             <input type="hidden" name="status" value="calificado">
                                             <input type="hidden" name="user_id_calificador" value="">
-                                            <label for="form-label">Ingrese una calificación del 11 al 20.</label>
-                                            <input type="number" name="qualification" id="qualification" class="form-control mb-2" placeholder="Ingrese una calificación." min="11" max="20" required>
-
+                                            <input type="hidden" name="qualification" value="">
                                             <button class="btn btn-primary mt-2" id="btn_save">{{__("Calificar")}}</button>
                                         @else
 
