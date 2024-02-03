@@ -33,7 +33,9 @@
                         @php
                             //lista de correos array
                             $emailspermitidos = [
-                                'niltondeveloper96@gmail.co',
+                                'dermatologiaebmsp.hsi@gmail.com',
+                                'leofierro@yahoo.com',
+                                'stefany_phv@hotmail.com',
                             ];
 
                             //get email user loged

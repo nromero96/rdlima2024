@@ -44,13 +44,25 @@ class WorkController extends Controller
                 ->orderBy('id', 'desc')
                 ->get();
         } elseif(\Auth::user()->hasRole('Calificador')){
-            //get works for calificador join with user
-            $works = Work::join('users', 'works.user_id', '=', 'users.id')
-                ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
-                ->where('works.user_id_calificador', $userid)
-                ->where('works.status', '!=', 'rechazado')
-                ->orderBy('id', 'desc')
-                ->get();
+            
+            //si id de usuario es calificador  es 122
+            if(\Auth::user()->id == 867){
+                //solo para el calificador 867 
+                $works = Work::join('users', 'works.user_id', '=', 'users.id')
+                    ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                    ->where('works.category', 'Mini Caso')
+                    ->where('works.status', '!=', 'rechazado')
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }else{
+                //get works for calificador join with user
+                $works = Work::join('users', 'works.user_id', '=', 'users.id')
+                    ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                    ->where('works.user_id_calificador', $userid)
+                    ->where('works.status', '!=', 'rechazado')
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
         } else {
 
             //get works by user id join with user
