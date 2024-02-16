@@ -28,6 +28,7 @@
                                 'stefany_phv@hotmail.com',
                                 'dermatologiaebmsp.hsi@gmail.com',
                                 'leofierro@yahoo.com',
+                                'irene.m.rdz@gmail.com',
                             ];
 
                             //get email user loged
