@@ -339,7 +339,7 @@
                                     <ul class="mb-0">
                                         @foreach ($statusnotes as $item)
                                             <li>
-                                                <b class="text-info">{{ $item->note }}</b> ({{ $item->created_at }})<br>
+                                                <b class="text-info">{!! $item->note !!}</b> ({{ $item->created_at }})<br>
                                                 <small>{{ $item->action }}</small>
                                             </li>
                                         @endforeach
