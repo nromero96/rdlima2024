@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return false;
         }
     
-        const categoriasPermitidas = ['1', '2', '3'];
+        const categoriasPermitidas = ['1', '2', '3', '7'];
     
         if (categoriasPermitidas.includes(selectedRadioCategoryInscription.value)) {
             if (!validarArchivoFilePond('document_file', "Debe adjuntar documento probatorio de categoría (Título, Constancia, Carnet profesional).")) {
@@ -241,7 +241,7 @@ function handleCategoryRadioButtons(){
 
         //Document file not required
         dvDocumentFile.classList.remove('d-none');
-      inputDocumentFile.setAttribute('required', 'required');
+        inputDocumentFile.setAttribute('required', 'required');
 
         //Special code required validation
         dvSpecialCode.classList.remove('d-none');
