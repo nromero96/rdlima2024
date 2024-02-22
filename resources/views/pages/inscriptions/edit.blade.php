@@ -164,7 +164,7 @@
                                                             </select>
 
                                                             <div id="dv_special_code" class="@if($inscription->special_code != '') @else d-none @endif">
-                                                                <input type="number" name="special_code" class="form-control form-control-sm mt-1 p-1" id="special_code" value="{{ $inscription->special_code }}" placeholder="Código especial">
+                                                                <input type="text" name="special_code" class="form-control form-control-sm mt-1 p-1" id="special_code" value="{{ $inscription->special_code }}" placeholder="Código especial">
                                                             </div>
 
                                                         </td>
