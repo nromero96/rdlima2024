@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Mail;
 
 use Maatwebsite\Excel\Facades\Excel;
 
+use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Log;
 
 class InscriptionController extends Controller
@@ -188,7 +190,7 @@ class InscriptionController extends Controller
             $inscription->accompanist_id = $data_accompanist_id;
             $category_inscription_accompanist = CategoryInscription::where('name', 'Acompañante')->first();
             
-            if($request->category_inscription_id == 9){
+            if($request->category_inscription_id == 9 || $request->category_inscription_id == 11){
                 $inscription->price_accompanist = 0;
             }else{
                 $inscription->price_accompanist = $category_inscription_accompanist->price;
@@ -199,7 +201,7 @@ class InscriptionController extends Controller
         }
 
 
-        if($request->category_inscription_id == 9){
+        if($request->category_inscription_id == 9 || $request->category_inscription_id == 11){
             $inscription->total = 0;
         }else{
             $inscription->total = $inscription->price_category + $inscription->price_accompanist;
@@ -367,7 +369,59 @@ class InscriptionController extends Controller
      */
     public function edit($id)
     {
-        
+        //solo mostrar al rol de Administrador y Secretaria
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')) {
+            
+            $data = [
+                'category_name' => 'inscriptions',
+                'page_name' => 'inscriptions_edit',
+                'has_scrollspy' => 0,
+                'scrollspy_offset' => '',
+            ];
+    
+            $inscription = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+            ->join('users', 'inscriptions.user_id', '=', 'users.id')
+            ->leftJoin('accompanists', 'inscriptions.accompanist_id', '=', 'accompanists.id')
+            ->select('inscriptions.*', 
+                    'category_inscriptions.name as category_inscription_name', 
+                    'users.name as user_name', 
+                    'users.lastname as user_lastname', 
+                    'users.second_lastname as user_second_lastname', 
+                    'users.document_type as user_document_type', 
+                    'users.document_number as user_document_number',
+                    'users.country as user_country',
+                    'users.state as user_state',
+                    'users.city as user_city',
+                    'users.address as user_address',
+                    'users.postal_code as user_postal_code',
+                    'users.phone_code as user_phone_code',
+                    'users.phone_code_city as user_phone_code_city',
+                    'users.phone_number as user_phone_number',
+                    'users.whatsapp_code as user_whatsapp_code',
+                    'users.whatsapp_number as user_whatsapp_number',
+                    'users.email as user_email',
+                    'users.workplace as user_workplace',
+                    'users.solapin_name as user_solapin_name',
+                    'accompanists.accompanist_name as accompanist_name',
+                    'accompanists.accompanist_typedocument as accompanist_typedocument',
+                    'accompanists.accompanist_numdocument as accompanist_numdocument',
+                    'accompanists.accompanist_solapin as accompanist_solapin')
+            ->where('inscriptions.id', $id)
+            ->first();
+
+            $category_inscriptions = CategoryInscription::orderBy('order', 'asc')->get();
+
+            $paymentcard = Payment::where('inscription_id', $id)->first();
+            $accompanist = Accompanist::find($inscription->accompanist_id);
+
+            //notes status
+            $statusnotes = StatusNote::where('inscription_id', $id)->orderBy('id', 'desc')->get();
+
+            return view('pages.inscriptions.edit')->with($data)->with('inscription', $inscription)->with('accompanist', $accompanist)->with('paymentcard', $paymentcard)->with('statusnotes', $statusnotes)->with('category_inscriptions', $category_inscriptions);
+
+        }else{
+            return redirect()->route('inscriptions.index')->with('error', 'No tiene permisos para editar esta inscripción');
+        }
     }
 
     /**
@@ -379,7 +433,62 @@ class InscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //solo mostrar al rol de Administrador y Secretaria
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')) {
+            
+            // Obtener la inscripción actual
+            $inscription = Inscription::findOrFail($id);
+
+            // Validación de datos (ajusta estas reglas según tus necesidades)
+            $validatedData = $request->validate([
+                'category_inscription_id' => 'required|numeric',
+                'price_category' => 'required|numeric',
+                'price_accompanist' => 'required|numeric',
+                'total' => 'required|numeric',
+                'special_code' => 'nullable|string',
+            ]);
+
+            // Actualizar la inscripción
+            $inscription->update($validatedData);
+
+            // actualizar acompañante si existe si no insertar
+            if($request->accompanist != ''){
+                $accompanist = new Accompanist();
+                $accompanist->accompanist_name = $request->accompanist_name;
+                $accompanist->accompanist_typedocument = $request->accompanist_typedocument;
+                $accompanist->accompanist_numdocument = $request->accompanist_numdocument;
+                $accompanist->accompanist_solapin = $request->accompanist_solapin;
+                $accompanist->save();
+                $inscription->accompanist_id = $accompanist->id;
+                $inscription->save();
+            }else{
+                //buscar si existe acompañante y actualizar
+                $accompanist = Accompanist::find($inscription->accompanist_id);
+                if($accompanist){
+                    //update
+                    $accompanist->accompanist_name = $request->accompanist_name;
+                    $accompanist->accompanist_typedocument = $request->accompanist_typedocument;
+                    $accompanist->accompanist_numdocument = $request->accompanist_numdocument;
+                    $accompanist->accompanist_solapin = $request->accompanist_solapin;
+                    $accompanist->save();
+                }
+            }
+
+            //subir archivo a la carpeta uploads/document_file
+            if($request->document_file){
+                $file = $request->file('document_file');
+                $fileName = str_replace(' ', '-', $file->getClientOriginalName());
+                $fileNameWithTimestamp = pathinfo($fileName, PATHINFO_FILENAME) . '_' . Carbon::now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('public/uploads/document_file', $fileNameWithTimestamp);
+                $inscription->document_file = $fileNameWithTimestamp;
+                $inscription->save();
+            }
+
+
+            return redirect()->route('inscriptions.show', ['inscription' => $id])->with('success', 'Inscripción actualizada con éxito');
+        }else{
+            return redirect()->route('inscriptions.index')->with('error', 'No tiene permisos para editar esta inscripción');
+        }
     }
 
     /**

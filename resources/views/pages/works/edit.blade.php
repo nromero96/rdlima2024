@@ -39,6 +39,7 @@
                                 'dermatologiaebmsp.hsi@gmail.com',
                                 'leofierro@yahoo.com',
                                 'irene.m.rdz@gmail.com',
+                                'maril.94@hotmail.com',
                             ];
 
                             //get email user loged

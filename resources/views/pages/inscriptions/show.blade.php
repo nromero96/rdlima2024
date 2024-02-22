@@ -137,7 +137,18 @@
                             </div>
 
                             <div class="col-md-12">
-                                <h6>{{__("Detalle de la inscripción")}}</h6>
+                                <h6>
+                                    {{__("Detalle de la inscripción")}}
+
+                                    @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
+                                        <a href="{{ route('inscriptions.edit', $inscription->id) }}" class="btn btn-light-primary p-0 btn-sm ms-2">
+                                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                              </svg>
+                                        </a>
+                                    @endif
+                                </h6>
                                 <div class="table-responsive">
                                     <table class="table table-bordered mb-0">
                                         <thead>

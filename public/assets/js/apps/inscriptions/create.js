@@ -104,7 +104,7 @@ function calculateTotalPrice() {
       const selectedRadioCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked');
       const selectedValueCategory = document.querySelector('input[type="radio"][name="category_inscription_id"]:checked').value;
 
-      if(selectedValueCategory === '9'){
+      if(selectedValueCategory === '9' || selectedValueCategory === '11'){
         totalPrice += 0;
       }else{
         totalPrice += catPrice;
@@ -134,7 +134,7 @@ function calculateTotalPrice() {
 
   //si hay un codigo especial marcar el metodo de pago como tarjeta y desabilitar el radio de transferencia
   const specialCodeVerify = document.getElementById('specialcode_verify');
-  if(specialCodeVerify.value == 'valid' && totalPrice == 0){
+  if(specialCodeVerify.value == 'valid' || totalPrice == 0){
     const radioPaymentMethodCard = document.getElementById('payment_method_card');
     const radioPaymentMethodTransfer = document.getElementById('payment_method_transfer');
     radioPaymentMethodCard.checked = true;
@@ -153,6 +153,10 @@ function calculateTotalPrice() {
     const dvCard = document.getElementById('dv_card');
     dvTranfer.classList.remove('d-none');
     dvCard.classList.add('d-none');
+  }
+
+  if(totalPrice == 0){
+
   }
 
 
@@ -195,9 +199,7 @@ function handleCategoryRadioButtons(){
     const dvcard = document.getElementById('dv_card');
 
     if(selectedValueCategory === '1' || selectedValueCategory === '2' || selectedValueCategory === '3'){
-      //deble radio payment method transfer
-      radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
-
+      
       //Document file required
       dvDocumentFile.classList.remove('d-none');
       inputDocumentFile.setAttribute('required', 'required');
@@ -213,12 +215,7 @@ function handleCategoryRadioButtons(){
       btnValidateSpecialCode.classList.remove('d-none');
       btnClearSpecialCode.classList.add('d-none');
 
-    }else if(selectedValueCategory === '4' || selectedValueCategory === '5' || selectedValueCategory === '6' || selectedValueCategory === '9'){
-        //desable radio payment method transfer y checked radio payment method card
-        radioPaymentMethodCard.checked = true;
-        dvtranfer.classList.add('d-none');
-        dvcard.classList.remove('d-none');
-        radioPaymentMethodTransfer.setAttribute('disabled', 'disabled');
+    }else if(selectedValueCategory === '4' || selectedValueCategory === '5' || selectedValueCategory === '6' || selectedValueCategory === '9' || selectedValueCategory === '11'){
         
         //Document file not required
         dvDocumentFile.classList.add('d-none');
@@ -236,9 +233,7 @@ function handleCategoryRadioButtons(){
         btnClearSpecialCode.classList.add('d-none');
 
       } else if(selectedValueCategory === '7'){
-        //deble radio payment method transfer
-        radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
-
+        
         //Document file not required
         dvDocumentFile.classList.remove('d-none');
         inputDocumentFile.setAttribute('required', 'required');
@@ -253,9 +248,7 @@ function handleCategoryRadioButtons(){
         btnValidateSpecialCode.classList.remove('d-none');
         btnClearSpecialCode.classList.add('d-none');
       }else{
-        //deble radio payment method transfer
-        radioPaymentMethodTransfer.removeAttribute('disabled', 'disabled');
-
+        
         //Document file not required
         dvDocumentFile.classList.add('d-none');
         inputDocumentFile.removeAttribute('required');

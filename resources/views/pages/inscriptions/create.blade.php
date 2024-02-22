@@ -85,9 +85,7 @@
                                                             <div class="form-check form-check-primary me-1">
                                                                 <input type="{{ $category->type }}" id="category_{{ $category->id }}" name="category_inscription_id" value="{{ $category->id }}" class="form-check-input cursor-pointer" data-catprice="{{ $category->price }}">
                                                                 <label class="form-check-label mb-0 ms-1 cursor-pointer" for="category_{{ $category->id }}">{{ $category->name }}{!! $infomark !!}
-                                                                @if($category->name == 'Ponente')
-                                                                    <small class="text-muted">(exclusivo para quienes exponen en el programa oficial)</small>
-                                                                @endif
+                                                                <small class="text-muted">{!! $category->description !!}</small>
                                                                 </label>
                                                             </div>
 
@@ -105,7 +103,7 @@
                                                                 <input type="hidden" name="specialcode_verify" id="specialcode_verify" value="">
                                                             @endif
 
-                                                        </td>   
+                                                        </td>
                                                         <td>
                                                             <b>US$ <span id="dc_price_{{ $category->id }}">{{ $category->price === '0.00' ? '00' : rtrim(rtrim($category->price, '0'), '.') }}</span></b>
                                                         </td>
