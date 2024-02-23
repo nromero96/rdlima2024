@@ -12,8 +12,8 @@ var worklist = $('#work-list').DataTable({
         "sLengthMenu": "Resultados :  _MENU_",
     },
     "stripeClasses": [],
-    "lengthMenu": [7, 10, 20, 50],
-    "pageLength": 10
+    "lengthMenu": [7, 10, 20, 500],
+    "pageLength": 500
 });
 
 
