@@ -449,8 +449,10 @@ class WorkController extends Controller
         
         if(\Auth::user()->hasRole('Administrador')){
             $work = Work::find($id);
-            $iduser = \Auth::user()->id;
-            $user = User::find($iduser);
+            
+            //get email user work send
+            $user = User::find($work->user_id);
+
 
             //update status
             $work->status = 'aceptado';
