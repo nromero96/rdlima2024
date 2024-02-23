@@ -14,6 +14,8 @@ class WorkAccepted extends Mailable
 
     public $work;
     public $userName;
+    public $userLastName;
+    public $userSecondLastName;
     public $userCountry;
 
     /**
@@ -25,6 +27,8 @@ class WorkAccepted extends Mailable
     {
         $this->work = $work;
         $this->userName = $work->user->name;
+        $this->userLastName = $work->user->lastname;
+        $this->userSecondLastName = $work->user->second_lastname;
         $this->userCountry = $work->user->country;
     }
 
@@ -35,6 +39,6 @@ class WorkAccepted extends Mailable
      */
     public function build()
     {
-        return $this->subject('Trabajo Aceptado # '.$this->work->id.' : '.$this->work->title.' - '.$this->userName.' ('.$this->userCountry.')')->view('emails.work_accepted');
+        return $this->subject('Trabajo Aceptado # '.$this->work->id.' : '.$this->work->title.' - '.$this->userName.' '.$this->userLastName.' '.$this->userSecondLastName.' ('.$this->userCountry.')')->view('emails.work_accepted');
     }
 }

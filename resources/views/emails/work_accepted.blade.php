@@ -13,13 +13,13 @@
         XLI REUNIÓN ANUAL DE DERMATÓLOGOS LATINOAMERICANOS
         <span style="display: block; font-size: 19px; margin-top: 10px; color:black;font-weight: normal;">Swissôtel Lima, 8 al 11 de Mayo de 2024</span>
     </h1>
-
+    <div style="color: rgba(255, 255, 255, 0); height: 20px;">-</div>
     <p style="font-size: 14px;">
         Lima, 21 de febrero de 2024
     </p>
-
+    <div style="color: rgba(255, 255, 255, 0); height: 1px;">-</div>
     <p style="font-size: 14px;">
-        Estimado(a) Dr.(a) <strong>{{ $userName }}</strong>
+        Estimado(a) Dr.(a) <strong>{{ $userName }} {{ $userLastName }} {{ $userSecondLastName }}</strong>
     </p>
 
     <p style="font-size: 14px;">
@@ -57,19 +57,19 @@
 
     <p style="font-size: 14px;">Atentos saludos,</p>
 
-    <p style="font-weight: bold; font-size: 14px;">
+    <p style="font-weight: bold; font-size: 14px; margin-bottom: 0px;">
         Comité Organizador<br>
-        <img src="{{ asset('assets/img/logo-rosmar.png') }}" alt="ROSMAR" style="width: 60px;">
+        <img src="https://my.radla2024.org/assets/img/logo-rosmar.png" alt="ROSMAR" style="width: 120px;">
     </p>
 
-    <p style="font: 12px;">
+    <p style="font-size: 12px; margin-top: 0px;">
         <b>Rosa Sheen</b><br>
         Directora<br>
         Tel.  <u>(51 1) 4778694</u><br>
         WhatsApp <u>+51 998672199</u><br>
         E-mail:  <u>rosmarasoc@rosmarasociados.com</u><br>
         <u>www.radla2024.org</u><br>
-        <img src="https://my.radla2024.org/assets/img/logo2.png" alt="RADLA" style="width: 40px;">
+        <img src="https://my.radla2024.org/assets/img/logo2.png" alt="RADLA" style="width: 80px;">
     </p>
 
 </body>

@@ -456,6 +456,14 @@ class WorkController extends Controller
             $work->status = 'aceptado';
             $work->save();
 
+            //register note
+            $worknote = new WorksNote();
+            $worknote->work_id = $id;
+            $worknote->action = 'Pasó de "'.$work->status.'" a "aceptado"';
+            $worknote->note = 'Correo enviado de trabajo aceptado.';
+            $worknote->user_id = \Auth::user()->id;
+            $worknote->save();
+
             Mail::to($user->email)->cc(config('services.correonotificacion.trabajoaceptado'))->send(new WorkAccepted($work));
             return redirect()->route('works.index')->with('success', 'Correo enviado exitosamente.');
         }else{
