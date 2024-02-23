@@ -35,6 +35,7 @@ return [
         'pago' => env('CORREO_NOTIFICACION_PAGO'),
         'hospedaje' => env('CORREO_NOTIFICACION_HOSPEDAJE'),
         'inscripcion' => env('CORREO_NOTIFICACION_INSCRIPCION'),
+        'trabajoaceptado' => env('CORREO_NOTIFICACION_TRABAJO_ACEPTADO'),
     ],
 
     'niubiz' => [

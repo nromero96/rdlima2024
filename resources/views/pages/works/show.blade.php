@@ -26,7 +26,7 @@
                                     <span class="badge badge-light-dark text-capitalize">{{ $work->status }}</span>
                                 @elseif ($work->status == 'revisión')
                                     <span class="badge badge-light-info text-capitalize">{{ $work->status }}</span>
-                                @elseif ($work->status == 'calificado')
+                                @elseif ($work->status == 'aceptado')
                                     <span class="badge badge-light-success text-capitalize">{{ $work->status }}</span>
                                 @elseif ($work->status == 'rechazado')
                                     <span class="badge badge-light-danger text-capitalize">{{ $work->status }}</span>

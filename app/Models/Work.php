@@ -28,4 +28,10 @@ class Work extends Model
         'user_id_calificador',
         'qualification',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

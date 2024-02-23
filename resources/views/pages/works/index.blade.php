@@ -10,6 +10,21 @@
 
         <div class="row layout-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-top-spacing layout-spacing">
+
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                     @php
                         $user = Auth::user();
                         //get user logged role
@@ -59,6 +74,17 @@
                                             <tr>
                                                 <td>
                                                     {{$work->id}}
+
+                                                    @if($user->id == 1 && $work->status == 'revisión')
+                                                        <form class="d-inline" action="{{ route('works.sendmailworkaccepted', $work->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="badge badge-light-info text-start action-update-status bs-tooltip" data-toggle="tooltip" data-placement="top" title="{{ __("Aceptar") }}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
                                                 </td>
                                                 <td>
                                                     {{$work->user_name.' '.$work->user_lastname.' '.$work->user_second_lastname}}
@@ -82,7 +108,7 @@
                                                         <span class="badge badge-light-dark text-capitalize">{{ $work->status }}</span>
                                                     @elseif ($work->status == 'revisión')
                                                         <span class="badge badge-light-info text-capitalize">{{ $work->status }}</span>
-                                                    @elseif ($work->status == 'calificado')
+                                                    @elseif ($work->status == 'aceptado')
                                                         <span class="badge badge-light-success text-capitalize">{{ $work->status }}</span>
                                                     @elseif ($work->status == 'rechazado')
                                                         <span class="badge badge-light-danger text-capitalize">{{ $work->status }}</span>
@@ -107,6 +133,7 @@
                                                                 </button>
                                                         </form>
                                                     @endif
+
                                                 </td>
                                             </tr>
                                         @endforeach

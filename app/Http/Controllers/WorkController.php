@@ -10,6 +10,7 @@ use App\Models\WorksNote;
 use Illuminate\Support\Facades\Storage;
 
 use App\Mail\WorkCreatedMail;
+use App\Mail\WorkAccepted;
 use Illuminate\Support\Facades\Mail;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -437,6 +438,28 @@ class WorkController extends Controller
             return Excel::download(new \App\Exports\WorkExport, 'works-'.$date.'.xlsx');
         }else{
             echo 'No tiene permisos para exportar';
+            exit;
+        }
+
+    }
+
+    //send mail WorkAccepted
+    public function sendMailWorkAccepted($id)
+    {
+        
+        if(\Auth::user()->hasRole('Administrador')){
+            $work = Work::find($id);
+            $iduser = \Auth::user()->id;
+            $user = User::find($iduser);
+
+            //update status
+            $work->status = 'aceptado';
+            $work->save();
+
+            Mail::to($user->email)->cc(config('services.correonotificacion.trabajoaceptado'))->send(new WorkAccepted($work));
+            return redirect()->route('works.index')->with('success', 'Correo enviado exitosamente.');
+        }else{
+            echo 'No tiene permisos para enviar correo';
             exit;
         }
 

@@ -135,6 +135,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::get('works-rejects', [WorkController::class, 'indexRejects'])->name('works.rejects');
     Route::put('works/{id}/update-status', [WorkController::class, 'updateStatus'])->name('works.updatestatus');
     Route::get('/exportar-excel-works', [WorkController::class, 'exportExcelWorks'])->name('works.exportexcel');
+    Route::put('sendmail-workaccepted/{id}', [WorkController::class, 'sendMailWorkAccepted'])->name('works.sendmailworkaccepted');
     
     //ExhibitorsController
     Route::resource('exhibitors', ExhibitorController::class)->names('exhibitors');
