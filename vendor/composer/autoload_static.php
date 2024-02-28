@@ -642,6 +642,7 @@ class ComposerStaticInitfe89c9bc057a6be298f3bb7f44ad24dc
         'App\\Mail\\InvitationEmail' => __DIR__ . '/../..' . '/app/Mail/InvitationEmail.php',
         'App\\Mail\\PruebaCorreo' => __DIR__ . '/../..' . '/app/Mail/PruebaCorreo.php',
         'App\\Mail\\QuotationCreated' => __DIR__ . '/../..' . '/app/Mail/QuotationCreated.php',
+        'App\\Mail\\WorkAccepted' => __DIR__ . '/../..' . '/app/Mail/WorkAccepted.php',
         'App\\Mail\\WorkCreatedMail' => __DIR__ . '/../..' . '/app/Mail/WorkCreatedMail.php',
         'App\\Models\\Accompanist' => __DIR__ . '/../..' . '/app/Models/Accompanist.php',
         'App\\Models\\BeneficiarioBeca' => __DIR__ . '/../..' . '/app/Models/BeneficiarioBeca.php',

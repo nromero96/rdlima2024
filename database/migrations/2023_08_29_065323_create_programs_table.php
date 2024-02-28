@@ -15,8 +15,12 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->unsignedBigInteger('exponent_id');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->string('subject');
+            $table->string('audio',3)->default('no');
+            $table->string('file');
             $table->timestamps();
         });
     }

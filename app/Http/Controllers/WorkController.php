@@ -55,6 +55,13 @@ class WorkController extends Controller
                     ->where('works.status', '!=', 'rechazado')
                     ->orderBy('id', 'desc')
                     ->get();
+            } else if(\Auth::user()->id == 614){
+                //solo para el calificador 614 
+                $works = Work::join('users', 'works.user_id', '=', 'users.id')
+                    ->select('works.*', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                    ->where('works.status', '!=', 'rechazado')
+                    ->orderBy('id', 'desc')
+                    ->get();
             }else{
                 //get works for calificador join with user
                 $works = Work::join('users', 'works.user_id', '=', 'users.id')

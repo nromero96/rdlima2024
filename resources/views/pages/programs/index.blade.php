@@ -14,7 +14,19 @@
                     <div class="widget-header pt-4">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-end">
-                                <a href="{{ route('programs.index') }}" class="btn btn-primary mb-4 ms-3 me-3">{{__("Nuevo")}}</a>
+                                <a href="{{ route('programs.create') }}" class="btn btn-primary mb-4 ms-3 me-3">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 5v14"></path>
+                                        <path d="M5 12h14"></path>
+                                      </svg>
+                                    {{__("Agregar")}}
+                                </a>
+                                <a href="{{ route('programsessions.index') }}" class="btn btn-success mb-4 ms-2 me-2">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                    {{__("Sesiones")}}
+                                </a>
                             </div>
                         </div>
                     </div>

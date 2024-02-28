@@ -55,6 +55,7 @@ return array(
     'App\\Mail\\InvitationEmail' => $baseDir . '/app/Mail/InvitationEmail.php',
     'App\\Mail\\PruebaCorreo' => $baseDir . '/app/Mail/PruebaCorreo.php',
     'App\\Mail\\QuotationCreated' => $baseDir . '/app/Mail/QuotationCreated.php',
+    'App\\Mail\\WorkAccepted' => $baseDir . '/app/Mail/WorkAccepted.php',
     'App\\Mail\\WorkCreatedMail' => $baseDir . '/app/Mail/WorkCreatedMail.php',
     'App\\Models\\Accompanist' => $baseDir . '/app/Models/Accompanist.php',
     'App\\Models\\BeneficiarioBeca' => $baseDir . '/app/Models/BeneficiarioBeca.php',

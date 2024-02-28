@@ -23,6 +23,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\CountryStateController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\ProgramSessionController;
 
 
 use Illuminate\Support\Facades\Artisan;
@@ -115,6 +116,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
     //Programs
     Route::resource('programs', ProgramController::class)->names('programs');
+    Route::resource('programsessions', ProgramSessionController::class)->names('programsessions');
 
     //Inscriptions
     Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');
