@@ -85,6 +85,8 @@ Route::get('/password-recovery', function () {
     return view('auth.passwords.email');
 });
 
+//Programs
+Route::get('online-program', [ProgramController::class, 'showOnlinePrograms'])->name('onlineprograms');
 
 
 Route::get('/online-form-invitations', [InvitationController::class, 'showOnlineForm_invitations'])->name('onlineforminvitations');
@@ -117,8 +119,6 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     //Programs
     Route::resource('programs', ProgramController::class)->names('programs');
     Route::resource('programsessions', ProgramSessionController::class)->names('programsessions');
-
-    Route::get('online-program', [ProgramController::class, 'showOnlinePrograms'])->name('onlineprograms');
 
     //Inscriptions
     Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');
