@@ -118,6 +118,8 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::resource('programs', ProgramController::class)->names('programs');
     Route::resource('programsessions', ProgramSessionController::class)->names('programsessions');
 
+    Route::get('online-program', [ProgramController::class, 'showOnlinePrograms'])->name('onlineprograms');
+
     //Inscriptions
     Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');
     Route::put('inscriptions/{id}/update-status', [InscriptionController::class, 'updateStatus'])->name('inscriptions.updatestatus');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Program;
+use App\Models\ProgramSession;
 
 class ProgramController extends Controller
 {
@@ -26,6 +27,22 @@ class ProgramController extends Controller
         $programs = Program::orderBy('id', 'desc')->get();
 
         return view('pages.programs.index')->with($data)->with('programs', $programs);
+    }
+
+    public function showOnlinePrograms()
+    {
+        // $category_name = '';
+        $data = [
+            'category_name' => 'programs',
+            'page_name' => 'online-programs',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+        
+        $programsession = ProgramSession::orderBy('id', 'desc')->get();
+        $programs = Program::orderBy('id', 'desc')->get();
+
+        return view('pages.programs.online-program')->with($data)->with('programsession', $programsession)->with('programs', $programs);
     }
 
     /**
