@@ -152,4 +152,12 @@ class ProgramSessionController extends Controller
     {
         //
     }
+
+    public function getSessionById($id)
+    {
+        $programsession = ProgramSession::find($id);
+        return response()->json($programsession);
+    }
+
+
 }

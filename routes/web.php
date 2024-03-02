@@ -87,7 +87,8 @@ Route::get('/password-recovery', function () {
 
 //Programs
 Route::get('online-program', [ProgramController::class, 'showOnlinePrograms'])->name('onlineprograms');
-
+//get sessions by id
+Route::get('online-get-sessions/{id}', [ProgramSessionController::class, 'getSessionById'])->name('getsessions');
 
 Route::get('/online-form-invitations', [InvitationController::class, 'showOnlineForm_invitations'])->name('onlineforminvitations');
 Route::post('/send-invitation', [InvitationController::class, 'sendInvitation'])->name('invitationsend');

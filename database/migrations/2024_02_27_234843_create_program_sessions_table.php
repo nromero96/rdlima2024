@@ -21,7 +21,8 @@ class CreateProgramSessionsTable extends Migration
             $table->string('start_time_block');
             $table->string('end_time_block');
             $table->string('room');
-            $table->string('color');
+            $table->string('image_program');
+            $table->string('file_program');
             $table->timestamps();
         });
     }
