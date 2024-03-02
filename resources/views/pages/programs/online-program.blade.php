@@ -284,7 +284,11 @@
     <div class="text-center">
         <span class="hdday-name d-block">DÍA 1</span>
         <span class="hdday-date d-block">Miércoles 8 de Mayo de 2024</span>
+        <div class="d-flex">
+
+        </div>
         <a href="https://radla2024.org/wp-content/uploads/2024/02/version-final-Programa-General-RADLA-2024_26022024.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
+        <a href="https://radla2024.org/wp-content/uploads/2024/03/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
     </div>
 
     <div class="text-center dv-tablecontent table-responsive mb-5">
