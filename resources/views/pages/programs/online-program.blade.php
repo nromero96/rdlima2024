@@ -115,6 +115,53 @@
             cursor: pointer;
         }
 
+        .headepage{
+            position: relative;
+        }
+
+        .headepage .bacbakground_cover{
+            background-image: url("{{ asset('assets/img/top-lima-peru-3462.jpg') }}");
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .headepage:before{
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: #004889;
+            opacity: 0.75;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .titlepage{
+            position: relative;
+            z-index: 9;
+        }
+
+        .titlepage h1{
+            font-size:64px;
+            font-weight: bold;
+        }
+
+        footer{
+            background: #C40000;
+            color: white;
+        }
+
         /* Lista colores background */
         .bg-col-1{ background: #ccffff }
         .bg-col-2{ background: #fdcafd }
@@ -128,6 +175,15 @@
         .bg-col-10{ background: #f0c0c0 }
         .bg-col-11{ background: #ccecff }
 
+        @media (max-width: 568px){
+            .btn-des-program{
+                width: 90%;
+            }
+            .titlepage h1{
+                font-size: 45px;
+            }
+        }
+
     </style>
     
 
@@ -135,9 +191,26 @@
 
 <body>
 
-    <div class="text-center">
-        <img src="{{ asset('assets/img/logo2.png') }}" class="lghead" alt="RADLA 2024">
+    <section class="headepage pt-5 pb-5">
+        <div class="bacbakground_cover"></div>
+        <div class="titlepage">
+            <div class="container-fluid text-center text-white">
+                <h1 class="text-center">Programa Preliminar</h1>
+                <a href="https://radla2024.org/" class="btn btn-primary">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5"></path>
+                        <path d="m12 19-7-7 7-7"></path>
+                    </svg>
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </section>
 
+    <div class="text-center pt-5">
+        <a href="https://radla2024.org/">
+            <img src="{{ asset('assets/img/logo2.png') }}" class="lghead" alt="RADLA 2024">
+        </a>
         <h1 class="tit-precongress">ACTIVIDADES PRE CONGRESO</h1>
         <p class="subtit-precongress">Swissôtel, 7 de mayo de 2024</p>
     </div>
@@ -328,22 +401,22 @@
                         DERMATITIS ATOPICA<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='2'>
                         <b>CURSO 2</b><br>
                         LO QUE DEBEMOS SABER DE ENFERMEDADES UNGUEALES<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='3'>
                         <b>CURSO 3</b><br>
                         PSORIASIS DE LA A A LA Z<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='4'>
                         <b>CURSO 4</b><br>
                         PIEL Y ENFERMEDADES SISTÉMICAS<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='5'>
                         <b>CURSO 5</b><br>
                         INMUNOLOGÍA CLÍNICA BASADA EN CASOS<br>
                         <b class="txtcol-pais">CHILE</b>
@@ -1068,6 +1141,16 @@
             </div>
         </div>
     </div>
+
+    <footer class="mt-5 pt-4 pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">© 2024 - Todos los derechos reservados</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
