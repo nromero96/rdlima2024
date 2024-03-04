@@ -631,7 +631,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>08:40 - 10:10</td>
-                    <td class="bg-col-9 cur-poin" data-sessionid=''>
+                    <td class="bg-col-9 cur-poin" data-sessionid='47'>
                         <b>SESIÓN ESPECIAL 2</b><br>
                         HAGA SU DIAGNÓSTICO<br>
                         <b class="txtcol-pais">BRASIL</b>
@@ -878,7 +878,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>08:40 - 10:10</td>
-                    <td class="bg-col-9 cur-poin" data-sessionid=''>
+                    <td class="bg-col-9 cur-poin" data-sessionid='48'>
                         <b>SESIÓN ESPECIAL 3</b><br>
                         QUÉ HAY DE NUEVO<br>
                         <b class="txtcol-pais">PERÚ</b>
@@ -1092,7 +1092,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>11:00 - 13:00</td>
-                    <td colspan="4" class="bg-col-9 cur-poin" data-sessionid=''>
+                    <td colspan="4" class="bg-col-9 cur-poin" data-sessionid='49'>
                         <b>SESIÓN ESPECIAL 4</b><br>
                         DUELO DE TITANES<br>
                         <b class="txtcol-pais">PERÚ</b>
