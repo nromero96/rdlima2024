@@ -707,22 +707,22 @@
                 </tr>
                 <tr class="text-center">
                     <td>14:00 - 15:30</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='6'>
                         <b>CURSO 6</b><br>
                         ACNÉ Y ROSÁCEA<br>
                         <b class="txtcol-pais">REP. DOMINICANA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='7'>
                         <b>CURSO 7</b><br>
                         ANOMALÍAS VASCULARES<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='8'>
                         <b>CURSO 8</b><br>
                         DERMATOSCOPÍA BÁSICA<br>
                         <b class="txtcol-pais">URUGUAY</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='9'>
                         <b>CURSO 9</b><br>
                         VIRUS Y ONCOLOGÍA<br>
                         <b class="txtcol-pais">ECUADOR</b>
@@ -747,22 +747,22 @@
                 </tr>
                 <tr class="text-center">
                     <td>16:00 - 18:00</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='6'>
                         <b>CURSO 6</b><br>
                         ACNÉ Y ROSÁCEA<br>
                         <b class="txtcol-pais">REP. DOMINICANA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='7'>
                         <b>CURSO 7</b><br>
                         ANOMALÍAS VASCULARES<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='8'>
                         <b>CURSO 8</b><br>
                         DERMATOSCOPÍA BÁSICA<br>
                         <b class="txtcol-pais">URUGUAY</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='9'>
                         <b>CURSO 9</b><br>
                         VIRUS Y ONCOLOGÍA<br>
                         <b class="txtcol-pais">ECUADOR</b>
@@ -956,27 +956,27 @@
                 </tr>
                 <tr class="text-center">
                     <td>14:00 - 15:30</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='10'>
                         <b>CURSO 10</b><br>
                         LA VERDAD DE LAS FUENTES DE ENERGÍA LASER, IPL Y OTRAS<br>
                         <b class="txtcol-pais">PARAGUAY</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='11'>
                         <b>CURSO 11</b><br>
                         MELANOMA<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='12'>
                         <b>CURSO 12</b><br>
                         TERAPÉUTICA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='13'>
                         <b>CURSO 13</b><br>
                         LO QUE DEBE SABER EL DERMATÓLOGO DE TERAPIA BIOLÓGICA Y MOLÉCULAS PEQUEÑAS<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='14'>
                         <b>CURSO 14</b><br>
                         ENFERMEDADES AMPOLLARES<br>
                         <b class="txtcol-pais">PANAMÁ</b>
@@ -998,27 +998,27 @@
                 </tr>
                 <tr class="text-center">
                     <td>16:00 - 18:00</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='10'>
                         <b>CURSO 10</b><br>
                         LA VERDAD DE LAS FUENTES DE ENERGÍA LASER, IPL Y OTRAS<br>
                         <b class="txtcol-pais">PARAGUAY</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='11'>
                         <b>CURSO 11</b><br>
                         MELANOMA<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='12'>
                         <b>CURSO 12</b><br>
                         TERAPÉUTICA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='13'>
                         <b>CURSO 13</b><br>
                         LO QUE DEBE SABER EL DERMATÓLOGO DE TERAPIA BIOLÓGICA Y MOLÉCULAS PEQUEÑAS<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='14'>
                         <b>CURSO 14</b><br>
                         ENFERMEDADES AMPOLLARES<br>
                         <b class="txtcol-pais">PANAMÁ</b>
@@ -1132,10 +1132,16 @@
                 <div class="modal-body pt-1">
                     <small class="d-block text-center" id="name_session">...</small>
                     <p class="text-center">
-                        <img id="img_session" src="{{ asset('images/programa/programa.jpg') }}" alt="Programa" class="img-fluid">
+                        <img id="img_session" src="http://127.0.0.1:8000/storage/uploads/program_file/loading_icon.gif" alt="Programa" class="img-fluid">
                     </p>
                     <p class="text-center">
-                        <a id="btn_download" href="{{ asset('images/programa/programa.jpg') }}" target="_blank" class="btn btn-primary">Descargar</a>
+                        <a id="btn_download" href="{{ asset('images/programa/programa.jpg') }}" target="_blank" class="btn btn-primary d-none">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <path d="m7 10 5 5 5-5"></path>
+                                <path d="M12 15V3"></path>
+                              </svg>
+                             Descargar</a>
                     </p>
                 </div>
             </div>
@@ -1179,11 +1185,12 @@
 
                         var url = baseurl + '/online-get-sessions/' + sessionid;
                         $.get(url, function(response) {
-                            $('#detailprogramModalLabel').text(response.code_session);
+                            $('#detailprogramModalLabel').text(response.code_session+': '+response.room);
                             $('#name_session').text(response.name_session);
 
                             $('#img_session').attr('src', baseurl + '/storage/uploads/program_file/' + response.image_program);
                             $('#btn_download').attr('href', baseurl + '/storage/uploads/program_file/' + response.file_program);
+                            $('#btn_download').removeClass('d-none');
 
                         });
 
@@ -1193,11 +1200,14 @@
 
                 }
 
-                // var url = baseurl + '/online-get-sessions/' + sessionid;
-                // $.get(url, function(response) {
-                //     $('#detailprogramModalLabel').html(response.name_session);
-                //     $('.modal-text').html(response.name_session);
-                // });
+                //if close modal
+                modalinfo.on('hidden.bs.modal', function(e) {
+                    $('#detailprogramModalLabel').text('...');
+                    $('#name_session').text('...');
+                    $('#img_session').attr('src', baseurl + '/storage/uploads/program_file/loading_icon.gif');
+                    $('#btn_download').attr('href', '#');
+                    $('#btn_download').addClass('d-none');
+                });
 
             });
         });
