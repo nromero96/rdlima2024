@@ -442,22 +442,22 @@
                         DERMATITIS ATOPICA<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='2'>
                         <b>CURSO 2</b><br>
                         LO QUE DEBEMOS SABER DE ENFERMEDADES UNGUEALES<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='3'>
                         <b>CURSO 3</b><br>
                         PSORIASIS DE LA A A LA Z<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='4'>
                         <b>CURSO 4</b><br>
                         PIEL Y ENFERMEDADES SISTÉMICAS<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid=''>
+                    <td class="bg-col-7 cur-poin" data-sessionid='5'>
                         <b>CURSO 5</b><br>
                         INMUNOLOGÍA CLÍNICA BASADA EN CASOS<br>
                         <b class="txtcol-pais">CHILE</b>
