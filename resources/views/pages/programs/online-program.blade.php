@@ -596,32 +596,32 @@
             <tbody>
                 <tr class="text-center">
                     <td>08:00 - 08:30</td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='35'>
                         <b>TEMA PUNTUAL 1</b><br>
                         SINDROME CARA ROJA<br>
                         <b class="txtcol-pais">BOLIVIA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='36'>
                         <b>TEMA PUNTUAL 2</b><br>
                         MI EXPERIENCIA EN MELASMA<br>
                         <b class="txtcol-pais">MÉXICO</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='37'>
                         <b>TEMA PUNTUAL 3</b><br>
                         MESOTERAPIA EN ALOPECIAS<br>
                         <b class="txtcol-pais">COLOMBIA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='38'>
                         <b>TEMA PUNTUAL 4</b><br>
                         ENFERMEDADES AUTOINFLAMATORIAS<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='39'>
                         <b>TEMA PUNTUAL 5</b><br>
                         INTELIGENCIA ARTIFICIAL EN DERMATOLOGÍA: PRESENTE Y FUTURO<br>
                         <b class="txtcol-pais">REP. DOMINICANA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='40'>
                         <b>TEMA PUNTUAL 6</b><br>
                         CONSEJOS PRÁCTICOS SOBRE EL USO DE FOTOTERAPIA<br>
                         <b class="txtcol-pais">URUGUAY</b>
@@ -844,27 +844,27 @@
             <tbody>
                 <tr class="text-center">
                     <td>08:00 - 08:30</td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='41'>
                         <b>TEMA PUNTUAL 7</b><br>
                         CÓMO REJUVENECER UNA CARA<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='42'>
                         <b>TEMA PUNTUAL 8</b><br>
                         REACCIÓN SISTÉMICA DE CONTACTO<br>
                         <b class="txtcol-pais">COSTA RICA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='43'>
                         <b>TEMA PUNTUAL 9</b><br>
                         LÁSER Q SWITCH Y SUS APLICACIONES<br>
                         <b class="txtcol-pais">VENEZUELA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='44'>
                         <b>TEMA PUNTUAL 10</b><br>
                         CÓMO REDACTAR UN ARTÍCULO CIENTÍFICO<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid=''>
+                    <td class="bg-col-11 cur-poin" data-sessionid='45'>
                         <b>TEMA PUNTUAL 11</b><br>
                         ITS 2024<br>
                         <b class="txtcol-pais">CHILE</b>
