@@ -540,7 +540,7 @@
                 <tr class="text-center">
                     <td>16:30 - 18:45</td>
                     <td></td>
-                    <td colspan="4" class="bg-col-10 cur-poin" data-sessionid=''>
+                    <td colspan="4" class="bg-col-10 cur-poin" data-sessionid='15'>
                         <b>PLENARIA 1</b>
                     </td>
                     <td></td>
@@ -668,7 +668,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>10:40 - 12:10</td>
-                    <td class="bg-col-10 cur-poin" data-sessionid=''>
+                    <td class="bg-col-10 cur-poin" data-sessionid='16'>
                         <b>PLENARIA 2</b>
                     </td>
                     <td colspan="6">
@@ -918,7 +918,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>10:40 - 12:10</td>
-                    <td class="bg-col-10 cur-poin" data-sessionid=''>
+                    <td class="bg-col-10 cur-poin" data-sessionid='17'>
                         <b>PLENARIA 3</b>
                     </td>
                     <td colspan="6">
