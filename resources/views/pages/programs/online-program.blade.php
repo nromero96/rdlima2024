@@ -421,7 +421,7 @@
                         INMUNOLOGÍA CLÍNICA BASADA EN CASOS<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='18'>
                         <b>SIMPOSIO 1</b><br>
                         URTICARIA CRÓNICA<br>
                         <b class="txtcol-pais">PARAGUAY</b>
@@ -506,22 +506,22 @@
                         CHARLAS DE PIEL Y CAFÉ<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='19'>
                         <b>SIMPOSIO 2</b><br>
                         CÓMO MANEJAR EL PRURITO<br>
                         <b class="txtcol-pais">URUGUAY</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='20'>
                         <b>SIMPOSIO 3</b><br>
                         COMPLICACIONES EN CIRUGÍA DERMATOLÓGICA Y COSMÉTICA<br>
                         <b class="txtcol-pais">COLOMBIA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='21'>
                         <b>SIMPOSIO 4</b><br>
                         VASCULITIS Y VASCULOPATÍAS<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='22'>
                         <b>SIMPOSIO 5</b><br>
                         DERMATOSIS NEUTROFILICAS<br>
                         <b class="txtcol-pais">MÉXICO</b>
@@ -636,17 +636,17 @@
                         HAGA SU DIAGNÓSTICO<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='23'>
                         <b>SIMPOSIO 6</b><br>
                         FOTOPROTECCIÓN UV Y MÁS ALLÁ<br>
                         <b class="txtcol-pais">BOLIVIA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='24'>
                         <b>SIMPOSIO 7</b><br>
                         ACTUALIZACIÓN EN PSORIASIS A TRAVÉS DE CASOS CLÍNICOS<br>
                         <b class="txtcol-pais">COLOMBIA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='25'>
                         <b>SIMPOSIO 8</b><br>
                         REACCIONES ADVERSAS A FÁRMACOS ONCOLÓGICOS<br>
                         <b class="txtcol-pais">URUGUAY</b>
@@ -654,7 +654,7 @@
                     <td class="cur-poin" data-sessionid=''>
                         <b>SILADEPA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='26'>
                         <b>SIMPOSIO 9</b><br>
                         MANEJO DE ÚLCERA CRÓNICA<br>
                         <b class="txtcol-pais">MÉXICO</b>
@@ -883,22 +883,22 @@
                         QUÉ HAY DE NUEVO<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='27'>
                         <b>SIMPOSIO 10</b><br>
                         VITÍLIGO<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='28'>
                         <b>SIMPOSIO 11</b><br>
                         CICATRICES DE ACNÉ, CÓMO TRATARLAS<br>
                         <b class="txtcol-pais">PARAGUAY</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='29'>
                         <b>SIMPOSIO 12</b><br>
                         LO QUE DEBEMOS SABER DE TRATAMIENTOS NO QUIRÚRGICOS EN FLACIDEZ FACIAL<br>
                         <b class="txtcol-pais">REP. DOMINICANA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='30'>
                         <b>SIMPOSIO 13</b><br>
                         ACTUALIZACIÓN EN DA A TRAVÉS DE CASOS CLÍNICOS<br>
                         <b class="txtcol-pais">ARGENTINA</b>
@@ -1062,22 +1062,22 @@
             <tbody>
                 <tr class="text-center">
                     <td>08:30 - 10:30</td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='31'>
                         <b>SIMPOSIO 14</b><br>
                         DERMATITIS DE CONTACTO<br>
                         <b class="txtcol-pais">GUATEMALA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='32'>
                         <b>SIMPOSIO 15</b><br>
                         ENFERMEDADES DE PELO<br>
                         <b class="txtcol-pais">COLOMBIA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='33'>
                         <b>SIMPOSIO 16</b><br>
                         DERMATOLOGÍA TROPICAL<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid=''>
+                    <td class="bg-col-8 cur-poin" data-sessionid='34'>
                         <b>SIMPOSIO 17</b><br>
                         GENÉTICA Y PIEL<br>
                         <b class="txtcol-pais">CHILE</b>
