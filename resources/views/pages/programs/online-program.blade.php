@@ -1132,7 +1132,7 @@
                 <div class="modal-body pt-1">
                     <small class="d-block text-center" id="name_session">...</small>
                     <p class="text-center">
-                        <img id="img_session" src="http://127.0.0.1:8000/storage/uploads/program_file/loading_icon.gif" alt="Programa" class="img-fluid">
+                        <img id="img_session" src="https://my.radla2024.org/storage/uploads/program_file/loading_icon.gif" alt="Programa" class="img-fluid">
                     </p>
                     <p class="text-center">
                         <a id="btn_download" href="{{ asset('images/programa/programa.jpg') }}" target="_blank" class="btn btn-primary d-none">
