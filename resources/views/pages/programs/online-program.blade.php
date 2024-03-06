@@ -426,7 +426,7 @@
                         URTICARIA CRÓNICA<br>
                         <b class="txtcol-pais">PARAGUAY</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>MINICASOS 1</b><br>
                 </tr>
                 <tr class="text-center">
@@ -462,46 +462,46 @@
                         INMUNOLOGÍA CLÍNICA BASADA EN CASOS<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>MINICASOS 2</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>MINICASOS 3</b>
                     </td>
                 </tr>
                 <tr class="text-center">
                     <td>12:15 - 13:15</td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">PFIZER</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">GALDERMA</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">JANSSEN</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">SESDERMA</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">CANTABRIA</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">PIERRE FABRE</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
                 </tr>
                 <tr class="text-center">
                     <td>14:00 - 16:00</td>
-                    <td class="bg-col-9 cur-poin" data-sessionid=''>
+                    <td class="bg-col-9 cur-poin" data-sessionid='46'>
                         <b>SESIÓN ESPECIAL 1</b><br>
                         CHARLAS DE PIEL Y CAFÉ<br>
                         <b class="txtcol-pais">PERÚ</b>
@@ -526,10 +526,10 @@
                         DERMATOSIS NEUTROFILICAS<br>
                         <b class="txtcol-pais">MÉXICO</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>MINICASOS 4</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>MINICASOS 5</b>
                     </td>
                 </tr>
@@ -548,7 +548,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>18:50</td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b class="text-cl-blue">CEREMONIA INAUGURAL</b><br>
                         Cóctel de Bienvenida
                     </td>
@@ -626,7 +626,7 @@
                         CONSEJOS PRÁCTICOS SOBRE EL USO DE FOTOTERAPIA<br>
                         <b class="txtcol-pais">URUGUAY</b>
                     </td>
-                    <td class="cur-poin" rowspan="2" data-sessionid=''>
+                    <td class="" rowspan="2" data-sessionid=''>
                         <b>DERMATÓLOGO JOVEN 1</b><br>
                 </tr>
                 <tr class="text-center">
@@ -651,7 +651,7 @@
                         REACCIONES ADVERSAS A FÁRMACOS ONCOLÓGICOS<br>
                         <b class="txtcol-pais">URUGUAY</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>SILADEPA</b>
                     </td>
                     <td class="bg-col-8 cur-poin" data-sessionid='26'>
@@ -677,31 +677,31 @@
                 </tr>
                 <tr class="text-center">
                     <td>12:20 - 13:20</td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">EUCERIN</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">MARTIDERM</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">LOREAL</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">SESDERMA</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">BIODERMA</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">DEKA LASER</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                     </td>
                 </tr>
@@ -727,13 +727,13 @@
                         VIRUS Y ONCOLOGÍA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>SILADEPA</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>TRABAJO DE INVESTIGACION 1</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>DERMATÓLOGO JOVEN 2</b>
                     </td>
                 </tr>
@@ -767,38 +767,38 @@
                         VIRUS Y ONCOLOGÍA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>SILADEPA</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>TRABAJO DE INVESTIGACION 2</b>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         <b>DERMATÓLOGO JOVEN 3</b>
                     </td>
                 </tr>
                 <tr class="text-center">
                     <td>18:10 - 19:30</td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">ABBVIE</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
                 </tr>
@@ -927,30 +927,30 @@
                 </tr>
                 <tr class="text-center">
                     <td>12:20 - 13:20</td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">LOREAL</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">ISDIN</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">EUCERIN</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">MEGALABS</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">BAGO</b>
                     </td>
-                    <td class="bg-col-1 cur-poin" data-sessionid=''>
+                    <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                     </td>
-                    <td class="cur-poin" data-sessionid=''>
+                    <td class="" data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                     </td>
                 </tr>
@@ -1100,13 +1100,13 @@
                 </tr>
                 <tr class="text-center">
                     <td>13:00 - 13:30</td>
-                    <td colspan="4" class="cur-poin text-cl-blue" data-sessionid=''>
+                    <td colspan="4" class="text-cl-blue" data-sessionid=''>
                         <b>CLAUSURA<br>ENTREGA DE RECONOCIMIENTOS</b>
                     </td>
                 </tr>
                 <tr class="text-center">
                     <td>13:30 - 15:00</td>
-                    <td colspan="4" class="cur-poin" data-sessionid=''>
+                    <td colspan="4" class="" data-sessionid=''>
                         <b>CÓCTEL DE CLAUSURA<br>
                             Salón de Exhibición</b>
                     </td>
