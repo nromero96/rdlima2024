@@ -360,7 +360,7 @@
         <div class="d-flex">
 
         </div>
-        <a href="https://radla2024.org/wp-content/uploads/2024/02/version-final-Programa-General-RADLA-2024_26022024.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
+        <a href="https://radla2024.org/wp-content/uploads/2024/03/version-final-Programa-General-RADLA-2024-11032024.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
         <a href="https://radla2024.org/wp-content/uploads/2024/03/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
     </div>
 

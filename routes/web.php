@@ -24,6 +24,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\CountryStateController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProgramSessionController;
+use App\Http\Controllers\PosterController;
 
 
 use Illuminate\Support\Facades\Artisan;
@@ -142,6 +143,13 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::get('/exportar-excel-works', [WorkController::class, 'exportExcelWorks'])->name('works.exportexcel');
     Route::put('sendmail-workaccepted/{id}', [WorkController::class, 'sendMailWorkAccepted'])->name('works.sendmailworkaccepted');
     
+    //Posters
+    Route::resource('posters', PosterController::class)->names('posters');
+    //upload poster file
+    Route::post('/upload-poster-file', [PosterController::class, 'uploadFile'])->name('posters.uploadfile');
+    Route::delete('/delete-poster-file/{posterId}/{fileNumber}', [PosterController::class, 'deleteFile'])->name('posters.deletefile');
+
+
     //ExhibitorsController
     Route::resource('exhibitors', ExhibitorController::class)->names('exhibitors');
 

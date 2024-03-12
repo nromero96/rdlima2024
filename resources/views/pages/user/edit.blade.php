@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="inputSecondLastName" class="form-label fw-bold">{{__("Apellido materno")}}</label>
-                                <input type="text" name="second_lastname" class="form-control convert_mayus" id="inputSecondLastName" value="{{$user->second_lastname}}" required>
+                                <input type="text" name="second_lastname" class="form-control convert_mayus" id="inputSecondLastName" value="{{$user->second_lastname}}">
                                 {!!$errors->first("second_lastname", "<span class='text-danger'>:message</span>")!!}
                             </div>
                             <div class="col-md-4">

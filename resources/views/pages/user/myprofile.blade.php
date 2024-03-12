@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="inputSecondLastName" class="form-label fw-bold">{{__("Apellido materno")}}</label>
-                                <input type="text" name="second_lastname" class="form-control convert_mayus" id="inputSecondLastName" value="{{$user->second_lastname}}" required>
+                                <input type="text" name="second_lastname" class="form-control convert_mayus" id="inputSecondLastName" value="{{$user->second_lastname}}">
                                 {!!$errors->first("second_lastname", "<span class='text-danger'>:message</span>")!!}
                             </div>
                             <div class="col-md-4">
@@ -241,7 +241,7 @@
 
                             <div class="col-md-6">
                                 <label for="inputSolapin" class="form-label fw-bold">{{__("Solapín/Gafete")}} <small class="fw-normal">({{ __("Un nombre y un apellido") }})</small></label>
-                                <input type="text" class="form-control convert_mayus" name="solapin_name" id="inputSolapin" value="{{ $user->solapin_name }}" placeholder="Poner un nombre y un apellido">
+                                <input type="text" class="form-control convert_mayus" name="solapin_name" id="inputSolapin" value="{{ $user->solapin_name }}" placeholder="Poner un nombre y un apellido" required>
                                 {!!$errors->first("solapin_name", "<span class='text-danger'>:message</span>")!!}
                             </div>
 
