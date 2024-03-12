@@ -49,6 +49,27 @@
 
         }
 
+        .audio{
+            position: relative;
+        }
+
+        .audio::before{
+            content: '';
+            background-image: url(https://my.radla2024.org/assets/img/audifono-45374.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            background-position: center;
+            width: 17px;
+            height: 17px;
+            bottom: 2px;
+            right: 2px;
+            background-color: white;
+            border-radius: 36px;
+            opacity: 0.9;
+            box-shadow: 0px 0px 10px 0px #0000004f;
+        }
+
         .dv-tablecontent table{
             margin: 0 auto;
             font-size: 14px;
@@ -406,7 +427,7 @@
                         LO QUE DEBEMOS SABER DE ENFERMEDADES UNGUEALES<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='3'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='3'>
                         <b>CURSO 3</b><br>
                         PSORIASIS DE LA A A LA Z<br>
                         <b class="txtcol-pais">PERÚ</b>
@@ -421,7 +442,7 @@
                         INMUNOLOGÍA CLÍNICA BASADA EN CASOS<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid='18'>
+                    <td class="bg-col-8 audio cur-poin" data-sessionid='18'>
                         <b>SIMPOSIO 1</b><br>
                         URTICARIA CRÓNICA<br>
                         <b class="txtcol-pais">PARAGUAY</b>
@@ -447,7 +468,7 @@
                         LO QUE DEBEMOS SABER DE ENFERMEDADES UNGUEALES<br>
                         <b class="txtcol-pais">BRASIL</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='3'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='3'>
                         <b>CURSO 3</b><br>
                         PSORIASIS DE LA A A LA Z<br>
                         <b class="txtcol-pais">PERÚ</b>
@@ -516,12 +537,12 @@
                         COMPLICACIONES EN CIRUGÍA DERMATOLÓGICA Y COSMÉTICA<br>
                         <b class="txtcol-pais">COLOMBIA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid='21'>
+                    <td class="bg-col-8 audio cur-poin" data-sessionid='21'>
                         <b>SIMPOSIO 4</b><br>
                         VASCULITIS Y VASCULOPATÍAS<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid='22'>
+                    <td class="bg-col-8 audio cur-poin" data-sessionid='22'>
                         <b>SIMPOSIO 5</b><br>
                         DERMATOSIS NEUTROFILICAS<br>
                         <b class="txtcol-pais">MÉXICO</b>
@@ -540,7 +561,7 @@
                 <tr class="text-center">
                     <td>16:30 - 18:45</td>
                     <td></td>
-                    <td colspan="4" class="bg-col-10 cur-poin" data-sessionid='15'>
+                    <td colspan="4" class="bg-col-10 audio cur-poin" data-sessionid='15'>
                         <b>PLENARIA 1</b>
                     </td>
                     <td></td>
@@ -548,7 +569,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>18:50</td>
-                    <td colspan="5" class="" data-sessionid=''>
+                    <td colspan="5" class="audio" data-sessionid=''>
                         <b class="text-cl-blue">CEREMONIA INAUGURAL</b><br>
                         Cóctel de Bienvenida
                     </td>
@@ -621,7 +642,7 @@
                         INTELIGENCIA ARTIFICIAL EN DERMATOLOGÍA: PRESENTE Y FUTURO<br>
                         <b class="txtcol-pais">REP. DOMINICANA</b>
                     </td>
-                    <td class="bg-col-11 cur-poin" data-sessionid='40'>
+                    <td class="bg-col-11 audio cur-poin" data-sessionid='40'>
                         <b>TEMA PUNTUAL 6</b><br>
                         CONSEJOS PRÁCTICOS SOBRE EL USO DE FOTOTERAPIA<br>
                         <b class="txtcol-pais">URUGUAY</b>
@@ -646,7 +667,7 @@
                         ACTUALIZACIÓN EN PSORIASIS A TRAVÉS DE CASOS CLÍNICOS<br>
                         <b class="txtcol-pais">COLOMBIA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid='25'>
+                    <td class="bg-col-8 audio cur-poin" data-sessionid='25'>
                         <b>SIMPOSIO 8</b><br>
                         REACCIONES ADVERSAS A FÁRMACOS ONCOLÓGICOS<br>
                         <b class="txtcol-pais">URUGUAY</b>
@@ -669,7 +690,7 @@
                 <tr class="text-center">
                     <td>10:40 - 12:10</td>
                     <td></td>
-                    <td colspan="4" class="bg-col-10 cur-poin" data-sessionid='16'>
+                    <td colspan="4" class="bg-col-10 audio cur-poin" data-sessionid='16'>
                         <b>PLENARIA 2</b>
                     </td>
                     <td></td>
@@ -707,7 +728,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>14:00 - 15:30</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='6'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='6'>
                         <b>CURSO 6</b><br>
                         ACNÉ Y ROSÁCEA<br>
                         <b class="txtcol-pais">REP. DOMINICANA</b>
@@ -717,7 +738,7 @@
                         ANOMALÍAS VASCULARES<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='8'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='8'>
                         <b>CURSO 8</b><br>
                         DERMATOSCOPÍA BÁSICA<br>
                         <b class="txtcol-pais">URUGUAY</b>
@@ -747,7 +768,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>16:00 - 18:00</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='6'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='6'>
                         <b>CURSO 6</b><br>
                         ACNÉ Y ROSÁCEA<br>
                         <b class="txtcol-pais">REP. DOMINICANA</b>
@@ -757,7 +778,7 @@
                         ANOMALÍAS VASCULARES<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='8'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='8'>
                         <b>CURSO 8</b><br>
                         DERMATOSCOPÍA BÁSICA<br>
                         <b class="txtcol-pais">URUGUAY</b>
@@ -779,8 +800,8 @@
                 </tr>
                 <tr class="text-center">
                     <td>18:10 - 19:30</td>
-                    <td class="bg-col-1 " data-sessionid=''>
-                        SIMPOSIO PATROCINADO
+                    <td class=" " data-sessionid=''>
+                        
                     </td>
                     <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
@@ -795,11 +816,8 @@
                     <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
-                        SIMPOSIO PATROCINADO
-                    </td>
-                    <td class="bg-col-1 " data-sessionid=''>
-                        SIMPOSIO PATROCINADO
+                    <td colspan="2" class=" " data-sessionid=''>
+                        
                     </td>
                 </tr>
             </tbody>
@@ -866,12 +884,12 @@
                 </tr>
                 <tr class="text-center">
                     <td>08:40 - 10:10</td>
-                    <td class="bg-col-9 cur-poin" data-sessionid='48'>
+                    <td class="bg-col-9 audio cur-poin" data-sessionid='48'>
                         <b>SESIÓN ESPECIAL 3</b><br>
                         QUÉ HAY DE NUEVO<br>
                         <b class="txtcol-pais">PERÚ</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid='27'>
+                    <td class="bg-col-8 audio cur-poin" data-sessionid='27'>
                         <b>SIMPOSIO 10</b><br>
                         VITÍLIGO<br>
                         <b class="txtcol-pais">BRASIL</b>
@@ -901,7 +919,7 @@
                 <tr class="text-center">
                     <td>10:40 - 12:10</td>
                     <td></td>
-                    <td colspan="4" class="bg-col-10 cur-poin" data-sessionid='17'>
+                    <td colspan="4" class="bg-col-10 audio cur-poin" data-sessionid='17'>
                         <b>PLENARIA 3</b>
                     </td>
                 </tr>
@@ -930,12 +948,12 @@
                 </tr>
                 <tr class="text-center">
                     <td>14:00 - 15:30</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='10'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='10'>
                         <b>CURSO 10</b><br>
                         LA VERDAD DE LAS FUENTES DE ENERGÍA LASER, IPL Y OTRAS<br>
                         <b class="txtcol-pais">PARAGUAY</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='11'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='11'>
                         <b>CURSO 11</b><br>
                         MELANOMA<br>
                         <b class="txtcol-pais">BRASIL</b>
@@ -945,12 +963,12 @@
                         TERAPÉUTICA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='13'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='13'>
                         <b>CURSO 13</b><br>
                         LO QUE DEBE SABER EL DERMATÓLOGO DE TERAPIA BIOLÓGICA Y MOLÉCULAS PEQUEÑAS<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='14'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='14'>
                         <b>CURSO 14</b><br>
                         ENFERMEDADES AMPOLLARES<br>
                         <b class="txtcol-pais">PANAMÁ</b>
@@ -966,12 +984,12 @@
                 </tr>
                 <tr class="text-center">
                     <td>16:00 - 18:00</td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='10'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='10'>
                         <b>CURSO 10</b><br>
                         LA VERDAD DE LAS FUENTES DE ENERGÍA LASER, IPL Y OTRAS<br>
                         <b class="txtcol-pais">PARAGUAY</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='11'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='11'>
                         <b>CURSO 11</b><br>
                         MELANOMA<br>
                         <b class="txtcol-pais">BRASIL</b>
@@ -981,12 +999,12 @@
                         TERAPÉUTICA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='13'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='13'>
                         <b>CURSO 13</b><br>
                         LO QUE DEBE SABER EL DERMATÓLOGO DE TERAPIA BIOLÓGICA Y MOLÉCULAS PEQUEÑAS<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td class="bg-col-7 cur-poin" data-sessionid='14'>
+                    <td class="bg-col-7 audio cur-poin" data-sessionid='14'>
                         <b>CURSO 14</b><br>
                         ENFERMEDADES AMPOLLARES<br>
                         <b class="txtcol-pais">PANAMÁ</b>
@@ -1034,7 +1052,7 @@
                         ENFERMEDADES DE PELO<br>
                         <b class="txtcol-pais">COLOMBIA</b>
                     </td>
-                    <td class="bg-col-8 cur-poin" data-sessionid='33'>
+                    <td class="bg-col-8 audio cur-poin" data-sessionid='33'>
                         <b>SIMPOSIO 16</b><br>
                         DERMATOLOGÍA TROPICAL<br>
                         <b class="txtcol-pais">PERÚ</b>
