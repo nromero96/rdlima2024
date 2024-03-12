@@ -548,11 +548,11 @@
                 </tr>
                 <tr class="text-center">
                     <td>18:50</td>
-                    <td class="" data-sessionid=''>
+                    <td colspan="5" class="" data-sessionid=''>
                         <b class="text-cl-blue">CEREMONIA INAUGURAL</b><br>
                         Cóctel de Bienvenida
                     </td>
-                    <td colspan="6"></td>
+                    <td colspan="2"></td>
                 </tr>
 
             </tbody>
@@ -668,12 +668,12 @@
                 </tr>
                 <tr class="text-center">
                     <td>10:40 - 12:10</td>
-                    <td class="bg-col-10 cur-poin" data-sessionid='16'>
+                    <td></td>
+                    <td colspan="4" class="bg-col-10 cur-poin" data-sessionid='16'>
                         <b>PLENARIA 2</b>
                     </td>
-                    <td colspan="6">
-                        
-                    </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr class="text-center">
                     <td>12:20 - 13:20</td>
@@ -818,26 +818,20 @@
             <thead>
                 <tr class="text-center">
                     <th width="120px">HORARIO</th>
-                    <th width="142.857px">
+                    <th width="200px">
                         SANTA URSULA<br>700 + 340
                     </th>
-                    <th width="142.857px">
+                    <th width="200px">
                         GRAN SALÓN 1<br>320
                     </th>
-                    <th width="142.857px">
+                    <th width="200px">
                         GRAN SALÓN 2<br>490
                     </th>
-                    <th width="142.857px">
+                    <th width="200px">
                         PARACAS 1<br>450
                     </th>
-                    <th width="142.857px">
+                    <th width="200px">
                         PARACAS 2<br>200
-                    </th>
-                    <th width="142.857px">
-                        NOVOTEL 1<br>280
-                    </th>
-                    <th width="142.857px">
-                        NOVOTEL 2<br>220
                     </th>
                 </tr>
             </thead>
@@ -869,12 +863,6 @@
                         ITS 2024<br>
                         <b class="txtcol-pais">CHILE</b>
                     </td>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        
-                    </td>
                 </tr>
                 <tr class="text-center">
                     <td>08:40 - 10:10</td>
@@ -903,12 +891,6 @@
                         ACTUALIZACIÓN EN DA A TRAVÉS DE CASOS CLÍNICOS<br>
                         <b class="txtcol-pais">ARGENTINA</b>
                     </td>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        
-                    </td>
                 </tr>
                 <tr class="text-center">
                     <td>10:10 - 10:40</td>
@@ -918,11 +900,9 @@
                 </tr>
                 <tr class="text-center">
                     <td>10:40 - 12:10</td>
-                    <td class="bg-col-10 cur-poin" data-sessionid='17'>
+                    <td></td>
+                    <td colspan="4" class="bg-col-10 cur-poin" data-sessionid='17'>
                         <b>PLENARIA 3</b>
-                    </td>
-                    <td colspan="6">
-                        
                     </td>
                 </tr>
                 <tr class="text-center">
@@ -946,12 +926,6 @@
                     <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">BAGO</b>
-                    </td>
-                    <td class="bg-col-1 " data-sessionid=''>
-                        SIMPOSIO PATROCINADO<br>
-                    </td>
-                    <td class="" data-sessionid=''>
-                        SIMPOSIO PATROCINADO<br>
                     </td>
                 </tr>
                 <tr class="text-center">
@@ -981,18 +955,12 @@
                         ENFERMEDADES AMPOLLARES<br>
                         <b class="txtcol-pais">PANAMÁ</b>
                     </td>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        
-                    </td>
                 </tr>
                 <tr class="text-center">
                     <td>
                         15:30 - 16:00
                     </td>
-                    <td colspan="7">
+                    <td colspan="5">
                         PAUSA CAFÉ
                     </td>
                 </tr>
@@ -1022,12 +990,6 @@
                         <b>CURSO 14</b><br>
                         ENFERMEDADES AMPOLLARES<br>
                         <b class="txtcol-pais">PANAMÁ</b>
-                    </td>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        
                     </td>
                 </tr>
             </tbody>
