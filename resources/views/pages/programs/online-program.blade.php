@@ -270,7 +270,7 @@
                     <td rowspan="5" class="align-middle text-cl-blue bg-col-2">
                         <b>DERMATOLOGÍA PEDIÁTRICA</b>
                     </td>
-                    <td rowspan="5" class="align-middle text-cl-blue bg-col-3">
+                    <td rowspan="5" class="align-middle text-cl-blue bg-col-3 cur-poin" data-sessionid="60">
                         <b>REUNIÓN SILADEPA</b>
                     </td>
                     <td></td>
@@ -308,7 +308,7 @@
                     <td>RECESO</td>
                     <td>RECESO</td>
                     <td>RECESO</td>
-                    <td rowspan="3" class="align-middle text-cl-blue bg-col-5">
+                    <td rowspan="3" class="align-middle text-cl-blue bg-col-5 cur-poin" data-sessionid="59">
                         <b>SIMPOSIO IEC<br>13:30 - 15:30</b>
                     </td>
                 </tr>
@@ -320,7 +320,7 @@
                     <td rowspan="4" class="align-middle text-cl-blue bg-col-2">
                         <b>DERMATOLOGÍA PEDIÁTRICA</b>
                     </td>
-                    <td rowspan="4" class="align-middle text-cl-blue bg-col-3">
+                    <td rowspan="4" class="align-middle text-cl-blue bg-col-3 cur-poin" data-sessionid="60">
                         <b>REUNIÓN SILADEPA</b>
                     </td>
                     {{-- <td></td> --}}
@@ -447,8 +447,8 @@
                         URTICARIA CRÓNICA<br>
                         <b class="txtcol-pais">PARAGUAY</b>
                     </td>
-                    <td class="" data-sessionid=''>
-                        <b>MINICASOS 1</b><br>
+                    <td class="cur-poin" data-sessionid='56'>
+                        <b>TRABAJOS DE INVESTIGACIÓN 1</b><br>
                 </tr>
                 <tr class="text-center">
                     <td>10:00 - 10:30</td>
@@ -484,10 +484,10 @@
                         <b class="txtcol-pais">CHILE</b>
                     </td>
                     <td class="" data-sessionid=''>
-                        <b>MINICASOS 2</b>
+                        <b></b>
                     </td>
-                    <td class="" data-sessionid=''>
-                        <b>MINICASOS 3</b>
+                    <td class="cur-poin" data-sessionid='57'>
+                        <b>TRABAJOS DE INVESTIGACIÓN 2</b>
                     </td>
                 </tr>
                 <tr class="text-center">
@@ -547,11 +547,11 @@
                         DERMATOSIS NEUTROFILICAS<br>
                         <b class="txtcol-pais">MÉXICO</b>
                     </td>
-                    <td class="" data-sessionid=''>
-                        <b>MINICASOS 4</b>
+                    <td class="cur-poin" data-sessionid='53'>
+                        <b>MINICASOS 1</b>
                     </td>
-                    <td class="" data-sessionid=''>
-                        <b>MINICASOS 5</b>
+                    <td class="cur-poin" data-sessionid='50'>
+                        <b>DERMATÓLOGO JOVEN 1</b>
                     </td>
                 </tr>
                 <tr class="text-center">
@@ -647,8 +647,8 @@
                         CONSEJOS PRÁCTICOS SOBRE EL USO DE FOTOTERAPIA<br>
                         <b class="txtcol-pais">URUGUAY</b>
                     </td>
-                    <td class="" rowspan="2" data-sessionid=''>
-                        <b>DERMATÓLOGO JOVEN 1</b><br>
+                    <td class="cur-poin" rowspan="2" data-sessionid='54'>
+                        <b>MINICASOS 2 </b><br>
                 </tr>
                 <tr class="text-center">
                     <td>08:40 - 10:10</td>
@@ -672,7 +672,7 @@
                         REACCIONES ADVERSAS A FÁRMACOS ONCOLÓGICOS<br>
                         <b class="txtcol-pais">URUGUAY</b>
                     </td>
-                    <td class="" data-sessionid=''>
+                    <td class="cur-poin" data-sessionid='58'>
                         <b>SILADEPA</b>
                     </td>
                     <td class="bg-col-8 cur-poin" data-sessionid='26'>
@@ -722,7 +722,7 @@
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">DEKA LASER</b>
                     </td>
-                    <td class="" data-sessionid=''>
+                    <td class="bg-col-1" data-sessionid=''>
                         SIMPOSIO PATROCINADO<br>
                     </td>
                 </tr>
@@ -748,13 +748,13 @@
                         VIRUS Y ONCOLOGÍA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="" data-sessionid=''>
+                    <td class="cur-poin" data-sessionid='58'>
                         <b>SILADEPA</b>
                     </td>
                     <td class="" data-sessionid=''>
-                        <b>TRABAJO DE INVESTIGACION 1</b>
+                        <b></b>
                     </td>
-                    <td class="" data-sessionid=''>
+                    <td class="cur-poin" data-sessionid='51'>
                         <b>DERMATÓLOGO JOVEN 2</b>
                     </td>
                 </tr>
@@ -788,13 +788,13 @@
                         VIRUS Y ONCOLOGÍA<br>
                         <b class="txtcol-pais">ECUADOR</b>
                     </td>
-                    <td class="" data-sessionid=''>
+                    <td class="cur-poin" data-sessionid='58'>
                         <b>SILADEPA</b>
                     </td>
-                    <td class="" data-sessionid=''>
-                        <b>TRABAJO DE INVESTIGACION 2</b>
+                    <td class="cur-poin" data-sessionid='55'>
+                        <b>MINICASOS 3</b>
                     </td>
-                    <td class="" data-sessionid=''>
+                    <td class="cur-poin" data-sessionid='52'>
                         <b>DERMATÓLOGO JOVEN 3</b>
                     </td>
                 </tr>
