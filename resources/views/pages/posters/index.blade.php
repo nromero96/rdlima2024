@@ -188,7 +188,7 @@
                         <form action="{{ route('posters.uploadfile') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="idposter" id="idposter" value="">
-                            <p class="text-center">El archivo debe ser en formato PDF y no debe exceder los 20MB.</p>
+                            <p class="text-center"><small>(AGRADECEMOS GRABAR ARCHIVOS EN <b>ALTA RESOLUCION</b> PARA UNA BUENA VISUALIZACION DURANTE EL EVENTO)</small><br>El archivo debe ser en formato PDF y no debe exceder los 20MB.</p>
                             <div class="form-group">
                                 <input type="file" class="form-control" name="poster" id="poster" required>
                             </div>
