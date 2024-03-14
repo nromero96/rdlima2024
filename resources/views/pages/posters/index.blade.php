@@ -188,7 +188,7 @@
                         <form action="{{ route('posters.uploadfile') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="idposter" id="idposter" value="">
-                            <p class="text-center">El archivo debe ser en formato PDF y no debe exceder los 5MB.</p>
+                            <p class="text-center">El archivo debe ser en formato PDF y no debe exceder los 20MB.</p>
                             <div class="form-group">
                                 <input type="file" class="form-control" name="poster" id="poster" required>
                             </div>
@@ -264,10 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Solo se permiten archivos PDF.');
                 return;
             }
-            // Verificar si el tamaño del archivo supera 5MB
-            if (file.fileSize > 5 * 1024 * 1024) {
+            // Verificar si el tamaño del archivo supera 20MB
+            if (file.fileSize > 20 * 1024 * 1024) {
                 pond.removeFile(file.id); // Eliminar el archivo no válido
-                alert('El archivo no puede ser mayor a 5 MB.');
+                alert('El archivo no puede ser mayor a 20 MB.');
                 return;
             }
         }
