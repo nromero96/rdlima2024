@@ -66,6 +66,8 @@ if (!function_exists('setTitle')) :
             echo __('Editar Trabajo') . $admin_name;
         elseif ($page_name === 'works_show'):
             echo __('Ver Trabajo') . $admin_name;
+        elseif ($page_name === 'posters'):
+            echo __('Posters') . $admin_name;
         elseif($page_name === 'beneficiarios_becas'):
             echo __('Beneficiarios Becas') . $admin_name;
         elseif($page_name === 'coupons'):

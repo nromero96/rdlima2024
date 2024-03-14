@@ -85,6 +85,16 @@
             <link href="{{ asset('plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
             @break
+        
+        @case('posters')
+            {{-- Posters --}}
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/light/components/modal.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dark/components/modal.css') }}">
+            
+            <link href="{{ asset('plugins/src/filepond/filepond.min.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('plugins/css/light/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('plugins/css/dark/filepond/custom-filepond.css') }}" rel="stylesheet" type="text/css" />
+            @break
 
         @case('beneficiarios_becas')
             {{-- Beneficiarios --}}

@@ -145,9 +145,10 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     
     //Posters
     Route::resource('posters', PosterController::class)->names('posters');
-    //upload poster file
-    Route::post('/upload-poster-file', [PosterController::class, 'uploadFile'])->name('posters.uploadfile');
-    Route::delete('/delete-poster-file/{posterId}/{fileNumber}', [PosterController::class, 'deleteFile'])->name('posters.deletefile');
+    //poster.upload
+    Route::post('/upload-poster-file', [PosterController::class, 'uploadPosterFile'])->name('posters.uploadfile');
+    Route::delete('/delete-poster-file/{posterId}/', [PosterController::class, 'deletePosterFile'])->name('posters.deletefile');
+    Route::put('/confirm-poster-file/{posterId}/', [PosterController::class, 'confirmPosterFile'])->name('posters.confirmfile');
 
 
     //ExhibitorsController

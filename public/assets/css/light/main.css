@@ -19,6 +19,25 @@ html {
   /* Agrega una animación o loader aquí */
 }
 
+.idposter {
+  position: absolute;
+  background: #c00000;
+  color: white;
+  padding: 2px 2px;
+  width: 34px;
+  text-align: center;
+  border-radius: 9px 1px 9px 0px;
+  top: 0px;
+  left: 0px;
+  font-size: 12px;
+}
+
+.uploadareaposter {
+  background: #fff7f7;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+}
+
 body {
   color: #888ea8;
   height: 100%;
@@ -1840,8 +1859,8 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-  border: 1px solid #4361ee !important;
-  color: #4361ee !important;
+  border: 1px solid #c00000 !important;
+  color: #c00000 !important;
   background-color: transparent;
   box-shadow: none;
 }
@@ -1875,8 +1894,8 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-secondary {
-  border: 1px solid #805dca !important;
-  color: #805dca !important;
+  border: 1px solid #004889 !important;
+  color: #004889 !important;
   background-color: transparent;
   box-shadow: none;
 }
@@ -1938,7 +1957,7 @@ fieldset:disabled .btn {
 }
 
 .btn-check:active + .btn-outline-primary, .btn-check:checked + .btn-outline-primary {
-  background-color: #4361ee !important;
+  background-color: #c00000 !important;
   color: #fff !important;
 }
 

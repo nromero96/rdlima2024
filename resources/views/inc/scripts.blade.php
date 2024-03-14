@@ -41,6 +41,12 @@
             <script src="{{asset('assets/js/apps/works/list.js')}}?v={{ config('app.version') }}"></script>
             @break
 
+        @case('posters')
+            {{-- Posters --}}
+            <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>
+            <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
+            @break
+
         @case('works_rejects')
             {{-- Works --}}
             <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
