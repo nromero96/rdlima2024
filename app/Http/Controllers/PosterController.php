@@ -32,7 +32,7 @@ class PosterController extends Controller
                 $posters = Work::join('users', 'works.user_id', '=', 'users.id')
                 ->where('works.status', 'aceptado')
                 ->where(function ($query) use ($search) {
-                    $query->orWhereRaw('CONCAT(users.name, " ", users.lastname, " ", users.second_lastname) LIKE ?', ["%{$search}%"])
+                    $query->orWhereRaw('CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) LIKE ?', ["%{$search}%"])
                           ->orWhere('works.category', 'LIKE', "%{$search}%")
                           ->orWhere('works.knowledge_area', 'LIKE', "%{$search}%")
                           ->orWhere('works.id', 'LIKE', "%{$search}%")
@@ -43,7 +43,7 @@ class PosterController extends Controller
             } else {
                 $posters = Work::join('users', 'works.user_id', '=', 'users.id')
                 ->where('works.status', 'aceptado')
-                ->selectRaw('works.*, CONCAT(users.name, " ", users.lastname, " ", users.second_lastname) AS author, users.country')
+                ->selectRaw('works.*, CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) AS author, users.country')
                 ->get();
             }
         } else {
