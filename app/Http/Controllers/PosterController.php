@@ -7,6 +7,7 @@ use App\Models\Poster;
 use App\Models\Work;
 use App\Models\TemporaryFile;
 use Illuminate\Support\Facades\Storage;
+use App\Models\WorksNote;
 
 //log
 use Illuminate\Support\Facades\Log;
@@ -104,6 +105,16 @@ class PosterController extends Controller
             $work->poster_file = null;
             $work->poster_date_uploaded = null;
             $work->save();
+
+            $work_note = new WorksNote();
+            $work_note->work_id = $id;
+            $work_note->action = 'Archivo poster eliminado';
+            $work_note->note = 'El archivo del poster ha sido eliminado.';
+            $work_note->user_id = $user->id;
+            $work_note->created_at = now();
+            $work_note->updated_at = now();
+            $work_note->save();
+
             return redirect()->route('posters.index')->with('success', 'El archivo del poster # '.$id.' ha sido eliminado.');
         } else {
             return redirect()->route('posters.index')->with('error', 'No tienes permisos para eliminar el archivo del poster # '.$id);
@@ -117,6 +128,17 @@ class PosterController extends Controller
             $work = Work::find($id);
             $work->poster_verification_status = 'si';
             $work->save();
+
+            //register in work_notes
+            $work_note = new WorksNote();
+            $work_note->work_id = $id;
+            $work_note->action = 'Archivo poster confirmado';
+            $work_note->note = 'El archivo del poster ha sido confirmado';
+            $work_note->user_id = $user->id;
+            $work_note->created_at = now();
+            $work_note->updated_at = now();
+            $work_note->save();
+
             return redirect()->route('posters.index')->with('success', 'El archivo del poster # '.$id.' ha sido confirmado.');
         } else {
             return redirect()->route('posters.index')->with('error', 'No tienes permisos para confirmar el archivo del poster # '.$id);
