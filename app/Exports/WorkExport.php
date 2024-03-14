@@ -23,6 +23,8 @@ class WorkExport implements FromCollection, WithHeadings, WithMapping, WithStyle
                             ->select('works.id', 
                                     DB::raw("CONCAT(users.name,' ',users.lastname,' ',users.second_lastname) AS autor"),
                                     'users.country',
+                                    'works.author_coauthors',
+                                    'works.institution',
                                     'works.knowledge_area',
                                     'works.category',
                                     'works.title',
@@ -39,6 +41,8 @@ class WorkExport implements FromCollection, WithHeadings, WithMapping, WithStyle
             'ID',
             'Autor',
             'País',
+            'Coautores',
+            'Institución',
             'Area de conocimiento',
             'Categoria del trabajo',
             'Título',
@@ -54,6 +58,8 @@ class WorkExport implements FromCollection, WithHeadings, WithMapping, WithStyle
             $work->id,
             $work->autor,
             $work->country,
+            $work->author_coauthors,
+            $work->institution,
             $work->knowledge_area,
             $work->category,
             $work->title,
@@ -64,7 +70,7 @@ class WorkExport implements FromCollection, WithHeadings, WithMapping, WithStyle
     }
 
     public function styles(Worksheet $sheet){
-        $sheet->getStyle('A1:I1')->applyFromArray([
+        $sheet->getStyle('A1:K1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => 'FFFFFF'],
@@ -84,8 +90,10 @@ class WorkExport implements FromCollection, WithHeadings, WithMapping, WithStyle
         $sheet->getColumnDimension('E')->setWidth(30);
         $sheet->getColumnDimension('F')->setWidth(40);
         $sheet->getColumnDimension('G')->setWidth(7);
-        $sheet->getColumnDimension('H')->setWidth(18);
-        $sheet->getColumnDimension('I')->setWidth(18);
+        $sheet->getColumnDimension('H')->setWidth(45);
+        $sheet->getColumnDimension('I')->setWidth(11);
+        $sheet->getColumnDimension('J')->setWidth(18);
+        $sheet->getColumnDimension('K')->setWidth(18);
     }
 
 }

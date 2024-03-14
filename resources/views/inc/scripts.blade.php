@@ -45,6 +45,7 @@
             {{-- Posters --}}
             <script src="{{ asset('plugins/src/filepond/filepond.min.js') }}"></script>
             <script src="{{ asset('plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
+            <script src="{{ asset('plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
             @break
 
         @case('works_rejects')

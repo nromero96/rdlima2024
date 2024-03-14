@@ -234,24 +234,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    const inputElement = document.querySelector('input[id="poster"]');
-
-    FilePond.create(inputElement, {
+    // Configuración de FilePond
+    const pond = FilePond.create(document.querySelector('input[id="poster"]'), {
         labelIdle: locale_es.labelIdle,
         labelFileProcessing: locale_es.labelFileProcessing,
         labelFileProcessingComplete: locale_es.labelFileProcessingComplete,
         labelTapToCancel: locale_es.labelTapToCancel,
         labelTapToRetry: locale_es.labelTapToRetry,
         labelTapToUndo: locale_es.labelTapToUndo,
-    });
-
-    FilePond.setOptions({
+        allowMultiple: false, // Permitir solo un archivo
+        maxFiles: 1, // Permitir solo un archivo
+        acceptedFileTypes: ['application/pdf'], // Solo se aceptan archivos PDF
+        maxFileSize: '5MB', // Tamaño máximo permitido de 5 MB
         server: {
             url: baseurl + '/upload',
             headers: {
-            'x-csrf-token': $('meta[name="csrf-token"]').attr('content'),
+                'x-csrf-token': $('meta[name="csrf-token"]').attr('content'),
             },
         },
+        // Evento para validar tipo y tamaño de archivo
+        onaddfile: function(error, file) {
+            if (error) {
+                console.error('Error al cargar el archivo', error);
+                return;
+            }
+            // Verificar si el archivo no es un PDF
+            if (file.fileExtension !== 'pdf') {
+                pond.removeFile(file.id); // Eliminar el archivo no válido
+                alert('Solo se permiten archivos PDF.');
+                return;
+            }
+            // Verificar si el tamaño del archivo supera 5MB
+            if (file.fileSize > 5 * 1024 * 1024) {
+                pond.removeFile(file.id); // Eliminar el archivo no válido
+                alert('El archivo no puede ser mayor a 5 MB.');
+                return;
+            }
+        }
     });
 
     var btncancelupload = document.querySelector('.btncancelupload');
