@@ -385,35 +385,42 @@ function handlePaymentMethod(){
 }
 
 
-
 const locale_es = {
-    labelIdle: 'Arrastra y suelta tus archivos o <span class="filepond--label-action">Selecciona</span>',
-    labelFileProcessing: 'Subiendo',
-    labelFileProcessingComplete: 'Subida completada',
-    labelTapToCancel: 'clique para cancelar',
-    labelTapToRetry: 'clique para reenviar',
-    labelTapToUndo: 'clique para deshacer',
-  };
-  
-  const inputIds = ["document_file", "voucher_file"];
+  labelIdle: 'Arrastra y suelta tus archivos o <span class="filepond--label-action">Selecciona</span>',
+  labelFileProcessing: 'Subiendo',
+  labelFileProcessingComplete: 'Subida completada',
+  labelTapToCancel: 'clique para cancelar',
+  labelTapToRetry: 'clique para reenviar',
+  labelTapToUndo: 'clique para deshacer',
+};
 
-  inputIds.forEach((inputId) => {
-    const inputElement = document.getElementById(inputId);
-    FilePond.create(inputElement, {
+const inputIds = ["document_file", "voucher_file"];
+
+inputIds.forEach((inputId) => {
+  const inputElement = document.getElementById(inputId);
+  FilePond.create(inputElement, {
       labelIdle: locale_es.labelIdle,
       labelFileProcessing: locale_es.labelFileProcessing,
       labelFileProcessingComplete: locale_es.labelFileProcessingComplete,
       labelTapToCancel: locale_es.labelTapToCancel,
       labelTapToRetry: locale_es.labelTapToRetry,
       labelTapToUndo: locale_es.labelTapToUndo,
-    });
+      onaddfilestart: () => {
+        btnSubInscription.disabled = true;
+        btnSubInscription.textContent = 'Subiendo archivo... Espere por favor';
+      },
+      onprocessfile: () => {
+        btnSubInscription.disabled = false,
+        btnSubInscription.textContent = 'Inscribirme Ahora';
+      }
   });
-  
-  FilePond.setOptions({
-    server: {
+});
+
+FilePond.setOptions({
+  server: {
       url: baseurl + '/upload',
       headers: {
-        'x-csrf-token': $('meta[name="csrf-token"]').attr('content'),
+          'x-csrf-token': $('meta[name="csrf-token"]').attr('content'),
       },
-    },
-  });
+  },
+});

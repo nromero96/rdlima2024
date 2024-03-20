@@ -45,6 +45,7 @@ class PosterController extends Controller
                 $posters = Work::join('users', 'works.user_id', '=', 'users.id')
                 ->where('works.status', 'aceptado')
                 ->selectRaw('works.*, CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) AS author, users.country')
+                ->orderByRaw('works.poster_file IS NOT NULL DESC, works.poster_date_uploaded DESC')
                 ->get();
             }
         } else {
