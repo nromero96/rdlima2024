@@ -24,6 +24,19 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+                
+                @if(Auth::user()->hasRole('Administrador') || Auth::user()->hasRole('Secretaria'))
+                    <div class="row">
+                        <div class="col-md-8">
+
+                        </div>
+                        <div class="col-md-4 mb-1 text-end">
+                            Total: <span class="badge bg-info">{{ $posters->count() }}</span>
+                            Subidos: <span class="badge bg-warning">{{ $posters->where('poster_file', '!=', null)->count() }}</span>
+                            Aceptados: <span class="badge bg-success">{{ $posters->where('poster_verification_status', '!=', null)->count() }}</span>
+                        </div>
+                    </div>
+                @endif
 
                 <div class="statbox widget box box-shadow">
                     <div class="widget-header pt-2">
@@ -31,7 +44,7 @@
                             <div class="col-md-8">
                                 <h4>Mis posters</h4>
                             </div>
-                            <div class="col-md-4 text-end">
+                            <div class="col-md-4 text-end mt-1">
 
                                 @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
                                     @php
