@@ -271,7 +271,7 @@
                         <b>DERMATOLOGÍA PEDIÁTRICA</b>
                     </td>
                     <td rowspan="5" class="align-middle text-cl-blue bg-col-3 cur-poin" data-sessionid="60">
-                        <b>REUNIÓN SILADEPA</b>
+                        <b>CURSO DE DERMATOPATOLOGÍA SILADEPA</b>
                     </td>
                     <td></td>
                 </tr>
@@ -314,14 +314,14 @@
                 </tr>
                 <tr class="text-center">
                     <td>14:00 – 15:00</td>
-                    <td rowspan="4" class="align-middle text-cl-blue bg-col-4">
-                        <b>GRUPO LATINOAMERICANO DE LINFOMAS CUTÁNEOS</b>
+                    <td rowspan="4" class="align-middle text-cl-blue">
+                        
                     </td>
                     <td rowspan="4" class="align-middle text-cl-blue bg-col-2 cur-poin" data-sessionid="62">
                         <b>DERMATOLOGÍA PEDIÁTRICA</b>
                     </td>
                     <td rowspan="4" class="align-middle text-cl-blue bg-col-3 cur-poin" data-sessionid="60">
-                        <b>REUNIÓN SILADEPA</b>
+                        <b>CURSO DE DERMATOPATOLOGÍA SILADEPA</b>
                     </td>
                     {{-- <td></td> --}}
                 </tr>
@@ -366,7 +366,7 @@
                     <td class="align-middle">19:00 – 21:00</td>
                     <td colspan="4">
                         <b>COCTEL DE BIENVENIDA</b><br>
-                        Le Café Swissotel
+                        Foyer Torre Oeste (segundo piso) y Le Café Swissôtel (primer piso)
                     </td>
                 </tr>
             </tbody>
@@ -564,8 +564,7 @@
                     <td colspan="4" class="bg-col-10 audio cur-poin" data-sessionid='15'>
                         <b>PLENARIA 1</b>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="2" rowspan="2"></td>
                 </tr>
                 <tr class="text-center">
                     <td>18:50</td>
@@ -573,10 +572,17 @@
                         <b class="text-cl-blue">CEREMONIA INAUGURAL</b><br>
                         Cóctel de Bienvenida
                     </td>
-                    <td colspan="2"></td>
+                    {{-- <td colspan="2"></td> --}}
                 </tr>
 
             </tbody>
+            <tfoot>
+                <tr class="text-start">
+                    <td colspan="8" class="pt-2 pb-2 ps-2 border-0">
+                        <b>12:00 – 14:00 REUNIÓN DE DELEGADOS 1 - HOTEL HYATT CENTRIC</b>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
@@ -821,6 +827,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr class="text-start">
+                    <td colspan="8" class="pt-2 pb-2 ps-2 border-0">
+                        <b>20:30 – 23:00 CENA DEL PRESIDENTE</b> (sólo con invitación)
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
@@ -1011,6 +1024,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr class="text-start">
+                    <td colspan="8" class="pt-2 pb-2 ps-2 border-0">
+                        <b>12:10 – 14:00 REUNIÓN DE DELEGADOS 2 – HOTEL HYATT CENTRIC</b>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
