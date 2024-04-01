@@ -267,7 +267,7 @@
                     <td rowspan="5" class="align-middle text-cl-blue bg-col-1 cur-poin" data-sessionid="61">
                         <b>REUNIÓN SOLAPSO</b>
                     </td>
-                    <td rowspan="5" class="align-middle text-cl-blue bg-col-2">
+                    <td rowspan="5" class="align-middle text-cl-blue bg-col-2 cur-poin" data-sessionid="62">
                         <b>DERMATOLOGÍA PEDIÁTRICA</b>
                     </td>
                     <td rowspan="5" class="align-middle text-cl-blue bg-col-3 cur-poin" data-sessionid="60">
@@ -317,7 +317,7 @@
                     <td rowspan="4" class="align-middle text-cl-blue bg-col-4">
                         <b>GRUPO LATINOAMERICANO DE LINFOMAS CUTÁNEOS</b>
                     </td>
-                    <td rowspan="4" class="align-middle text-cl-blue bg-col-2">
+                    <td rowspan="4" class="align-middle text-cl-blue bg-col-2 cur-poin" data-sessionid="62">
                         <b>DERMATOLOGÍA PEDIÁTRICA</b>
                     </td>
                     <td rowspan="4" class="align-middle text-cl-blue bg-col-3 cur-poin" data-sessionid="60">
@@ -381,7 +381,7 @@
         <div class="d-flex">
 
         </div>
-        <a href="https://radla2024.org/wp-content/uploads/2024/03/version-final-Programa-General-RADLA-2024-11032024.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
+        <a href="https://radla2024.org/wp-content/uploads/2024/04/version-final-Programa-General-RADLA-2024-010424.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
         <a href="https://radla2024.org/wp-content/uploads/2024/03/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
     </div>
 
