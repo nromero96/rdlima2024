@@ -39,7 +39,7 @@ class PosterController extends Controller
                           ->orWhere('works.id', 'LIKE', "%{$search}%")
                           ->orWhere('users.country', 'LIKE', "%{$search}%");
                 })
-                ->selectRaw('works.*, CONCAT(users.name, " ", users.lastname, " ", users.second_lastname) AS author, users.country')
+                ->selectRaw('works.*, CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) AS author, users.country')
                 ->get();
             } else {
                 $posters = Work::join('users', 'works.user_id', '=', 'users.id')

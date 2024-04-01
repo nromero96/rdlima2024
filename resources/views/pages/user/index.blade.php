@@ -16,6 +16,7 @@
                             <table class="table table-hover table-striped table-bordered" id="inscrip-list">
                                 <thead>
                                     <tr>
+                                        <th scope="col">{{__("ID")}}</th>
                                         <th scope="col">{{__("Nombre")}}</th>
                                         <th scope="col">{{__("Rol")}}</th>
                                         <th class="text-center" scope="col">{{__("Estado")}}</th>
@@ -25,6 +26,7 @@
                                 <tbody>
                                     @foreach ($users as $item)
                                         <tr>
+                                            <td>{{$item->id}}</td>
                                             <td>
                                                 <div class="media">
                                                     <div class="avatar me-2">
