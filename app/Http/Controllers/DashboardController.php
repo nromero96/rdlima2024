@@ -8,7 +8,7 @@ class DashboardController extends Controller{
     public function index(){
         // $category_name = '';
         $data = [
-            'category_name' => '',
+            'category_name' => 'dashboard',
             'page_name' => 'dashboard',
             'has_scrollspy' => 0,
             'scrollspy_offset' => '',

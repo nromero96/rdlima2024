@@ -81,10 +81,16 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-4">
-                                <label for="status" class="form-label fw-bold d-block">{{__("Color:")}}</label>
-                                <input type="color" name="color" class="" id="color" value="{{ $programsession->color }}">
-                                {!!$errors->first("color", "<span class='text-danger'>:message</span>")!!}
+                            <div class="col-md-6">
+                                <label for="image_program" class="form-label fw-bold d-block">{{__("Imagen programa:")}} <a href="{{ asset('storage/uploads/profile_images').'/'. $programsession->image_program}}" target="_blank">(VER IMG)</a></label>
+                                <input type="text" name="image_program" class="form-control" id="image_program" value="{{ $programsession->image_program }}">
+                                {!!$errors->first("image_program", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="file_program" class="form-label fw-bold d-block">{{__("PDF:")}} <a href="{{ asset('storage/uploads/profile_images').'/'. $programsession->file_program}}" target="_blank">(VER PDF)</a></label>
+                                <input type="text" name="file_program" class="form-control" id="file_program" value="{{ $programsession->file_program }}">
+                                {!!$errors->first("file_program", "<span class='text-danger'>:message</span>")!!}
                             </div>
 
                             <div class="col-12 text-end">

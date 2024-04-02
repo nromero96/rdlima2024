@@ -32,37 +32,71 @@
                     </div>
                     <div class="widget-content widget-content-area pt-0">
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped table-bordered">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th scope="col">{{__("Nombre")}}</th>
-                                        <th scope="col">{{__("País")}}</th>
-                                        <th scope="col">{{__("Correo")}}</th>
-                                        <th scope="col">{{__("Teléfono")}}</th>
-                                        <th scope="col">{{__("")}}</th>
-                                        <th scope="col">{{__("Fecha")}}</th>
+                                        <th scope="col">{{__("Tema")}}</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    @php
+                                    function hex2rgba($color, $opacity = false) {
+                                        $default = 'rgb(0,0,0)';
+                                        if(empty($color))
+                                            return $default; 
+                                        if ($color[0] == '#')
+                                            $color = substr($color, 1);
+                                        if (strlen($color) == 6)
+                                            $hex = array($color[0].$color[1], $color[2].$color[3], $color[4].$color[5]);
+                                        elseif (strlen($color) == 3)
+                                            $hex = array($color[0].$color[0], $color[1].$color[1], $color[2].$color[2]);
+                                        else
+                                            return $default;
+                                        $rgb =  array_map('hexdec', $hex);
+                                        if($opacity !== false){
+                                            if(abs($opacity) > 1)
+                                                $opacity = 1.0;
+                                            $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+                                        } else {
+                                            $output = 'rgb('.implode(",",$rgb).')';
+                                        }
+                                        return $output;
+                                    }
+                                    @endphp
+
+                                    @php
+                                        $prevName = '';
+                                    @endphp
+
                                     @foreach ($programs as $program)
-                                        <tr>
+
+                                        @php
+                                            $fullName = $program->apellido . $program->nombre;
+                                            $color = '#' . substr(md5($fullName), 0, 6); // Genera un color aleatorio basado en el nombre completo
+                                            $rgbaColor = hex2rgba($color, 0.3); // Agrega transparencia al color    
+                                        @endphp
+
+                                        <tr style="background-color: {{$rgbaColor}};">
                                             <td>
-                                                {{$program->full_name}}
+                                                @if ($program->apellido . $program->nombre !== $prevName)
+                                                    <b class="d-block">{{$program->apellido}} {{$program->nombre}}</b>
+                                                    <small class="d-block">{{$program->status}} - {{$program->pais}}</small>
+                                                    @php
+                                                        $prevName = $program->apellido . $program->nombre;
+                                                    @endphp
+                                                @endif
                                             </td>
                                             <td>
-                                                {{$program->country}}
+                                                <small class="d-block">{{$program->sesion}}</small>
+                                                {{ \Illuminate\Support\Str::limit($program->tema, 50, '...') }}
                                             </td>
                                             <td>
-                                                {{$program->email}}
-                                            </td>
-                                            <td>
-                                                +{{$program->phone_code}} {{$program->phone}}
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{ asset('storage/uploads/invitation_letters').'/'. $program->file_name}}" target="_blank" class="btn btn-primary">{{__("Ver")}}</a>
-                                            </td>
-                                            <td class="text-center">
-                                                {{$program->created_at}}
+                                                <a href="{{ route('programs.edit', $program->id) }}" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="{{ __("Editar") }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

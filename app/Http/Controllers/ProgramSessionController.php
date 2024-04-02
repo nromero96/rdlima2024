@@ -126,7 +126,8 @@ class ProgramSessionController extends Controller
             'start_time_block' => 'required',
             'end_time_block' => 'required',
             'room' => 'required',
-            'color' => 'required'
+            'image_program' => 'required',
+            'file_program' => 'required',
         ]);
 
         //update
@@ -136,10 +137,11 @@ class ProgramSessionController extends Controller
         $programsession->start_time_block = $request->start_time_block;
         $programsession->end_time_block = $request->end_time_block;
         $programsession->room = $request->room;
-        $programsession->color = $request->color;
+        $programsession->image_program = $request->image_program;
+        $programsession->file_program = $request->file_program;
         $programsession->save();
 
-        return redirect()->route('programsessions.index')->with('success', 'Sesión de programa actualizada con éxito.');
+        return redirect()->route('programsessions.index')->with('success', 'Sesión #'.$id.' del programa actualizada con éxito.');
     }
 
     /**
@@ -150,7 +152,7 @@ class ProgramSessionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->route('programsessions.index')->with('error', 'No se puede eliminar la sesión #'.$id.' del programa.');
     }
 
     public function getSessionById($id)

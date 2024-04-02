@@ -15,12 +15,23 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('exponent_id');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->string('subject');
-            $table->string('audio',3)->default('no');
-            $table->string('file');
+            $table->string('exponent_id',30)->nullable();
+            $table->string('insc_id',30)->nullable();
+            $table->string('apellido')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('hotel')->nullable();
+            $table->string('status')->nullable();
+            $table->string('pais')->nullable();
+            $table->string('sesion')->nullable();
+            $table->string('nombre_sesion')->nullable();
+            $table->string('fecha')->nullable();
+            $table->string('bloque')->nullable();
+            $table->string('inicio')->nullable();
+            $table->string('termino')->nullable();
+            $table->string('sala')->nullable();
+            $table->string('tema')->nullable();
+            $table->string('email')->nullable();
+            $table->string('notificado')->default('no');
             $table->timestamps();
         });
     }

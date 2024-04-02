@@ -10,17 +10,31 @@
 
         <div class="row layout-spacing">
             <div class="col-lg-12 layout-top-spacing">
+
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show border-0 mb-4" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            
+                        </button>
+                        <strong>{{ session('success') }}</strong>
+                    </div> 
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show border-0 mb-4" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            
+                        </button>
+                        <strong>{{ session('error') }}</strong>
+                    </div> 
+                @endif
+
+
                 <div class="statbox widget box box-shadow">
-                    <div class="widget-header pt-4">
+                    <div class="widget-header">
                         <div class="row">
-                            <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-end">
-                                <a href="{{ route('programsessions.create') }}" class="btn btn-primary mb-4 ms-3 me-3">
-                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 5v14"></path>
-                                        <path d="M5 12h14"></path>
-                                    </svg>
-                                    {{__("Nuevo")}}
-                                </a>
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                <h4>{{__("Programación de Sesiones")}}</h4>
                             </div>
                         </div>
                     </div>
@@ -34,7 +48,7 @@
                                         <th scope="col">{{__("Fecha")}}</th>
                                         <th scope="col">{{__("Bloque")}}</th>
                                         <th scope="col">{{__("Salón")}}</th>
-                                        <th scope="col">{{__("Color")}}</th>
+                                        <th scope="col">{{__("Imagen/PDF")}}</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -56,8 +70,8 @@
                                             <td>
                                                 {{ $programsession->room }}
                                             </td>
-                                            <td style="background: {{ $programsession->color}}">
-                                                {{ $programsession->color}}
+                                            <td class="text-center">
+                                                <a href="{{ asset('storage/uploads/profile_images').'/'. $programsession->image_program}}" target="_blank">IMG</a> | <a href="{{ asset('storage/uploads/profile_images').'/'. $programsession->file_program}}" target="_blank">PDF</a>
                                             </td>
                                             <td>
                                                 

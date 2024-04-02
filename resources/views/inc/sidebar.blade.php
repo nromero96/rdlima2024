@@ -44,6 +44,19 @@
                 </ul>
             </li> --}}
 
+            <li class="menu mt-1 {{ ($category_name === 'dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.index') }}" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        <span> {{ __("Dashboard") }} </span>
+                    </div>
+                </a>
+            </li>
+
+            <li class="menu menu-heading">
+                <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>{{__("DATOS")}}</span></div>
+            </li>
+
             <li class="menu {{ ($category_name === 'profile') ? 'active' : '' }}">
                 <a href="{{ route('users.myprofile') }}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
@@ -82,7 +95,7 @@
             @endcan
 
             @can('programs.index')
-            <li class="menu {{ ($category_name === 'programs') ? 'active' : '' }}">
+            <li class="menu {{ ($category_name === 'programs' || $category_name === 'programsessions') ? 'active' : '' }}">
                 <a href="{{route('programs.index')}}" aria-expanded="false" class="dropdown-toggle">
                     <div class="">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19 10H9v4h10v-4Z"></path><path d="M16 3H9v4h7V3Z"></path><path d="M22 17H9v4h13v-4Z"></path><path d="M8.5 5h-6"></path><path d="M8.5 12h-6"></path><path d="M8.5 19h-6"></path><path d="M2.5 22V2"></path></svg>

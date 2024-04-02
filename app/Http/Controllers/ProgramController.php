@@ -24,7 +24,8 @@ class ProgramController extends Controller
             'scrollspy_offset' => '',
         ];
         
-        $programs = Program::orderBy('id', 'desc')->get();
+        $programs = Program::orderByRaw("CONCAT(apellido, ' ', nombre)")->get();
+
 
         return view('pages.programs.index')->with($data)->with('programs', $programs);
     }

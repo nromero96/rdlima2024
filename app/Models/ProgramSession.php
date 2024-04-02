@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ProgramSession extends Model
 {
     use HasFactory;
+
 }
