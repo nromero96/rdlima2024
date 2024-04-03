@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Login | RADLA LIMA 2024</title>
+    <title>Registro | RADLA LIMA 2024</title>
     <link rel="icon" type="image/x-icon" href="{{asset('assets/img/favicon.ico')}}"/>
     <link href="{{asset('layouts/vertical-light-menu/css/light/loader.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('layouts/vertical-light-menu/css/dark/loader.css')}}" rel="stylesheet" type="text/css" />
@@ -52,6 +52,7 @@
                     <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-8 col-12 d-flex flex-column align-self-center ms-lg-auto me-lg-0 mx-auto">
                         <div class="card">
                             <div class="card-body">
+
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <div class="text-end">
@@ -61,9 +62,16 @@
                                         <h2>{{ __('Registrarme') }}</h2>
                                         <p>{{ __('Complete sus datos para poder inscribirte.') }}</p>
                                     </div>
+
+                                    @if(session('error'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">{{ __('Correo electrónico') }}</label>
+                                            <label for="email" class="form-label mb-0">{{ __('Correo electrónico') }}</label>
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -73,8 +81,27 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <div class="mb-4">
-                                            <label for="password" class="form-label">{{ __('Contraseña') }}</label>
+                                        <label for="" class="form-label mb-0">{{ __('Tipo y Número de Documento') }}</label>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="document_type" name="document_type" required style="width: 40%;">
+                                                <option value="">Seleccione...</option>
+                                                <option value="DNI" @if(old('document_type') == 'DNI') selected @endif>DNI</option>
+                                                <option value="Carnet de extranjería" @if(old('document_type') == 'Carnet de extranjería') selected @endif>Carnet de extranjería</option>
+                                                <option value="Pasaporte" @if(old('document_type') == 'Pasaporte') selected @endif>Pasaporte</option>
+                                            </select>
+                                            <input type="text" class="form-control" id="document_number" name="document_number" value="{{ old('document_number') }}" required style="width: 60%;">
+                                            
+                                            @error('document_number')
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label mb-0">{{ __('Contraseña') }}</label>
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -84,7 +111,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <div class="mb-4">
+                                        <div class="mb-3">
                                             <label for="password-confirm" class="form-label">{{ __('Confirmar Contraseña') }}</label>
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                         </div>

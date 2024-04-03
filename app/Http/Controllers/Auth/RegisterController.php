@@ -49,11 +49,28 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        // Define las reglas de validación principales
+        $validator = Validator::make($data, [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        // Verifica si el número de documento ya existe
+        $user = User::where('document_number', $data['document_number'])->first();
+
+        if ($user) {
+            // Obtiene el correo del usuario y solo muestra las primeras 3 letras y las últimas 3
+            $useremail = $user->email;
+            $email = substr($useremail, 0, 3) . '....' . substr($useremail, -6);
+            // Agrega un mensaje de error y redirige de vuelta si el número de documento ya está registrado
+            $validator->after(function ($validator) use ($data, $email) {
+                $validator->errors()->add('document_number', 'El N° de documento ' . $data['document_number'] . ' ya está registrado. Si eres tú, inicia sesión con tu correo ' . $email);
+            });
+        }
+
+        return $validator;
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -63,9 +80,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => '',
             'email' => $data['email'],
+            'document_type' => $data['document_type'],
+            'document_number' => $data['document_number'],
             'password' => Hash::make($data['password']),
             'status' => 'active',
             'photo' => 'default-profile.jpg',

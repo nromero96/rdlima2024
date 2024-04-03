@@ -91,8 +91,8 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <small class="d-block">{{$program->sesion}}</small>
-                                                {{ \Illuminate\Support\Str::limit($program->tema, 50, '...') }}
+                                                <small class="d-block">{{$program->sesion}} - {{$program->sala}} - {{$program->fecha}} ({{$program->bloque}})</small>
+                                                <small style="font-weight: bold;">{{$program->inicio}} - {{$program->termino}}</small> {{ \Illuminate\Support\Str::limit($program->tema, 50, '...') }}
                                             </td>
                                             <td>
                                                 <a href="{{ route('programs.edit', $program->id) }}" class="action-btn btn-edit bs-tooltip me-2" data-toggle="tooltip" data-placement="top" title="{{ __("Editar") }}">
