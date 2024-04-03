@@ -82,6 +82,7 @@
                                         <tr style="background-color: {{$rgbaColor}};">
                                             <td>
                                                 @if ($program->apellido . $program->nombre !== $prevName)
+                                                    INS <a href="{{ route('inscriptions.show', $program->insc_id) }}" class="text-primary">#{{$program->insc_id}}</a>
                                                     <b class="d-block">{{$program->apellido}} {{$program->nombre}}</b>
                                                     <small class="d-block">{{$program->status}} - {{$program->pais}}</small>
                                                     @php

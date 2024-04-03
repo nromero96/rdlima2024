@@ -265,7 +265,7 @@
                 <tr class="text-center">
                     <td>9:00 – 10:00</td>
                     <td rowspan="5" class="align-middle text-cl-blue bg-col-1 cur-poin" data-sessionid="61">
-                        <b>REUNIÓN SOLAPSO</b>
+                        <b>REUNIÓN<br>IPC/SOIAPso</b>
                     </td>
                     <td rowspan="5" class="align-middle text-cl-blue bg-col-2 cur-poin" data-sessionid="62">
                         <b>DERMATOLOGÍA PEDIÁTRICA</b>
