@@ -97,7 +97,7 @@
                                                         
                                                         @if($item->poster_file)
                                                             <a href="{{ asset('storage/uploads/poster_files/' . $item->poster_file) }}" target="_blank" class="text-secondary" title="{{ $item->poster_file }}">
-                                                                {{ strlen($item->poster_file) > 30 ? substr($item->poster_file, 0, 30) . '...' : $item->poster_file }}
+                                                                {{ mb_strlen($item->poster_file) > 18 ? mb_substr($item->poster_file, 0, 18) . '...' : $item->poster_file }}
                                                             </a>
 
                                                             @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
