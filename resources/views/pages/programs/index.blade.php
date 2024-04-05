@@ -69,6 +69,7 @@
 
                                     @php
                                         $prevName = '';
+                                        $numeration = 1;
                                     @endphp
 
                                     @foreach ($programs as $program)
@@ -77,18 +78,34 @@
                                             $fullName = $program->apellido . $program->nombre;
                                             $color = '#' . substr(md5($fullName), 0, 6); // Genera un color aleatorio basado en el nombre completo
                                             $rgbaColor = hex2rgba($color, 0.3); // Agrega transparencia al color    
+
+                                            
+
                                         @endphp
 
                                         <tr style="background-color: {{$rgbaColor}};">
+                                            
                                             <td>
                                                 @if ($program->apellido . $program->nombre !== $prevName)
-                                                    INS <a href="{{ route('inscriptions.show', $program->insc_id) }}" class="text-primary">#{{$program->insc_id}}</a>
+                                                    ({{ $numeration++ }}) - INS <a href="{{ route('inscriptions.show', $program->insc_id) }}" class="text-primary">#{{$program->insc_id}}</a>
                                                     <b class="d-block">{{$program->apellido}} {{$program->nombre}}</b>
                                                     <small class="d-block">{{$program->status}} - {{$program->pais}}</small>
+                                                    
+                                                        {{-- @if($program->insc_id && $program->notificado=='no')
+                                                            <form action="{{ route('programs.sendmailexhibitor', $program->id) }}" method="POST" class="d-inline">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-sm btn-primary px-2 py-1">Enviar email</button>
+                                                            </form>
+                                                        @endif --}}
+
+                                                        @if($program->notificado=='si')
+                                                            <span class="badge badge-light-success mb-2 me-4">Email enviado</span>
+                                                        @endif
                                                     @php
                                                         $prevName = $program->apellido . $program->nombre;
                                                     @endphp
                                                 @endif
+
                                             </td>
                                             <td>
                                                 <small class="d-block">{{$program->sesion}} - {{$program->sala}} - {{$program->fecha}} ({{$program->bloque}})</small>

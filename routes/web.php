@@ -121,6 +121,7 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     //Programs
     Route::resource('programs', ProgramController::class)->names('programs');
     Route::resource('programsessions', ProgramSessionController::class)->names('programsessions');
+    Route::post('program_sendmail-exhibitor/{id}', [ProgramController::class, 'sendMailExhibitor'])->name('programs.sendmailexhibitor');
 
     //Inscriptions
     Route::resource('inscriptions', InscriptionController::class)->names('inscriptions');

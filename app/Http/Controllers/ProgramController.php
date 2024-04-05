@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Models\Program;
 use App\Models\ProgramSession;
+use App\Models\User;
+use App\Models\Inscription;
+
+use App\Mail\IndividualExhibitorProgramMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class ProgramController extends Controller
 {
@@ -111,4 +116,62 @@ class ProgramController extends Controller
     {
         //
     }
+
+    public function sendMailExhibitor($id){
+        if(\Auth::user()->hasRole('Administrador')){
+            $program = Program::find($id);
+
+            echo 'Programa: '.$program->id.'<br>';
+
+            $insc_id = $program->insc_id;
+
+            echo 'Su Inscripcion es: '.$insc_id.'<br>';
+            
+            if($insc_id != null || $insc_id != ''){
+                //buscar inscripcion
+                $inscription = Inscription::where('id', $insc_id)->first();
+                
+                if($inscription != null){
+                    echo 'Inscripcion econtrada: '.$inscription->id.'<br>';
+                    
+                    $user = User::where('id', $inscription->user_id)->first();
+
+                    if($user != null){
+                        echo 'Usuario econtrado: '.$user->id.'<br>';
+                        echo 'Su nombre es: '.$user->name.' '.$user->lastname.' '.$user->second_lastname.'<br>';
+                        echo 'Enviar a su correo: '.$user->email.'<br>';
+
+                        try {
+                            $cooreotest = 'diseno@exceldata.pe';
+                            Mail::to($cooreotest)->send(new IndividualExhibitorProgramMail($inscription, $user));
+                            echo 'Correo enviado exitosamente<br>';
+
+                            //update program notificado = si
+                            $program->notificado = 'si';
+                            $program->save();
+
+                        } catch (\Throwable $th) {
+                            echo 'Error al enviar correo: '.$th->getMessage().'<br>';
+                        }
+                    }
+
+                    exit;
+                }
+
+                echo 'Inscripcion no econtrada: '.$insc_id.'<br>';
+
+                exit;
+            }
+
+            return 'No se encontro inscripcion';
+
+            //Mail::to($user->email)->cc(config('services.correonotificacion.trabajoaceptado'))->send(new IndividualExhibitorProgramMail($program));
+            //return redirect()->route('works.index')->with('success', 'Correo enviado exitosamente.');
+            exit;
+        }else{
+            echo 'No tiene permisos para enviar correo';
+            exit;
+        }
+    }
+
 }
