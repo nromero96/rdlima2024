@@ -4,9 +4,9 @@
     <title>Programa Individual</title>
 </head>
 <body>
-    <div style="max-width: 690px;padding: 15px 25px;border-radius:10px;margin: 0 auto;">
+    <div style="max-width: 690px;padding: 15px 25px;border-radius:10px;margin: 0 auto;font-family: arial;">
         <p style="text-align: center;">
-            <img src="https://my.radla2024.org/assets/img/logo2.png" alt="RADLA LIMA 2024" style="width: 80px;">
+            <img src="https://my.radla2024.org/assets/img/logo2-mail.png" alt="RADLA LIMA 2024" style="width: 80px;">
         </p>
 
         <h1 style="color: #c00000;font-size: 23px;text-align: center;line-height: 23px;font-family: arial;">
@@ -15,7 +15,7 @@
         </h1>
         <div style="color: white; height: 20px;">-</div>
         <p style="font-size: 14px;">
-            Lima, 5 de Abril de 2024
+            Lima, 6 de Abril de 2024
         </p>
         <div style="color: white; height: 1px;">-</div>
         <p style="font-size: 14px;">

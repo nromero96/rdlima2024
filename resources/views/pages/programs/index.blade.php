@@ -14,13 +14,13 @@
                     <div class="widget-header pt-4">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-end">
-                                <a href="{{ route('programs.create') }}" class="btn btn-primary mb-4 ms-3 me-3">
+                                {{-- <a href="{{ route('programs.create') }}" class="btn btn-primary mb-4 ms-3 me-3">
                                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 5v14"></path>
                                         <path d="M5 12h14"></path>
                                       </svg>
                                     {{__("Agregar")}}
-                                </a>
+                                </a> --}}
                                 <a href="{{ route('programsessions.index') }}" class="btn btn-success mb-4 ms-2 me-2">
                                     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
@@ -91,12 +91,12 @@
                                                     <b class="d-block">{{$program->apellido}} {{$program->nombre}}</b>
                                                     <small class="d-block">{{$program->status}} - {{$program->pais}}</small>
                                                     
-                                                        {{-- @if($program->insc_id && $program->notificado=='no')
+                                                        @if($program->insc_id && $program->notificado=='no')
                                                             <form action="{{ route('programs.sendmailexhibitor', $program->id) }}" method="POST" class="d-inline">
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-sm btn-primary px-2 py-1">Enviar email</button>
                                                             </form>
-                                                        @endif --}}
+                                                        @endif
 
                                                         @if($program->notificado=='si')
                                                             <span class="badge badge-light-success mb-2 me-4">Email enviado</span>
