@@ -145,7 +145,7 @@ class ProgramController extends Controller
                             //$cooreotest = 'niltondeveloper96@gmail.com';
                             Mail::to($user->email)->send(new IndividualExhibitorProgramMail($inscription, $user));
                             echo 'Correo enviado exitosamente<br>';
-                            echo '<a href="'.route('programs.index').'">Regresar</a>';
+                            echo '<a href="'.route('programs.index').'">Regresar a la lista.</a>';
 
                             //update program notificado = si
                             $program->notificado = 'si';
