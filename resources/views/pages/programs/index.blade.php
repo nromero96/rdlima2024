@@ -99,7 +99,11 @@
                                                         @endif
 
                                                         @if($program->notificado=='si')
-                                                            <span class="badge badge-light-success mb-2 me-4">Email enviado</span>
+                                                            <span class="badge badge-light-success mb-2 me-4">Email enviado</span> 
+                                                            <form action="{{ route('programs.sendmailexhibitor', $program->id) }}" method="POST" class="d-inline">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-sm btn-warning px-2 py-1">Reenviar email</button>
+                                                            </form>
                                                         @endif
                                                     @php
                                                         $prevName = $program->apellido . $program->nombre;

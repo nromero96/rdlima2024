@@ -146,7 +146,7 @@
                                                                               </svg>
                                                                         </a>
 
-                                                                        <form action="{{ route('posters.deletefile', $item->id) }}" method="post" class="d-inline">
+                                                                        {{-- <form action="{{ route('posters.deletefile', $item->id) }}" method="post" class="d-inline">
                                                                             @csrf
                                                                             @method('DELETE')
                                                                             <button type="submit" class="btn btn-danger my-1 px-2 py-1" title="Eliminar">
@@ -156,7 +156,7 @@
                                                                                     <path d="m9 9 6 6"></path>
                                                                                 </svg>
                                                                             </button>
-                                                                        </form>
+                                                                        </form> --}}
                                                                     
                                                                     </div>
                                                                 @else
@@ -169,9 +169,9 @@
                                                             @endif
 
                                                         @else
-                                                            <a href="#" class="btn btn-primary my-2 px-2 py-3 btnuploadposter" data-id="{{ $item->id }}">
+                                                            {{-- <a href="#" class="btn btn-primary my-2 px-2 py-3 btnuploadposter" data-id="{{ $item->id }}">
                                                                 Subir Poster
-                                                            </a>
+                                                            </a> --}}
                                                         @endif
                                                     </div>
                                                 </div>
