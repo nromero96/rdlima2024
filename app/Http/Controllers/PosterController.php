@@ -146,4 +146,78 @@ class PosterController extends Controller
         }
     }
 
+
+    public function searchPostersPage(Request $request)
+    {
+
+        //get unique countries
+        $countries = Work::join('users', 'works.user_id', '=', 'users.id')
+            ->where('works.status', 'aceptado')
+            ->select('users.country')
+            ->distinct()
+            ->get();
+        
+        //get unique categories
+        $categories = Work::join('users', 'works.user_id', '=', 'users.id')
+            ->where('works.status', 'aceptado')
+            ->select('works.category')
+            ->distinct()
+            ->get();
+        
+        //get unique authors (users)
+        $authors = Work::join('users', 'works.user_id', '=', 'users.id')
+            ->where('works.status', 'aceptado')
+            ->selectRaw('users.id AS user_id, CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) AS author')
+            ->distinct()
+            ->get();
+
+        //get unique knowledge_areas
+        $knowledge_areas = Work::join('users', 'works.user_id', '=', 'users.id')
+            ->where('works.status', 'aceptado')
+            ->select('works.knowledge_area')
+            ->distinct()
+            ->get();
+
+        //get data url
+        $search_title = $request->input('search_title');
+        $search_knowledge_area = $request->input('search_knowledge_area');
+        $search_author = $request->input('search_author');
+        $search_country = $request->input('search_country');
+        $search_category = $request->input('search_category');
+
+        $posters = Work::join('users', 'works.user_id', '=', 'users.id')
+            ->where('works.poster_file', '!=', '')
+            ->where(function ($query) use ($search_title) {
+                if (!empty($search_title)) {
+                    $query->where('works.title', 'LIKE', "%{$search_title}%");
+                }
+            })
+            ->where(function ($query) use ($search_knowledge_area) {
+                if (!empty($search_knowledge_area) && $search_knowledge_area != 'Todos') {
+                    $query->where('works.knowledge_area', 'LIKE', "%{$search_knowledge_area}%");
+                }
+            })
+            ->where(function ($query) use ($search_author) {
+                if (!empty($search_author) && $search_author != 'Todos') {
+                    $query->where('users.id', $search_author);
+                }
+            })
+            ->where(function ($query) use ($search_country) {
+                if (!empty($search_country) && $search_country != 'Todos') {
+                    $query->where('users.country', 'LIKE', "%{$search_country}%");
+                }
+            })
+            ->where(function ($query) use ($search_category) {
+                if (!empty($search_category) && $search_category != 'Todos') {
+                    $query->where('works.category', 'LIKE', "%{$search_category}%");
+                }
+            })
+            ->selectRaw('works.*, CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) AS author, users.country')
+            ->get();
+
+        return view('pages.posters.online-search')->with('posters', $posters)->with('countries', $countries)->with('categories', $categories)->with('authors', $authors)->with('knowledge_areas', $knowledge_areas);
+
+
+    }
+
 }

@@ -97,6 +97,9 @@ Route::post('/send-invitation', [InvitationController::class, 'sendInvitation'])
 Route::get('getcountry', [App\Http\Controllers\CountryStateController::class, 'getcountry'])->name('getcountry');
 Route::post('upload',[UploadController::class, 'store']);
 
+//Search Online Posters
+Route::get('online-search-posters', [PosterController::class, 'searchPostersPage'])->name('searchPostersPage');
+
 //routes for user login
 Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
 
