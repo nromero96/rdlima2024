@@ -222,7 +222,12 @@
                 <div class="col-12 text-center">
                     <h3 class="mt-3 mb-0">RESULTADOS DE LA BÚSQUEDA ({{ $posters->count() }})</h3>
                     @php
-                        $selectedAuthor = $authors->where('user_id', $search_author)->first();
+                        $selectedAuthor = null;
+                        foreach($authors as $author){
+                            if($author->user_id == request()->get('search_author')){
+                                $selectedAuthor = $author;
+                            }
+                        }
                     @endphp
                     <p class="smgbusqueda mb-0">Su búsqueda actual es: Título '<b>{{ $search_title ? $search_title : 'Ninguno' }}</b>', Área '<b>{{ $search_knowledge_area }}</b>', Autor '<b>{{ $selectedAuthor ? $selectedAuthor->author : 'Autor no encontrado' }}</b>', País '<b>{{ $search_country }}</b>', Categoría '<b>{{ $search_category }}</b>' <a href="{{ route('searchPostersPage') }}" class="badge bg-danger text-decoration-none text-white">Limpiar búsqueda</a></p>
                 </div>

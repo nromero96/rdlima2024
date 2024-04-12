@@ -152,28 +152,28 @@ class PosterController extends Controller
 
         //get unique countries
         $countries = Work::join('users', 'works.user_id', '=', 'users.id')
-            ->where('works.status', 'aceptado')
+            ->where('works.poster_file', '!=', '')
             ->select('users.country')
             ->distinct()
             ->get();
         
         //get unique categories
         $categories = Work::join('users', 'works.user_id', '=', 'users.id')
-            ->where('works.status', 'aceptado')
+            ->where('works.poster_file', '!=', '')
             ->select('works.category')
             ->distinct()
             ->get();
         
         //get unique authors (users)
         $authors = Work::join('users', 'works.user_id', '=', 'users.id')
-            ->where('works.status', 'aceptado')
+            ->where('works.poster_file', '!=', '')
             ->selectRaw('users.id AS user_id, CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) AS author')
             ->distinct()
             ->get();
 
         //get unique knowledge_areas
         $knowledge_areas = Work::join('users', 'works.user_id', '=', 'users.id')
-            ->where('works.status', 'aceptado')
+            ->where('works.poster_file', '!=', '')
             ->select('works.knowledge_area')
             ->distinct()
             ->get();
