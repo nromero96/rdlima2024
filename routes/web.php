@@ -25,6 +25,7 @@ use App\Http\Controllers\CountryStateController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProgramSessionController;
 use App\Http\Controllers\PosterController;
+use App\Http\Controllers\GafeteController;
 
 
 use Illuminate\Support\Facades\Artisan;
@@ -180,25 +181,11 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::post('beneficiarios-becas-store', [App\Http\Controllers\BeneficiarioBecaController::class, 'store'])->name('beneficiarios_becas.store');
     Route::delete('beneficiarios-becas-delete/{id}', [App\Http\Controllers\BeneficiarioBecaController::class, 'destroy'])->name('beneficiarios_becas.destroy');
 
-    Route::resource('suppliers', SupplierController::class)->names('suppliers');
-    Route::resource('quotations', QuotationController::class)->names('quotations');
+    //Gafete
+    Route::get('gafetes', [GafeteController::class, 'index'])->name('gafetes.index');
+    Route::get('gafete-for-participant/{id}', [GafeteController::class, 'gafeteForParticipant'])->name('gafetes.gafeteforparticipant');
+    Route::get('gafete-for-accompanist/{id}', [GafeteController::class, 'gafeteForAccompanist'])->name('gafetes.gafeteforaccompanist');
 
-    //ruta para agregar servicios mediande ajax a proveedores
-    Route::post('addservices-supplier', [SupplierController::class, 'addservices'])->name('suppliers.addservices');
-    Route::post('updateservices-supplier', [SupplierController::class, 'updateservices'])->name('suppliers.updateservices');
-    Route::get('getservices/{id}', [SupplierController::class, 'getservices'])->name('suppliergetservices');
-    
-    Route::get('servicesupplieredit', [SupplierController::class, 'servicesupplieredit'])->name('servicesupplieredit');
-    Route::post('servicesupplierdelete', [SupplierController::class, 'servicesupplierdelete'])->name('servicesupplierdelete');
-
-    Route::resource('customers', CustomerController::class)->names('customers');
-
-    //Quotations Commercial
-    Route::get('quotations-commercial', [QuotationController::class, 'index_commercial'])->name('quotations.commercial');
-
-    //Quotatios Personal
-    Route::get('quotations-personal', [QuotationController::class, 'index_personal'])->name('quotations.personal');
-    
     Route::get('calendar', [CalendarController::class, 'index'])->name('calendars.index');
     Route::get('calendar-listevents', [CalendarController::class, 'listevents'])->name('calendars.listevents');
     Route::post('calendar-ajax', [CalendarController::class, 'calendarajax'])->name('calendars.calendarajax');

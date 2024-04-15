@@ -321,7 +321,7 @@
 
                             <div class="col-md-7">
 
-                                @if ($inscription->status != 'Pagado' && (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')))
+                                @if ($inscription->status_compr != 'Informado' && (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')))
                                     <div class="card px-3 py-3 bg-primary mb-2">
                                         <label class="form-label mb-1 text-white"><span class="fw-bold">{{ __('Estado de la inscripción') }}</span>: <span>({{ $inscription->status }})</span></label>
                                         <form class="row" action="{{ route('inscriptions.updatestatus', ['id' => $inscription->id]) }}" method="POST">
