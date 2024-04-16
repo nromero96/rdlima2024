@@ -43,20 +43,35 @@ class InscriptionController extends Controller
             'scrollspy_offset' => '',
         ];
 
+        $listforpage = request()->query('listforpage') ?? 10;
+        $search = request()->query('search');
+
         if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || \Auth::user()->hasRole('Hotelero')) {
+            
             $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
                 ->join('users', 'inscriptions.user_id', '=', 'users.id')
                 ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
+                ->where(function ($query) use ($search) {
+                    $query->where('inscriptions.id', 'LIKE', "%{$search}%")
+                        ->orWhere('users.email', 'LIKE', "%{$search}%")
+                        ->orWhere('users.country', 'LIKE', "%{$search}%")
+                        ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
+                        ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%")
+                        ->orWhere('inscriptions.status', 'LIKE', "%{$search}%")
+                        ->orWhere('inscriptions.payment_method', 'LIKE', "%{$search}%")
+                        ->orWhere('inscriptions.created_at', 'LIKE', "%{$search}%")
+                        ->orWhereRaw('CONCAT(users.name, " ", users.lastname, " ", users.second_lastname) LIKE ?', ["%{$search}%"]);
+                })
                 ->where('inscriptions.status', '!=', 'Rechazado')
                 ->orderBy('inscriptions.id', 'desc')
-                ->get();
+                ->paginate($listforpage);
         } else {
             $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
                 ->join('users', 'inscriptions.user_id', '=', 'users.id')
                 ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
                 ->where('inscriptions.user_id', $iduser)
                 ->orderBy('inscriptions.id', 'desc')
-                ->get();
+                ->paginate($listforpage);
         }
         
 

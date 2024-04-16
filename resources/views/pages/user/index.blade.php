@@ -39,7 +39,7 @@
                     </div>
                 
                     <div class="widget-content widget-content-area pt-0">
-                        
+                        <div class="table-responsive">
                             <table class="table table-hover table-striped table-bordered" id="inscrip-list">
                                 <thead>
                                     <tr>
@@ -93,18 +93,17 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="row mx-0">
-                                <div class="col-md-7">
-                                    <div class="">
-                                        {{ $users->onEachSide(1)->withQueryString()->links() }}
-                                    </div>
-                                </div>
-                                <div class="col-md-5 mt-1">
-                                    <p class="text-end">Mostrando página {{ $users->currentPage() }} de {{ $users->lastPage() }} ({{ $users->total() }})</p>
+                        </div>
+                        <div class="row mx-0">
+                            <div class="col-md-7">
+                                <div class="">
+                                    {{ $users->onEachSide(1)->withQueryString()->links() }}
                                 </div>
                             </div>
-
-                            
+                            <div class="col-md-5 mt-1">
+                                <p class="text-end">Mostrando página {{ $users->currentPage() }} de {{ $users->lastPage() }} ({{ $users->total() }})</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

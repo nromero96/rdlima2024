@@ -61,10 +61,10 @@
 
         @case('inscriptions')
             {{-- Inscriptions --}}
-            <link rel="stylesheet" type="text/css" href="{{asset('plugins/src/table/datatable/datatables.css')}}">
+            {{-- <link rel="stylesheet" type="text/css" href="{{asset('plugins/src/table/datatable/datatables.css')}}">
             <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/dt-global_style.css')}}">
             <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/dark/table/datatable/dt-global_style.css')}}">
-            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/custom_dt_custom.css')}}">
+            <link rel="stylesheet" type="text/css" href="{{asset('plugins/css/light/table/datatable/custom_dt_custom.css')}}"> --}}
 
             <link rel="stylesheet" type="text/css" href="{{asset('assets/css/light/apps/inscriptions-list.css')}}">
             <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dark/apps/inscriptions-list.css')}}">
