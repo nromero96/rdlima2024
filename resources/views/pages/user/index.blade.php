@@ -12,30 +12,30 @@
             <div class="col-lg-12 layout-top-spacing">
                 <div class="statbox widget box box-shadow">
                     <div class="widget-header pb-2 pt-2">
-                        <div class="row">
-                            <div class="col-md-1 align-self-center">
-                                <h4>Usuarios</h4>
-                            </div>
-                            <div class="col-md-2 align-self-center">
-                                <select class="form-select form-control-sm ms-3" id="select-results" name="select-results">
-                                    <option value="10" selected>10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </div>
-                            <div class="col-md-5 align-self-center">
-                                <a href="{{ route('users.create') }}" class="btn btn-secondary">Añadir Nuevo</a>
-                            </div>
-                            <div class="col-md-4 align-self-center text-end">
-                                <form action="{{ route('users.index') }}" method="GET" class="mb-0" >
+                        <form action="{{ route('users.index') }}" method="GET" class="mb-0" >
+                            <div class="row">
+                                <div class="col-md-1 align-self-center">
+                                    <h4>Usuarios</h4>
+                                </div>
+                                <div class="col-md-2 align-self-center">
+                                    <select name="listforpage" class="form-select form-control-sm ms-3" id="listforpage" onchange="this.form.submit()">
+                                        <option value="10" {{ request('listforpage') == 10 ? 'selected' : '' }}>10</option>
+                                        <option value="20" {{ request('listforpage') == 20 ? 'selected' : '' }}>20</option>
+                                        <option value="50" {{ request('listforpage') == 50 ? 'selected' : '' }}>50</option>
+                                        <option value="100" {{ request('listforpage') == 100 ? 'selected' : '' }}>100</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-5 align-self-center">
+                                    <a href="{{ route('users.create') }}" class="btn btn-secondary">Añadir Nuevo</a>
+                                </div>
+                                <div class="col-md-4 align-self-center text-end">
                                     <div class="input-group">
                                         <input type="text" class="form-control mb-2 mb-md-0" name="search" placeholder="Buscar..." value="{{ request('search') }}">
                                         <button type="submit" class="btn btn-outline-secondary" id="button-addon2">Buscar</button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 
                     <div class="widget-content widget-content-area pt-0">

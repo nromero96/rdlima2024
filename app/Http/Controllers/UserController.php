@@ -27,8 +27,8 @@ class UserController extends Controller
         ];
 
         //get search value
+        $listforpage = request()->query('listforpage') ?? 10;
         $search = request()->query('search');
-
 
         $users = User::where(function ($query) use ($search) {
                 $query->where('id', 'LIKE', "%{$search}%")
@@ -38,7 +38,7 @@ class UserController extends Controller
             })
             ->whereIn('status', ['active', 'inactive'])
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->paginate($listforpage);
 
 
 
