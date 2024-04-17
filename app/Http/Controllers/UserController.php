@@ -34,7 +34,7 @@ class UserController extends Controller
                 $query->where('id', 'LIKE', "%{$search}%")
                       ->orWhere('email', 'LIKE', "%{$search}%")
                       ->orWhere('status', 'LIKE', "%{$search}%")
-                      ->orWhereRaw('CONCAT(name, " ", lastname, " ", second_lastname) LIKE ?', ["%{$search}%"]);
+                      ->orWhereRaw('CONCAT(COALESCE(name, ""), " ", COALESCE(lastname, ""), " ", COALESCE(second_lastname, "")) LIKE ?', ["%{$search}%"]);
             })
             ->whereIn('status', ['active', 'inactive'])
             ->orderBy('id', 'desc')

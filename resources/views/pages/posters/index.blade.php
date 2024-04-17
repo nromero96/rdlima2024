@@ -169,9 +169,11 @@
                                                             @endif
 
                                                         @else
-                                                            {{-- <a href="#" class="btn btn-primary my-2 px-2 py-3 btnuploadposter" data-id="{{ $item->id }}">
+                                                            @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
+                                                            <a href="#" class="btn btn-primary my-2 px-2 py-3 btnuploadposter" data-id="{{ $item->id }}">
                                                                 Subir Poster
-                                                            </a> --}}
+                                                            </a>
+                                                            @endif
                                                         @endif
                                                     </div>
                                                 </div>
