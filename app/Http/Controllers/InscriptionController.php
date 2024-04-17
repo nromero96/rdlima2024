@@ -53,14 +53,13 @@ class InscriptionController extends Controller
                 ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
                 ->where(function ($query) use ($search) {
                     $query->where('inscriptions.id', 'LIKE', "%{$search}%")
-                        ->orWhere('users.email', 'LIKE', "%{$search}%")
                         ->orWhere('users.country', 'LIKE', "%{$search}%")
                         ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
                         ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%")
                         ->orWhere('inscriptions.status', 'LIKE', "%{$search}%")
                         ->orWhere('inscriptions.payment_method', 'LIKE', "%{$search}%")
                         ->orWhere('inscriptions.created_at', 'LIKE', "%{$search}%")
-                        ->orWhereRaw('CONCAT(users.name, " ", users.lastname, " ", users.second_lastname) LIKE ?', ["%{$search}%"]);
+                        ->orWhereRaw('CONCAT(COALESCE(users.name, ""), " ", COALESCE(users.lastname, ""), " ", COALESCE(users.second_lastname, "")) LIKE ?', ["%{$search}%"]);
                 })
                 ->where('inscriptions.status', '!=', 'Rechazado')
                 ->orderBy('inscriptions.id', 'desc')
