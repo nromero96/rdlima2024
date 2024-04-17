@@ -382,7 +382,7 @@
 
         </div>
         <a href="https://radla2024.org/wp-content/uploads/2024/04/version-final-Programa-General-RADLA-2024-010424.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
-        <a href="https://radla2024.org/wp-content/uploads/2024/03/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
+        <a href="https://radla2024.org/wp-content/uploads/2024/04/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024-17042024.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
     </div>
 
     <div class="text-center dv-tablecontent table-responsive mb-5">
@@ -492,31 +492,31 @@
                 </tr>
                 <tr class="text-center">
                     <td>12:15 - 13:15</td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='63'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">PFIZER</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='64'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">GALDERMA</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='65'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">JANSSEN</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='66'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">SESDERMA</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='67'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">CANTABRIA</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='68'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">PIERRE FABRE</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
                 </tr>
@@ -704,27 +704,27 @@
                 </tr>
                 <tr class="text-center">
                     <td>12:20 - 13:20</td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='69'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">EUCERIN</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='70'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">MARTIDERM</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='71'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">LOREAL</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='72'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">SESDERMA</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='73'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">BIODERMA</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='74'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">DEKA LASER</b>
                     </td>
@@ -815,7 +815,7 @@
                     <td class="bg-col-1 " data-sessionid=''>
                         SIMPOSIO PATROCINADO
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='75'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">ABBVIE</b>
                     </td>
@@ -938,23 +938,23 @@
                 </tr>
                 <tr class="text-center">
                     <td>12:20 - 13:20</td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='76'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">LOREAL</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='77'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">ISDIN</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='78'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">EUCERIN</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='79'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">MEGALABS</b>
                     </td>
-                    <td class="bg-col-1 " data-sessionid=''>
+                    <td class="bg-col-1 cur-poin" data-sessionid='80'>
                         SIMPOSIO PATROCINADO<br>
                         <b class="txtcol-emp">BAGO</b>
                     </td>
