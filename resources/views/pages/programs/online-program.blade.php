@@ -1148,6 +1148,13 @@
         </div>
     </div>
 
+    <div class="d-none">
+        {{-- Imágenes del programa --}}
+        @foreach ($programsessionimages as $item)
+            <img src="{{ asset('storage/uploads/program_file/'.$item->image_program) }}" alt="Programa" class="img-fluid">
+        @endforeach
+    </div>
+
     <footer class="mt-5 pt-4 pb-4">
         <div class="container">
             <div class="row">

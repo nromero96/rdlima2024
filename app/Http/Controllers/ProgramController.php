@@ -48,7 +48,9 @@ class ProgramController extends Controller
         $programsession = ProgramSession::orderBy('id', 'desc')->get();
         $programs = Program::orderBy('id', 'desc')->get();
 
-        return view('pages.programs.online-program')->with($data)->with('programsession', $programsession)->with('programs', $programs);
+        $programsessionimages = ProgramSession::select('id', 'image_program')->orderBy('id', 'desc')->get();
+
+        return view('pages.programs.online-program')->with($data)->with('programsession', $programsession)->with('programs', $programs)->with('programsessionimages', $programsessionimages);
     }
 
     /**
