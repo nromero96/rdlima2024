@@ -10,25 +10,53 @@
 
         <div class="row layout-spacing">
             <div class="col-lg-12 layout-top-spacing">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{__("Éxito")}}!</strong> {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @elseif(session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{__("Error")}}!</strong> {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <div class="statbox widget box box-shadow">
-                    <div class="widget-header pt-4">
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-end">
-                                {{-- <a href="{{ route('programs.create') }}" class="btn btn-primary mb-4 ms-3 me-3">
-                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 5v14"></path>
-                                        <path d="M5 12h14"></path>
-                                      </svg>
-                                    {{__("Agregar")}}
-                                </a> --}}
-                                <a href="{{ route('programsessions.index') }}" class="btn btn-success mb-4 ms-2 me-2">
-                                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                    {{__("Sesiones")}}
-                                </a>
+                    <div class="widget-header pb-2 pt-2">
+                        <form action="{{ route('programs.index') }}" method="GET" class="mb-0" >
+                            <div class="row">
+                                <div class="col-md-2 align-self-center">
+                                    <h4>Programa</h4>
+                                </div>
+                                <div class="col-md-1 align-self-center ps-0">
+                                    <select name="listforpage" class="form-select form-control-sm ms-0" id="listforpage" onchange="this.form.submit()">
+                                        <option value="20" {{ request('listforpage') == 20 ? 'selected' : '' }}>20</option>
+                                        <option value="50" {{ request('listforpage') == 50 ? 'selected' : '' }}>50</option>
+                                        <option value="100" {{ request('listforpage') == 100 ? 'selected' : '' }}>100</option>
+                                        <option value="200" {{ request('listforpage') == 200 ? 'selected' : '' }}>200</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 align-self-center">
+                                    <a href="{{ route('programsessions.index') }}" class="btn btn-secondary">Sesiones</a>
+                                </div>
+                                <div class="col-md-5 align-self-center">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control mb-2 mb-md-0" name="search" placeholder="Buscar..." value="{{ request('search') }}">
+                                        @if(request('search') != '')
+                                            <a href="{{ route('programs.index') }}" class="btn btn-outline-light px-1" id="button-addon2" style="border-left: 0px;border-color: #bfc9d4;background: white;">
+                                                <svg width="24" height="24" fill="none" stroke="#9e9e9e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
+                                                    <path d="m15 9-6 6"></path>
+                                                    <path d="m9 9 6 6"></path>
+                                                </svg>
+                                            </a>
+                                        @endif
+                                        <button type="submit" class="btn btn-primary" id="button-addon2">Buscar</button>
+                                    </div>
+                                    <small class="text-muted">Por: Inscripción, Nombre, Sala, Fecha o Tema</small>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="widget-content widget-content-area pt-0">
                         <div class="table-responsive">
@@ -86,8 +114,15 @@
                                         <tr style="background-color: {{$rgbaColor}};">
                                             
                                             <td>
+
+                                                @if($program->insc_id)
+                                                    INS <a href="{{ route('inscriptions.show', $program->insc_id) }}" class="text-primary">#{{$program->insc_id}}</a>
+                                                @else
+                                                    <a href="{{ route('programs.edit', $program->id) }}" class="text-info">(Asociar inscripción)</a>
+                                                @endif
+
                                                 @if ($program->apellido . $program->nombre !== $prevName)
-                                                    ({{ $numeration++ }}) - INS <a href="{{ route('inscriptions.show', $program->insc_id) }}" class="text-primary">#{{$program->insc_id}}</a>
+                
                                                     <b class="d-block">{{$program->apellido}} {{$program->nombre}}</b>
                                                     <small class="d-block">{{$program->status}} - {{$program->pais}}</small>
                                                     
@@ -124,6 +159,17 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="row mx-0 mt-1">
+                            <div class="col-md-7">
+                                <div class="">
+                                    {{ $programs->onEachSide(1)->withQueryString()->links() }}
+                                </div>
+                            </div>
+                            <div class="col-md-5 mt-1">
+                                <p class="text-end">Mostrando página {{ $programs->currentPage() }} de {{ $programs->lastPage() }}</p>
+                                <p class="text-end">Total Expositores: <b>{{ $totalexpositores }}</b></p>
+                            </div>
                         </div>
                     </div>
                 </div>

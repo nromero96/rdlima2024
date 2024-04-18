@@ -38,13 +38,38 @@
                             @csrf
                             @method('PUT')
 
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 @if($program->insc_id)
                                     <p class="form-control mb-0">Inscripción <a href="{{ route('inscriptions.show', $program->insc_id) }}" target="_blank" class="text-info">#{{ $program->insc_id }}</a> del expositor</p>
                                 @else
                                     <p class="form-control mb-0 text-danger">Aun no se ha asociado la inscripción del expositor</p>
                                 @endif
                             </div>
+
+                            <div class="col-md-4">
+                                <input type="text" name="insc_id" class="form-control" id="insc_id" value="{{ $program->insc_id }}">
+                                @if($program->insc_id)
+                                    <small class="form-text text-muted">ID de la inscripción del expositor</small>
+                                @else
+                                <small class="form-text text-muted">Ingrese el ID de la inscripción del expositor</small>
+                                @endif
+
+                                {!!$errors->first("insc_id", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="apellido" class="form-label fw-bold mb-0">{{__("Apellido:")}}</label>
+                                <input type="text" name="apellido" class="form-control" id="apellido" value="{{ $program->apellido }}">
+                                {!!$errors->first("apellido", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="nombre" class="form-label fw-bold mb-0">{{__("Nombre:")}}</label>
+                                <input type="text" name="nombre" class="form-control" id="nombre" value="{{ $program->nombre }}">
+                                {!!$errors->first("nombre", "<span class='text-danger'>:message</span>")!!}
+                            </div>
+
+                            <hr class="mt-3 mb-0">
 
                             <div class="col-md-2">
                                 <label for="sesion" class="form-label fw-bold mb-0">{{__("Sesión:")}}</label>

@@ -28,11 +28,38 @@ class ProgramController extends Controller
             'has_scrollspy' => 0,
             'scrollspy_offset' => '',
         ];
+
+        $listforpage = request()->query('listforpage') ?? 20;
+        $search = request()->query('search');
         
-        $programs = Program::orderByRaw("CONCAT(apellido, ' ', nombre)")->get();
+        $programs = Program::orderByRaw("CONCAT(apellido, ' ', nombre)")
+                                ->where(function($query) use ($search){
+                                    $query->orWhere('insc_id', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('sesion', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('nombre_sesion', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('fecha', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('sala', 'LIKE', '%'.$search.'%')
+                                        ->orWhere('tema', 'LIKE', '%'.$search.'%')
+                                        ->orWhereRaw("CONCAT(apellido, ' ', nombre) LIKE '%".$search."%'");
+                                })
+                            ->paginate($listforpage);
 
+        //count total group by concated apellido and nombre
+        $totalexpositores = Program::selectRaw("CONCAT(apellido, ' ', nombre) as nombrecompleto")
+        ->where(function($query) use ($search){
+            $query->orWhere('insc_id', 'LIKE', '%'.$search.'%')
+                ->orWhere('sesion', 'LIKE', '%'.$search.'%')
+                ->orWhere('nombre_sesion', 'LIKE', '%'.$search.'%')
+                ->orWhere('fecha', 'LIKE', '%'.$search.'%')
+                ->orWhere('sala', 'LIKE', '%'.$search.'%')
+                ->orWhere('tema', 'LIKE', '%'.$search.'%')
+                ->orWhereRaw("CONCAT(apellido, ' ', nombre) LIKE '%".$search."%'");
+        })
+        ->groupBy('nombrecompleto')
+        ->get()
+        ->count();
 
-        return view('pages.programs.index')->with($data)->with('programs', $programs);
+        return view('pages.programs.index')->with($data)->with('programs', $programs)->with('totalexpositores', $totalexpositores);
     }
 
     public function showOnlinePrograms()
@@ -115,7 +142,25 @@ class ProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $program = Program::find($id);
+
+        $program->insc_id = $request->insc_id;
+        $program->apellido = $request->apellido;
+        $program->nombre = $request->nombre;
+        $program->sesion = $request->sesion;
+        $program->nombre_sesion = $request->nombre_sesion;
+        $program->fecha = $request->fecha;
+        $program->bloque = $request->bloque;
+        $program->inicio = $request->inicio;
+        $program->termino = $request->termino;
+        $program->sala = $request->sala;
+        $program->tema = $request->tema;
+
+        $program->save();
+
+        return redirect()->route('programs.index')->with('success', 'Programa de '.$program->nombre.' '.$program->apellido.' actualizado exitosamente.');
+
     }
 
     /**
