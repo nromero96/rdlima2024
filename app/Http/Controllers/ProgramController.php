@@ -82,7 +82,8 @@ class ProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        
+
     }
 
     /**
@@ -93,7 +94,16 @@ class ProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'category_name' => 'programs',
+            'page_name' => 'programs_edit',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        $program = Program::find($id);
+
+        return view('pages.programs.edit')->with($data)->with('program', $program);
     }
 
     /**

@@ -79,7 +79,7 @@
             {{-- Inscriptions --}}
             <script src="{{asset('plugins/src/table/datatable/datatables.js')}}"></script>
             <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/js/apps/inscriptions/list.js')}}?v={{ config('app.version') }}"></script>
+            <script src="{{asset('assets/js/apps/inscriptions/list-rejects.js')}}?v={{ config('app.version') }}"></script>
             @break
 
         @case('inscriptions_create')
