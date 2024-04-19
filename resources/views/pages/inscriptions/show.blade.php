@@ -371,7 +371,7 @@
                                         </div>
                                     @endif
 
-                                    @if($inscription->status_compr == 'Pendiente')
+                                    @if($inscription->status_compr == 'Pendiente' || $inscription->status_compr == 'Procesando')
                                         <span class="badge badge-light-warning">Generando Comprobante...</span>
                                     @endif
                                 

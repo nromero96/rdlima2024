@@ -50,33 +50,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>#23</td>
-                                    <td>John Doe</td>
-                                    <td>Guatemala</td>
-                                    <td>
-                                        <a href="{{ route('gafetes.gafeteforparticipant','2') }}" class="btn btn-primary me-1">Participante</a>
-                                        <a href="{{ route('gafetes.gafeteforaccompanist','3') }}" class="btn btn-info">Acompañante</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#23</td>
-                                    <td>John Doe John Doe</td>
-                                    <td>Guatemala</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary me-1">Participante</button>
-                                        <button type="button" class="btn btn-info">Acompañante</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#23</td>
-                                    <td>John Doe John Doe</td>
-                                    <td>Guatemala</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary me-1">Participante</button>
-                                        <button type="button" class="btn btn-info">Acompañante</button>
-                                    </td>
-                                </tr>
+                                @foreach($inscriptions as $inscription)
+                                    <tr>
+                                        <td>#{{ $inscription->id }}</td>
+                                        <td>John Doe</td>
+                                        <td>Guatemala</td>
+                                        <td>
+                                            <a href="{{ route('gafetes.gafeteforparticipant',$inscription->id) }}" class="btn btn-primary me-1">Participante</a>
+                                            <a href="{{ route('gafetes.gafeteforaccompanist','3') }}" class="btn btn-info">Acompañante</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
 
                         </table>
