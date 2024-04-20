@@ -37,6 +37,57 @@
                 </div>
             </div>
 
+            @if($myprograms != '[]')
+
+                @php 
+                    function hex2rgba($color, $opacity = false) {
+                                        $default = 'rgb(0,0,0)';
+                                        if(empty($color))
+                                            return $default; 
+                                        if ($color[0] == '#')
+                                            $color = substr($color, 1);
+                                        if (strlen($color) == 6)
+                                            $hex = array($color[0].$color[1], $color[2].$color[3], $color[4].$color[5]);
+                                        elseif (strlen($color) == 3)
+                                            $hex = array($color[0].$color[0], $color[1].$color[1], $color[2].$color[2]);
+                                        else
+                                            return $default;
+                                        $rgb =  array_map('hexdec', $hex);
+                                        if($opacity !== false){
+                                            if(abs($opacity) > 1)
+                                                $opacity = 1.0;
+                                            $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+                                        } else {
+                                            $output = 'rgb('.implode(",",$rgb).')';
+                                        }
+                                        return $output;
+                                    }
+                @endphp
+
+                <div class="col-sm-12 mb-3 mb-sm-3">
+                    <div class="card">
+                    <div class="card-body pt-2">
+                        <h5 class="card-title mb-0">{{__("MI AGENDA:")}}</h5>
+                        
+                        @foreach($myprograms as $program)
+
+                            @php
+                                $salonbloque = $program->sala . $program->fecha . $program->bloque;
+                                $color = '#' . substr(md5($salonbloque), 0, 6); // Genera un color aleatorio basado en el nombre completo
+                                $rgbaColor = hex2rgba($color, 0.3); // Agrega transparencia al color    
+                            @endphp
+
+                            <div class="rounded p-2 mt-1" style="background-color: {{ $rgbaColor }}; color:#515365;">
+                                <small class="d-block">{{$program->sesion}} - {{$program->sala}} - {{$program->fecha}} ({{$program->bloque}})</small>
+                                <small style="font-weight: bold;">{{$program->inicio}} - {{$program->termino}}</small> {{ $program->tema }}
+                            </div>
+                        @endforeach
+
+                    </div>
+                    </div>
+                </div>
+            @endif
+
             @if (Auth::user()->hasRole('Administrador'))
             
             @endif

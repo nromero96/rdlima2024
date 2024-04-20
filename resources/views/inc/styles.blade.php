@@ -115,6 +115,27 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dark/components/modal.css') }}">
             @break
 
+        @case('gafetes')
+            {{-- Gafetes --}}
+            <style>
+
+                .form-check-label {
+                    cursor: pointer;
+                }
+
+                .table .form-check-input {
+                    background-color: #fbfbfb;
+                    border-color: #c00000;
+                    cursor: pointer;
+                }
+
+                .form-check-input:checked {
+                    background-color: #c00000 !important;
+                    border-color: #c00000 !important;
+                }
+            </style>
+            @break
+
         @case('sales')
             {{-- Dashboard 1 --}}
             <link href="{{ asset('plugins/src/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">

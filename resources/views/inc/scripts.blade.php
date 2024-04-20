@@ -99,6 +99,11 @@
             <script src="{{asset('plugins/src/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
             <script src="{{asset('assets/js/apps/beneficiarios_becas/list.js')}}?v={{ config('app.version') }}"></script>
             @break
+        
+        @case('gafetes')
+            {{-- Gafetes --}}
+            
+            @break
 
         @case('coupons_edit')
             {{-- Coupons --}}

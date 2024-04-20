@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Inscription;
+use App\Models\Program;
 
 class DashboardController extends Controller{
     public function index(){
@@ -13,8 +15,20 @@ class DashboardController extends Controller{
             'has_scrollspy' => 0,
             'scrollspy_offset' => '',
         ];
-        // $pageName = 'dashboard';
-        return view('dashboard.index')->with($data);
+        
+        //revisar si tiene alguna inscripcion en estado Pagado
+        $myinscription = Inscription::where('status', 'Pagado')
+                                    ->where('user_id', auth()->user()->id)
+                                    ->first();
+
+        if($myinscription){
+            //$myprograms = Program::where('insc_id', '503')->get();
+            $myprograms = Program::where('insc_id', $myinscription->id)->get();
+        } else {
+            $myprograms = '[]';
+        }
+
+        return view('dashboard.index')->with($data)->with('myinscription', $myinscription)->with('myprograms', $myprograms);
     }
 
 
