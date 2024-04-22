@@ -382,7 +382,7 @@
 
         </div>
         <a href="https://radla2024.org/wp-content/uploads/2024/04/version-final-Programa-General-RADLA-2024-010424.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
-        <a href="https://radla2024.org/wp-content/uploads/2024/04/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024-17042024.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
+        <a href="https://radla2024.org/wp-content/uploads/2024/04/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024-220424.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
     </div>
 
     <div class="text-center dv-tablecontent table-responsive mb-5">

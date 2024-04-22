@@ -62,8 +62,15 @@ class InscriptionController extends Controller
                                 ->orWhere('inscriptions.special_code', '');
                         });
                     } else {
-                        $query->where('inscriptions.id', 'LIKE', "%{$search}%")
-                            ->orWhere('users.country', 'LIKE', "%{$search}%")
+                        // Si la búsqueda comienza con #, buscar exactamente inscriptions.id
+                        if (strpos($search, '#') === 0) {
+                            $searchWithoutHash = ltrim($search, '#');
+                            $query->where('inscriptions.id', $searchWithoutHash);
+                        } else {
+                            // Si no comienza con #, buscar cualquier coincidencia parcial
+                            $query->where('inscriptions.id', 'LIKE', "%{$search}%");
+                        }
+                        $query->orWhere('users.country', 'LIKE', "%{$search}%")
                             ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
                             ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%")
                             ->orWhere('inscriptions.status', 'LIKE', "%{$search}%")
