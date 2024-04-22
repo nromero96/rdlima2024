@@ -168,7 +168,8 @@
                             </div>
                             <div class="col-md-5 mt-1">
                                 <p class="text-end">Mostrando página {{ $programs->currentPage() }} de {{ $programs->lastPage() }}</p>
-                                <p class="text-end">Total Expositores: <b>{{ $totalexpositores }}</b></p>
+                                <p class="text-end mb-0">Total Expositores: <b>{{ $totalexpositores }}</b></p>
+                                <p class="text-end mb-0">Total Intervenciones: <b>{{ $programs->total() }}</b></p>
                             </div>
                         </div>
                     </div>

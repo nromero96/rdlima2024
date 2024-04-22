@@ -94,6 +94,50 @@ class InscriptionController extends Controller
         return view('pages.inscriptions.index')->with($data)->with('inscriptions', $inscriptions);
     }
 
+    public function indexAccompanists(){
+
+        $data = [
+            'category_name' => 'inscriptions',
+            'page_name' => 'inscriptions_ccompanists',
+            'has_scrollspy' => 0,
+            'scrollspy_offset' => '',
+        ];
+
+        $listforpage = request()->query('listforpage') ?? 10;
+        $search = request()->query('search');
+
+        //list inscriptions with accompanists
+        $accompanists = Inscription::join('accompanists', 'inscriptions.accompanist_id', '=', 'accompanists.id')
+            ->join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+            ->select('accompanists.*', 'category_inscriptions.name as category_inscription_name', 'inscriptions.id as inscription_id', 'inscriptions.status as inscription_status', 'inscriptions.payment_method as inscription_payment_method', 'inscriptions.price_accompanist as inscription_price_accompanist', 'inscriptions.special_code as inscription_special_code')
+            ->where('inscriptions.status', '!=', 'Rechazado')
+            ->where(function ($query) use ($search) {
+                // Si la búsqueda comienza con #, buscar exactamente inscriptions.id
+                if (strpos($search, '#') === 0) {
+                    $searchWithoutHash = ltrim($search, '#');
+                    $query->where('inscriptions.id', $searchWithoutHash);
+                } else {
+                    // Si no comienza con #, buscar cualquier coincidencia parcial
+                    $query->where('inscriptions.id', 'LIKE', "%{$search}%");
+                }
+
+                $query->orWhere('accompanists.accompanist_name', 'LIKE', "%{$search}%")
+                    ->orWhere('accompanists.accompanist_numdocument', 'LIKE', "%{$search}%")
+                    ->orWhere('accompanists.accompanist_solapin', 'LIKE', "%{$search}%")
+                    ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
+                    ->orWhere('inscriptions.status', 'LIKE', "%{$search}%")
+                    ->orWhere('inscriptions.payment_method', 'LIKE', "%{$search}%")
+                    ->orWhere('inscriptions.price_accompanist', 'LIKE', "%{$search}%")
+                    ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%");
+            })
+
+            ->paginate($listforpage);
+        
+        return view('pages.inscriptions.accompanists')->with($data)->with('accompanists', $accompanists);
+
+
+    }
+
     public function indexRejects(){
         $iduser = \Auth::user()->id;
 

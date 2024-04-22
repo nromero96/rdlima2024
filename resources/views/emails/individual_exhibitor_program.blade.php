@@ -15,7 +15,7 @@
         </h1>
         <div style="color: white; height: 20px;">-</div>
         <p style="font-size: 14px;">
-            Lima, 6 de Abril de 2024
+            Lima, 22 de Abril de 2024
         </p>
         <div style="color: white; height: 1px;">-</div>
         <p style="font-size: 14px;">
@@ -26,11 +26,7 @@
         </p>
 
         <p style="font-size: 14px;">
-            De nuestra especial consideración:
-        </p>
-
-        <p style="font-size: 14px;">
-            Reciba un cordial saludo desde la Secretaría RADLA LIMA 2024.  Encuentre a continuación su agenda de participación y presentaciones que tendrá durante el evento a desarrollarse en el Swissotel Lima, del 8 al 11 de mayo próximo.
+            Este es un gentil recordatorio de la agenda de sus presentaciones en RADLA LIMA 2024.
         </p>
 
         <table style="width:100%;text-align: left; font-size: 14px;">
@@ -57,11 +53,15 @@
         </p>
 
         <p style="font-size: 14px;">
-            Igualmente, a partir del 10 de abril podrá ver en su perfil de usuario de RADLA LIMA 2024 su agenda personalizada con todas las sesiones científicas en las que participa.
+            Igualmente, puede ver en su perfil de usuario de RADLA LIMA 2024 su agenda personalizada con todas las sesiones científicas en las que participa.
         </p>
 
         <p style="font-size: 14px;">
             Sea propicia la ocasión para reiterarle nuestro agradecimiento por su contribución al desarrollo de RADLA LIMA 2024.
+        </p>
+
+        <p style="font-size: 14px;">
+            Agradecemos acuse de recibo.
         </p>
 
         <p style="font-size: 14px;">Atentamente,</p>

@@ -199,7 +199,7 @@ class ProgramController extends Controller
                         echo 'Enviar a su correo: '.$user->email.'<br>';
 
                         try {
-                            //$cooreotest = 'niltondeveloper96@gmail.com';
+                            //Mail::to('niltondeveloper96@gmail.com')->send(new IndividualExhibitorProgramMail($inscription, $user));
                             Mail::to($user->email)->send(new IndividualExhibitorProgramMail($inscription, $user));
                             echo 'Correo enviado exitosamente<br>';
                             echo '<a href="'.route('programs.index').'">Regresar a la lista.</a>';
