@@ -39,6 +39,7 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
                                     'users.workplace',
                                     'users.solapin_name',
                                     'category_inscriptions.name as category', 
+                                    'inscriptions.special_code',
                                     'inscriptions.price_category',
                                     'inscriptions.price_accompanist',
                                     'inscriptions.total', 
@@ -70,6 +71,7 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
             'Centro de trabajo',
             'Solapín',
             'Categoria',
+            'Código Especial',
             'Precio Categoria',
             'Precio Acompañante',
             'Pago Total',
@@ -99,6 +101,7 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
             $inscription->workplace,
             $inscription->solapin_name,
             $inscription->category,
+            $inscription->special_code,
             $inscription->price_category,
             $inscription->price_accompanist,
             $inscription->total,
@@ -110,7 +113,7 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
     }
 
     public function styles(Worksheet $sheet){
-        $sheet->getStyle('A1:W1')->applyFromArray([
+        $sheet->getStyle('A1:X1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => 'FFFFFF'],
@@ -140,12 +143,13 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
         $sheet->getColumnDimension('O')->setWidth(15);
         $sheet->getColumnDimension('P')->setWidth(18);
         $sheet->getColumnDimension('Q')->setWidth(26);
-        $sheet->getColumnDimension('R')->setWidth(7);
+        $sheet->getColumnDimension('R')->setWidth(15);
         $sheet->getColumnDimension('S')->setWidth(7);
         $sheet->getColumnDimension('T')->setWidth(7);
         $sheet->getColumnDimension('U')->setWidth(20);
         $sheet->getColumnDimension('V')->setWidth(11);
         $sheet->getColumnDimension('W')->setWidth(17);
+        $sheet->getColumnDimension('X')->setWidth(17);
     }
 
 }
