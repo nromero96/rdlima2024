@@ -50,7 +50,7 @@ class IndividualExhibitorProgramMail extends Mailable
         $subject = $this->user->name . ' ' . $this->user->lastname . ' (' . $this->user->country . '): SU AGENDA PERSONALIZADA EN RADLA LIMA 2024.';
         return $this->view('emails.individual_exhibitor_program')
         ->subject($subject)
-        ->attach('https://radla2024.org/wp-content/uploads/2024/04/version-final-Programa-General-RADLA-2024-010424.pdf', [
+        ->attach('https://radla2024.org/wp-content/uploads/2024/04/version-final-Programa-General-RADLA-2024-publicacion-220424.pdf', [
             'as' => 'Programa-General-RADLA-2024-010424.pdf',
             'mime' => 'application/pdf',
         ]);

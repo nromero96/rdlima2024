@@ -264,7 +264,7 @@
                 </tr>
                 <tr class="text-center">
                     <td>9:00 – 10:00</td>
-                    <td rowspan="5" class="align-middle text-cl-blue bg-col-1 cur-poin" data-sessionid="61">
+                    <td rowspan="4" class="align-middle text-cl-blue bg-col-1 cur-poin" data-sessionid="61">
                         <b>REUNIÓN<br>IPC/SOIAPso</b>
                     </td>
                     <td rowspan="5" class="align-middle text-cl-blue bg-col-2 cur-poin" data-sessionid="62">
@@ -298,14 +298,14 @@
                 </tr>
                 <tr class="text-center">
                     <td>12:30 – 13:00</td>
-                    {{-- <td></td> --}}
+                    <td rowspan="2">RECESO</td>
                     {{-- <td></td> --}}
                     {{-- <td></td> --}}
                     <td></td>
                 </tr>
                 <tr class="text-center">
                     <td>13:00 – 14:00</td>
-                    <td>RECESO</td>
+                    {{-- <td></td> --}}
                     <td>RECESO</td>
                     <td>RECESO</td>
                     <td rowspan="3" class="align-middle text-cl-blue bg-col-5 cur-poin" data-sessionid="59">
@@ -348,18 +348,11 @@
                 </tr>
                 <tr class="text-center">
                     <td>17:00 – 18:00</td>
-                    <td>CIERRE</td>
-                    <td>CIERRE</td>
-                    <td>CIERRE</td>
-                    <td></td>
-                </tr>
-                <tr class="text-center">
-                    <td>18:00 – 18:45</td>
                     <td class="align-middle bg-col-6">
                         <b>REUNIÓN OFICIAL BECADOS RADLA LIMA 2024</b>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td>CIERRE</td>
+                    <td>CIERRE</td>
                     <td></td>
                 </tr>
                 <tr class="text-center">
@@ -381,8 +374,8 @@
         <div class="d-flex">
 
         </div>
-        <a href="https://radla2024.org/wp-content/uploads/2024/04/version-final-Programa-General-RADLA-2024-010424.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
-        <a href="https://radla2024.org/wp-content/uploads/2024/04/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024-220424.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
+        <a href="https://radla2024.org/wp-content/uploads/2024/04/version-final-Programa-General-RADLA-2024-publicacion-220424.pdf" target="_blank" class="btn btn-des-program">Descargar Programa</a>
+        <a href="https://radla2024.org/wp-content/uploads/2024/04/AGENDA-DETALLADA-Y-PROGRAMA-GENERAL-RADLA-LIMA-2024-V-220424.pdf" target="_blank" class="btn btn-des-program">Descargar Agenda Detallada</a>
     </div>
 
     <div class="text-center dv-tablecontent table-responsive mb-5">
