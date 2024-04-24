@@ -31,6 +31,9 @@ class UserController extends Controller
         $search = request()->query('search');
 
         $users = User::where(function ($query) use ($search) {
+                // Búsqueda por nombre completo o primer nombre y primer apellido
+                $search = str_replace(' ', '%', $search);
+
                 $query->where('id', 'LIKE', "%{$search}%")
                       ->orWhere('email', 'LIKE', "%{$search}%")
                       ->orWhere('status', 'LIKE', "%{$search}%")

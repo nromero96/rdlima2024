@@ -70,13 +70,17 @@ class InscriptionController extends Controller
                             // Si no comienza con #, buscar cualquier coincidencia parcial
                             $query->where('inscriptions.id', 'LIKE', "%{$search}%");
                         }
+
+                        // Búsqueda por nombre completo o primer nombre y primer apellido
+                        $search = str_replace(' ', '%', $search);
+                        $query->orWhereRaw('CONCAT(COALESCE(users.name, ""), " ", COALESCE(users.lastname, ""), " ", COALESCE(users.second_lastname, "")) LIKE ?', ["%{$search}%"]);
+
                         $query->orWhere('users.country', 'LIKE', "%{$search}%")
                             ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
                             ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%")
                             ->orWhere('inscriptions.status', 'LIKE', "%{$search}%")
                             ->orWhere('inscriptions.payment_method', 'LIKE', "%{$search}%")
-                            ->orWhere('inscriptions.created_at', 'LIKE', "%{$search}%")
-                            ->orWhereRaw('CONCAT(COALESCE(users.name, ""), " ", COALESCE(users.lastname, ""), " ", COALESCE(users.second_lastname, "")) LIKE ?', ["%{$search}%"]);
+                            ->orWhere('inscriptions.created_at', 'LIKE', "%{$search}%");
                     }
                 })
                 ->orderBy('inscriptions.id', 'desc')
