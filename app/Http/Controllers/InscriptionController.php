@@ -53,7 +53,7 @@ class InscriptionController extends Controller
                 ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country')
                 ->where('inscriptions.status', '!=', 'Rechazado')
                 ->where(function ($query) use ($search) {
-                    if($search == 'pendiente pagar'){
+                    if(strcasecmp($search, 'pendiente pagar') === 0){
                         $query->where('inscriptions.status', 'Pendiente')
                         ->where('inscriptions.payment_method', 'Tarjeta')
                         ->where('inscriptions.total', '>', 0)
