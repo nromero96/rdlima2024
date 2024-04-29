@@ -25,7 +25,7 @@
                     </div>
                 @endif
 
-                <div class="statbox widget box box-shadow">
+                <div class="statbox widget box box-shadow ficha-inscripcion">
                     <div class="widget-header px-3">
                         <div class="row g-3">
                             <div class="col-md-8 py-3">
@@ -34,6 +34,15 @@
                                 </h4>
                             </div>
                             <div class="col-md-4 py-3 text-end">
+
+                                <a href="#" class="btn btn-primary px-1 py-1 btnprintficha" style="margin-top: -6px;">
+                                    <svg width="14" height="14" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 9V2h12v7"></path>
+                                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                        <path d="M6 14h12v8H6z"></path>
+                                    </svg>
+                                </a>
+
                                 @php
                                     if($inscription->payment_method == 'Tarjeta'){
                                         $textmp = 'TC';
@@ -141,7 +150,7 @@
                                     {{__("Detalle de la inscripción")}}
 
                                     @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
-                                        <a href="{{ route('inscriptions.edit', $inscription->id) }}" class="btn btn-light-primary p-0 btn-sm ms-2">
+                                        <a href="{{ route('inscriptions.edit', $inscription->id) }}" class="btn btn-light-primary p-0 btn-sm ms-2 btneditinsc">
                                             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
@@ -322,7 +331,7 @@
                             <div class="col-md-7">
 
                                 @if ($inscription->status_compr != 'Informado' && (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria')))
-                                    <div class="card px-3 py-3 bg-primary mb-2">
+                                    <div class="card px-3 py-3 bg-primary mb-2 actionstatus">
                                         <label class="form-label mb-1 text-white"><span class="fw-bold">{{ __('Estado de la inscripción') }}</span>: <span>({{ $inscription->status }})</span></label>
                                         <form class="row" action="{{ route('inscriptions.updatestatus', ['id' => $inscription->id]) }}" method="POST">
                                             @csrf

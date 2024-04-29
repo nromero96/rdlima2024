@@ -90,7 +90,9 @@
             @break
         @case('inscriptions_show')
             {{-- Inscriptions --}}
-            <script src="{{asset('assets/js/apps/inscriptions/show.js')}}?v={{ config('app.version') }}"></script>
+            <script src="{{ asset('plugins/src/html2canvas/html2canvas.min.js')}}"></script>
+            <script src="{{ asset('plugins/src/printjs/print.min.js')}}"></script>
+            <script src="{{ asset('assets/js/apps/inscriptions/show.js')}}?v={{ config('app.version') }}"></script>
             @break
 
         @case('beneficiarios_becas')

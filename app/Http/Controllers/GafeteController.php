@@ -42,6 +42,7 @@ class GafeteController extends Controller
     public function gafeteForParticipant($id)
     {
 
+        //Tahoma
         //GET path logo and firma
         $bgimage = public_path('assets/img/bg-gafete.png');
 
@@ -59,19 +60,19 @@ class GafeteController extends Controller
         $rolparticipante = 'PARTICIPANTE';
 
         $nombresolapin = <<<EOD
-            <h2 style="text-align: center; font-size: 24px; color:#094a91;">{$pdfsolapin_name[0]}</h2>
+            <h2 style="text-align: center; font-size: 24px; color:#000000;letter-spacing:-0.30mm;">{$pdfsolapin_name[0]}</h2>
         EOD;
 
         $apellidosopalin = <<<EOD
-            <h2 style="text-align: center; font-size: 22px; color:#094a91;">{$pdfsolapin_lastname}</h2>
+            <h2 style="text-align: center; font-size: 22px; color:#000000;letter-spacing:-0.30mm;">{$pdfsolapin_lastname}</h2>
         EOD;
 
         $pais = <<<EOD
-            <h2 style="text-align: center; font-size: 18px; text-transform: uppercase; color:#f09333;">{$inscriptions->user_country}</h2>
+            <h2 style="text-align: center; font-size: 18px; text-transform: uppercase; color:#094a91; letter-spacing:-0.30mm;">{$inscriptions->user_country}</h2>
         EOD;
 
         $idinscripcion = <<<EOD
-            <h2 style="text-align: center; font-size: 18px; color:#bd3529;">{$inscriptions->id}</h2>
+            <h2 style="text-align: center; font-size: 18px; color:#000000;">{$inscriptions->id}</h2>
         EOD;
 
         $nivelparticipante = <<<EOD
@@ -90,14 +91,18 @@ class GafeteController extends Controller
         $pdf->SetMargins(0, 0, 0);
         $pdf->AddPage();
 
+        //font
+        $pdf->SetFont('dejavusans', '', 12);
+
+
         $pdf->Image($bgimage, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
         //nombresolapin centro en solo una cuarta parte de la hoja
         
-        $pdf->writeHTMLCell(96, 0, 5, 70, $nombresolapin, 0, 1, 0, true, 'C', true);
+        $pdf->writeHTMLCell(96, 0, 5, 67, $nombresolapin, 0, 1, 0, true, 'C', true);
         $pdf->writeHTMLCell(96, 0, 5, 80, $apellidosopalin, 0, 1, 0, true, 'C', true);
-        $pdf->writeHTMLCell(96, 0, 5, 90, $pais, 0, 1, 0, true, 'C', true);
-        $pdf->writeHTMLCell(96, 0, 5, 102, $idinscripcion, 0, 1, 0, true, 'C', true);
-        $pdf->writeHTMLCell(96, 0, 5, 115, $nivelparticipante, 0, 1, 0, true, 'C', true);
+        $pdf->writeHTMLCell(96, 0, 5, 100, $pais, 0, 1, 0, true, 'C', true);
+        $pdf->writeHTMLCell(96, 0, 5, 110, $idinscripcion, 0, 1, 0, true, 'C', true);
+        $pdf->writeHTMLCell(96, 0, 5, 125, $nivelparticipante, 0, 1, 0, true, 'C', true);
                         //anchos, alto, x, y, html, borde, salto de linea, ajuste, relleno, alineacion, fondo, link, estilo, orientacion
         $pdf->Output('GAFETE-'.$inscriptions->id.'-'.$inscriptions->solapin_name.'.pdf', 'I');
 
