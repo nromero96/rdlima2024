@@ -13,7 +13,30 @@
                     <div class="card-body">
                         <h5 class="card-title">{{__("Hola,")}} <b>{{ Auth::user()->name }}</b></h5>
                         <p class="card-text">{{__("Bienvenido a la RADLA 2024")}}</p>
-                        <a href="#" class="btn btn-info" disabled>¡Pronto podrás descargar tu solapín aquí!</a>
+                        
+                        @if($myinscription)
+                            <a href="{{ route('gafetes.gafeteforparticipant',$myinscription->id) }}" class="btn btn-primary px-2 py-1" target="_blank">
+                                <svg width="21" height="21" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 5H3a1 1 0 0 0-1 1v3.5h.6a2.5 2.5 0 0 1 0 5H2V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-3.5h-.1a2.5 2.5 0 0 1 0-5h.1V6a1 1 0 0 0-1-1Z"></path>
+                                    <path stroke-dasharray="3 3" d="M15 5v14"></path>
+                                </svg>
+                                Descargar Solapín
+                            </a>
+
+                            @if($myinscription->accompanist_id != null)
+                                <a href="{{ route('gafetes.gafeteforaccompanist',$myinscription->id) }}" class="btn btn-primary px-2 py-1 ms-2" target="_blank">
+                                    <svg width="21" height="21" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 5H3a1 1 0 0 0-1 1v3.5h.6a2.5 2.5 0 0 1 0 5H2V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-3.5h-.1a2.5 2.5 0 0 1 0-5h.1V6a1 1 0 0 0-1-1Z"></path>
+                                        <path stroke-dasharray="3 3" d="M15 5v14"></path>
+                                    </svg>
+                                    Solapín Acompañante
+                                </a>
+                            @endif
+
+                        @else
+                            <a href="#" class="btn btn-alert" disabled>{{__("Solapín no disponible, no tienes inscripción o no has pagado")}}</a>
+                        @endif
+
                     </div>
                 </div>
             </div>
