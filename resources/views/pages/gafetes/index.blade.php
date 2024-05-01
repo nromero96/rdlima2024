@@ -106,7 +106,7 @@
                                                     Participante
                                                 </a>
                                                 @if($inscription->accompanist_id)
-                                                    <a href="{{ route('gafetes.gafeteforaccompanist','3') }}" class="btn px-1 py-1 btn-info d-block mt-1 btngaftacomp disabled" target="_blank" >
+                                                    <a href="{{ route('gafetes.gafeteforaccompanist', $inscription->id) }}" class="btn px-1 py-1 btn-info d-block mt-1 btngaftacomp disabled" target="_blank" >
                                                         <svg width="21" height="21" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M21 5H3a1 1 0 0 0-1 1v3.5h.6a2.5 2.5 0 0 1 0 5H2V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-3.5h-.1a2.5 2.5 0 0 1 0-5h.1V6a1 1 0 0 0-1-1Z"></path>
                                                             <path stroke-dasharray="3 3" d="M15 5v14"></path>
