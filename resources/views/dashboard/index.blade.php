@@ -34,7 +34,7 @@
                             @endif
 
                         @else
-                            <a href="#" class="btn btn-alert" disabled>{{__("Solapín no disponible, no tienes inscripción o no has pagado")}}</a>
+                            <a href="#" class="btn btn-alert" disabled>{{__("Solapín no disponible. Sin inscripción o pago.")}}</a>
                         @endif
 
                     </div>
