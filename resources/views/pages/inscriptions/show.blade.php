@@ -138,7 +138,15 @@
 
                             <div class="col-md-4">
                                 <label class="form-label fw-bold mb-0">{{__("Solapín/Gafete")}}:</label><br>
-                                <span class="bx-text">{{ $inscription->user_solapin_name }}</span>
+                                <span class="bx-text">
+                                    {{ $inscription->user_solapin_name }}
+                                    <a href="{{ route('gafetes.gafeteforparticipant', $inscription->id) }}" class="float-end px-1 py-0" target="_blank">
+                                        <svg width="17" height="17" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <path d="M12 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6z"></path>
+                                        </svg>
+                                    </a>
+                                </span>
                             </div>
 
                             <div class="col-md-12">
@@ -221,7 +229,15 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label class="text-muted mb-0">{{__("Solapín/Gafete")}}:</label><br>
-                                            <span class="bx-text">{{ $inscription->accompanist_solapin }}</span>
+                                            <span class="bx-text">
+                                                {{ $inscription->accompanist_solapin }}
+                                                <a href="{{ route('gafetes.gafeteforaccompanist', $inscription->id) }}" class="float-end px-1 py-0" target="_blank">
+                                                    <svg width="17" height="17" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                        <path d="M12 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6z"></path>
+                                                    </svg>
+                                                </a>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

@@ -55,7 +55,7 @@
                                         @endif
                                         <button type="submit" class="btn btn-primary" id="button-addon2">Buscar</button>
                                     </div>
-                                    <small class="text-muted">Por: Inscripción, Nombre, País</small>
+                                    <small class="text-muted">Por: #Inscripción, Nombre, País</small>
                                 </div>
                             </div>
                         </form>
@@ -65,54 +65,122 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col"><b>{{__("ID INS.")}}</b></th>
-                                        <th scope="col"><b>{{__("Participante")}}</b></th>
-                                        <th scope="col"><b>{{__("País")}}</b></th>
-                                        <th scope="col"><b>{{__("Asistencía")}}</b></th>
+                                        <th scope="col" class="px-2"><b>{{__("ID INS.")}}</b></th>
+                                        <th scope="col" class="px-2"><b>{{__("Participante")}}</b></th>
+                                        <th scope="col" class="px-2"><b>{{__("País")}}</b></th>
+                                        <th scope="col" class="px-2"><b>{{__("Asistencía")}}</b></th>
                                         <th scope="col" class="px-1 text-center" style="width: 135px;"><b>{{__("Gaféte/Solapín")}}</b></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($inscriptions as $inscription)
                                         <tr>
-                                            <td><a href="{{ route('inscriptions.show',$inscription->id) }}" target="_blank" class="text-info">#{{ $inscription->id }}</a></td>
-                                            <td>{{$inscription->user_name.' '.$inscription->user_lastname.' '.$inscription->user_second_lastname}}<br> 
-                                                <small class="text-muted d-block"><b>Gafete/Solapín: </b>{{ $inscription->solapin_name }}</small>
+                                            <td class="px-2"><a href="{{ route('inscriptions.show',$inscription->id) }}" target="_blank" class="text-info">#{{ $inscription->id }}</a></td>
+                                            <td class="px-2">{{$inscription->user_name.' '.$inscription->user_lastname.' '.$inscription->user_second_lastname}}<br> 
+                                                <small class="text-muted d-block"><b>Solapín: </b>{{ $inscription->solapin_name }}</small>
+                                                <small class="d-block text-info">
+                                                    {{ $inscription->category_inscription_name }} 
+                                                    @if($inscription->special_code)
+                                                        - {{ $inscription->special_code }}
+                                                    @endif
+                                                </small>
                                             </td>
-                                            <td>{{ $inscription->user_country }}</td>
-                                            <td>
-                                                <div class="form-check d-block">
-                                                    <input class="form-check-input checkasispart" type="checkbox" value="" id="flexCheck{{ $inscription->id }}part">
-                                                    <label class="form-check-label ps-1" for="flexCheck{{ $inscription->id }}part">
-                                                    Participante
-                                                    </label>
-                                                </div>
+                                            <td class="px-2">
+                                                {{ $inscription->user_country }}
+                                            </td>
+                                            <td class="px-2">
 
-                                                @if($inscription->accompanist_id)
+                                                @if($inscription->assistance == null)
                                                     <div class="form-check d-block">
-                                                        <input class="form-check-input checkasisacomp" type="checkbox" value="" id="flexCheck{{ $inscription->id }}acomp">
-                                                        <label class="form-check-label label ps-1 mb-0" for="flexCheck{{ $inscription->id }}acomp">
-                                                        Acompañante
+                                                        <input class="form-check-input checkasispart" type="checkbox" value="{{ $inscription->id }}" id="flexCheck{{ $inscription->id }}part">
+                                                        <label class="form-check-label ps-1" for="flexCheck{{ $inscription->id }}part">
+                                                        Participante
                                                         </label>
                                                     </div>
+                                                @else
+                                                    <span>{{ \Carbon\Carbon::parse($inscription->assistance)->format('d-m-Y') }}</span> <!-- Formato de fecha dd-mm-yyyy -->
+                                                    <span class="badge rounded-pill bg-success px-1 py-0">{{ \Carbon\Carbon::parse($inscription->assistance)->format('H:i') }}</span> <!-- Formato de hora hh:mm -->
+                                                @endif
+
+                                                @if($inscription->accompanist_id)
+                                                    @if($inscription->assistance_accomp == null)
+                                                        <div class="form-check d-block">
+                                                            <input class="form-check-input checkasisacomp" type="checkbox" value="{{ $inscription->id }}" id="flexCheck{{ $inscription->id }}acomp">
+                                                            <label class="form-check-label label ps-1 mb-0" for="flexCheck{{ $inscription->id }}acomp">
+                                                            Acompañante
+                                                            </label>
+                                                        </div>
+
+                                                    @else
+                                                        <br><span>{{ \Carbon\Carbon::parse($inscription->assistance_accomp)->format('d-m-Y') }}</span> <!-- Formato de fecha dd-mm-yyyy -->
+                                                        <span class="badge rounded-pill bg-success px-1 py-0">{{ \Carbon\Carbon::parse($inscription->assistance_accomp)->format('H:i') }}</span> <!-- Formato de hora hh:mm -->
+                                                    @endif
+
                                                 @endif
                                             </td>
                                             <td class="px-1 py-1 text-start">
-                                                <a href="{{ route('gafetes.gafeteforparticipant',$inscription->id) }}" class="btn btn-primary px-1 py-1 d-block btngaftpart disabled" target="_blank">
+
+                                                @php
+                                                    if($inscription->assistance == null || Auth::user()->hasRole('Check-in')){
+                                                        $btngaftassis = 'disabled';
+                                                    }else{
+                                                        $btngaftassis = '';
+                                                    }
+                                                @endphp
+
+                                                <a href="javascript:;" class="btn btn-primary px-1 py-1 d-block btngaftpart {{ $btngaftassis }}">
                                                     <svg width="21" height="21" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M21 5H3a1 1 0 0 0-1 1v3.5h.6a2.5 2.5 0 0 1 0 5H2V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-3.5h-.1a2.5 2.5 0 0 1 0-5h.1V6a1 1 0 0 0-1-1Z"></path>
                                                         <path stroke-dasharray="3 3" d="M15 5v14"></path>
                                                     </svg>
                                                     Participante
                                                 </a>
+
+                                                <div class="solapinparti" style="display: none;">
+                                                        @php
+                                                            $cardsolapin_name = explode(' ', $inscription->solapin_name);
+                                                            $cardsolapin_lastname = substr($inscription->solapin_name, strpos($inscription->solapin_name, ' ') + 1);
+                                                        @endphp
+
+                                                        <span class="slp_nombre">{{ $cardsolapin_name[0] }}</span>
+                                                        <span class="slp_apellido">{{ $cardsolapin_lastname }}</span>
+                                                        <span class="slp_pais">{{ $inscription->user_country }}</span>
+                                                        <span class="slp_idinscr">{{ $inscription->id }}</span>
+                                                        <span class="slp_cargo"></span>
+                                                
+                                                </div>
                                                 @if($inscription->accompanist_id)
-                                                    <a href="{{ route('gafetes.gafeteforaccompanist', $inscription->id) }}" class="btn px-1 py-1 btn-info d-block mt-1 btngaftacomp disabled" target="_blank" >
+
+                                                    @php
+                                                        //$inscription->assistance_accomp == null o el usuario logueado tiene el rol de 'Check-in'
+                                                        if($inscription->assistance_accomp == null || Auth::user()->hasRole('Check-in')){
+                                                            $btngaftacomp = 'disabled';
+                                                        }else{
+                                                            $btngaftacomp = '';
+                                                        }
+                                                    @endphp
+
+                                                    <a href="javascript:;" class="btn px-1 py-1 btn-info d-block mt-1 btngaftacomp {{ $btngaftacomp }}" >
                                                         <svg width="21" height="21" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M21 5H3a1 1 0 0 0-1 1v3.5h.6a2.5 2.5 0 0 1 0 5H2V18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-3.5h-.1a2.5 2.5 0 0 1 0-5h.1V6a1 1 0 0 0-1-1Z"></path>
                                                             <path stroke-dasharray="3 3" d="M15 5v14"></path>
                                                         </svg>
                                                         Acompañante
                                                     </a>
+
+
+                                                    <div class="solapinacconp" style="display: none;">
+                                                            @php
+                                                                $cardsolapinaccomp_name = explode(' ', $inscription->accompanist_solapin);
+                                                                $cardsolapinaccomp_lastname = substr($inscription->accompanist_solapin, strpos($inscription->accompanist_solapin, ' ') + 1);
+                                                            @endphp
+        
+                                                            <span class="slp_nombre">{{ $cardsolapinaccomp_name[0] }}</span>
+                                                            <span class="slp_apellido">{{ $cardsolapinaccomp_lastname }}</span>
+                                                            <span class="slp_pais">{{ $inscription->user_country }}</span>
+                                                            <span class="slp_idinscr">{{ $inscription->id }}</span>
+                                                            <span class="slp_cargo"></span>
+                                                    </div>
                                                 @endif
                                             </td>
                                         </tr>
@@ -140,37 +208,155 @@
 
 </div>
 
-<script>
-    var isAdmin = @json(auth()->user()->hasRole('Administrador') || auth()->user()->hasRole('Secretaria'));
+@endsection
 
-    // Checkboxes checkasispart
-    var checkasispart = document.querySelectorAll('.checkasispart');
-    // Checkboxes checkasisacomp
-    var checkasisacomp = document.querySelectorAll('.checkasisacomp');
+@section('scripts')
+    <script>
+        var isAdmin = @json(auth()->user()->hasRole('Administrador') || auth()->user()->hasRole('Secretaria'));
 
-    checkasispart.forEach(function(checkasispart) {
-        checkasispart.addEventListener('change', function() {
-            var btngaftpart = this.parentElement.parentElement.parentElement.querySelector('.btngaftpart');
-            if(this.checked) {
-                btngaftpart.classList.remove('disabled');
-            } else {
-                btngaftpart.classList.add('disabled');
-            }
+        //if check class checkasispart get value
+        document.querySelectorAll(".checkasispart").forEach(function (checkbox) {
+            checkbox.addEventListener("change", function (event) {
+                event.preventDefault();
+                var btngaftpart = this.parentElement.parentElement.parentElement.querySelector('.btngaftpart');
+                var id = this.value;
+
+                //bloquear checkbox
+                this.disabled = true;
+                
+                // Realizar la petición AJAX para actualizar la asistencia
+                fetch(`/register-assit-partic/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Si estás utilizando CSRF protection
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al registrar la asistencia');
+                        this.disabled = false;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data); // Manejar la respuesta del servidor
+                    this.nextElementSibling.textContent = 'Registrado';
+                    btngaftpart.classList.remove('disabled');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    this.disabled = false;
+                    btngaftpart.classList.add('disabled');
+                });
+
+            });
         });
-    });
 
-    checkasisacomp.forEach(function(checkasisacomp) {
-        checkasisacomp.addEventListener('change', function() {
-            var btngaftacomp = this.parentElement.parentElement.parentElement.querySelector('.btngaftacomp');
-            if(this.checked) {
-                btngaftacomp.classList.remove('disabled');
-            } else {
-                btngaftacomp.classList.add('disabled');
-            }
+        document.querySelectorAll(".checkasisacomp").forEach(function (checkbox) {
+            checkbox.addEventListener("change", function (event) {
+                event.preventDefault();
+                var btngaftacomp = this.parentElement.parentElement.parentElement.querySelector('.btngaftacomp');
+                var id = this.value;
+
+                //bloquear checkbox
+                this.disabled = true;
+                
+                // Realizar la petición AJAX para actualizar la asistencia
+                fetch(`/register-assit-accomp/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Si estás utilizando CSRF protection
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al registrar la asistencia');
+                        this.disabled = false;
+                        btngaftacomp.classList.add('disabled');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data); // Manejar la respuesta del servidor
+                    this.nextElementSibling.textContent = 'Registrado';
+                    btngaftacomp.classList.remove('disabled');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    this.disabled = false;
+                    btngaftacomp.classList.add('disabled');
+                });
+
+            });
         });
-    });
 
-</script>
+        //action class btngaftpart 
+        document.querySelectorAll(".btngaftpart").forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                // Obtener el elemento tr donde se hizo clic
+                const trElement = this.closest('tr');
+
+                // Obtener el elemento con la clase 'solapinparti' dentro del tr actual
+                const elementToCapture = trElement.querySelector('.solapinparti');
+
+                elementToCapture.style.display = 'block';
+
+                // Capturar el elemento 'solapinparti' dentro del tr donde se hizo clic
+                html2canvas(elementToCapture).then(function (canvas) {
+                    const image = canvas.toDataURL("image/png");
+
+                    printJS({
+                        printable: image,
+                        type: "image",
+                        maxWidth: "100%",
+                        imageStyle: "width:100%;margin:0;",
+                        onPrintDialogClose: function () {
+                            // Aquí puedes realizar acciones adicionales después de que se cierra el diálogo de impresión
+                        },
+                    });
+
+                    elementToCapture.style.display = 'none';
+
+                });
+            });
+        });
+
+        //action class btngaftpart 
+        document.querySelectorAll(".btngaftacomp").forEach(function (button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                // Obtener el elemento tr donde se hizo clic
+                const trElement = this.closest('tr');
+
+                // Obtener el elemento con la clase 'solapinacconp' dentro del tr actual
+                const elementToCapture = trElement.querySelector('.solapinacconp');
+
+                elementToCapture.style.display = 'block';
+                // Capturar el elemento 'solapinacconp' dentro del tr donde se hizo clic
+                html2canvas(elementToCapture).then(function (canvas) {
+                    const image = canvas.toDataURL("image/png");
+
+                    printJS({
+                        printable: image,
+                        type: "image",
+                        maxWidth: "100%",
+                        imageStyle: "width:100%;margin:0;",
+                        onPrintDialogClose: function () {
+                            // Aquí puedes realizar acciones adicionales después de que se cierra el diálogo de impresión
+                        },
+                    });
+
+                    elementToCapture.style.display = 'none';
+
+                });
+            });
+        });
 
 
+    </script>
 @endsection

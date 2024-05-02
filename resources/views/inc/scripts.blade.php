@@ -104,7 +104,8 @@
         
         @case('gafetes')
             {{-- Gafetes --}}
-            
+            <script src="{{ asset('plugins/src/html2canvas/html2canvas.min.js')}}"></script>
+            <script src="{{ asset('plugins/src/printjs/print.min.js')}}"></script>
             @break
 
         @case('coupons_edit')

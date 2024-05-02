@@ -187,6 +187,11 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::get('gafete-for-participant/{id}', [GafeteController::class, 'gafeteForParticipant'])->name('gafetes.gafeteforparticipant');
     Route::get('gafete-for-accompanist/{id}', [GafeteController::class, 'gafeteForAccompanist'])->name('gafetes.gafeteforaccompanist');
 
+    //marcar asistencia/entrega de gafete
+    Route::get('register-assit-partic/{id}', [GafeteController::class, 'registerAssitPartic'])->name('gafetes.registerassitpartic');
+    Route::get('register-assit-accomp/{id}', [GafeteController::class, 'registerAssitAccomp'])->name('gafetes.registerassitaccomp');
+
+
     Route::get('calendar', [CalendarController::class, 'index'])->name('calendars.index');
     Route::get('calendar-listevents', [CalendarController::class, 'listevents'])->name('calendars.listevents');
     Route::post('calendar-ajax', [CalendarController::class, 'calendarajax'])->name('calendars.calendarajax');

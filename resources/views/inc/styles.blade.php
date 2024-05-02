@@ -133,6 +133,72 @@
                     background-color: #c00000 !important;
                     border-color: #c00000 !important;
                 }
+
+                .solapinparti, .solapinacconp{
+                    background-size: contain;
+                    width: 295px;
+                    height: 407px;
+                    font-family: 'Arial' !important;
+                    font-weight: 800 !important;
+                    position: relative;
+                }
+
+                .solapinparti .slp_nombre, .solapinacconp .slp_nombre{
+                    position: absolute;
+                    width: 295px;
+                    padding: 5px;
+                    display: block;
+                    padding-top: 185px;
+                    text-align: center;
+                    font-size: 24px;
+                    color: black;
+                }
+
+                .solapinparti .slp_apellido, .solapinacconp .slp_apellido{
+                    position: absolute;
+                    width: 295px;
+                    padding: 5px;
+                    margin-top: 217px;
+                    display: block;
+                    text-align: center;
+                    font-size: 22px;
+                    color: black;
+                }
+
+                .solapinparti .slp_pais, .solapinacconp .slp_pais{
+                    position: absolute;
+                    width: 295px;
+                    padding: 5px;
+                    margin-top: 273px;
+                    display: block;
+                    text-align: center;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    color: #004889;
+                }
+
+                .solapinparti .slp_idinscr, .solapinacconp .slp_idinscr{
+                    position: absolute;
+                    width: 295px;
+                    padding: 5px;
+                    margin-top: 301px;
+                    font-size: 18px;
+                    display: block;
+                    text-align: center;
+                    color: black;
+                }
+
+                .solapinparti .slp_cargo, .solapinacconp .slp_cargo{
+                    position: absolute;
+                    width: 295px;
+                    padding: 5px;
+                    margin-top: 350px;
+                    font-size: 18px;
+                    display: block;
+                    text-align: center;
+                    color: #C40000;
+                }
+
             </style>
             @break
 

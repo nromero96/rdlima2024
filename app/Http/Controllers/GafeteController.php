@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Inscription;
 use App\Models\Accompanist;
+use Illuminate\Support\Facades\Auth;
 
 use TCPDF;
 
@@ -12,6 +13,11 @@ class GafeteController extends Controller
 {
     public function index()
     {
+
+        if (!auth()->user()->can('gafetes.index')) {
+            abort(403, 'No tiene permisos para acceder a esta sección, si cree que es un error comuníquese con el administrador.');
+        }
+
         $data = [
             'category_name' => 'gafetes',
             'page_name' => 'gafetes',
@@ -24,18 +30,27 @@ class GafeteController extends Controller
 
         $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
                 ->join('users', 'inscriptions.user_id', '=', 'users.id')
-                ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country', 'users.solapin_name as solapin_name')
+                ->join('accompanists', 'inscriptions.accompanist_id', '=', 'accompanists.id', 'left')
+                ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country', 'users.solapin_name as solapin_name', 'accompanists.accompanist_solapin')
                 ->where('inscriptions.status', 'Pagado')
                 ->where(function ($query) use ($search) {
-                        $query->where('inscriptions.id', 'LIKE', "%{$search}%")
-                            ->orWhere('users.country', 'LIKE', "%{$search}%")
-                            ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
-                            ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%")
-                            ->orWhere('inscriptions.payment_method', 'LIKE', "%{$search}%")
-                            ->orWhereRaw('CONCAT(COALESCE(users.name, ""), " ", COALESCE(users.lastname, ""), " ", COALESCE(users.second_lastname, "")) LIKE ?', ["%{$search}%"]);
+                        // Si la búsqueda comienza con #, buscar exactamente inscriptions.id
+                        if (strpos($search, '#') === 0) {
+                            $searchWithoutHash = ltrim($search, '#');
+                            $query->where('inscriptions.id', $searchWithoutHash);
+                        } else {
+                            // Si no comienza con #, buscar cualquier coincidencia parcial
+                            $query->where('inscriptions.id', 'LIKE', "%{$search}%")
+                                ->orWhere('users.country', 'LIKE', "%{$search}%")
+                                ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
+                                ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%")
+                                ->orWhere('inscriptions.payment_method', 'LIKE', "%{$search}%")
+                                ->orWhereRaw('CONCAT(COALESCE(users.name, ""), " ", COALESCE(users.lastname, ""), " ", COALESCE(users.second_lastname, "")) LIKE ?', ["%{$search}%"]);
+                        }
                 })
                 ->orderBy('inscriptions.id', 'desc')
                 ->paginate($listforpage);
+
 
         return view('pages.gafetes.index')->with($data)->with('inscriptions', $inscriptions);
     }
@@ -232,7 +247,50 @@ class GafeteController extends Controller
         $pdf->Output('GAFETE-'.$inscriptions->id.'-'.$inscriptions->solapin_name.'.pdf', 'I');
 
         return $pdf->Output('gafete.pdf', 'I');
-
     }
+
+
+    public function registerAssitPartic($id)
+    {
+        if (!auth()->user()->can('gafetes.index')) {
+            return response()->json(['error' => 'No tiene permisos para acceder a esta sección, si cree que es un error comuníquese con el administrador.'], 403);
+        }
+    
+        try {
+            $userId = Auth::id(); // Obtener el ID del usuario autenticado
+    
+            $inscriptions = Inscription::where('id', $id)
+                ->update([
+                    'assistance' => now(),
+                    'assis_marked_by' => $userId // Asignar el ID del usuario que marca la asistencia
+                ]);
+    
+            return response()->json(['success' => 'Asistencia registrada correctamente.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Se produjo un error al registrar la asistencia.'], 500);
+        }
+    }
+
+    public function registerAssitAccomp($id)
+    {
+        if (!auth()->user()->can('gafetes.index')) {
+            return response()->json(['error' => 'No tiene permisos para acceder a esta sección, si cree que es un error comuníquese con el administrador.'], 403);
+        }
+    
+        try {
+            $userId = Auth::id(); // Obtener el ID del usuario autenticado
+    
+            $inscriptions = Inscription::where('id', $id)
+                ->update([
+                    'assistance_accomp' => now(),
+                    'assis_marked_by' => $userId // Asignar el ID del usuario que marca la asistencia
+                ]);
+
+            return response()->json(['success' => 'Asistencia registrada correctamente.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Se produjo un error al registrar la asistencia.'], 500);
+        }
+    }
+
 
 }

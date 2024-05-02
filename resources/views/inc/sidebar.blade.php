@@ -120,6 +120,20 @@
             </li>
             @endcan
 
+            @can('gafetes.index')
+            <li class="menu {{ ($category_name === 'gafetes') ? 'active' : '' }}">
+                <a href="{{route('gafetes.index')}}" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg width="46" height="46" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="m9 11 3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        <span>{{ __("Gafetes") }}</span>
+                    </div>
+                </a>
+            </li>
+            @endcan
+
             @can('hotelreservations.index')
             <li class="menu {{ ($category_name === 'hotelreservations') ? 'active' : '' }}">
                 <a href="{{route('hotelreservations.index')}}" aria-expanded="false" class="dropdown-toggle">
