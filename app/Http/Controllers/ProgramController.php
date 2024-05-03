@@ -7,6 +7,7 @@ use App\Models\Program;
 use App\Models\ProgramSession;
 use App\Models\User;
 use App\Models\Inscription;
+use Redirect;
 
 use App\Mail\IndividualExhibitorProgramMail;
 use Illuminate\Support\Facades\Mail;
@@ -76,6 +77,11 @@ class ProgramController extends Controller
 
     public function showOnlinePrograms()
     {
+
+        if(request()->is('programa-preliminar')) {
+            return Redirect::route('onlineprograms');
+        }
+
         // $category_name = '';
         $data = [
             'category_name' => 'programs',
