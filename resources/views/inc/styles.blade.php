@@ -119,6 +119,10 @@
             {{-- Gafetes --}}
             <style>
 
+                @font-face {
+                    font-family: 'dejavusans';
+                    src: url('{{ asset('assets/fonts/dejavu-sans/DejaVuSans-Bold.ttf') }}') format('truetype');
+                }
                 .form-check-label {
                     cursor: pointer;
                 }
@@ -138,7 +142,7 @@
                     background-size: contain;
                     width: 295px;
                     height: 407px;
-                    font-family: 'Arial' !important;
+                    font-family: 'dejavusans' !important;
                     font-weight: 800 !important;
                     position: relative;
                 }
@@ -151,6 +155,7 @@
                     padding-top: 185px;
                     text-align: center;
                     font-size: 24px;
+                    letter-spacing:-0.30mm;
                     color: black;
                 }
 
@@ -162,6 +167,7 @@
                     display: block;
                     text-align: center;
                     font-size: 22px;
+                    letter-spacing:-0.30mm;
                     color: black;
                 }
 

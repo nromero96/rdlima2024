@@ -45,7 +45,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control mb-2 mb-md-0" name="search" placeholder="Buscar..." value="{{ request('search') }}">
                                         @if(request('search') != '')
-                                            <a href="{{ route('inscriptions.index') }}" class="btn btn-outline-light px-1" id="button-addon2" style="border-left: 0px;border-color: #bfc9d4;background: white;">
+                                            <a href="{{ route('gafetes.index') }}" class="btn btn-outline-light px-1" id="button-addon2" style="border-left: 0px;border-color: #bfc9d4;background: white;">
                                                 <svg width="24" height="24" fill="none" stroke="#9e9e9e" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20z"></path>
                                                     <path d="m15 9-6 6"></path>
@@ -136,6 +136,7 @@
                                                     Participante
                                                 </a>
 
+                                                {{-- background-image: url({{ asset('assets/img/solapin-gaf-bg-35273.jpg') }}); --}}
                                                 <div class="solapinparti" style="display: none;">
                                                         @php
                                                             $cardsolapin_name = explode(' ', $inscription->solapin_name);
@@ -312,8 +313,7 @@
                     printJS({
                         printable: image,
                         type: "image",
-                        maxWidth: "100%",
-                        imageStyle: "width:100%;margin:0;",
+                        imageStyle: "position:absolute; bottom:0; left:0; margin:0;width:398px;",
                         onPrintDialogClose: function () {
                             // Aquí puedes realizar acciones adicionales después de que se cierra el diálogo de impresión
                         },
@@ -345,7 +345,7 @@
                         printable: image,
                         type: "image",
                         maxWidth: "100%",
-                        imageStyle: "width:100%;margin:0;",
+                        imageStyle: "position:absolute; bottom:0; left:0; margin:0;width:398px;",
                         onPrintDialogClose: function () {
                             // Aquí puedes realizar acciones adicionales después de que se cierra el diálogo de impresión
                         },

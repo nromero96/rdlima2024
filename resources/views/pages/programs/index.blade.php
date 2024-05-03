@@ -53,7 +53,7 @@
                                         @endif
                                         <button type="submit" class="btn btn-primary" id="button-addon2">Buscar</button>
                                     </div>
-                                    <small class="text-muted">Por: Inscripción, Nombre, Sala, Fecha o Tema</small>
+                                    <small class="text-muted">Por: #Inscripción, Nombre, Sala, Fecha o Tema</small>
                                 </div>
                             </div>
                         </form>

@@ -34,26 +34,38 @@ class ProgramController extends Controller
         
         $programs = Program::orderByRaw("CONCAT(apellido, ' ', nombre)")
                                 ->where(function($query) use ($search){
-                                    $query->orWhere('insc_id', 'LIKE', '%'.$search.'%')
-                                        ->orWhere('sesion', 'LIKE', '%'.$search.'%')
-                                        ->orWhere('nombre_sesion', 'LIKE', '%'.$search.'%')
-                                        ->orWhere('fecha', 'LIKE', '%'.$search.'%')
-                                        ->orWhere('sala', 'LIKE', '%'.$search.'%')
-                                        ->orWhere('tema', 'LIKE', '%'.$search.'%')
-                                        ->orWhereRaw("CONCAT(apellido, ' ', nombre) LIKE '%".$search."%'");
+
+                                    if (strpos($search, '#') === 0) {
+                                        $searchWithoutHash = ltrim($search, '#');
+                                        $query->where('insc_id', $searchWithoutHash);
+                                    } else {
+                                        $query->orWhere('insc_id', 'LIKE', '%'.$search.'%')
+                                            ->orWhere('sesion', 'LIKE', '%'.$search.'%')
+                                            ->orWhere('nombre_sesion', 'LIKE', '%'.$search.'%')
+                                            ->orWhere('fecha', 'LIKE', '%'.$search.'%')
+                                            ->orWhere('sala', 'LIKE', '%'.$search.'%')
+                                            ->orWhere('tema', 'LIKE', '%'.$search.'%')
+                                            ->orWhereRaw("CONCAT(apellido, ' ', nombre) LIKE '%".$search."%'");
+                                    }
                                 })
                             ->paginate($listforpage);
 
         //count total group by concated apellido and nombre
         $totalexpositores = Program::selectRaw("CONCAT(apellido, ' ', nombre) as nombrecompleto")
         ->where(function($query) use ($search){
-            $query->orWhere('insc_id', 'LIKE', '%'.$search.'%')
-                ->orWhere('sesion', 'LIKE', '%'.$search.'%')
-                ->orWhere('nombre_sesion', 'LIKE', '%'.$search.'%')
-                ->orWhere('fecha', 'LIKE', '%'.$search.'%')
-                ->orWhere('sala', 'LIKE', '%'.$search.'%')
-                ->orWhere('tema', 'LIKE', '%'.$search.'%')
-                ->orWhereRaw("CONCAT(apellido, ' ', nombre) LIKE '%".$search."%'");
+
+            if(strpos($search, '#') === 0){
+                $searchWithoutHash = ltrim($search, '#');
+                $query->where('insc_id', $searchWithoutHash);
+            }else{
+                $query->orWhere('insc_id', 'LIKE', '%'.$search.'%')
+                    ->orWhere('sesion', 'LIKE', '%'.$search.'%')
+                    ->orWhere('nombre_sesion', 'LIKE', '%'.$search.'%')
+                    ->orWhere('fecha', 'LIKE', '%'.$search.'%')
+                    ->orWhere('sala', 'LIKE', '%'.$search.'%')
+                    ->orWhere('tema', 'LIKE', '%'.$search.'%')
+                    ->orWhereRaw("CONCAT(apellido, ' ', nombre) LIKE '%".$search."%'");
+            }
         })
         ->groupBy('nombrecompleto')
         ->get()
