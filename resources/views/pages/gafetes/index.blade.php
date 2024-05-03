@@ -313,7 +313,7 @@
                     printJS({
                         printable: image,
                         type: "image",
-                        imageStyle: "position:absolute; bottom:0; left:0; margin:0;width:398px;",
+                        imageStyle: "position:absolute; top:0; left:0; margin:0;width:398px;",
                         onPrintDialogClose: function () {
                             // Aquí puedes realizar acciones adicionales después de que se cierra el diálogo de impresión
                         },
@@ -345,7 +345,7 @@
                         printable: image,
                         type: "image",
                         maxWidth: "100%",
-                        imageStyle: "position:absolute; bottom:0; left:0; margin:0;width:398px;",
+                        imageStyle: "position:absolute; top:0; left:0; margin:0;width:398px;",
                         onPrintDialogClose: function () {
                             // Aquí puedes realizar acciones adicionales después de que se cierra el diálogo de impresión
                         },
