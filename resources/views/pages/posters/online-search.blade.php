@@ -59,7 +59,7 @@
 
         .smgbusqueda{
             color: #999999;
-            font-size: 1.1vw;
+            font-size: 1.5vw;
         }
 
         .btn-primary:hover{
@@ -124,7 +124,7 @@
 
         .inputsform label{
             color: #cdcdcd;
-            font-size:1.2vw;
+            font-size:1.5vw;
         }
 
         .inputsform input{
