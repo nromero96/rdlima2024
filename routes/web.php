@@ -188,6 +188,10 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::get('gafete-for-participant/{id}', [GafeteController::class, 'gafeteForParticipant'])->name('gafetes.gafeteforparticipant');
     Route::get('gafete-for-accompanist/{id}', [GafeteController::class, 'gafeteForAccompanist'])->name('gafetes.gafeteforaccompanist');
 
+    //exportar gafetes
+    Route::get('exportar-gafetes', [GafeteController::class, 'exportListaBusquedaPdf'])->name('gafetes.exportpdf');
+
+
     //marcar asistencia/entrega de gafete
     Route::get('register-assit-partic/{id}', [GafeteController::class, 'registerAssitPartic'])->name('gafetes.registerassitpartic');
     Route::get('register-assit-accomp/{id}', [GafeteController::class, 'registerAssitAccomp'])->name('gafetes.registerassitaccomp');

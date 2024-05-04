@@ -294,5 +294,78 @@ class GafeteController extends Controller
         }
     }
 
+    //Exportar Lista Filtro BUsqueda en pdf
+    public function exportListaBusquedaPdf(Request $request)
+    {
+        if (!auth()->user()->can('gafetes.index')) {
+            return response()->json(['error' => 'No tiene permisos para acceder a esta sección, si cree que es un error comuníquese con el administrador.'], 403);
+        }
+
+        $listforpage = request()->query('listforpage') ?? 10;
+        $search = request()->query('search');
+
+        $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
+                ->join('users', 'inscriptions.user_id', '=', 'users.id')
+                ->join('accompanists', 'inscriptions.accompanist_id', '=', 'accompanists.id', 'left')
+                ->select('inscriptions.*', 'category_inscriptions.name as category_inscription_name', 'users.name as user_name', 'users.lastname as user_lastname', 'users.second_lastname as user_second_lastname', 'users.country as user_country', 'users.solapin_name as solapin_name', 'accompanists.accompanist_solapin')
+                ->where('inscriptions.status', 'Pagado')
+                ->where(function ($query) use ($search) {
+                        // Si la búsqueda comienza con #, buscar exactamente inscriptions.id
+                        if (strpos($search, '#') === 0) {
+                            $searchWithoutHash = ltrim($search, '#');
+                            $query->where('inscriptions.id', $searchWithoutHash);
+                        } else {
+                            // Si no comienza con #, buscar cualquier coincidencia parcial
+                            $query->where('inscriptions.id', 'LIKE', "%{$search}%")
+                                ->orWhere('users.country', 'LIKE', "%{$search}%")
+                                ->orWhere('category_inscriptions.name', 'LIKE', "%{$search}%")
+                                ->orWhere('inscriptions.special_code', 'LIKE', "%{$search}%")
+                                ->orWhere('inscriptions.payment_method', 'LIKE', "%{$search}%")
+                                ->orWhereRaw('CONCAT(COALESCE(users.name, ""), " ", COALESCE(users.lastname, ""), " ", COALESCE(users.second_lastname, "")) LIKE ?', ["%{$search}%"]);
+                        }
+                })
+                ->orderBy('users.lastname', 'asc')
+                ->get();
+
+        $pdf = new TCPDF();
+        $pdf->SetCreator('XLI Reunión Anual de Dermatólogos Latinoamericanos');
+        $pdf->SetAuthor('XLI Reunión Anual de Dermatólogos Latinoamericanos');
+        $pdf->SetTitle('Lista de Gafetes');
+        $pdf->SetSubject('Lista de Gafetes');
+        $pdf->SetKeywords('Lista de Gafetes, XLI Reunión Anual de Dermatólogos Latinoamericanos, Swissôtel Lima, 8 al 11 de Mayo de 2024');
+        
+        $pdf->AddPage();
+
+        //font
+        $pdf->SetFont('dejavusans', '', 11);
+
+        $html = '<table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="text-align: center; font-size: 12px; color:#000000; width: 50px;"><b>ID</b></th>
+                    <th style="font-size: 12px; color:#000000; width: 353px;"><b>Participante</b></th>
+                    <th style="font-size: 12px; color:#000000; width: 135px;"><b>País</b></th>
+                </tr>
+            </thead>
+            <tbody>';
+
+        foreach ($inscriptions as $inscription) {
+            $html .= '<tr>
+                <td style="text-align: center; color:#000000; width: 50px;">'.$inscription->id.'</td>
+                <td style="color:#000000; width: 353px;"><b>'.$inscription->user_name.' '.$inscription->user_lastname.' '.$inscription->user_second_lastname.'</b><br><b>Solapín:</b> '.$inscription->solapin_name.'<br>'.$inscription->category_inscription_name.' - '.$inscription->special_code.'</td>
+                <td style="color:#000000; width: 135px;">'.$inscription->user_country.'</td>
+            </tr>';
+        }
+
+        $html .= '</tbody></table>';
+
+        $pdf->writeHTML($html, true, false, true, false, '');
+
+        $pdf->Output('Lista de Gafetes.pdf', 'I');
+
+        return $pdf->Output('gafete.pdf', 'I');
+
+    }
+
 
 }

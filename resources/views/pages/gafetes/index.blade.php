@@ -39,7 +39,15 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4 align-self-center">
-                                    
+                                    @php
+                                        //gett full url
+                                        $fullurl = request()->fullUrl();
+                                        //get parameters  search
+                                        $search = request('search');
+                                    @endphp
+
+                                    <a target="_blank" href="{{ route('gafetes.exportpdf', ['search' => $search]) }}" class="btn btn-secondary">Imprimir</a>
+
                                 </div>
                                 <div class="col-md-5 align-self-center text-start">
                                     <div class="input-group">
