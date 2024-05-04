@@ -61,6 +61,17 @@
             border-color: #a20000 !important;
         }
 
+        .btn-secondary{
+            background: #004889;
+            border-color: #004889;
+            font-size: 1.9vw;
+        }
+
+        .btn-secondary:hover{
+            background: #004889 !important;
+            border-color: #004889 !important;
+        }
+
         .headepage{
             position: relative;
         }
@@ -121,6 +132,23 @@
             color: #003e6f;
         }
 
+        .nobusqueda .headepage{
+            position: fixed;
+            bottom: 0;
+        }
+
+        .nobusqueda .headepage .bacbakground_cover{
+            border-radius: 20px 20px 0px 0px;
+        }
+
+        .nobusqueda .headepage .bacbakground_cover{
+            border-radius: 20px 20px 0px 0px;
+        }
+
+        .nobusqueda .headepage:before{
+            border-radius: 20px 20px 0px 0px;
+        }
+
         @media (max-width: 568px){
             .titlepage h1{
                 font-size: 45px;
@@ -132,9 +160,7 @@
 
 </head>
 
-<body>
-
-    @php 
+@php 
         //get url info http://127.0.0.1:8000/online-search-posters?search_title=&search_knowledge_area=all&search_author=all&search_country=all&search_category=all
         $url = url()->full();
 
@@ -168,147 +194,161 @@
             $search_category = 'Todos';
         }
 
+        $haybusqueda = request()->get('search_title') || request()->get('search_knowledge_area') || request()->get('search_author') || request()->get('search_country') || request()->get('search_category');
+
     @endphp
 
-    <section class="headepage pt-5 pb-5">
-        <div class="bacbakground_cover" style="background-image: url('{{ asset('assets/img/34ere342jfhr343-min.jpg') }}')"></div>
-        <div class="titlepage">
-            <div class="container-fluid text-white">
-                <form action="{{ route('searchPostersPage') }}" method="GET">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h1>BUSCAR POSTERS</h1>
-                        </div>
-                    </div>
-                    <div class="row inputsform">
-                        <div class="col-12 mb-2">
-                            <label for="search_title" class="form-label mb-0">Título</label>
-                            <input type="text" class="form-control py-2" name="search_title" placeholder="Ingrese el título del poster" value="{{ $search_title }}">
-                        </div>
-                        <div class="col-3 pe-0">
-                            <label for="search_knowledge_area" class="form-label mb-0">Área de conocimiento</label>
-                            <select class="form-select py-2 rounded-0 rounded-start" name="search_knowledge_area">
-                                <option value="Todos" @if($search_knowledge_area == 'Todos') selected @endif>Todos</option>
-                                @foreach($knowledge_areas as $knowledge_area)
-                                    <option value="{{ $knowledge_area->knowledge_area }}" @if($search_knowledge_area == $knowledge_area->knowledge_area) selected @endif>{{ $knowledge_area->knowledge_area }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-3 px-0">
-                            <label for="search_author" class="form-label mb-0">Autor</label>
-                            <select class="form-select rounded-0" name="search_author" id='search_author' placeholder="Busca y seleccione el autor">
-                                <option value="Todos" @if($search_author == 'Todos') selected @endif>Todos</option>
-                                @foreach($authors as $author)
-                                    <option value="{{ $author->user_id }}" @if($search_author == $author->user_id) selected @endif>{{ $author->author }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-2 px-0">
-                            <label for="search_country" class="form-label mb-0">País</label>
-                            <select class="form-select py-2 rounded-0" name="search_country">
-                                <option value="Todos" @if($search_country == 'Todos') selected @endif>Todos</option>
-                                @foreach($countries as $country)
-                                    <option value="{{ $country->country }}" @if($search_country == $country->country) selected @endif>{{ $country->country }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-2 px-0">
-                            <label for="search_category" class="form-label mb-0">Categóría</label>
-                            <select class="form-select py-2 rounded-0" name="search_category">
-                                <option value="Todos" @if($search_category == 'Todos') selected @endif>Todos</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->category }}" @if($search_category == $category->category) selected @endif>{{ $category->category }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-2 ps-0">
-                            <label for="btnsubmit" class="form-label mb-0">&nbsp;</label>
-                            <button type="submit" class="btn btn-primary w-100 rounded-0 rounded-end py-2 px-1" id="btnsubmit"><b>BUSCAR POSTER</b></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
+<body class="{{ $haybusqueda ? '' : 'nobusqueda' }}">
 
-    <div class="container-fluid">
 
-        @if(request()->get('search_title') || request()->get('search_knowledge_area') || request()->get('search_author') || request()->get('search_country') || request()->get('search_category'))
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3 class="mt-3 mb-0">RESULTADOS DE LA BÚSQUEDA ({{ $posters->count() }})</h3>
-                    @php
-                        $selectedAuthor = null;
-                        foreach($authors as $author){
-                            if($author->user_id == request()->get('search_author')){
-                                $selectedAuthor = $author;
+    @if($haybusqueda)
+
+        <div class="container-fluid">
+
+            @if(request()->get('search_title') || request()->get('search_knowledge_area') || request()->get('search_author') || request()->get('search_country') || request()->get('search_category'))
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="mt-3 mb-0">RESULTADOS DE LA BÚSQUEDA ({{ $posters->count() }})</h3>
+                        @php
+                            $selectedAuthor = null;
+                            foreach($authors as $author){
+                                if($author->user_id == request()->get('search_author')){
+                                    $selectedAuthor = $author;
+                                }
                             }
-                        }
-                    @endphp
-                    <p class="smgbusqueda mb-0">Su búsqueda actual es: Título '<b>{{ $search_title ? $search_title : 'Ninguno' }}</b>', Área '<b>{{ $search_knowledge_area }}</b>', Autor '<b>{{ $selectedAuthor ? $selectedAuthor->author : 'Autor no encontrado' }}</b>', País '<b>{{ $search_country }}</b>', Categoría '<b>{{ $search_category }}</b>' <a href="{{ route('searchPostersPage') }}" class="badge bg-danger text-decoration-none text-white">Limpiar búsqueda</a></p>
+                        @endphp
+                        <p class="smgbusqueda mb-0">Su búsqueda actual es: Título '<b>{{ $search_title ? $search_title : 'Ninguno' }}</b>', Área '<b>{{ $search_knowledge_area }}</b>', Autor '<b>{{ $selectedAuthor ? $selectedAuthor->author : 'Autor no encontrado' }}</b>', País '<b>{{ $search_country }}</b>', Categoría '<b>{{ $search_category }}</b>'</p>
+                        <a href="{{ route('searchPostersPage') }}" class="btn btn-primary rounded-0 rounded-pill shadow-lg text-white mt-3"><b>NUEVA BUSQUEDA</b></a>
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
 
-        @if($posters->count() > 0)
-            <div class="mt-4 mb-5">
-                @foreach ($posters as $item)
-                    <div class="card p-2 mb-3">
-                        <span class="idposter d-none">{{ $item->id }}</span>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <div class="row">
-                                            <div class="col-md-12 border-right">
-                                                <b>Título:</b> {{ $item->title }}
-                                                <hr class="my-0">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <b>Categoría:</b><br>
-                                                {{ $item->category }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                <b>Area de conocimiento:</b><br>
-                                                {{ $item->knowledge_area }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                <b>Autor:</b> <span class="text-capitalize">{{ $item->author }}</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <b>País:</b> {{ $item->country }}
+            @if($posters->count() > 0)
+                <div class="mt-4 mb-5">
+                    @foreach ($posters as $item)
+                        <div class="card p-2 mb-3">
+                            <span class="idposter d-none">{{ $item->id }}</span>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="row">
+                                                <div class="col-md-12 border-right">
+                                                    <b>Título:</b> {{ $item->title }}
+                                                    <hr class="my-0">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <b>Categoría:</b><br>
+                                                    {{ $item->category }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <b>Area de conocimiento:</b><br>
+                                                    {{ $item->knowledge_area }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <b>Autor:</b> <span class="text-capitalize">{{ $item->author }}</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <b>País:</b> {{ $item->country }}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-2 align-self-center">
-                                        <div class="text-center p-1 d-block">
-                                            <div class="text-center">
-                                                <a href="{{ asset('storage/uploads/poster_files/' . $item->poster_file) }}" target="_blank" title="{{ $item->poster_file }}" class="btn btn-primary my-1 shadow d-block py-1" title="VER PDF">
-                                                    <svg style="margin-top: -5px;" width="24" height="24" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                                                        <path d="M13 2v7h7"></path>
-                                                      </svg>
-                                                    VER PDF
-                                                </a>
+                                        <div class="col-md-2 align-self-center">
+                                            <div class="text-center p-1 d-block">
+                                                <div class="text-center">
+                                                    <a href="{{ asset('storage/uploads/poster_files/' . $item->poster_file) }}" target="_blank" title="{{ $item->poster_file }}" class="btn btn-secondary my-1 shadow d-block py-1" title="VER PDF">
+                                                        <svg style="margin-top: -5px;" width="24" height="24" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                                            <path d="M13 2v7h7"></path>
+                                                        </svg>
+                                                        VER PDF
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="row">
+                    <div class="col-12 text-center pt-5 pb-5">
+                        <h6>¡Vaya! Parece que no encontramos lo que estabas buscando. 🤔 ¡Quizás podrías probar con otros datos o información!</h6>
+                        <dotlottie-player src="https://lottie.host/a248a60c-4530-4a5c-a175-d6fdf707c746/r2Ox0oKqzI.json" background="transparent" speed="1" style="width: 300px; height: 300px;margin: 0 auto;" direction="1" playMode="normal" loop autoplay></dotlottie-player>
                     </div>
-                @endforeach
-            </div>
-        @else
-            <div class="row">
-                <div class="col-12 text-center pt-5 pb-5">
-                    <h6>¡Vaya! Parece que no encontramos lo que estabas buscando. 🤔 ¡Quizás podrías probar con otros datos o información!</h6>
-                    <dotlottie-player src="https://lottie.host/a248a60c-4530-4a5c-a175-d6fdf707c746/r2Ox0oKqzI.json" background="transparent" speed="1" style="width: 300px; height: 300px;margin: 0 auto;" direction="1" playMode="normal" loop autoplay></dotlottie-player>
+                </div>
+            @endif
+
+        </div>
+
+        <a href="{{ route('searchPostersPage') }}" class="btn btn-primary rounded-0 rounded-pill shadow-lg text-white position-fixed bottom-0 mb-3 me-3 start-50 translate-middle-x"><b>NUEVA BUSQUEDA</b></a>
+
+    @else
+
+        <section class="headepage pt-5 pb-5">
+            <div class="bacbakground_cover" style="background-image: url('{{ asset('assets/img/34ere342jfhr343-min.jpg') }}')"></div>
+            <div class="titlepage">
+                <div class="container-fluid text-white">
+                    <form action="{{ route('searchPostersPage') }}" method="GET">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h1>BUSCAR POSTERS</h1>
+                            </div>
+                        </div>
+                        <div class="row inputsform">
+                            <div class="col-12 mb-2">
+                                <label for="search_title" class="form-label mb-0">Título</label>
+                                <input type="text" class="form-control py-2" name="search_title" placeholder="Ingrese el título del poster" value="{{ $search_title }}">
+                            </div>
+                            <div class="col-3 pe-0">
+                                <label for="search_knowledge_area" class="form-label mb-0">Área de conocimiento</label>
+                                <select class="form-select py-2 rounded-0 rounded-start" name="search_knowledge_area">
+                                    <option value="Todos" @if($search_knowledge_area == 'Todos') selected @endif>Todos</option>
+                                    @foreach($knowledge_areas as $knowledge_area)
+                                        <option value="{{ $knowledge_area->knowledge_area }}" @if($search_knowledge_area == $knowledge_area->knowledge_area) selected @endif>{{ $knowledge_area->knowledge_area }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-3 px-0">
+                                <label for="search_author" class="form-label mb-0">Autor</label>
+                                <select class="form-select rounded-0" name="search_author" id='search_author' placeholder="Busca y seleccione el autor">
+                                    <option value="Todos" @if($search_author == 'Todos') selected @endif>Todos</option>
+                                    @foreach($authors as $author)
+                                        <option value="{{ $author->user_id }}" @if($search_author == $author->user_id) selected @endif>{{ $author->author }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2 px-0">
+                                <label for="search_country" class="form-label mb-0">País</label>
+                                <select class="form-select py-2 rounded-0" name="search_country">
+                                    <option value="Todos" @if($search_country == 'Todos') selected @endif>Todos</option>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->country }}" @if($search_country == $country->country) selected @endif>{{ $country->country }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2 px-0">
+                                <label for="search_category" class="form-label mb-0">Categóría</label>
+                                <select class="form-select py-2 rounded-0" name="search_category">
+                                    <option value="Todos" @if($search_category == 'Todos') selected @endif>Todos</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->category }}" @if($search_category == $category->category) selected @endif>{{ $category->category }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-2 ps-0">
+                                <label for="btnsubmit" class="form-label mb-0">&nbsp;</label>
+                                <button type="submit" class="btn btn-primary w-100 rounded-0 rounded-end py-2 px-1" id="btnsubmit"><b>BUSCAR POSTER</b></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        @endif
+        </section>
 
-    </div>
+    @endif
 
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
