@@ -45,9 +45,10 @@
                                         //get parameters  search
                                         $search = request('search');
                                     @endphp
-
-                                    <a target="_blank" href="{{ route('gafetes.exportpdf', ['search' => $search]) }}" class="btn btn-secondary">Imprimir</a>
-
+                                    
+                                    @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
+                                        <a target="_blank" href="{{ route('gafetes.exportpdf', ['search' => $search]) }}" class="btn btn-secondary">Imprimir</a>
+                                    @endif
                                 </div>
                                 <div class="col-md-5 align-self-center text-start">
                                     <div class="input-group">
