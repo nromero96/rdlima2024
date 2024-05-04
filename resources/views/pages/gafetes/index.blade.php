@@ -147,7 +147,10 @@
                                                 {{-- background-image: url({{ asset('assets/img/solapin-gaf-bg-35273.jpg') }}); --}}
                                                 <div class="solapinparti" style="display: none;">
                                                         @php
-                                                            $cardsolapin_name = explode(' ', $inscription->solapin_name);
+                                                            $cardsolapin_prename = explode(' ', $inscription->solapin_name);
+                                                            //replace - for space
+                                                            $cardsolapin_name = str_replace('-', ' ', $cardsolapin_prename);
+
                                                             $cardsolapin_lastname = substr($inscription->solapin_name, strpos($inscription->solapin_name, ' ') + 1);
                                                         @endphp
 
@@ -180,7 +183,9 @@
 
                                                     <div class="solapinacconp" style="display: none;">
                                                             @php
-                                                                $cardsolapinaccomp_name = explode(' ', $inscription->accompanist_solapin);
+                                                                $cardsolapinaccomp_prename = explode(' ', $inscription->accompanist_solapin);
+                                                                //replace - for space
+                                                                $cardsolapinaccomp_name = str_replace('-', ' ', $cardsolapinaccomp_prename);
                                                                 $cardsolapinaccomp_lastname = substr($inscription->accompanist_solapin, strpos($inscription->accompanist_solapin, ' ') + 1);
                                                             @endphp
         

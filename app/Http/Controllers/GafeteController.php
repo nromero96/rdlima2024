@@ -89,7 +89,9 @@ class GafeteController extends Controller
                 ->first();
 
         //de esto $inscriptions->solapin_name extrar hasta el primer espacio
-        $pdfsolapin_name = explode(' ', $inscriptions->solapin_name);
+        $pdfsolapin_prename = explode(' ', $inscriptions->solapin_name);
+        //replace - for space
+        $pdfsolapin_name = str_replace('-', ' ', $pdfsolapin_prename);
         //de esto $inscriptions->solapin_name extraer despues del primer espacio
         $pdfsolapin_lastname = substr($inscriptions->solapin_name, strpos($inscriptions->solapin_name, ' ') + 1);
 
