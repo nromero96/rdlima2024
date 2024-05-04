@@ -51,6 +51,12 @@
             font-size: 1.41vw;
         }
 
+        .ts-dropdown {
+            top: auto !important;
+            bottom: 100% !important;
+            /* transform: translateY(-100%); */
+        }
+
         .smgbusqueda{
             color: #999999;
             font-size: 1.1vw;
@@ -130,6 +136,14 @@
         .inputsform select{
             font-size: 1.41vw;
             color: #003e6f;
+        }
+
+        .nobusqueda{
+            background: url('{{ asset('assets/img/logo.png') }}') no-repeat;
+            background-size: 50vw;
+            background-position-x: center;
+            background-position-y: 10vw;
+
         }
 
         .nobusqueda .headepage{
@@ -291,7 +305,7 @@
             <div class="bacbakground_cover" style="background-image: url('{{ asset('assets/img/34ere342jfhr343-min.jpg') }}')"></div>
             <div class="titlepage">
                 <div class="container-fluid text-white">
-                    <form action="{{ route('searchPostersPage') }}" method="GET">
+                    <form action="{{ route('searchPostersPage') }}" method="GET" class="mb-5">
                         <div class="row">
                             <div class="col-12 text-center">
                                 <h1>BUSCAR POSTERS</h1>
