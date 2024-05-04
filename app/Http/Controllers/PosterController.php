@@ -169,6 +169,7 @@ class PosterController extends Controller
             ->where('works.poster_file', '!=', '')
             ->selectRaw('users.id AS user_id, CONCAT(users.name, " ", users.lastname, " ", COALESCE(users.second_lastname, "")) AS author')
             ->distinct()
+            ->orderBy('author', 'asc')
             ->get();
 
         //get unique knowledge_areas
