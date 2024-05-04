@@ -25,6 +25,10 @@
     
     <link href="{{ asset('plugins/src/stepper/bsStepper.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('plugins/src/tomSelect/tom-select.default.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/css/light/tomSelect/custom-tomSelect.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/css/dark/tomSelect/custom-tomSelect.css') }}" rel="stylesheet" type="text/css" />
+
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     
     <style>
@@ -32,6 +36,18 @@
         .btn-primary{
             background: #C40000;
             border-color: #C40000;
+            font-size: 1.41vw;
+        }
+
+        .ts-wrapper {
+            min-height: 1.5vw;
+        }
+
+        .ts-control {
+            font-size: 1.41vw;
+        }
+
+        .ts-dropdown [data-selectable].option {
             font-size: 1.41vw;
         }
 
@@ -180,7 +196,7 @@
                         </div>
                         <div class="col-3 px-0">
                             <label for="search_author" class="form-label mb-0">Autor</label>
-                            <select class="form-select py-2 rounded-0" name="search_author">
+                            <select class="form-select rounded-0" name="search_author" id='search_author' placeholder="Busca y seleccione el autor">
                                 <option value="Todos" @if($search_author == 'Todos') selected @endif>Todos</option>
                                 @foreach($authors as $author)
                                     <option value="{{ $author->user_id }}" @if($search_author == $author->user_id) selected @endif>{{ $author->author }}</option>
@@ -207,7 +223,7 @@
                         </div>
                         <div class="col-2 ps-0">
                             <label for="btnsubmit" class="form-label mb-0">&nbsp;</label>
-                            <button type="submit" class="btn btn-primary w-100 rounded-0 rounded-end py-2" id="btnsubmit"><b>BUSCAR POSTER</b></button>
+                            <button type="submit" class="btn btn-primary w-100 rounded-0 rounded-end py-2 px-1" id="btnsubmit"><b>BUSCAR POSTER</b></button>
                         </div>
                     </div>
                 </form>
@@ -304,6 +320,8 @@
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
+    <script src="{{ asset('plugins/src/tomSelect/tom-select.base.js') }}"></script>
+
     <script>
         $(document).ready(function() {
 
@@ -346,6 +364,11 @@
                 });
 
             });
+
+            new TomSelect("#search_author", {
+                create: false,
+            });
+
         });
     </script>
     
