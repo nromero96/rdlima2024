@@ -187,7 +187,9 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">{{__("Actualizar")}}</button>
+                                @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
+                                    <button type="submit" class="btn btn-primary">{{__("Actualizar")}}</button>
+                                @endif
                             </div>
                         </form>
                     </div>

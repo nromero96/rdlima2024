@@ -139,6 +139,12 @@ class ProgramController extends Controller
      */
     public function edit($id)
     {
+
+        //verificar permisos can('update-programs')
+        if (!auth()->user()->can('programs.edit')) {
+            abort(403, 'No tiene permisos para editar programas');
+        }
+
         $data = [
             'category_name' => 'programs',
             'page_name' => 'programs_edit',

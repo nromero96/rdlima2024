@@ -46,7 +46,7 @@ class InscriptionController extends Controller
         $listforpage = request()->query('listforpage') ?? 10;
         $search = request()->query('search');
 
-        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || \Auth::user()->hasRole('Hotelero')) {
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || \Auth::user()->hasRole('Hotelero') || \Auth::user()->hasRole('Check-in')) {
 
             $inscriptions = Inscription::join('category_inscriptions', 'inscriptions.category_inscription_id', '=', 'category_inscriptions.id')
                 ->join('users', 'inscriptions.user_id', '=', 'users.id')
@@ -389,7 +389,7 @@ class InscriptionController extends Controller
         $iduser = \Auth::user()->id;
         $inscription = Inscription::where('id', $id)->where('user_id', $iduser)->first();
 
-        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || \Auth::user()->hasRole('Hotelero')  || $inscription) {
+        if (\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria') || \Auth::user()->hasRole('Hotelero') || \Auth::user()->hasRole('Check-in')  || $inscription) {
 
             $data = [
                 'category_name' => 'inscriptions',
