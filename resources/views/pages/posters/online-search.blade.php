@@ -344,7 +344,7 @@
                                 </select>
                             </div>
                             <div class="col-2 px-0">
-                                <label for="search_category" class="form-label mb-0">Categóría</label>
+                                <label for="search_category" class="form-label mb-0">Categoría</label>
                                 <select class="form-select py-2 rounded-0" name="search_category">
                                     <option value="Todos" @if($search_category == 'Todos') selected @endif>Todos</option>
                                     @foreach($categories as $category)
