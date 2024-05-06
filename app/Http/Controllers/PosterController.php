@@ -155,6 +155,7 @@ class PosterController extends Controller
             ->where('works.poster_file', '!=', '')
             ->select('users.country')
             ->distinct()
+            ->orderby('users.country', 'asc')
             ->get();
         
         //get unique categories
@@ -177,6 +178,7 @@ class PosterController extends Controller
             ->where('works.poster_file', '!=', '')
             ->select('works.knowledge_area')
             ->distinct()
+            ->orderby('works.knowledge_area', 'asc')
             ->get();
 
         //get data url
