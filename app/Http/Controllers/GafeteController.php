@@ -38,6 +38,9 @@ class GafeteController extends Controller
                         if (strpos($search, '#') === 0) {
                             $searchWithoutHash = ltrim($search, '#');
                             $query->where('inscriptions.id', $searchWithoutHash);
+                        } else if(strcasecmp($search, 'entregado') == 0){
+                            $query->where('inscriptions.status', 'Pagado')
+                                ->where('inscriptions.assistance', '!=', null);
                         } else {
                             // Si no comienza con #, buscar cualquier coincidencia parcial
                             $query->where('inscriptions.id', 'LIKE', "%{$search}%")
@@ -51,8 +54,17 @@ class GafeteController extends Controller
                 ->orderBy('inscriptions.id', 'desc')
                 ->paginate($listforpage);
 
+        //total inscriptions where status is pagado
+        $totalinscription = Inscription::where('status', 'Pagado')
+            ->count();
 
-        return view('pages.gafetes.index')->with($data)->with('inscriptions', $inscriptions);
+        //count inscriptions where assistance is content and status is pagado
+        $inscriptionsassistance = Inscription::where('assistance', '!=', null)
+            ->where('status', 'Pagado')
+            ->count();
+
+
+        return view('pages.gafetes.index')->with($data)->with('inscriptions', $inscriptions)->with('inscriptionsassistance', $inscriptionsassistance)->with('totalinscription', $totalinscription);
     }
 
     public function gafeteForParticipant($id)
@@ -316,6 +328,9 @@ class GafeteController extends Controller
                         if (strpos($search, '#') === 0) {
                             $searchWithoutHash = ltrim($search, '#');
                             $query->where('inscriptions.id', $searchWithoutHash);
+                        } else if(strcasecmp($search, 'entregado') == 0){
+                            $query->where('inscriptions.status', 'Pagado')
+                                ->where('inscriptions.assistance', '!=', null);
                         } else {
                             // Si no comienza con #, buscar cualquier coincidencia parcial
                             $query->where('inscriptions.id', 'LIKE', "%{$search}%")

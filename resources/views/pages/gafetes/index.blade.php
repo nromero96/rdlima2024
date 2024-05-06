@@ -216,6 +216,23 @@
                         </div>
                     </div>
                 </div>
+
+                @if(\Auth::user()->hasRole('Administrador') || \Auth::user()->hasRole('Secretaria'))
+                <div class="statbox widget box box-shadow mt-3">
+                    <div class="widget-header pb-2 pt-2">
+                        <h4 class="pt-2 pb-1 text-center">Resumen de Asistencia</h4>
+                    </div>
+
+                    <div class="widget-content widget-content-area pt-0">
+                        <div class="text-center">
+                            <span class="badge rounded-pill bg-info px-2 py-1">Total: {{ $totalinscription }}</span>
+                            <span class="badge rounded-pill bg-success px-2 py-1">Entregados: {{ $inscriptionsassistance }}</span>
+                            <span class="badge rounded-pill bg-danger px-2 py-1">Faltantes: {{ $totalinscription - $inscriptionsassistance }}</span>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
             </div>
         </div>
 
