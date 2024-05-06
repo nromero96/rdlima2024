@@ -163,10 +163,95 @@
             border-radius: 20px 20px 0px 0px;
         }
 
+        .btnsubmit{
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+
+        .search_knowledge_area{
+            border-radius: 0.375rem 0 0 0.375rem;
+        }
+
+        .search_category{
+            border-radius: 0;
+        }
+
+        .search_country{
+            border-radius: 0;
+        }
+
+        .search_author{
+            border-radius: 0;
+        }
+
+        .has-items .ts-control>input{
+            flex: auto !important;
+            min-width: 10px;
+        }
+
+
+
         @media (max-width: 568px){
+
             .titlepage h1{
-                font-size: 45px;
+                font-size: 26px;
             }
+
+            .inputsform label {
+                font-size: 11px;
+            }
+
+            .inputsform input {
+                font-size: 12px;
+            }
+
+            .inputsform select {
+                font-size: 12px;
+            }
+
+            .ts-control {
+                font-size: 12px;
+                padding: 0.5rem .75rem;
+                color: #003e6f;
+            }
+
+            .ts-dropdown [data-selectable].option {
+                font-size: 12px;
+                color: #003e6f;
+            }
+
+            .btnsubmit{
+                border-radius: 0.375rem;
+                font-size: 12px;
+            }
+
+            .search_category{
+                border-radius: 0 0.375rem 0.375rem 0;
+            }
+
+            .search_country{
+                border-radius: 0.375rem 0 0 0.375rem;
+            }
+
+            .search_author{
+                border-radius: 0 0.375rem 0.375rem 0;
+            }
+
+            .search_knowledge_area{
+                border-radius: 0.375rem 0 0 0.375rem;
+            }
+
+            .smgbusqueda{
+                font-size: 11px;
+            }
+
+            .btn-primary{
+                font-size: 10px;
+            }
+
+            .btn-secondary{
+                font-size: 16px;
+            }
+
         }
 
     </style>
@@ -301,7 +386,7 @@
 
     @else
 
-        <section class="headepage pt-5 pb-5">
+        <section class="headepage pt-5 pb-1 pb-sm-5">
             <div class="bacbakground_cover" style="background-image: url('{{ asset('assets/img/34ere342jfhr343-min.jpg') }}')"></div>
             <div class="titlepage">
                 <div class="container-fluid text-white">
@@ -312,49 +397,49 @@
                             </div>
                         </div>
                         <div class="row inputsform">
-                            <div class="col-12 mb-2">
+                            <div class="col-12 mb-0 mb-sm-2">
                                 <label for="search_title" class="form-label mb-0">Título</label>
                                 <input type="text" class="form-control py-2" name="search_title" placeholder="Ingrese el título del poster" value="{{ $search_title }}">
                             </div>
-                            <div class="col-3 pe-0">
+                            <div class="col-6 pe-0 col-sm-3 pe-sm-0">
                                 <label for="search_knowledge_area" class="form-label mb-0">Área de conocimiento</label>
-                                <select class="form-select py-2 rounded-0 rounded-start" name="search_knowledge_area">
+                                <select class="form-select py-2 search_knowledge_area" name="search_knowledge_area">
                                     <option value="Todos" @if($search_knowledge_area == 'Todos') selected @endif>Todos</option>
                                     @foreach($knowledge_areas as $knowledge_area)
                                         <option value="{{ $knowledge_area->knowledge_area }}" @if($search_knowledge_area == $knowledge_area->knowledge_area) selected @endif>{{ $knowledge_area->knowledge_area }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-3 px-0">
+                            <div class="col-6 ps-0 col-sm-3 px-sm-0">
                                 <label for="search_author" class="form-label mb-0">Autor</label>
-                                <select class="form-select rounded-0" name="search_author" id='search_author' placeholder="Busca y seleccione el autor">
+                                <select class="form-select search_author" name="search_author" id='search_author' placeholder="Busca y seleccione el autor">
                                     <option value="Todos" @if($search_author == 'Todos') selected @endif>Todos</option>
                                     @foreach($authors as $author)
                                         <option value="{{ $author->user_id }}" @if($search_author == $author->user_id) selected @endif>{{ $author->author }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-2 px-0">
+                            <div class="col-6 pe-0 col-sm-2 px-sm-0">
                                 <label for="search_country" class="form-label mb-0">País</label>
-                                <select class="form-select py-2 rounded-0" name="search_country">
+                                <select class="form-select py-2 search_country" name="search_country">
                                     <option value="Todos" @if($search_country == 'Todos') selected @endif>Todos</option>
                                     @foreach($countries as $country)
                                         <option value="{{ $country->country }}" @if($search_country == $country->country) selected @endif>{{ $country->country }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-2 px-0">
+                            <div class="col-6 ps-0 col-sm-2 px-sm-0">
                                 <label for="search_category" class="form-label mb-0">Categoría</label>
-                                <select class="form-select py-2 rounded-0" name="search_category">
+                                <select class="form-select py-2 search_category" name="search_category">
                                     <option value="Todos" @if($search_category == 'Todos') selected @endif>Todos</option>
                                     @foreach($categories as $category)
                                         <option value="{{ $category->category }}" @if($search_category == $category->category) selected @endif>{{ $category->category }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-2 ps-0">
-                                <label for="btnsubmit" class="form-label mb-0">&nbsp;</label>
-                                <button type="submit" class="btn btn-primary w-100 rounded-0 rounded-end py-2 px-1" id="btnsubmit"><b>BUSCAR POSTER</b></button>
+                            <div class="col-12 col-sm-2 ps-sm-0 mt-3 mt-sm-auto">
+                                <label for="btnsubmit" class="form-label mb-0 d-none d-sm-block">&nbsp;</label>
+                                <button type="submit" class="btn btn-primary w-100 btnsubmit py-2 px-1" id="btnsubmit"><b>BUSCAR POSTER</b></button>
                             </div>
                         </div>
                     </form>
