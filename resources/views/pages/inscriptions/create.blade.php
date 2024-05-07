@@ -90,11 +90,11 @@
                                                             </div>
 
                                                             @if ($category->id == '7')
-                                                                <div id="dv_specialcode" class="d-inline-block d-none">
+                                                                <div id="dv_specialcode" class="d-sm-inline-block d-none">
                                                                     <div class="input-group mt-1 mb-0">
-                                                                        <input type="text" name="specialcode" id="specialcode" class="form-control" placeholder="Ingresar código">
+                                                                        <input type="text" name="specialcode" id="specialcode" class="form-control convert_mayus" placeholder="Ingresar código">
                                                                         <button class="btn btn-secondary d-none" type="button" id="clear_specialcode" style="border-radius: 0px 6px 6px 0px;">Limpiar</button>
-                                                                        <button class="btn btn-primary" type="button" id="validate_specialcode">Validar</button>
+                                                                        <button class="btn btn-primary px-2 px-sm-3" type="button" id="validate_specialcode">Validar</button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="d-inline-block" id="sms_valid_vc">
