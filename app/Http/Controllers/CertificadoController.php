@@ -57,8 +57,11 @@ class CertificadoController extends Controller
             $pdf->SetAutoPageBreak(false, 0);
             $pdf->Image($img_file, 0, 0, 298, '', '', '', '', false, 300, '', false, false, 0);
 
-            $texto = '<p style="text-align: center; font-family: tahomab; font-weight: bold; font-size: 32pt; color: #595959; letter-spacing:-0.30mm;">' . 
-            $inscription->name.' '.$inscription->lastname.' '.$inscription->second_lastname . '</p>';
+            if($inscription->id == '1845'){
+                $texto = '<p style="text-align: center; font-family: tahomab; font-weight: bold; font-size: 31pt; color: #595959; letter-spacing:-0.30mm;">' . $inscription->name.' '.$inscription->lastname.' '.$inscription->second_lastname . '</p>';
+            }else{
+                $texto = '<p style="text-align: center; font-family: tahomab; font-weight: bold; font-size: 32pt; color: #595959; letter-spacing:-0.30mm;">' . $inscription->name.' '.$inscription->lastname.' '.$inscription->second_lastname . '</p>';
+            }
 
             //$pdf->writeHTML($texto, true, false, 127, false, 'C');
             $pdf->writeHTMLCell(0, false, false, 82, $texto, 0, 1, 0, true, 'C', true);
