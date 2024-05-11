@@ -26,6 +26,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProgramSessionController;
 use App\Http\Controllers\PosterController;
 use App\Http\Controllers\GafeteController;
+use App\Http\Controllers\CertificadoController;
 
 
 use Illuminate\Support\Facades\Artisan;
@@ -207,6 +208,11 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
     Route::get('changefavourite-note', [NoteController::class, 'changeFavourite'])->name('notes.changefavourite');
     Route::get('changetag-note', [NoteController::class, 'changeTag'])->name('notes.changetag');
     Route::get('destroy-note', [NoteController::class, 'destroy'])->name('notes.destroy');
+
+    //certificados
+    Route::get('my-certicate/{id}', [CertificadoController::class, 'my_certicate'])->name('certificates.mycertificate');
+    Route::get('certicate-for', [CertificadoController::class, 'certicate_for'])->name('certificates.certificatefor');
+    Route::get('list-certicates', [CertificadoController::class, 'list_certicates'])->name('certificates.listcertificates');
 
 });
 

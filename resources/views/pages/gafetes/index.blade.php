@@ -109,6 +109,7 @@
                                                 @else
                                                     <span>{{ \Carbon\Carbon::parse($inscription->assistance)->format('d-m-Y') }}</span> <!-- Formato de fecha dd-mm-yyyy -->
                                                     <span class="badge rounded-pill bg-success px-1 py-0">{{ \Carbon\Carbon::parse($inscription->assistance)->format('H:i') }}</span> <!-- Formato de hora hh:mm -->
+                                                    <a href="{{ route('certificates.mycertificate',$inscription->id) }}" target="_blank" class="text-info d-block mt-1">VER CERTIFICADO</a>
                                                 @endif
 
                                                 @if($inscription->accompanist_id)
