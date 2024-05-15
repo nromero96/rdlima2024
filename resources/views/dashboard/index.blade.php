@@ -11,8 +11,27 @@
             <div class="col-sm-6 mb-3 mb-sm-3">
                 <div class="card">
                     <div class="card-body">
+                        <h5 class="card-title"><b>CERTIFICADO</b></h5>
+                        <p class="card-text">Reconocimiento oficial por la participación en la <b>XLI Reunión Anual de Dermatólogos Latinoamericanos</b></p>
+                        
+                        @if($assistance)
+                        <a href="{{ route('certificates.mycertificate', $myinscription->id) }}" target="_blank">
+                            <img src="{{ asset('assets/img/bg-certificado-imgprev.jpg') }}" class="img-fluid rounded" alt="Certificado de participación">
+                            <span class="d-block text-center px-1 py-3 btndowcert">Descargar Certificado</span>
+                        </a>
+                        @else
+                            <a href="#" class="btn btn-alert" disabled>{{__("Certificado no disponible. No asistió al evento.")}}</a>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 mb-3 mb-sm-3">
+                <div class="card mb-3 mb-sm-3">
+                    <div class="card-body">
                         <h5 class="card-title">{{__("Hola,")}} <b>{{ Auth::user()->name }}</b></h5>
-                        <p class="card-text">{{__("Bienvenido a la RADLA 2024")}}</p>
+                        <p class="card-text">{{__("Gracias por participar en la RADLA 2024")}}</p>
                         
                         @if($myinscription)
                             <a href="{{ route('gafetes.gafeteforparticipant',$myinscription->id) }}" class="btn btn-primary px-2 py-1" target="_blank">
@@ -22,7 +41,6 @@
                                 </svg>
                                 Descargar Solapín
                             </a>
-
                             @if($myinscription->accompanist_id != null)
                                 <a href="{{ route('gafetes.gafeteforaccompanist',$myinscription->id) }}" class="btn btn-primary px-2 py-1 ms-2" target="_blank">
                                     <svg width="21" height="21" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -39,26 +57,25 @@
 
                     </div>
                 </div>
-            </div>
-
-            <div class="col-sm-6 mb-3 mb-sm-3">
                 <div class="card bg-primary">
-                  <div class="card-body">
-                    <h5 class="card-title mb-0">{{__("El evento empieza en:")}}</h5>
-                    {{-- Aqui el contador --}}
-
-                    <div id="msmencurso" class="pt-2 pb-2 d-none" style="font-size: 17px;">
-                        {{-- Mensaje --}}
-                        EVENTO EN CURSO
+                    <div class="card-body">
+                      <h5 class="card-title mb-0">{{__("Evento realizado del:")}}</h5>
+                      {{-- Aqui el contador --}}
+  
+                      <div id="msmencurso" class="pt-2 pb-2 d-none" style="font-size: 17px;">
+                          {{-- Mensaje --}}
+                          08 al 11 de mayo de 2024 (Evento finalizado)
+                      </div>
+  
+                      <div id="contador" class="d-flex mb-1">
+                          <div class="text-white"><span id="dias" style="font-size: 25px;font-weight: bolder;"></span> <small style="font-size: 15px;">DÍAS Y </small><span id="horas" style="font-size: 25px;font-weight: bolder;"></span> <small style="font-size: 15px;">HORAS</small></div>
+                      </div>
+                      <a href="{{ route('onlineprograms') }}" target="_blank" class="btn btn-light text-dark"><b>VER PROGRAMA</b></a>
                     </div>
-
-                    <div id="contador" class="d-flex mb-1">
-                        <div class="text-white"><span id="dias" style="font-size: 25px;font-weight: bolder;"></span> <small style="font-size: 15px;">DÍAS Y </small><span id="horas" style="font-size: 25px;font-weight: bolder;"></span> <small style="font-size: 15px;">HORAS</small></div>
-                    </div>
-                    <a href="{{ route('onlineprograms') }}" target="_blank" class="btn btn-light text-dark"><b>VER PROGRAMA</b></a>
                   </div>
-                </div>
             </div>
+
+            
 
             @if($myprograms != '[]')
 

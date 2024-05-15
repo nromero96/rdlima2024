@@ -21,6 +21,19 @@
             <link href="{{ asset('plugins/src/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
             <link href="{{ asset('assets/css/light/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
             <link href="{{ asset('assets/css/dark/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
+            
+            <style>
+                .btndowcert{
+                    position: relative;
+                    background: rgb(192 0 0 / 82%);
+                    color: white;
+                    font-size: 14px;
+                    margin-top: -53px;
+                    font-weight: 600;
+                    border-radius: 0px 0px 5px 5px;
+                }
+            </style>
+
             @break
 
         @case('works')

@@ -20,6 +20,10 @@ class DashboardController extends Controller{
         $myinscription = Inscription::where('status', 'Pagado')
                                     ->where('user_id', auth()->user()->id)
                                     ->first();
+        $assistance = Inscription::where('status', 'Pagado')
+                                    ->where('assistance', '!=', null)
+                                    ->where('user_id', auth()->user()->id)
+                                    ->first();
 
         if($myinscription){
             //$myprograms = Program::where('insc_id', '503')->get();
@@ -28,7 +32,7 @@ class DashboardController extends Controller{
             $myprograms = '[]';
         }
 
-        return view('dashboard.index')->with($data)->with('myinscription', $myinscription)->with('myprograms', $myprograms);
+        return view('dashboard.index')->with($data)->with('myinscription', $myinscription)->with('myprograms', $myprograms)->with('assistance', $assistance);
     }
 
 

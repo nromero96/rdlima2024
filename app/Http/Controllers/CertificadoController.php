@@ -14,10 +14,10 @@ class CertificadoController extends Controller
     public function my_certicate($id){
 
         //verificar solo roles Administrador Secretaria
-        if(!Auth::user()->hasRole('Administrador') && !Auth::user()->hasRole('Secretaria')){
-            echo "Aun estamos trabajando en tu certificado de asistencia, pronto estará disponible.";
-            return false;
-        }
+        // if(!Auth::user()->hasRole('Administrador') && !Auth::user()->hasRole('Secretaria')){
+        //     echo "Aun estamos trabajando en tu certificado de asistencia, pronto estará disponible.";
+        //     return false;
+        // }
 
         //get my isncription
         $inscription = Inscription::select('inscriptions.id', 'users.name', 'users.lastname', 'users.second_lastname')
@@ -63,7 +63,7 @@ class CertificadoController extends Controller
                 $fontSize = '32pt';
             }
             
-            $texto = '<p style="text-align: center; font-family: tahomab; font-weight: bold; font-size: ' . $fontSize . '; color: #595959; letter-spacing: -0.30mm;">' . $inscription->name . ' ' . $inscription->lastname;
+            $texto = '<p style="text-align: center; font-family: tahomab; font-weight: bold; font-size: ' . $fontSize . '; color: #000000; letter-spacing: -0.30mm;">' . $inscription->name . ' ' . $inscription->lastname;
             
             if ($inscription->second_lastname !== null && $inscription->second_lastname !== '') {
                 $texto .= ' ' . $inscription->second_lastname;
@@ -76,11 +76,11 @@ class CertificadoController extends Controller
 
                 // Agregar el ID con su respectivo formato
             $pdf->SetFont('tahomab', 'B', 12); // Fuente dejavusans, tamaño 12
-            $pdf->SetTextColor(89, 89, 89); // Color azul
+            $pdf->SetTextColor(0, 0, 0); // Color azul
             $pdf->Cell(551, 175, $inscription->id, 0, 1, 'C');
 
             //Close and output PDF document
-            $nombre_archivo = utf8_decode('certificado.pdf');
+            $nombre_archivo = utf8_decode('mi-certificado'. $inscription->id .'.pdf');
             $pdf->Output($nombre_archivo, 'I');
 
         }else{
