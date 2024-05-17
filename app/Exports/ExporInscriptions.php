@@ -45,7 +45,9 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
                                     'inscriptions.total', 
                                     'inscriptions.payment_method', 
                                     'inscriptions.status', 
-                                    'inscriptions.created_at')
+                                    'inscriptions.created_at',
+                                    'inscriptions.assistance',
+                                    'inscriptions.assistance_accomp')
                             ->join('category_inscriptions', 'category_inscriptions.id', '=', 'inscriptions.category_inscription_id')
                             ->where('inscriptions.status', '!=', 'Rechazado')
                             ->get();
@@ -77,7 +79,9 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
             'Pago Total',
             'Metodo de pago',
             'Estado',
-            'Fecha de registro'
+            'Fecha de registro',
+            'Asistencia',
+            'Asistencia Acompañante'
         ];
     }
 
@@ -107,13 +111,15 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
             $inscription->total,
             $inscription->payment_method,
             $inscription->status,
-            $inscription->created_at
+            $inscription->created_at,
+            $inscription->assistance,
+            $inscription->assistance_accomp
 
         ];
     }
 
     public function styles(Worksheet $sheet){
-        $sheet->getStyle('A1:X1')->applyFromArray([
+        $sheet->getStyle('A1:Z1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'color' => ['argb' => 'FFFFFF'],
@@ -150,6 +156,8 @@ class ExporInscriptions implements FromCollection, WithHeadings, WithMapping, Wi
         $sheet->getColumnDimension('V')->setWidth(11);
         $sheet->getColumnDimension('W')->setWidth(17);
         $sheet->getColumnDimension('X')->setWidth(17);
+        $sheet->getColumnDimension('Y')->setWidth(22);
+        $sheet->getColumnDimension('Z')->setWidth(22);
     }
 
 }

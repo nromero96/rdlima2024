@@ -41,6 +41,9 @@ class GafeteController extends Controller
                         } else if(strcasecmp($search, 'entregado') == 0){
                             $query->where('inscriptions.status', 'Pagado')
                                 ->where('inscriptions.assistance', '!=', null);
+                        } else if(strcasecmp($search, 'no entregado') == 0){
+                            $query->where('inscriptions.status', 'Pagado')
+                                ->where('inscriptions.assistance', null);
                         } else {
                             // Si no comienza con #, buscar cualquier coincidencia parcial
                             $query->where('inscriptions.id', 'LIKE', "%{$search}%")

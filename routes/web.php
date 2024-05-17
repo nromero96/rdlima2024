@@ -112,6 +112,9 @@ Route::group(['middleware' => ['auth', 'ensureStatusActive']], function () {
         return 'Migraciones ejecutadas con éxito.';
     });
 
+    //Search Online Posters
+Route::get('online-search-posters', [PosterController::class, 'searchPostersPage'])->name('searchPostersPage');
+
     // $this->middleware
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 

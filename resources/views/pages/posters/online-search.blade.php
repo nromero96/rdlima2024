@@ -140,15 +140,15 @@
 
         .nobusqueda{
             background: url('{{ asset('assets/img/logo.png') }}') no-repeat;
-            background-size: 50vw;
+            background-size: 15vw;
             background-position-x: center;
-            background-position-y: 10vw;
-
+            background-position-y: 5vw;
         }
 
         .nobusqueda .headepage{
             position: fixed;
             bottom: 0;
+            width: 100%;
         }
 
         .nobusqueda .headepage .bacbakground_cover{
